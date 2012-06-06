@@ -25,7 +25,7 @@
 
 int     main(int ac, char **av)
 {
-  if (listen_client(ac, av) == -1)
+  if (network(ac, av) == -1)
     return (-1);
   return(0);
 }

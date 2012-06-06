@@ -13,7 +13,7 @@ typedef struct      s_client {
 }    t_client;
 
 
-int listen_client(int ac, char **av);
+int network(int ac, char **av);
 t_client    *get_all_client(t_client *_all_client);
 int   remove_client(t_client *to_remove);
 t_client  *add_client(t_client *all_client, int fd);

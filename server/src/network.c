@@ -78,7 +78,7 @@ int main_loop(int s, socklen_t client_sin_len,
   }
 }
 
-int listen_client(int ac, char **av)
+int network(int ac, char **av)
 {
   int     s;
   struct sockaddr_in  sin;
