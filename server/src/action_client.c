@@ -14,7 +14,6 @@
 #include "network.h"
 #include "xfunc.h"
 
-
 int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
@@ -42,10 +41,12 @@ t_client  *add_client(t_client *all_client, int fd)
 {
   t_client  *tmp;
   t_client  *new;
+  static int  id = 0;
 
   new = xmalloc(sizeof(t_client));
   tmp = all_client;
   new->fd = fd;
+  new->id = id++;
   new->next = NULL;
   if (tmp == NULL)
     return (new);

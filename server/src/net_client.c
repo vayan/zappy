@@ -28,7 +28,7 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
     {
       if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
       {
-        printf("%s", msg);
+        printf("%d : %s",tmp->id, msg);
       }
       if (ret == 0)
         remove_client(tmp);
