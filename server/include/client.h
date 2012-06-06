@@ -5,6 +5,7 @@ typedef struct      s_client {
   int       fd;
   int       id;
   int       level;
+  char      *team;
   struct  s_client  *next;
 }    t_client;
 

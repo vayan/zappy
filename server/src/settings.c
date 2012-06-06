@@ -23,6 +23,18 @@ t_setting    *get_setting(t_setting *_setting)
   return (setting);
 }
 
+void  aff_tab(char **tab)
+{
+  int i;
+
+  i = 0;
+  while (tab[i])
+  {
+    printf("%s\n", tab[i]);
+    i++;
+  }
+}
+
 // char **to_tab(char *msg)
 // {
 //   char  *tok;
@@ -50,21 +62,42 @@ void aff_setting()
   setting = get_setting(NULL);
   printf("port:%d, X:%d, Y:%d, MAXCL:%d, DELAY:%d\n", setting->port, setting->width_map, 
     setting->height_map, setting->max_cl_per_team, setting->delay);
+  aff_tab(setting->name_teams);
 }
 
-void fill_setting(char **set, int ac, t_setting *setting)
+void init_setting(t_setting *setting)
 {
-  int i;
-
-  i = 1;
   setting->port = -1;
   setting->width_map = -1;
   setting->height_map = -1;
   setting->max_cl_per_team = -1;
   setting->delay = -1;
-  setting->name_teams = NULL;
+  setting->name_teams = NULL;  
+}
+
+int count_nb_team(char **av, int i, int ac)
+{
+  int nb;
+
+  nb = 0;
+  while (i < ac && av[i][0] != '-')
+  {
+    nb++;
+    i++;
+  }
+  return (nb);
+}
+
+void fill_setting(char **set, int ac, t_setting *setting)
+{
+  int i;
+  int b;
+
+  i = 1;
+  init_setting(setting);
   while (i < ac)
   {
+    b = 0;
     if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
       setting->port = atoi(set[++i]);
     if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
@@ -75,7 +108,20 @@ void fill_setting(char **set, int ac, t_setting *setting)
       setting->max_cl_per_team = atoi(set[++i]);
     if (strcmp("-t", set[i]) == 0 && i + 1 <= ac)
       setting->delay = atoi(set[++i]);
-    i++;
+    if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
+    {
+      i++;
+      setting->name_teams = xmalloc((count_nb_team(set, i, ac) + 1) * sizeof(char*));
+      while (i < ac && set[i][0] != '-')
+      {
+        setting->name_teams[b] = strdup(set[i]);
+        setting->name_teams[b + 1] = NULL;
+        b++;
+        i++;
+      }
+    }
+    if (b == 0)
+      i++;
   }
 }
 
@@ -83,7 +129,7 @@ int   check_setting(t_setting *setting)
 {
   if (setting->port == -1 || setting->width_map == -1 || setting->height_map == - 1 || 
     setting->max_cl_per_team == -1 || setting->delay == -1)
-    printf(USAGE);
+    printf(USAGE, "test");
   else if (setting->port < 2000)
     printf("Error : port < 2000\n");
   else if (setting->width_map <= 0)
