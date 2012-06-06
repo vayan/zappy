@@ -72,8 +72,7 @@ int main_loop(int s, socklen_t client_sin_len,
         get_all_client(all_client = add_client(all_client, cs));
       else
         add_client(all_client, cs);
-      send (cs, "Bienvenue sur YIRC!\n",
-        strlen("Bienvenue sur YIRC!\n"), MSG_DONTWAIT);
+      send (cs, "yop nouveau client\n", strlen("yop nouveau client\n"), MSG_DONTWAIT);
     }
     get_data_from_client(all_client, &readf);
   }
