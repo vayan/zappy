@@ -22,10 +22,13 @@
 #include <time.h>
 #include <signal.h>
 #include "network.h"
+#include "setting.h"
 
 int     main(int ac, char **av)
 {
-  if (network(ac, av) == -1)
+  if (parser_setting(ac, av) == -1)
     return (-1);
+  aff_setting();
+  network();
   return(0);
 }

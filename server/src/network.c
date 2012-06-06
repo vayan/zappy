@@ -23,6 +23,7 @@
 #include <signal.h>
 #include "network.h"
 #include "xfunc.h"
+#include "setting.h"
 
 void    clean_quit()
 {
@@ -39,11 +40,8 @@ void    clean_quit()
   exit (11);
 }
 
-void  init_socket(struct sockaddr_in    *sin, char *_port)
+void  init_socket(struct sockaddr_in    *sin, int port)
 {
-  int port;
-
-  port = atoi(_port);
   sin->sin_family = AF_INET;
   sin->sin_port = htons(port);
   sin->sin_addr.s_addr = INADDR_ANY;
@@ -78,24 +76,24 @@ int main_loop(int s, socklen_t client_sin_len,
   }
 }
 
-int network(int ac, char **av)
+int network()
 {
   int     s;
   struct sockaddr_in  sin;
   struct sockaddr_in  client_sin;
   socklen_t   client_sin_len;
   t_client    *all_client;
+  t_setting *setting;
 
+  setting = get_setting(NULL);
   xsignal(SIGINT, clean_quit);
-  if (ac != 2)
-    return (1);
   all_client = NULL;
   if ((s = socket(PF_INET, SOCK_STREAM, 0)) == -1)
   {
     perror("socket");
     return (-1);
   }
-  init_socket(&sin, av[1]);
+  init_socket(&sin, setting->port);
   setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &client_sin, sizeof(client_sin));
   xbind(s, (struct sockaddr*)&sin, sizeof(sin));
   xlisten(s, 42);

@@ -16,6 +16,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include "network.h"
+#include "xfunc.h"
 
 int	xclose(int d)
 {
