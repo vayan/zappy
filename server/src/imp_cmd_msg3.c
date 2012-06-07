@@ -5,17 +5,26 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 13:16:55 2012 anatole carlier
-** Last update Thu Jun  7 13:17:59 2012 anatole carlier
+** Last update Thu Jun  7 14:02:17 2012 anatole carlier
 */
 
 char	*sgt()
 {
+  char  *str;
+
+  return (str);
 }
 
 char	*smg(char *msg)
 {
+  char  *str;
+
+  return (str);
 }
 
 char	*sbp()
 {
+  char  *str;
+
+  return (str);
 }
