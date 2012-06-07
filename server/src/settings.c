@@ -14,7 +14,7 @@
 #include "setting.h"
 #include "xfunc.h"
 
-#define FLAGDEBUG 1
+#define FLAGDEBUG 1 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
 
 t_setting    *get_setting(t_setting *_setting)
 {
