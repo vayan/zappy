@@ -72,20 +72,24 @@ void aff_setting()
 
 void init_setting(t_setting *setting)
 {
-  // SANS DEBUG
-  // setting->port = -1;
-  // setting->width_map = -1;
-  // setting->height_map = -1;
-  // setting->max_cl_per_team = -1;
-  // setting->delay = -1;
-  // setting->name_teams = NULL;  
-  //DEBUG 
-  setting->port =  4242;
-  setting->width_map = 5;
-  setting->height_map = 5;
-  setting->max_cl_per_team = 3;
-  setting->delay = 7;
-  setting->name_teams = NULL;  
+  if (FLAGDEBUG == 0)
+  {
+    setting->port = -1;
+    setting->width_map = -1;
+    setting->height_map = -1;
+    setting->max_cl_per_team = -1;
+    setting->delay = -1;
+    setting->name_teams = NULL;  
+  }
+  if (FLAGDEBUG == 1)
+  {
+    setting->port =  4242;
+    setting->width_map = 5;
+    setting->height_map = 5;
+    setting->max_cl_per_team = 3;
+    setting->delay = 7;
+    setting->name_teams = NULL;  
+  }
 }
 
 int count_nb_team(char **av, int i, int ac)
@@ -166,6 +170,9 @@ int   parser_setting(int ac, char **av)
   t_setting *setting;
 
   setting = xmalloc(sizeof(t_setting));
+
+  if (FLAGDEBUG == 1)
+    printf("==DEBUG ACTIVEE!!==\n");
   if (ac < 13 && FLAGDEBUG == 0)
   {
     printf(USAGE, av[0]);
