@@ -16,12 +16,15 @@ t_map_case    ***get_map(t_map_case ***_map)
   return (map);
 }
 
-void  aff_rsrc(t_ressource *rsrc)
+void  aff_rsrc(Ressource* rsrc)
 {
-  while (rsrc)
+  int i;
+
+  i = 0;
+  while (i < 7)
   {
-    printf("%d*%d | ", rsrc->type, rsrc->quantity);
-    rsrc = rsrc->next;
+    printf("%d*%d | ", i, rsrc[i]);
+    i++;
   }
 }
 
@@ -50,30 +53,20 @@ void  aff_map()
   }
 }
 
-t_ressource *gen_list_rsrc()
+Ressource *gen_rsrc()
 {
-  int i;
-  t_ressource *save;
-  t_ressource *rsrc;
-  t_ressource *tmp;
+  Ressource *rsrc;
 
-  i = 1;
-  rsrc = xmalloc (1 * sizeof(t_ressource));
-  rsrc->type = 0;
-  rsrc->quantity = random() % 3;
-  rsrc->next = NULL;
-  save = rsrc;
-  while (i < 8)
-  {
-    tmp = xmalloc (1 * sizeof(t_ressource));
-    tmp->type = i;
-    tmp->quantity = random() % 3;
-    tmp->next = NULL;
-    rsrc->next = tmp;
-    rsrc = rsrc->next;
-    i++;
-  }
-  return (save);
+  rsrc = xmalloc(7 * sizeof(int));
+  rsrc[Nourriture] = random() % 3;
+  rsrc[Linemate] = random() % 3;
+  rsrc[Deraumere] = random() % 3;
+  rsrc[Sibur] = random() % 3;
+  rsrc[Mendiane] = random() % 3;
+  rsrc[Phiras] = random() % 3;
+  rsrc[Thystame] = random() % 3;
+
+  return (rsrc);
 }
 
 void    generate_new_map()
@@ -103,7 +96,7 @@ while (y < setting->height_map)
     newcase = xmalloc(1 * sizeof(t_map_case));
     newcase->x = x;
     newcase->y = y;
-    newcase->rsrc = gen_list_rsrc();
+    newcase->rsrc = gen_rsrc();
     newcase->client = NULL;
     new_map[x][y] = newcase;
     x++;

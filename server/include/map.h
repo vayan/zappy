@@ -15,18 +15,17 @@ typedef enum Ressource {
   Thystame
 } Ressource;
 
-//LIST CHAINNE DES RESSOURCE POUR CHAQUE CASE DE LA MAP
-typedef struct s_ressource {
-  Ressource type;
-  int quantity;
-  struct s_ressource *next;
-} t_ressource;
+typedef struct s_pl_case
+{
+  t_client *client;  
+  struct s_pl_case *next;
+} t_pl_case;
 
 typedef struct s_map_case {
   int   x;
   int   y;
-  t_ressource   *rsrc;
-  t_client      *client;
+  Ressource     *rsrc;
+  t_pl_case     *client;
 } t_map_case;
 
 #endif
