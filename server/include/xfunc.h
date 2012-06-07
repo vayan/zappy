@@ -1,3 +1,13 @@
+/*
+** xfunc.h for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/include
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Thu Jun  7 15:39:08 2012 yann vaillant
+** Last update Thu Jun  7 15:39:09 2012 yann vaillant
+*/
+
 #ifndef __XFUNC_HH
 #define __XFUNC_HH
 

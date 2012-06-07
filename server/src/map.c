@@ -1,3 +1,13 @@
+/*
+** map.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Thu Jun  7 15:38:10 2012 yann vaillant
+** Last update Thu Jun  7 15:38:11 2012 yann vaillant
+*/
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>

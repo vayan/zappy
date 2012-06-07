@@ -1,3 +1,13 @@
+/*
+** map.h for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/include
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Thu Jun  7 15:38:53 2012 yann vaillant
+** Last update Thu Jun  7 15:38:53 2012 yann vaillant
+*/
+
 #ifndef _MAP_H
 #define _MAP_H
 

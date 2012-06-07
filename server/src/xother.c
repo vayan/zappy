@@ -1,11 +1,11 @@
 /*
-** xother.c for  in /home/vailla_y/Projet/myirc/svn_my_irc/server/src
-**
+** xother.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-**
-** Started on  Sun Apr 22 22:23:01 2012 yann vaillant
-** Last update Sun Apr 22 22:25:35 2012 yann vaillant
+** 
+** Started on  Thu Jun  7 15:39:31 2012 yann vaillant
+** Last update Thu Jun  7 15:39:32 2012 yann vaillant
 */
 
 #include <unistd.h>

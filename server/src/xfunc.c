@@ -1,11 +1,11 @@
 /*
-** xfunc.c for  in /home/vailla_y/Projet/myirc/svn_my_irc/server/src
-**
+** xfunc.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-**
-** Started on  Sun Apr 22 21:59:05 2012 yann vaillant
-** Last update Sun Apr 22 22:24:18 2012 yann vaillant
+** 
+** Started on  Thu Jun  7 15:39:23 2012 yann vaillant
+** Last update Thu Jun  7 15:39:24 2012 yann vaillant
 */
 
 #include <unistd.h>
