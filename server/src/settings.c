@@ -14,6 +14,8 @@
 #include "setting.h"
 #include "xfunc.h"
 
+#define FLAGDEBUG 1
+
 t_setting    *get_setting(t_setting *_setting)
 {
   static t_setting *setting = NULL;
@@ -27,11 +29,14 @@ void  aff_tab(char **tab)
 {
   int i;
 
-  i = 0;
-  while (tab[i])
+  if (tab != NULL)
   {
-    printf("%s\n", tab[i]);
-    i++;
+    i = 0;
+    while (tab[i])
+    {
+      printf("%s\n", tab[i]);
+      i++;
+    }
   }
 }
 
@@ -67,11 +72,19 @@ void aff_setting()
 
 void init_setting(t_setting *setting)
 {
-  setting->port = -1;
-  setting->width_map = -1;
-  setting->height_map = -1;
-  setting->max_cl_per_team = -1;
-  setting->delay = -1;
+  // SANS DEBUG
+  // setting->port = -1;
+  // setting->width_map = -1;
+  // setting->height_map = -1;
+  // setting->max_cl_per_team = -1;
+  // setting->delay = -1;
+  // setting->name_teams = NULL;  
+  //DEBUG 
+  setting->port =  4242;
+  setting->width_map = 5;
+  setting->height_map = 5;
+  setting->max_cl_per_team = 3;
+  setting->delay = 7;
   setting->name_teams = NULL;  
 }
 
@@ -95,33 +108,36 @@ void fill_setting(char **set, int ac, t_setting *setting)
 
   i = 1;
   init_setting(setting);
-  while (i < ac)
+  if (FLAGDEBUG == 0)
   {
-    b = 0;
-    if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
-      setting->port = atoi(set[++i]);
-    if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
-      setting->width_map = atoi(set[++i]);
-    if (strcmp("-y", set[i]) == 0 && i + 1 <= ac)
-      setting->height_map = atoi(set[++i]);
-    if (strcmp("-c", set[i]) == 0 && i + 1 <= ac)
-      setting->max_cl_per_team = atoi(set[++i]);
-    if (strcmp("-t", set[i]) == 0 && i + 1 <= ac)
-      setting->delay = atoi(set[++i]);
-    if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
+    while (i < ac)
     {
-      i++;
-      setting->name_teams = xmalloc((count_nb_team(set, i, ac) + 1) * sizeof(char*));
-      while (i < ac && set[i][0] != '-')
+      b = 0;
+      if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
+        setting->port = atoi(set[++i]);
+      if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
+        setting->width_map = atoi(set[++i]);
+      if (strcmp("-y", set[i]) == 0 && i + 1 <= ac)
+        setting->height_map = atoi(set[++i]);
+      if (strcmp("-c", set[i]) == 0 && i + 1 <= ac)
+        setting->max_cl_per_team = atoi(set[++i]);
+      if (strcmp("-t", set[i]) == 0 && i + 1 <= ac)
+        setting->delay = atoi(set[++i]);
+      if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
       {
-        setting->name_teams[b] = strdup(set[i]);
-        setting->name_teams[b + 1] = NULL;
-        b++;
         i++;
+        setting->name_teams = xmalloc((count_nb_team(set, i, ac) + 1) * sizeof(char*));
+        while (i < ac && set[i][0] != '-')
+        {
+          setting->name_teams[b] = strdup(set[i]);
+          setting->name_teams[b + 1] = NULL;
+          b++;
+          i++;
+        }
       }
+      if (b == 0)
+        i++;
     }
-    if (b == 0)
-      i++;
   }
 }
 
@@ -150,7 +166,7 @@ int   parser_setting(int ac, char **av)
   t_setting *setting;
 
   setting = xmalloc(sizeof(t_setting));
-  if (ac < 13)
+  if (ac < 13 && FLAGDEBUG == 0)
   {
     printf(USAGE, av[0]);
     return (-1);

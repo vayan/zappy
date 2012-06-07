@@ -23,12 +23,18 @@
 #include <signal.h>
 #include "network.h"
 #include "setting.h"
+#include "map.h"
 
 int     main(int ac, char **av)
 {
-  if (parser_setting(ac, av) == -1)
-    return (-1);
+  //if (parser_setting(ac, av) == -1)
+    //return (-1);
+  parser_setting(ac, av);
   aff_setting();
-  network();
+
+  generate_new_map();
+  aff_map();
+
+  //network();
   return(0);
 }

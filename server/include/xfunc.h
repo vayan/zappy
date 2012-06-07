@@ -2,6 +2,8 @@
 #define __XFUNC_HH
 
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 
 typedef void (*sighandler_t)(int);
 
