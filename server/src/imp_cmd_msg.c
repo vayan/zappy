@@ -5,13 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 12:15:55 2012 anatole carlier
-** Last update Thu Jun  7 14:20:48 2012 anatole carlier
+** Last update Thu Jun  7 14:29:33 2012 anatole carlier
 */
 
-#include <sdtio.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <settings.h>
+#include <setting.h>
 #include "xfunc.h"
 
 char	*bct(int x, int y)
