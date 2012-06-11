@@ -1,4 +1,4 @@
-/*
+  /*
 ** settings.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
 ** 
 ** Made by yann vaillant

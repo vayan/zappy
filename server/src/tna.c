@@ -8,7 +8,7 @@
 ** Last update Thu Jun  7 15:34:22 2012 anatole carlier
 */
 
-#include "settings.h"
+#include "setting.h"
 
 char	*tna()
 {

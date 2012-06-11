@@ -63,6 +63,49 @@ void  aff_map()
   }
 }
 
+// void  rm_pl(int x, int y, client *pl)
+// {
+//   t_map_case ***map;
+
+//   map = get_map(NULL);
+//   if (MAP->client != NULL)
+//   {
+//     t_pl_case  *tmp;
+//     t_pl_case  *new;
+
+//     tmp = MAP->client;
+//     while (tmp)
+//       tmp = tmp->next; 
+
+//   }
+// }
+
+void  add_pl(int x, int y, t_client *pl)
+{
+  t_map_case ***map;
+
+  map = get_map(NULL);
+  if (MAP->client == NULL)
+  {
+    MAP->client = xmalloc(sizeof(t_pl_case));
+    MAP->client->next = NULL;
+    MAP->client->client = pl;
+  } 
+  else 
+  {
+   t_pl_case  *tmp;
+   t_pl_case  *new;
+
+   tmp = MAP->client;
+   while (tmp)
+    tmp = tmp->next; 
+  new = xmalloc(sizeof(t_pl_case));
+  new->next = NULL;
+  new->client = pl;
+  tmp->next = new;
+}
+}
+
 Ressource *gen_rsrc()
 {
   Ressource *rsrc;
