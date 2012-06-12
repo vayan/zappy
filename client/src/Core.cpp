@@ -5,13 +5,47 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Wed Jun  6 15:29:51 2012 alexandre haulotte
+// Last update Tue Jun 12 10:27:20 2012 alexandre haulotte
 //
 
 #include 	<sstream>
 #include	"Core.hh"
 
 void			Core::go()
+{
+  int			ret;
+  char			buff[8096 + 1];
+  fd_set		readfds;
+  struct timeval	tv;
+  Parseur		p;
+
+  init();
+  ret = 1;
+  tv.tv_sec = 0;
+  tv.tv_usec = 200;
+  send(soc, "GRAPHIC\n", 8, 0);
+  FD_ZERO(&readfds);
+  FD_SET(0, &readfds);
+  FD_SET(soc, &readfds);
+  while (ret != 0 && (select(soc + 1, &readfds, NULL, NULL, &tv) != -1))
+    {
+      if (FD_ISSET(soc, &readfds))
+	{
+	  ret = recv(soc, buff, 8096, 0);
+	  if (ret == -1)
+	    throw (new Errur("Receive Fail"));
+	  buff[ret] = '\0';
+	  std::cout << buff << std::endl;
+	  p.parse(buff);
+	}
+      buff[0] = '\0';
+      FD_ZERO(&readfds);
+      FD_SET(0, &readfds);
+      FD_SET(soc, &readfds);
+    }
+}
+
+void			Core::init()
 {
   struct protoent	*pe;
   struct sockaddr_in	sin;
@@ -22,7 +56,7 @@ void			Core::go()
     throw(new Errur("Connection Fail"));
   sin.sin_family = AF_INET;
   sin.sin_addr.s_addr = inet_addr(&macName[0]);
-  if (sin.sin_addr.s_addr == -1)
+  if (static_cast<int>(sin.sin_addr.s_addr) == -1)
     throw(new Errur("Connection Fail"));
   sin.sin_port = htons(port);
   ret = connect(soc, (const struct sockaddr*)&sin, sizeof(sin));

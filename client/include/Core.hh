@@ -5,13 +5,13 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 10:22:18 2012 alexandre haulotte
-// Last update Wed Jun  6 15:08:24 2012 alexandre haulotte
+// Last update Tue Jun 12 10:30:36 2012 alexandre haulotte
 //
 
 #ifndef		__CORE_HH__
 # define	__CORE_HH__
 
-#include	<list>
+#include	<vector>
 #include	<iostream>
 
 #include	<sys/time.h>
@@ -31,12 +31,15 @@ class	Core
   std::string		teamName;
   std::string		macName;
   int			port;
+  std::vector<int>	joueurs;
+
 public:
   Core(int ac, char **av);
   ~Core();
   int		strToInt(char* str);
   std::string	intToStr(int i);
   void		beginParse(int ac, char **av);
+  void		init();
   void		go();
 };
 

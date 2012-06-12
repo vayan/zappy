@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Jun  5 12:26:29 2012 yann vaillant
-** Last update Tue Jun  5 12:26:30 2012 yann vaillant
+** Last update Mon Jun 11 17:47:52 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -35,6 +35,6 @@ int     main(int ac, char **av)
   generate_new_map();
   aff_map();
 
-  //network();
+  network();
   return(0);
 }
