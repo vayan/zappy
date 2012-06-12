@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 10:22:18 2012 alexandre haulotte
-// Last update Tue Jun 12 10:30:36 2012 alexandre haulotte
+// Last update Tue Jun 12 14:49:50 2012 alexandre haulotte
 //
 
 #ifndef		__CORE_HH__
@@ -13,7 +13,7 @@
 
 #include	<vector>
 #include	<iostream>
-
+#include	<string>
 #include	<sys/time.h>
 #include	<sys/types.h>
 #include	<sys/socket.h>

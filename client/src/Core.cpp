@@ -5,40 +5,70 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Tue Jun 12 10:27:20 2012 alexandre haulotte
+// Last update Tue Jun 12 14:50:05 2012 alexandre haulotte
 //
 
 #include 	<sstream>
+#include	<signal.h>
 #include	"Core.hh"
+#include	"Parser.hh"
+#include	"PlayerCreator.hh"
 
 void			Core::go()
 {
   int			ret;
   char			buff[8096 + 1];
+  char			cmd[128];
   fd_set		readfds;
   struct timeval	tv;
-  Parseur		p;
+  int			i , j, save = 0;
+  Parser		p;
+  PlayerCreator		plCreat;
+  std::vector<int>	vec;
 
   init();
   ret = 1;
   tv.tv_sec = 0;
-  tv.tv_usec = 200;
+  tv.tv_usec = 2000;
   send(soc, "GRAPHIC\n", 8, 0);
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
   FD_SET(soc, &readfds);
-  while (ret != 0 && (select(soc + 1, &readfds, NULL, NULL, &tv) != -1))
+  while (select(soc + 1, &readfds, NULL, NULL, &tv) != -1)
     {
+      i = 0;
       if (FD_ISSET(soc, &readfds))
 	{
 	  ret = recv(soc, buff, 8096, 0);
 	  if (ret == -1)
 	    throw (new Errur("Receive Fail"));
 	  buff[ret] = '\0';
-	  std::cout << buff << std::endl;
-	  p.parse(buff);
+	  while (i < ret)
+	    {
+	      j = save;
+	      while (j < 128 && buff[i] && buff[i] != '\n')
+	  	{
+	  	  cmd[j] = buff[i];
+	  	  i++;
+	  	  j++;
+	  	}
+	      cmd[j] = '\0';
+	      if (buff[i] == '\n')
+		{
+		  vec = p.parseThat(cmd);
+		  if (!vec.empty())
+		    {
+		      std::cout << "new Player" << std::endl;
+		      joueurs.push_back(plCreat.create(vec));
+		    }
+		  std::cout << "Commande = " << cmd << std::endl;
+		}
+	      i++;
+	      save = 0;
+	    }
+	  if (buff[ret - 1] != '\n')
+	    save = j;
 	}
-      buff[0] = '\0';
       FD_ZERO(&readfds);
       FD_SET(0, &readfds);
       FD_SET(soc, &readfds);
@@ -66,6 +96,10 @@ void			Core::init()
 
 void	Core::beginParse(int ac, char **av)
 {
+  struct hostent *h;
+  std::string ip_address;
+  in_addr *addss;
+
   if (ac < 5)
     throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
   if (ac == 5)
@@ -87,7 +121,10 @@ void	Core::beginParse(int ac, char **av)
 	      port = strToInt(&av[i + 1][0]);
 	      break;
 	    case 'h':
-	      macName = &av[i + 1][0];
+	      h = gethostbyname(&av[i + 1][0]);
+	      addss = (in_addr*)h->h_addr;
+	      ip_address = inet_ntoa(*addss);
+	      macName = ip_address;
 	      break;
 	    default:
 	      throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
@@ -132,4 +169,10 @@ Core::Core(int ac, char **av)
 }
 
 Core::~Core()
-{}
+{
+  std::vector<int>::iterator it;
+  for (it = joueurs.begin(); it != joueurs.end(); it++)
+    {
+      kill((*it), SIGKILL);
+    }
+}
