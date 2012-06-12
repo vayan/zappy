@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:34:51 2012 anatole carlier
-** Last update Thu Jun  7 15:36:10 2012 anatole carlier
+** Last update Tue Jun 12 12:02:25 2012 anatole carlier
 */
 
-void	pnw(int player)
+#include <stdio.h>
+
+void	pnw(char **tab)
 {
+  tab = tab;
+  printf("pnw\n");
 }

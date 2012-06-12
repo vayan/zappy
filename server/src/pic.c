@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:11:50 2012 anatole carlier
-** Last update Tue Jun 12 11:12:01 2012 anatole carlier
+** Last update Tue Jun 12 11:51:31 2012 anatole carlier
 */
 
-char	*pic()
+#include <stdio.h>
+
+void	pic(char **tab)
 {
+  tab = tab;
+  printf("pic\n");
 }

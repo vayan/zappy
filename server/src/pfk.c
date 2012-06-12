@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:12:18 2012 anatole carlier
-** Last update Tue Jun 12 11:12:29 2012 anatole carlier
+** Last update Tue Jun 12 11:48:41 2012 anatole carlier
 */
 
-char	*pfk()
+#include <stdio.h>
+
+void	pfk(char **tab)
 {
+  tab = tab;
+  printf("pfk\n");
 }

@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:37:08 2012 anatole carlier
-** Last update Thu Jun  7 15:37:39 2012 anatole carlier
+** Last update Tue Jun 12 12:10:47 2012 anatole carlier
 */
 
-char	*plv(int player)
+#include <stdio.h>
+
+void	plv(char **tab)
 {
+  tab = tab;
+  printf("plv\n");
 }

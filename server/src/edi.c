@@ -5,5 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:15:35 2012 anatole carlier
-** Last update Tue Jun 12 11:15:36 2012 anatole carlier
+** Last update Tue Jun 12 11:27:22 2012 anatole carlier
 */
+
+#include <stdio.h>
+
+void	edi(char **tab)
+{
+  tab = tab;
+  printf("edi\n");
+}

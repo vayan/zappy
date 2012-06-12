@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:37:50 2012 anatole carlier
-** Last update Thu Jun  7 15:38:09 2012 anatole carlier
+** Last update Tue Jun 12 11:53:28 2012 anatole carlier
 */
 
-char	*pin(int player)
+#include <stdio.h>
+
+void	pin(char **tab)
 {
+  tab = tab;
+  printf("pin\n");
 }

@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:13:01 2012 anatole carlier
-** Last update Tue Jun 12 11:13:12 2012 anatole carlier
+** Last update Tue Jun 12 12:05:55 2012 anatole carlier
 */
 
-char	*pgt()
+#include <stdio.h>
+
+void	pgt(char **tab)
 {
+  tab = tab;
+  printf("pgt\n");
 }

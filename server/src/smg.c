@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:17:29 2012 anatole carlier
-** Last update Tue Jun 12 11:17:57 2012 anatole carlier
+** Last update Tue Jun 12 12:59:43 2012 anatole carlier
 */
 
-char	*smg()
+#include <stdio.h>
+
+void	smg(char **tab)
 {
+  tab = tab;
+  printf("smg\n");
 }

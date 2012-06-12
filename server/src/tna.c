@@ -5,14 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:33:47 2012 anatole carlier
-** Last update Thu Jun  7 15:34:22 2012 anatole carlier
+** Last update Tue Jun 12 13:05:47 2012 anatole carlier
 */
 
 #include "setting.h"
 
-char	*tna()
+void	tna(char **tab)
 {
-  char	*str;
-
-  return (str);
+  tab = tab;
+  printf("tna\n");
 }

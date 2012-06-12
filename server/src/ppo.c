@@ -5,12 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:36:19 2012 anatole carlier
-** Last update Thu Jun  7 15:36:42 2012 anatole carlier
+** Last update Tue Jun 12 12:11:44 2012 anatole carlier
 */
 
-char	*ppo()
-{
-  char	*str;
+#include <stdio.h>
 
-  return (str);
+void	ppo(char **tab)
+{
+  tab = tab;
+  printf("ppo\n");
 }

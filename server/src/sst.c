@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:16:11 2012 anatole carlier
-** Last update Tue Jun 12 11:16:24 2012 anatole carlier
+** Last update Tue Jun 12 13:04:27 2012 anatole carlier
 */
 
-char	*sst()
+#include <stdio.h>
+
+void	sst(char **tab)
 {
+  tab = tab;
+  printf("sst\n");
 }

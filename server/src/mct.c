@@ -5,14 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:27:10 2012 anatole carlier
-** Last update Thu Jun  7 15:34:37 2012 anatole carlier
+** Last update Tue Jun 12 11:36:51 2012 anatole carlier
 */
 
+#include <stdio.h>
 #include "map.h"
 
-char	*mct()
+void	mct(char **tab)
 {
-  char	*str;
-  
-  return (str);
+  tab = tab;
+  printf("mct\n");
 }

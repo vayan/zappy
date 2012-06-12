@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:10:02 2012 anatole carlier
-** Last update Tue Jun 12 11:11:00 2012 anatole carlier
+** Last update Tue Jun 12 12:07:21 2012 anatole carlier
 */
 
-char	*pex()
+#include <stdio.h>
+
+void	pex(char **tab)
 {
+  tab = tab;
+  printf("pex\n");
 }

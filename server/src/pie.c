@@ -5,9 +5,13 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:11:28 2012 anatole carlier
-** Last update Tue Jun 12 11:11:38 2012 anatole carlier
+** Last update Tue Jun 12 12:08:45 2012 anatole carlier
 */
 
-char	*pie()
+#include <stdio.h>
+
+void	pie(char **tab)
 {
+  tab = tab;
+  printf("pie\n");
 }
