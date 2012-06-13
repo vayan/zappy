@@ -11,11 +11,16 @@
 #ifndef _CLIENT_H
 #define _CLIENT_H
 
+#include "serv_time.h"
+
 typedef struct      s_client {
   int       fd;
   int       id;
   int       level;
   char      *team;
+  int       x;
+  int       y;
+  t_serv_time* stm;
   struct  s_client  *next;
 }    t_client;
 

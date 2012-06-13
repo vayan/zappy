@@ -39,6 +39,23 @@ void  aff_rsrc(Ressource* rsrc)
   }
 }
 
+void  aff_player(t_pl_case* pl)
+{
+  t_pl_case *tmp;
+
+  tmp = pl;
+  if (pl == NULL)
+    printf(" Aucun Player ");
+  else
+  {
+    while (tmp)
+    {
+      printf(" Player %d |", tmp->client->id);
+      tmp = tmp->next;
+    }
+  }
+}
+
 void  aff_map()
 {
   t_map_case ***map;
@@ -56,6 +73,7 @@ void  aff_map()
     {
       printf("[%d][%d] -> Ressource : ", x, y);
       aff_rsrc(MAP->rsrc);
+      aff_player(MAP->client);
       printf("\n");
       x++;
     }
@@ -80,7 +98,7 @@ void  rm_pl(int x, int y, t_client *pl)
       MAP->client = NULL;
     else
     {
-      while (tmp->next || tmp->next->client->id != pl->id)
+      while (tmp->next && tmp->next->client->id != pl->id)
         tmp = tmp->next; 
       if (tmp->next->next == NULL)
         tmp->next = NULL;
@@ -107,7 +125,7 @@ void  add_pl(int x, int y, t_client *pl)
    t_pl_case  *new;
 
    tmp = MAP->client;
-   while (tmp)
+   while (tmp->next)
     tmp = tmp->next; 
   new = xmalloc(sizeof(t_pl_case));
   new->next = NULL;

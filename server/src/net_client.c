@@ -34,8 +34,12 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
   tmp = all_client;
   while (tmp)
   {
+    //printf("scan player %d\n", tmp->id);
+    printf("Time elpase pour player %d = %d (%d sec)\n\n", tmp->id, 
+            get_elapse_time(tmp->stm), get_elapse_sec(tmp->stm));
     if (FD_ISSET(tmp->fd, readfs))
     {
+      printf("player %d a fait un truc\n", tmp->id);
       if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
       {
         printf("%d : %s",tmp->id, msg);

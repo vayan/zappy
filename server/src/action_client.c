@@ -25,16 +25,21 @@
 #include <signal.h>
 #include "network.h"
 #include "xfunc.h"
+#include "map.h"
+#include "setting.h"
 
 int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
+  printf("\nLe client %d a leave\n", to_remove->id);
   xclose(to_remove->fd);
+  remove_client_on_map(to_remove);
   tmp = get_all_client(NULL);
   if (tmp->fd == to_remove->fd)
   {
     tmp->fd = -1;
+    aff_map(); // debug
     return (0);
   }
   while (tmp)
@@ -46,7 +51,27 @@ int   remove_client(t_client *to_remove)
     }
     tmp = tmp->next;
   }
+  aff_map(); //debug
   return (1);
+}
+
+void      remove_client_on_map(t_client *cl)
+{
+  rm_pl(cl->x, cl->y, cl);
+}
+
+void      add_client_on_map(t_client *new)
+{
+  t_map_case ***map;
+  t_setting *setting;
+
+  setting = get_setting(NULL);
+  map = get_map(NULL);
+
+  new->x = random() % setting->width_map;
+  new->y = random() % setting->height_map;
+
+  add_pl(new->x, new->y, new);
 }
 
 t_client  *add_client(t_client *all_client, int fd)
@@ -60,6 +85,10 @@ t_client  *add_client(t_client *all_client, int fd)
   new->fd = fd;
   new->id = id++;
   new->next = NULL;
+  new->stm = xmalloc(sizeof(t_serv_time));
+  start_timer(new->stm);
+  add_client_on_map(new);
+  aff_map(); //debug
   if (tmp == NULL)
     return (new);
   while (tmp->next)

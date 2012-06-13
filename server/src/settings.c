@@ -95,7 +95,7 @@ void init_setting(t_setting *setting)
   {
     setting->port =  4242;
     setting->width_map = 5;
-    setting->height_map = 5;
+    setting->height_map = 7;
     setting->max_cl_per_team = 3;
     setting->delay = 7;
     setting->name_teams = NULL;  
