@@ -60,7 +60,7 @@ void TurnClient(t_client *cl, int turn)
   if (turn == 0) //left
   {
     cl->dir -= 1;
-    if (cl->dir < Up)
+    if (cl->dir == 0)
       cl->dir = Left;
   }
 }
