@@ -11,8 +11,11 @@
 #ifndef __NETWORK__
 #define __NETWORK__
 
+#include <sys/socket.h>
+#include <sys/select.h>
 #include <signal.h>
 #include "client.h"
+
 
 #define MAX_INPUT 50000
 

@@ -16,6 +16,7 @@
 #include "map.h"
 #include "setting.h"
 #include "xfunc.h"
+#include "client.h"
 
 t_map_case    ***get_map(t_map_case ***_map)
 {
@@ -63,22 +64,31 @@ void  aff_map()
   }
 }
 
-// void  rm_pl(int x, int y, client *pl)
-// {
-//   t_map_case ***map;
+void  rm_pl(int x, int y, t_client *pl)
+{
+  t_map_case ***map;
 
-//   map = get_map(NULL);
-//   if (MAP->client != NULL)
-//   {
-//     t_pl_case  *tmp;
-//     t_pl_case  *new;
+  map = get_map(NULL);
+  if (MAP->client != NULL)
+  {
+    t_pl_case  *tmp;
+    t_pl_case  *new;
 
-//     tmp = MAP->client;
-//     while (tmp)
-//       tmp = tmp->next; 
+    tmp = MAP->client;
 
-//   }
-// }
+    if ((tmp->client->id == pl->id) && (tmp->client->next == NULL))
+      MAP->client = NULL;
+    else
+    {
+      while (tmp->next || tmp->next->client->id != pl->id)
+        tmp = tmp->next; 
+      if (tmp->next->next == NULL)
+        tmp->next = NULL;
+      else
+        tmp->next = tmp->next->next;
+    }
+  }
+}
 
 void  add_pl(int x, int y, t_client *pl)
 {

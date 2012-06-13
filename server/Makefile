@@ -5,10 +5,10 @@
 ## Login   <lyvet_r@epitech.net>
 ## 
 ## Started on  Mon Nov  7 15:53:02 2011 randy lyvet
-## Last update Wed Jan  4 09:33:41 2012 randy lyvet
+## Last update Wed Jun 13 10:07:25 2012 yann vaillant
 ##
 
-NAME		=	NAME
+NAME		=	serveur
 
 NAMEFILE	=	$(NAME)
 
@@ -26,7 +26,7 @@ SVN		=	svn co svn+ssh://kscm@koala-rendus.epitech.net/$(SVN_NAME)
 SVN_NAME	=	#Nom du depos#
 
 CC		=	@gcc -std=c99
-CFLAGS		=	-W -Wall -g3 -ggdb
+CFLAGS		=	-W -Wall -g3 -ggdb 
 DEBUGFLAGS	=	-g3 -ansi -pedantic
 LFLAGS		=	$(addprefix -l, $(LIBS)) $(addprefix -L, $(LIB_DIR)) \
 			$(patsubst lib%.a, -l%, $(notdir $(wildcard $(LIB_DIR)*.a)))

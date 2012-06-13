@@ -8,6 +8,8 @@
 ** Last update Thu Jun  7 15:37:46 2012 yann vaillant
 */
 
+#define _XOPEN_SOURCE
+#define _SVID_SOURCE
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
