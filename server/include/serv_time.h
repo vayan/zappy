@@ -1,11 +1,14 @@
 #ifndef __SERV_TIME_
 #define __SERV_TIME_
 
+#include <time.h>
+
+typedef struct timespec timespec;
+
 typedef struct s_serv_time {
-  double   start_time;
-  double   start_time_sec;
-  int   end;
-  clockid_t clk_id;
+  timespec   start_time;
+  long int    in_nsec;
+  long int    in_sec;
 } t_serv_time;
 
 #endif

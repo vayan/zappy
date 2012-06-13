@@ -57,8 +57,8 @@ int main_loop(int s, socklen_t client_sin_len,
     fd_set    readf;
     struct  timeval tv;
 
-    tv.tv_sec = 1;
-    tv.tv_usec = 0;
+    tv.tv_sec = 0;
+    tv.tv_usec = 1;
     select_list(all_client, &readf);
     FD_SET(s, &readf);
     if (select(get_higher_fd(all_client) + 1, &readf, NULL, NULL, &tv) == -1)

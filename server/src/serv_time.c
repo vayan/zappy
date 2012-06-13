@@ -3,38 +3,56 @@
 #include <stdio.h>
 #include "serv_time.h"
 
-int start_timer(t_serv_time* stm)
+void start_timer(t_serv_time* stm)
 {
-  clockid_t clk_id;
-  struct timespec tp;
+  timespec tp;
 
-  clock_gettime(clk_id, &tp);
-  printf("micro %f \n", tp.tv_nsec);
-  stm->clk_id = clk_id;
-  stm->start_time = (tp.tv_sec * 1000000000) + tp.tv_nsec;
-  stm->start_time_sec = tp.tv_sec;
-  return (tp.tv_nsec);
+  clock_gettime(CLOCK_REALTIME, &tp);
+  printf("micro %ld \n", tp.tv_sec);
+  stm->start_time = tp;
 }
 
-int   get_elapse_time(t_serv_time *stm)
+timespec diff(timespec start, timespec end)
 {
-  clockid_t clk_id;
-  struct timespec tp2;
-  struct timespec tp;
+  timespec temp;
 
-   clock_gettime(clk_id, &tp2);
-  clock_gettime(stm->clk_id, &tp);
-  //printf("elaspe %d \n", tp.tv_nsec - stm->start_time);
-  printf("\n\n operation : %f - %f\n\n",
-      (tp.tv_sec * 1000000000) + tp.tv_nsec, (tp2.tv_sec * 1000000000) + tp2.tv_nsec);
-  return (((tp.tv_sec * 1000000000) + tp.tv_nsec) - stm->start_time);
+  if ((end.tv_nsec - start.tv_nsec) < 0) 
+  {
+    temp.tv_sec = end.tv_sec - start.tv_sec - 1;
+    temp.tv_nsec = 1000000000 + end.tv_nsec - start.tv_nsec;
+  } 
+  else 
+  {
+    temp.tv_sec = end.tv_sec - start.tv_sec;
+    temp.tv_nsec = end.tv_nsec - start.tv_nsec;
+  }
+  return (temp);
 }
 
-int get_elapse_sec(t_serv_time *stm)
+void   set_elapse_time(t_serv_time *stm)
 {
-  struct timespec tp;
+  timespec tp;
+  timespec tp_diff;
+  long int    tim;
 
-  clock_gettime(stm->clk_id, &tp);
-  return (tp.tv_sec - stm->start_time_sec);
+  clock_gettime(CLOCK_REALTIME, &tp);
+
+  tp_diff = diff(stm->start_time,tp); 
+  tim = (tp_diff.tv_sec * 1000000000) + tp_diff.tv_nsec;
+  printf("sec in nsec %ld + %ld = %ld \n", 
+    tp_diff.tv_sec * 1000000000, tp_diff.tv_nsec, tim);
+  stm->in_nsec  = tim;
+}
+
+void set_elapse_sec(t_serv_time *stm)
+{
+ timespec tp;
+ timespec tp_diff;
+ long int    tim;
+
+ clock_gettime(CLOCK_REALTIME, &tp);
+ tp_diff = diff(stm->start_time,tp);
+ tim  = tp_diff.tv_sec;
+ stm->in_sec = tim;
 }
 
