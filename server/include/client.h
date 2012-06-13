@@ -13,6 +13,29 @@
 
 #include "serv_time.h"
 
+typedef enum Direction {
+  Up,
+  Right,
+  Down,
+  Left
+} Direction;
+
+typedef enum ActionClient {
+  GoFront,
+  TurnRight,
+  TurnLeft,
+  See,
+  Inventaire,
+  Take,
+  Drop,
+  Kick,
+  Say,
+  Incant,
+  Fork,
+  Slot,
+  Dead
+} ActionClient;
+
 typedef struct      s_client {
   int       fd;
   int       id;
@@ -20,7 +43,9 @@ typedef struct      s_client {
   char      *team;
   int       x;
   int       y;
-  t_serv_time* stm;
+  int       action[12];
+  Direction dir;
+  t_serv_time *stm;
   struct  s_client  *next;
 }    t_client;
 

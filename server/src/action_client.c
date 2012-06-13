@@ -86,7 +86,8 @@ t_client  *add_client(t_client *all_client, int fd)
   new->id = id++;
   new->next = NULL;
   new->stm = xmalloc(sizeof(t_serv_time));
-  start_timer(new->stm);
+  new->stm->in_use = -1;
+  //start_timer(new->stm);
   add_client_on_map(new);
   aff_map(); //debug
   if (tmp == NULL)

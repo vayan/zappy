@@ -34,10 +34,11 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
   tmp = all_client;
   while (tmp)
   {
-    set_elapse_time(tmp->stm);
-    set_elapse_sec(tmp->stm);
+    //set_elapse_time(tmp->stm);
+    //set_elapse_sec(tmp->stm);
     // printf("Time elpase pour player %d = %ld (%ld sec)\n\n", tmp->id, 
     //         tmp->stm->in_nsec, tmp->stm->in_sec);
+    //MoveFront(tmp);
     if (FD_ISSET(tmp->fd, readfs))
     {
       printf("player %d a fait un truc\n", tmp->id);
