@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:38:53 2012 yann vaillant
-** Last update Thu Jun  7 15:38:53 2012 yann vaillant
+** Last update Thu Jun 14 14:57:12 2012 anatole carlier
 */
 
 #ifndef _MAP_H

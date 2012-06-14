@@ -5,12 +5,13 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 14:41:40 2012 randy lyvet
-** Last update Thu Jun 14 14:39:18 2012 anatole carlier
+** Last update Thu Jun 14 16:54:10 2012 anatole carlier
 */
 
 #ifndef COMMAND_FONC_
 # define COMMAND_FONC_
 
+#include "setting.h"
 #include "network.h"
 
 int	msz(char **command, t_client *client);
@@ -39,5 +40,6 @@ int	seg(char **command, t_client *client);
 int	smg(char **command, t_client *client);
 int	suc(char **command, t_client *client);
 int	sbp(char **command, t_client *client);
+int	verif_map_value(t_setting *settings, char *X, char *Y);
 
 #endif /* !COMMAND_FONC_ */
