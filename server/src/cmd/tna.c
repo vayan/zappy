@@ -5,9 +5,10 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:33:47 2012 anatole carlier
-** Last update Thu Jun 14 12:50:21 2012 randy lyvet
+** Last update Thu Jun 14 14:10:41 2012 anatole carlier
 */
 
+#include <stdio.h>
 
 int	tna(char **tab)
 {

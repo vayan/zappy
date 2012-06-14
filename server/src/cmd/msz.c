@@ -5,14 +5,22 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 14:36:31 2012 anatole carlier
-** Last update Thu Jun 14 12:50:51 2012 randy lyvet
+** Last update Thu Jun 14 14:16:03 2012 anatole carlier
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "xfunc.h"
+#include "setting.h"
+#include "command_fonc.h"
 
 int		msz(char **tab)
 {
-  tab = tab;
-  printf("msz\n");
+  char		*str;
+
+  str = xmalloc(sizeof(char) * 64);
+  sprintf(str, "msz %s %s\n", tab[1], tab[2]);
+  printf(str);
   return (0);
 }
