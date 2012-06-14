@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Tue Jun 12 14:50:05 2012 alexandre haulotte
+// Last update Wed Jun 13 12:45:35 2012 alexandre haulotte
 //
 
 #include 	<sstream>
@@ -31,6 +31,7 @@ void			Core::go()
   tv.tv_sec = 0;
   tv.tv_usec = 2000;
   send(soc, "GRAPHIC\n", 8, 0);
+  send(soc, "tna lola\n", 9, 0);
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
   FD_SET(soc, &readfds);
@@ -58,8 +59,7 @@ void			Core::go()
 		  vec = p.parseThat(cmd);
 		  if (!vec.empty())
 		    {
-		      std::cout << "new Player" << std::endl;
-		      joueurs.push_back(plCreat.create(vec));
+		      joueurs.push_back(plCreat.create(vec, macName, port));
 		    }
 		  std::cout << "Commande = " << cmd << std::endl;
 		}

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun 12 14:16:37 2012 alexandre haulotte
-// Last update Wed Jun 13 12:44:58 2012 alexandre haulotte
+// Last update Thu Jun 14 11:26:06 2012 alexandre haulotte
 //
 
 #include	<iostream>
@@ -15,10 +15,10 @@
 #include	"PlayerCreator.hh"
 #include	"Player.hh"
 
-int	PlayerCreator::create(std::vector<int> vec, std::string& ip, int port)
+int	PlayerCreator::create(std::string& ip, int port, std::string& teamName)
 {
   int		pid;
-  Player	pl(vec[2], vec[3], vec[4], vec[5], vec[1], ip, port);
+  Player	pl(port, ip, teamName);
 
   pid = fork();
   if (pid == -1)
