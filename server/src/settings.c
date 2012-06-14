@@ -51,25 +51,6 @@ void  aff_tab(char **tab)
   }
 }
 
-// char **to_tab(char *msg)
-// {
-//   char  *tok;
-//   char  **tab;
-//   int   i;
-
-//   i = 0;
-//   tab = xmalloc(1 * sizeof(*tab));
-//   tok = strtok(msg, " ");
-//   while (tok != NULL)
-//   {
-//     tab[i] = strdup(msg);
-//     i++;
-//     tab = realloc(tab, (1 + i) * sizeof(*tab));
-//     tab[i] = NULL;
-//     tok = strtok(NULL, " ");
-//   }
-//   return (tab);
-// }
 
 void aff_setting()
 {
@@ -77,7 +58,7 @@ void aff_setting()
 
   setting = get_setting(NULL);
   printf("Listening on port %d...\nConfiguration : Max(%d) WorldX(%d) WorldY(%d) Delay(%d)\n", 
-      setting->port, setting->max_cl_per_team, setting->width_map,  setting->height_map, setting->delay);
+    setting->port, setting->max_cl_per_team, setting->width_map,  setting->height_map, setting->delay);
   aff_tab(setting->name_teams);
 }
 
@@ -99,9 +80,9 @@ void init_setting(t_setting *setting)
     setting->height_map = 7;
     setting->max_cl_per_team = 3;
     setting->delay = 1;
-    setting->name_teams = xmalloc(2 * sizeof(char*));
-    setting->name_teams[0] = "foo";  
-    setting->name_teams[1] = "bar"; 
+    setting->name_teams = xmalloc(3 * sizeof(char*));
+    setting->name_teams[0] = strdup("foo");  
+    setting->name_teams[1] = strdup("bar"); 
     setting->name_teams[2] = NULL;
   }
 }
@@ -119,6 +100,21 @@ int count_nb_team(char **av, int i, int ac)
   return (nb);
 }
 
+int  fill_struct_set(char **set, t_setting *setting, int i, int ac)
+{
+  if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
+    setting->port = atoi(set[++i]);
+  if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
+    setting->width_map = atoi(set[++i]);
+  if (strcmp("-y", set[i]) == 0 && i + 1 <= ac)
+    setting->height_map = atoi(set[++i]);
+  if (strcmp("-c", set[i]) == 0 && i + 1 <= ac)
+    setting->max_cl_per_team = atoi(set[++i]);
+  if (strcmp("-t", set[i]) == 0 && i + 1 <= ac)
+    setting->delay = atoi(set[++i]);
+  return (i);
+}
+
 void fill_setting(char **set, int ac, t_setting *setting)
 {
   int i;
@@ -130,26 +126,16 @@ void fill_setting(char **set, int ac, t_setting *setting)
   {
     while (i < ac)
     {
-      b = 0;
-      if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
-        setting->port = atoi(set[++i]);
-      if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
-        setting->width_map = atoi(set[++i]);
-      if (strcmp("-y", set[i]) == 0 && i + 1 <= ac)
-        setting->height_map = atoi(set[++i]);
-      if (strcmp("-c", set[i]) == 0 && i + 1 <= ac)
-        setting->max_cl_per_team = atoi(set[++i]);
-      if (strcmp("-t", set[i]) == 0 && i + 1 <= ac)
-        setting->delay = atoi(set[++i]);
+      b = 0;   
       if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
       {
         i++;
+        i = fill_struct_set(set, setting, i, ac);
         setting->name_teams = xmalloc((count_nb_team(set, i, ac) + 1) * sizeof(char*));
         while (i < ac && set[i][0] != '-')
         {
-          setting->name_teams[b] = strdup(set[i]);
-          setting->name_teams[b + 1] = NULL;
-          b++;
+          setting->name_teams[b++] = strdup(set[i]);
+          setting->name_teams[b] = NULL;
           i++;
         }
       }

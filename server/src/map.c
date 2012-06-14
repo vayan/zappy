@@ -148,28 +148,15 @@ Ressource *gen_rsrc()
   return (rsrc);
 }
 
-void    generate_new_map()
+void  init_map(t_map_case ***new_map, t_setting *setting)
 {
- t_setting    *setting;
- t_map_case   ***new_map;
- t_map_case   *newcase;
- int          i;
  int          x;
  int          y;
+ t_map_case   *newcase;
 
- printf("--Generating new map...");
- i = 0;
  y = 0;
- setting = get_setting(NULL);
- srandom(time(NULL) * geteuid());
- new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
- while (i < setting->width_map)
+ while (y < setting->height_map)
  {
-  new_map[i] = xmalloc(setting->height_map * sizeof(t_map_case*));
-  i++;
-}
-while (y < setting->height_map)
-{
   x = 0;
   while (x < setting->width_map)
   {
@@ -184,6 +171,25 @@ while (y < setting->height_map)
   y++;
 }
 new_map[x] = NULL;
+}
+
+void    generate_new_map()
+{
+ t_setting    *setting;
+ t_map_case   ***new_map;
+ int i;
+
+ i = 0; 
+ printf("--Generating new map...");
+ setting = get_setting(NULL);
+ srandom(time(NULL) * geteuid());
+ new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
+ while (i < setting->width_map)
+ {
+  new_map[i] = xmalloc(setting->height_map * sizeof(t_map_case*));
+  i++;
+}
+init_map(new_map, setting);
 get_map(new_map);
 printf("Done\n");
 }

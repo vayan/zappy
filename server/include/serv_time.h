@@ -1,3 +1,13 @@
+/*
+** serv_time.h for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/include
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Thu Jun 14 15:39:26 2012 yann vaillant
+** Last update Thu Jun 14 15:39:27 2012 yann vaillant
+*/
+
 #ifndef __SERV_TIME_
 #define __SERV_TIME_
 

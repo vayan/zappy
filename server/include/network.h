@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:38:57 2012 yann vaillant
-** Last update Thu Jun  7 15:38:58 2012 yann vaillant
+** Last update Thu Jun 14 15:39:15 2012 yann vaillant
 */
 
 #ifndef __NETWORK__
@@ -27,4 +27,5 @@ int   get_higher_fd(t_client *all_client);
 void    select_list(t_client *all_client, fd_set *readf);
 void    clean_quit();
 int   broadcast_to_one_client(char *msg, t_client *me);
+
 #endif

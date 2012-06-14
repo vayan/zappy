@@ -67,5 +67,8 @@ int   turnRight(t_client *cl);
 int   MoveFront(t_client *cl);
 void  send_invent(t_client *cl);
 int Inventory(t_client *cl);
+void    show_all_msg(t_client *cl);
+void    add_msg_to_buffer(t_client *cl, char *msg);
+
 
 #endif

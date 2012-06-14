@@ -1,3 +1,13 @@
+/*
+** inventory.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Thu Jun 14 15:40:05 2012 yann vaillant
+** Last update Thu Jun 14 15:40:05 2012 yann vaillant
+*/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,36 +27,36 @@
 #include "setting.h"
 #include "client.h"
 
+char   *inttochar(int i)
+{
+  char *buff_int;
+  
+  buff_int = xmalloc(16 * sizeof(char*));
+  sprintf(buff_int, "%d", i);
+  return(buff_int); 
+}
+
 void  send_invent(t_client *cl)
 { 
   char *invent;
-  char buff_int[16]; 
   
   invent = xmalloc(500 * sizeof(char*));
   memset(invent, 0, 500);
   strcat(invent, "{nourriture ");
-  sprintf(buff_int, "%d", cl->rsrc[Nourriture]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Nourriture]));
   strcat(invent, ",linemate ");
-  sprintf(buff_int, "%d", cl->rsrc[Linemate]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Linemate]));
   strcat(invent, ",deraumere ");
-  sprintf(buff_int, "%d", cl->rsrc[Deraumere]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Deraumere]));
   strcat(invent, ",sibur ");
-  sprintf(buff_int, "%d", cl->rsrc[Sibur]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Sibur]));
   strcat(invent, ",mendiane ");
-  sprintf(buff_int, "%d", cl->rsrc[Mendiane]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Mendiane]));
   strcat(invent, ",phiras ");
-  sprintf(buff_int, "%d", cl->rsrc[Phiras]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Phiras]));
   strcat(invent, ",thystame ");
-  sprintf(buff_int, "%d", cl->rsrc[Thystame]);
-  strcat(invent, buff_int);
+  strcat(invent, inttochar(cl->rsrc[Thystame]));
   strcat(invent, "}\n");
-
   broadcast_to_one_client(invent, cl);
   free(invent);
 }
