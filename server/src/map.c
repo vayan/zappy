@@ -90,10 +90,8 @@ void  rm_pl(int x, int y, t_client *pl)
   if (MAP->client != NULL)
   {
     t_pl_case  *tmp;
-    t_pl_case  *new;
 
     tmp = MAP->client;
-
     if ((tmp->client->id == pl->id) && (tmp->client->next == NULL))
       MAP->client = NULL;
     else
@@ -159,6 +157,7 @@ void    generate_new_map()
  int          x;
  int          y;
 
+ printf("--Generating new map...");
  i = 0;
  y = 0;
  setting = get_setting(NULL);
@@ -186,4 +185,5 @@ while (y < setting->height_map)
 }
 new_map[x] = NULL;
 get_map(new_map);
+printf("Done\n");
 }

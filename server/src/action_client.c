@@ -32,7 +32,7 @@ int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
-  printf("\nLe client %d a leave\n", to_remove->id);
+  printf("-- Attemp to remove client %d\n", to_remove->id);
   xclose(to_remove->fd);
   remove_client_on_map(to_remove);
   tmp = get_all_client(NULL);
@@ -58,19 +58,17 @@ int   remove_client(t_client *to_remove)
 void      remove_client_on_map(t_client *cl)
 {
   rm_pl(cl->x, cl->y, cl);
+  printf("-- Deleting client %d\n", cl->id);
 }
 
 void      add_client_on_map(t_client *new)
 {
-  t_map_case ***map;
   t_setting *setting;
 
   setting = get_setting(NULL);
-  map = get_map(NULL);
-
   new->x = random() % setting->width_map;
   new->y = random() % setting->height_map;
-
+  printf("--Added new player %d on (%d, %d)\n", new->id, new->x, new->y);
   add_pl(new->x, new->y, new);
 }
 
@@ -87,8 +85,13 @@ t_client  *add_client(t_client *all_client, int fd)
   new->next = NULL;
   new->stm = xmalloc(sizeof(t_serv_time));
   new->stm->in_use = -1;
+  new->rsrc = xmalloc(7 * sizeof(int));
+  new->buffer_msg = xmalloc(11 * sizeof(char*));
+  new->buffer_msg[0] = NULL;
+  memset(new->rsrc, 0, 7 * sizeof(int));
   //start_timer(new->stm);
   add_client_on_map(new);
+  broadcast_to_one_client("BIENVENUE\n", new);
   aff_map(); //debug
   if (tmp == NULL)
     return (new);

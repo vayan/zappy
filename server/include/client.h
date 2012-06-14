@@ -12,6 +12,9 @@
 #define _CLIENT_H
 
 #include "serv_time.h"
+#include "map.h"
+
+typedef enum Ressource Ressource;
 
 typedef enum Direction {
   Up,
@@ -44,13 +47,25 @@ typedef struct      s_client {
   int       x;
   int       y;
   int       action[12];
+  char      **buffer_msg;
   Direction dir;
   t_serv_time *stm;
+  Ressource     *rsrc;
   struct  s_client  *next;
 }    t_client;
 
 
 t_client    *get_all_client(t_client *_all_client);
-
+int         remove_client(t_client *to_remove);
+void      remove_client_on_map(t_client *cl);
+void      add_client_on_map(t_client *new);
+t_client  *add_client(t_client *all_client, int fd);
+void  MoveClient(t_client *cl);
+void TurnClient(t_client *cl, int turn);
+int   turnLeft(t_client *cl);
+int   turnRight(t_client *cl);
+int   MoveFront(t_client *cl);
+void  send_invent(t_client *cl);
+int Inventory(t_client *cl);
 
 #endif

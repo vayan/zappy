@@ -24,6 +24,35 @@
 #include "network.h"
 #include "xfunc.h"
 
+void    show_all_msg(t_client *cl)
+{
+  int i;
+
+  i = 0;
+  printf("----------\n");
+  while (cl->buffer_msg[i])
+  {
+    printf("%d(%d) : '%s' \n", cl->id, i, cl->buffer_msg[i]);
+    i++;
+  }
+}
+
+void    add_msg_to_buffer(t_client *cl, char *msg)
+{
+  int i;
+
+  if (msg[strlen(msg) -1] == '\n')
+    msg[strlen(msg) -1] = 0;    
+  i = 0;
+  while (cl->buffer_msg[i] != NULL)
+    i++;
+  if (i < 10)
+  {
+    cl->buffer_msg[i] = strdup(msg);
+    cl->buffer_msg[i+1] = NULL;
+  }
+}
+
 void    get_data_from_client(t_client *all_client, fd_set *readfs)
 {
   t_client  *tmp;
@@ -34,17 +63,15 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
   tmp = all_client;
   while (tmp)
   {
-    //set_elapse_time(tmp->stm);
-    //set_elapse_sec(tmp->stm);
-    // printf("Time elpase pour player %d = %ld (%ld sec)\n\n", tmp->id, 
-    //         tmp->stm->in_nsec, tmp->stm->in_sec);
-    //MoveFront(tmp);
     if (FD_ISSET(tmp->fd, readfs))
     {
-      printf("player %d a fait un truc\n", tmp->id);
       if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
       {
-        printf("%d : %s",tmp->id, msg);
+        if (msg[0] != 0 && msg[0] != '\n')
+        {
+          add_msg_to_buffer(tmp, msg);
+          printf("Receive message from %d : '%s'\n",tmp->id, msg);
+        }
       }
       if (ret == 0)
         remove_client(tmp);

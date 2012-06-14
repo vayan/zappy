@@ -87,7 +87,7 @@ int   turnLeft(t_client *cl)
     printf("turn left %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     TurnClient(cl, 0);
-    broadcast_to_one_client("ok", cl);
+    broadcast_to_one_client("ok\n", cl);
     return (1);
   }
   return (0);
@@ -115,7 +115,7 @@ int   turnRight(t_client *cl)
     printf("turn right %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     TurnClient(cl, 1);
-    broadcast_to_one_client("ok", cl);
+    broadcast_to_one_client("ok\n", cl);
     return (1);
   }
   return (0);
@@ -143,7 +143,7 @@ int   MoveFront(t_client *cl)
     printf("Can move front %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     MoveClient(cl);
-    broadcast_to_one_client("ok", cl);
+    broadcast_to_one_client("ok\n", cl);
     return (1);
   }
   return (0);

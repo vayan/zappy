@@ -12,4 +12,10 @@ typedef struct s_serv_time {
   int         in_use;
 } t_serv_time;
 
+void start_timer(t_serv_time* stm);
+timespec diff(timespec start, timespec end);
+void   set_elapse_time(t_serv_time *stm);
+void set_elapse_sec(t_serv_time *stm);
+
+
 #endif

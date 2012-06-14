@@ -66,11 +66,11 @@ int main_loop(int s, socklen_t client_sin_len,
     if (FD_ISSET(s, &readf))
     {
       cs = accept(s, (struct sockaddr *)&client_sin, &client_sin_len);
+      printf("--New connection\n");
       if (all_client == NULL)
         get_all_client(all_client = add_client(all_client, cs));
       else
         add_client(all_client, cs);
-      send (cs, "yop nouveau client\n", strlen("yop nouveau client\n"), MSG_DONTWAIT);
     }
     get_data_from_client(all_client, &readf);
   }

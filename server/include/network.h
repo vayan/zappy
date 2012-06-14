@@ -25,5 +25,6 @@ t_client  *add_client(t_client *all_client, int fd);
 void    get_data_from_client(t_client *all_client, fd_set *readfs);
 int   get_higher_fd(t_client *all_client);
 void    select_list(t_client *all_client, fd_set *readf);
-
+void    clean_quit();
+int   broadcast_to_one_client(char *msg, t_client *me);
 #endif

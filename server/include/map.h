@@ -15,6 +15,8 @@
 
 #define MAP (map[x][y])
 
+typedef struct  s_client t_client;
+
 typedef enum Ressource {
   Nourriture,
   Linemate,
@@ -37,5 +39,15 @@ typedef struct s_map_case {
   Ressource     *rsrc;
   t_pl_case     *client;
 } t_map_case;
+
+t_map_case    ***get_map(t_map_case ***_map);
+void  aff_rsrc(Ressource* rsrc);
+void  aff_player(t_pl_case* pl);
+void  aff_map();
+void  rm_pl(int x, int y, t_client *pl);
+void  add_pl(int x, int y, t_client *pl);
+Ressource *gen_rsrc();
+void    generate_new_map();
+
 
 #endif

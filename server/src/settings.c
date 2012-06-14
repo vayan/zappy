@@ -39,12 +39,13 @@ void  aff_tab(char **tab)
 {
   int i;
 
+  printf("Teams : \n");
   if (tab != NULL)
   {
     i = 0;
     while (tab[i])
     {
-      printf("%s\n", tab[i]);
+      printf("\t%s\n", tab[i]);
       i++;
     }
   }
@@ -75,8 +76,8 @@ void aff_setting()
   t_setting *setting;
 
   setting = get_setting(NULL);
-  printf("port:%d, X:%d, Y:%d, MAXCL:%d, DELAY:%d\n", setting->port, setting->width_map, 
-    setting->height_map, setting->max_cl_per_team, setting->delay);
+  printf("Listening on port %d...\nConfiguration : Max(%d) WorldX(%d) WorldY(%d) Delay(%d)\n", 
+      setting->port, setting->max_cl_per_team, setting->width_map,  setting->height_map, setting->delay);
   aff_tab(setting->name_teams);
 }
 
@@ -98,7 +99,10 @@ void init_setting(t_setting *setting)
     setting->height_map = 7;
     setting->max_cl_per_team = 3;
     setting->delay = 1;
-    setting->name_teams = NULL;  
+    setting->name_teams = xmalloc(2 * sizeof(char*));
+    setting->name_teams[0] = "foo";  
+    setting->name_teams[1] = "bar"; 
+    setting->name_teams[2] = NULL;
   }
 }
 
