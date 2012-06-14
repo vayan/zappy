@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:16:11 2012 anatole carlier
-** Last update Tue Jun 12 13:04:27 2012 anatole carlier
+** Last update Thu Jun 14 12:40:59 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	sst(char **tab)
+int	sst(char **tab)
 {
   tab = tab;
   printf("sst\n");
+  return (0);
 }

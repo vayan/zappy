@@ -5,8 +5,10 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Fri Nov 11 12:50:40 2011 randy lyvet
-** Last update Tue Jun 12 14:38:41 2012 randy lyvet
+** Last update Thu Jun 14 12:26:56 2012 randy lyvet
 */
+
+#include	"xfunc.h"
 
 int	my_count_word(char *str, char sep)
 {

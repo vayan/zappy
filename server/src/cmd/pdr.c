@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:12:37 2012 anatole carlier
-** Last update Tue Jun 12 11:46:58 2012 anatole carlier
+** Last update Thu Jun 14 12:38:02 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	pdr(char **tab)
+int	pdr(char **tab)
 {
   tab = tab;
   printf("pdr\n");
+  return (0);
 }

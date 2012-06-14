@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:37:50 2012 anatole carlier
-** Last update Tue Jun 12 11:53:28 2012 anatole carlier
+** Last update Thu Jun 14 12:38:53 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	pin(char **tab)
+int	pin(char **tab)
 {
   tab = tab;
   printf("pin\n");
+  return (0);
 }

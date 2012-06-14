@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:15:47 2012 anatole carlier
-** Last update Tue Jun 12 13:03:05 2012 anatole carlier
+** Last update Thu Jun 14 12:40:49 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	sgt(char **tab)
+int	sgt(char **tab)
 {
   tab = tab;
   printf("sgt\n");
+  return (0);
 }

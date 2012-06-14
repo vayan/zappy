@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:15:15 2012 anatole carlier
-** Last update Tue Jun 12 11:25:50 2012 anatole carlier
+** Last update Thu Jun 14 12:36:47 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	ebo(char **tab)
+int	ebo(char **tab)
 {
   tab = tab;
   printf("ebo\n");
+  return (0);
 }

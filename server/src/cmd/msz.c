@@ -5,18 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 14:36:31 2012 anatole carlier
-** Last update Tue Jun 12 11:42:06 2012 anatole carlier
+** Last update Thu Jun 14 12:50:51 2012 randy lyvet
 */
 
 #include <stdio.h>
-#include "setting.h"
 
-void		msz(char **tab)
+int		msz(char **tab)
 {
-  t_setting	*settings;
- 
   tab = tab;
-  settings = get_setting(settings);
   printf("msz\n");
-  return (str);
+  return (0);
 }

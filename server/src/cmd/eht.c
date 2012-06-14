@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:14:46 2012 anatole carlier
-** Last update Tue Jun 12 11:31:18 2012 anatole carlier
+** Last update Thu Jun 14 12:37:05 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	eht()
+int	eht(char **tab)
 {
   tab = tab;
   printf("enw\n");
+  return (0);
 }

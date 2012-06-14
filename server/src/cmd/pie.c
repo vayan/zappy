@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:11:28 2012 anatole carlier
-** Last update Tue Jun 12 12:08:45 2012 anatole carlier
+** Last update Thu Jun 14 12:35:19 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	pie(char **tab)
+int	pie(char **tab)
 {
   tab = tab;
   printf("pie\n");
+  return (0);
 }

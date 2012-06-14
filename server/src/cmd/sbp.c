@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:18:39 2012 anatole carlier
-** Last update Tue Jun 12 12:14:12 2012 anatole carlier
+** Last update Thu Jun 14 12:40:27 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	sbp(char **tab)
+int	sbp(char **tab)
 {
   tab = tab;
   printf("sbp\n");
+  return (0);
 }

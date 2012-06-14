@@ -5,14 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 14:54:41 2012 anatole carlier
-** Last update Tue Jun 12 11:25:08 2012 anatole carlier
+** Last update Thu Jun 14 12:50:34 2012 randy lyvet
 */
 
 #include <stdio.h>
-#include "map.h"
 
-void	bct(char **tab)
+int	bct(char **tab)
 {
   tab = tab;
   printf("bct\n");
+  return (0);
 }

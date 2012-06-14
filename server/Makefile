@@ -5,19 +5,21 @@
 ## Login   <vailla_y@epitech.net>
 ## 
 ## Started on  Thu Apr 19 11:59:27 2012 yann vaillant
-## Last update Wed Jun 13 13:21:22 2012 yann vaillant
+## Last update Thu Jun 14 12:48:09 2012 randy lyvet
 ##
 
 CC=gcc
 NAME=serveur
 SRC=$(wildcard src/*.c)
+SUBDIR=$(wildcard src/*/*.c)
 OBJ=$(SRC:.c=.o)
-CFLAGS= -W -Wall -Wextra -g -Iinclude 
+SUBOBJ=$(SUBDIR:.c=.o)
+CFLAGS= -W -Wall -Wextra -g -Iinclude
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) -lrt
+$(NAME) : $(OBJ) $(SUBOBJ)
+	$(CC) -o $(NAME) $(OBJ) $(SUBDIR) -lrt
 
 clean:
 	rm -f *~

@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:13:42 2012 anatole carlier
-** Last update Tue Jun 12 11:32:17 2012 anatole carlier
+** Last update Thu Jun 14 12:33:35 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	enw(char **tab)
+int	enw(char **tab)
 {
   tab = tab;
   printf("enw\n");
+  return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:57:02 2012 randy lyvet
-** Last update Tue Jun 12 14:37:35 2012 randy lyvet
+** Last update Thu Jun 14 12:29:40 2012 randy lyvet
 */
 
 #ifndef OPTION_H_

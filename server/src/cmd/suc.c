@@ -5,13 +5,14 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:18:04 2012 anatole carlier
-** Last update Tue Jun 12 13:00:32 2012 anatole carlier
+** Last update Thu Jun 14 12:36:34 2012 randy lyvet
 */
 
 #include <stdio.h>
 
-void	suc(char **tab)
+int	suc(char **tab)
 {
   tab = tab;
   printf("suc\n");
+  return (0);
 }
