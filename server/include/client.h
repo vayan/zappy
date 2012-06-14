@@ -12,9 +12,17 @@
 #define _CLIENT_H
 
 #include "serv_time.h"
-#include "map.h"
+//#include "map.h"
 
-typedef enum Ressource Ressource;
+typedef enum Ressource {
+  Nourriture,
+  Linemate,
+  Deraumere,
+  Sibur,
+  Mendiane,
+  Phiras,
+  Thystame
+} Ressource;
 
 typedef enum Direction {
   Up,

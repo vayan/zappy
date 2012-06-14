@@ -16,7 +16,6 @@
 #include <signal.h>
 #include "client.h"
 
-
 #define MAX_INPUT 50000
 
 int network();

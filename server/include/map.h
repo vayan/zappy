@@ -15,17 +15,6 @@
 
 #define MAP (map[x][y])
 
-typedef struct  s_client t_client;
-
-typedef enum Ressource {
-  Nourriture,
-  Linemate,
-  Deraumere,
-  Sibur,
-  Mendiane,
-  Phiras,
-  Thystame
-} Ressource;
 
 typedef struct s_pl_case
 {
