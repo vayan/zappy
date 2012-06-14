@@ -73,6 +73,7 @@ int main_loop(int s, socklen_t client_sin_len,
         add_client(all_client, cs);
     }
     get_data_from_client(all_client, &readf);
+    do_input_client(all_client);
   }
 }
 

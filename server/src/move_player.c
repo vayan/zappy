@@ -80,13 +80,13 @@ int   turnLeft(t_client *cl)
   t_setting *setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != TurnLeft)
-    return (0);
+    return (1);
   if (cl->stm->in_use == -1)
   { 
     cl->stm->in_use = TurnLeft;
     start_timer(cl->stm);
     printf("Start timer turn left %ld\n", cl->stm->in_nsec);
-    return (0);
+    return (1);
   }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
@@ -98,9 +98,9 @@ int   turnLeft(t_client *cl)
     cl->stm->in_use = -1;
     TurnClient(cl, 0);
     broadcast_to_one_client("ok\n", cl);
-    return (1);
+    return (0);
   }
-  return (0);
+  return (1);
 }
 
 int   turnRight(t_client *cl)
@@ -108,13 +108,13 @@ int   turnRight(t_client *cl)
   t_setting *setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != TurnRight)
-    return (0);
+    return (1);
   if (cl->stm->in_use == -1)
   { 
     cl->stm->in_use = TurnRight;
     start_timer(cl->stm);
     printf("Start timer turn right %ld\n", cl->stm->in_nsec);
-    return (0);
+    return (1);
   }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
@@ -126,9 +126,9 @@ int   turnRight(t_client *cl)
     cl->stm->in_use = -1;
     TurnClient(cl, 1);
     broadcast_to_one_client("ok\n", cl);
-    return (1);
+    return (0);
   }
-  return (0);
+  return (1);
 }
 
 int   MoveFront(t_client *cl)
@@ -136,13 +136,13 @@ int   MoveFront(t_client *cl)
   t_setting *setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != GoFront)
-    return (0);
+    return (1);
   if (cl->stm->in_use == -1)
   { 
     cl->stm->in_use = GoFront;
     start_timer(cl->stm);
     printf("Start timer move front %ld\n", cl->stm->in_nsec);
-    return (0);
+    return (1);
   }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
@@ -154,7 +154,7 @@ int   MoveFront(t_client *cl)
     cl->stm->in_use = -1;
     MoveClient(cl);
     broadcast_to_one_client("ok\n", cl);
-    return (1);
+    return (0);
   }
-  return (0);
+  return (1);
 }

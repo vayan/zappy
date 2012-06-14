@@ -40,3 +40,22 @@ int   broadcast_to_one_client(char *msg, t_client *me)
   free(full_msg);
   return (0);
 }
+
+int do_input_client(t_client *all_client)
+{
+  t_client  *tmp;
+
+  tmp = all_client;
+  while (tmp)
+  {
+    if (tmp->buffer_msg != NULL && tmp->buffer_msg[0] != NULL)
+    {
+        //printf("debug : command '%s' a traiter\n", tmp->buffer_msg[0]);
+      
+
+       //buffer_msg[0] contient la commande 
+       //si ta fonction renvoie 0 tu appel rm_top_msg_from_buffer(client)
+    }
+    tmp = tmp->next;
+  }
+}

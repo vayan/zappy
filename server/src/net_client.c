@@ -37,6 +37,12 @@ void    show_all_msg(t_client *cl)
   }
 }
 
+void  rm_top_msg_from_buffer(t_client *cl)
+{
+
+
+}
+
 void    add_msg_to_buffer(t_client *cl, char *msg)
 {
   int i;

@@ -66,13 +66,13 @@ int Inventory(t_client *cl)
   t_setting *setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != TurnLeft)
-    return (0);
+    return (1);
   if (cl->stm->in_use == -1)
   { 
     cl->stm->in_use = Inventaire;
     start_timer(cl->stm);
     printf("Start timer Inventaire %ld\n", cl->stm->in_nsec);
-    return (0);
+    return (1);
   }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
@@ -83,7 +83,7 @@ int Inventory(t_client *cl)
     printf("send inv\n");
     cl->stm->in_use = -1;
     send_invent(cl);
-    return (1);
+    return (0);
   }
-  return (0);
+  return (1);
 }
