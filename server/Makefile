@@ -5,7 +5,7 @@
 ## Login   <vailla_y@epitech.net>
 ## 
 ## Started on  Thu Apr 19 11:59:27 2012 yann vaillant
-## Last update Thu Jun 14 12:48:09 2012 randy lyvet
+## Last update Thu Jun 14 14:20:47 2012 anatole carlier
 ##
 
 CC=gcc
@@ -19,7 +19,7 @@ CFLAGS= -W -Wall -Wextra -g -Iinclude
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(SUBOBJ)
-	$(CC) -o $(NAME) $(OBJ) $(SUBDIR) -lrt
+	$(CC) -o $(NAME) $(OBJ) $(SUBDIR) $(CFLAGS) -lrt
 
 clean:
 	rm -f *~
