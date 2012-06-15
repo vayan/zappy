@@ -31,6 +31,7 @@ char   *inttochar(int i)
 {
   char *buff_int;
   
+
   buff_int = xmalloc(16 * sizeof(char*));
   sprintf(buff_int, "%d", i);
   return(buff_int); 
