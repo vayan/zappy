@@ -35,22 +35,22 @@ void	Player::initTab()
   // fctTable[7] = &Player::PlaceSurServeur;
   // fctTable[8] = &Player::Eclosion;
 
-  // ------------------ Avance Ramasse... ------------------//
-  // trTable[1][OK] = 2;
-  // trTable[1][KO] = 3;
-  // trTable[2][OK] = 1;
-  // trTable[3][OK] = 4;
-  // trTable[3][KO] = 5;
-  // trTable[4][OK] = 2;
-  // trTable[4][KO] = 5;
-  // trTable[5][OK] = 3;
+  //------------------ Avance Ramasse... ------------------//
+  trTable[1][OK] = 2;
+  trTable[1][KO] = 3;
+  trTable[2][OK] = 1;
+  trTable[3][OK] = 4;
+  trTable[3][KO] = 5;
+  trTable[4][OK] = 2;
+  trTable[4][KO] = 5;
+  trTable[5][OK] = 3;
 
 
-  // fctTable[1] = &Player::AssezNourriture;
-  // fctTable[2] = &Player::Avance;
-  // fctTable[3] = &Player::NourritureSurCase;
-  // fctTable[4] = &Player::RamassezNourriture;
-  // fctTable[5] = &Player::Avance;
+  fctTable[1] = &Player::AssezNourriture;
+  fctTable[2] = &Player::Avance;
+  fctTable[3] = &Player::NourritureSurCase;
+  fctTable[4] = &Player::RamassezNourriture;
+  fctTable[5] = &Player::Avance;
 
   // ------------------ Monte d'un Level ----------------//
   // trTable[1][ALREADY] = 5;
