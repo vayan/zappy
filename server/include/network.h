@@ -20,7 +20,8 @@
 
 #define COLOR_BLU "1;34"
 #define WHITE_BLUE "36"
-#define RED "31"
+#define RED "1;32"
+#define DARK_RED "32"
 
 int network();
 int   remove_client(t_client *to_remove);

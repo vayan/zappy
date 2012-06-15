@@ -40,7 +40,7 @@ void  aff_tab(char **tab)
 {
   int i;
 
-  printf("\033[1;%smTeams : \033[0;0;00m\n", WHITE_BLUE);
+  printf("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
   if (tab != NULL)
   {
     i = 0;
@@ -58,10 +58,13 @@ void aff_setting()
   t_setting *setting;
 
   setting = get_setting(NULL);
-  printf("\033[1;%smListening on port %d...\nConfiguration : Max(%d) WorldX(%d) WorldY(%d) Delay(%d)%d\033[0;0;00m\n", 
+  printf("\033[1;%sm*****************************\033[0;0;00m\n", WHITE_BLUE);
+  printf("\033[1;%sm Listening on port %d... \n Configuration : \n\tMax(%d) \n\tWorldX(%d)\
+    \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n", 
     WHITE_BLUE, setting->port, setting->max_cl_per_team, setting->width_map,
     setting->height_map, setting->delay); 
   aff_tab(setting->name_teams);
+  printf("\033[1;%sm*****************************\n\033[0;0;00m\n", WHITE_BLUE);
 }
 
 void init_setting(t_setting *setting)
