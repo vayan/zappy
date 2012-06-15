@@ -37,7 +37,7 @@ int     main(int ac, char **av)
   aff_setting();
 
   generate_new_map();
-  aff_map();
+  //aff_map();
 
   network();
   return(0);

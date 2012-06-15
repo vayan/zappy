@@ -35,15 +35,15 @@ void  MoveClient(t_client *cl)
   setting = get_setting(NULL);
   switch (cl->dir)
   {
-    case Up:
+    case Down:
     cl->y += 1;
     if (cl->y >= setting->height_map)
       cl->y = 0;
     break;
-    case Down:
+    case Up:
     cl->y -= 1;
     if (cl->y < 0)
-      cl->y = setting->height_map;
+      cl->y = setting->height_map - 1;
     break;
     case Right:
     cl->x += 1;
@@ -53,10 +53,9 @@ void  MoveClient(t_client *cl)
     case Left:
     cl->x -= 1;
     if (cl->x < 0)
-      cl->x = setting->width_map;
+      cl->x = setting->width_map - 1;
     break;
   }
-  printf("try add pl in x'%d' y'%d' Direction %d\n", cl->x, cl->y, cl->dir);
   add_pl(cl->x, cl->y, cl);
 }
 
@@ -70,9 +69,10 @@ void TurnClient(t_client *cl, int turn)
   }
   if (turn == 0) //left
   {
-    cl->dir -= 1;
     if (cl->dir == 0)
       cl->dir = Left;
+    else
+      cl->dir -= 1;
   }
 }
 
@@ -86,7 +86,6 @@ int   turnLeft(t_client *cl)
   { 
     cl->stm->in_use = TurnLeft;
     start_timer(cl->stm);
-    printf("Start timer turn left %ld\n", cl->stm->in_nsec);
     return (1);
   }
   setting = get_setting(NULL);
@@ -95,7 +94,6 @@ int   turnLeft(t_client *cl)
   if (cl->stm->in_use == TurnLeft &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
-    printf("turn left %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     TurnClient(cl, 0);
     broadcast_to_one_client("ok\n", cl);
@@ -114,7 +112,6 @@ int   turnRight(t_client *cl)
   { 
     cl->stm->in_use = TurnRight;
     start_timer(cl->stm);
-    printf("Start timer turn right %ld\n", cl->stm->in_nsec);
     return (1);
   }
   setting = get_setting(NULL);
@@ -123,7 +120,6 @@ int   turnRight(t_client *cl)
   if (cl->stm->in_use == TurnRight &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
-    printf("turn right %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     TurnClient(cl, 1);
     broadcast_to_one_client("ok\n", cl);
@@ -142,7 +138,6 @@ int   MoveFront(t_client *cl)
   { 
     cl->stm->in_use = GoFront;
     start_timer(cl->stm);
-    printf("Start timer move front %ld\n", cl->stm->in_nsec);
     return (1);
   }
   setting = get_setting(NULL);
@@ -151,7 +146,6 @@ int   MoveFront(t_client *cl)
   if (cl->stm->in_use == GoFront &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
-    printf("Can move front %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     MoveClient(cl);
     broadcast_to_one_client("ok\n", cl);

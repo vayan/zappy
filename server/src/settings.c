@@ -23,6 +23,7 @@
 #include <signal.h>
 #include "setting.h"
 #include "xfunc.h"
+#include "network.h"
 
 #define FLAGDEBUG 1 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
 
@@ -39,13 +40,13 @@ void  aff_tab(char **tab)
 {
   int i;
 
-  printf("Teams : \n");
+  printf("\033[1;%smTeams : \033[0;0;00m\n", WHITE_BLUE);
   if (tab != NULL)
   {
     i = 0;
     while (tab[i])
     {
-      printf("\t%s\n", tab[i]);
+      printf("\033[1;%sm\t%s\033[0;0;00m\n", WHITE_BLUE, tab[i]);
       i++;
     }
   }
@@ -57,8 +58,9 @@ void aff_setting()
   t_setting *setting;
 
   setting = get_setting(NULL);
-  printf("Listening on port %d...\nConfiguration : Max(%d) WorldX(%d) WorldY(%d) Delay(%d)\n", 
-    setting->port, setting->max_cl_per_team, setting->width_map,  setting->height_map, setting->delay);
+  printf("\033[1;%smListening on port %d...\nConfiguration : Max(%d) WorldX(%d) WorldY(%d) Delay(%d)%d\033[0;0;00m\n", 
+    WHITE_BLUE, setting->port, setting->max_cl_per_team, setting->width_map,
+    setting->height_map, setting->delay); 
   aff_tab(setting->name_teams);
 }
 

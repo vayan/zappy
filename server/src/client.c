@@ -37,7 +37,7 @@ int   broadcast_to_one_client(char *msg, t_client *me)
   xsend (tmp->fd, full_msg, strlen(full_msg), MSG_DONTWAIT);
   if (full_msg[strlen(full_msg) -1 ] == '\n')
     full_msg[strlen(full_msg) -1] = 0;
-  printf("Send message to %d : '%s'\n", me->id, full_msg);
+  printf("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n", RED, me->id, full_msg);
   free(full_msg);
   return (0);
 }

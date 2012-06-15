@@ -18,6 +18,10 @@
 
 #define MAX_INPUT 50000
 
+#define COLOR_BLU "1;34"
+#define WHITE_BLUE "36"
+#define RED "31"
+
 int network();
 int   remove_client(t_client *to_remove);
 t_client  *add_client(t_client *all_client, int fd);

@@ -71,7 +71,6 @@ int Inventory(t_client *cl)
   { 
     cl->stm->in_use = Inventaire;
     start_timer(cl->stm);
-    printf("Start timer Inventaire %ld\n", cl->stm->in_nsec);
     return (1);
   }
   setting = get_setting(NULL);
@@ -80,7 +79,6 @@ int Inventory(t_client *cl)
   if (cl->stm->in_use == Inventaire &&
     ( (cl->stm->in_nsec) >= (1000000000/setting->delay)))
   {
-    printf("send inv\n");
     cl->stm->in_use = -1;
     send_invent(cl);
     return (0);

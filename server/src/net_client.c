@@ -98,9 +98,7 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
         if (msg[0] != 0 && msg[0] != '\n')
         {
           add_msg_to_buffer(tmp, msg);
-          printf("Receive message from %d : '%s'\n",tmp->id, msg);
-          printf("DEBUG ALLMSG FROM BUFFER %d :\n", tmp->id);
-          show_all_msg(tmp);
+          printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", RED, tmp->id, msg);
         }
       }
       if (ret == 0)

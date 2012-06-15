@@ -30,14 +30,14 @@ int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
-  printf("-- Attemp to remove client %d\n", to_remove->id);
+  printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n", COLOR_BLU, to_remove->id);
   xclose(to_remove->fd);
   remove_client_on_map(to_remove);
   tmp = get_all_client(NULL);
   if (tmp->fd == to_remove->fd)
   {
     tmp->fd = -1;
-    aff_map(); // debug
+    //aff_map(); // debug
     return (0);
   }
   while (tmp)
@@ -49,14 +49,14 @@ int   remove_client(t_client *to_remove)
     }
     tmp = tmp->next;
   }
-  aff_map(); //debug
+  //aff_map(); //debug
   return (1);
 }
 
 void      remove_client_on_map(t_client *cl)
 {
   rm_pl(cl->x, cl->y, cl);
-  printf("-- Deleting client %d\n", cl->id);
+  printf("\033[1;%sm--Deleting client %d\033[0;0;00m\n", COLOR_BLU, cl->id);
 }
 
 void      add_client_on_map(t_client *new)
@@ -66,7 +66,8 @@ void      add_client_on_map(t_client *new)
   setting = get_setting(NULL);
   new->x = random() % setting->width_map;
   new->y = random() % setting->height_map;
-  printf("--Added new player %d on (%d, %d)\n", new->id, new->x, new->y);
+  printf("\033[1;%sm--Added new player %d on (%d, %d)\033[0;0;00m\n", 
+          COLOR_BLU, new->id, new->x, new->y);
   add_pl(new->x, new->y, new);
 }
 
@@ -89,7 +90,7 @@ t_client  *add_client(t_client *all_client, int fd)
   memset(new->rsrc, 0, 7 * sizeof(int));
   add_client_on_map(new);
   broadcast_to_one_client("BIENVENUE\n", new);
-  aff_map(); //debug
+  //aff_map(); //debug
   if (tmp == NULL)
     return (new);
   while (tmp->next)

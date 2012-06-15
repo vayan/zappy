@@ -60,7 +60,7 @@ int main_loop(int s, socklen_t client_sin_len,
     if (FD_ISSET(s, &readf))
     {
       cs = accept(s, (struct sockaddr *)&client_sin, &client_sin_len);
-      printf("--New connection\n");
+      printf("\033[1;%sm%s\033[0;0;00m\n", COLOR_BLU, "--New Connexion");
       if (all_client == NULL)
         get_all_client(all_client = add_client(all_client, cs));
       else

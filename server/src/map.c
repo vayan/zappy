@@ -17,6 +17,33 @@
 #include "setting.h"
 #include "xfunc.h"
 #include "client.h"
+#include "network.h"
+
+void    aff_pl_test()
+{
+  t_map_case ***map;
+  t_setting    *setting;
+  int x;
+  int y;
+
+  y = 0;
+  map = get_map(NULL);
+  setting = get_setting(NULL);
+  while (y < setting->height_map)
+  {
+    x = 0;
+    while (x < setting->width_map)
+    {
+      if (MAP->client != NULL)
+        printf("*");
+      else
+        printf(".");
+      x++;
+    }
+    printf("\n");
+    y++;
+  }
+}
 
 t_map_case    ***get_map(t_map_case ***_map)
 {
@@ -180,7 +207,7 @@ void    generate_new_map()
  int i;
 
  i = 0; 
- printf("--Generating new map...");
+ printf("\033[1;%sm--Generating new map...\033[0;0;00m", COLOR_BLU);
  setting = get_setting(NULL);
  srandom(time(NULL) * geteuid());
  new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
@@ -191,5 +218,5 @@ void    generate_new_map()
 }
 init_map(new_map, setting);
 get_map(new_map);
-printf("Done\n");
+printf("\033[1;%smDone\033[0;0;00m\n", COLOR_BLU);
 }

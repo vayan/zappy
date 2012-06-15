@@ -57,7 +57,6 @@ int   Take_Object(t_client *cl, Ressource obj)
   { 
     cl->stm->in_use = Take;
     start_timer(cl->stm);
-    printf("Start timer take %ld\n", cl->stm->in_nsec);
     return (1);
   }
   setting = get_setting(NULL);
@@ -66,7 +65,6 @@ int   Take_Object(t_client *cl, Ressource obj)
   if (cl->stm->in_use == Take &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
-    printf("take %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     do_take_obj(cl, obj);
     return (0);
@@ -84,7 +82,6 @@ int   Drop_Object(t_client *cl, Ressource obj)
   { 
     cl->stm->in_use = Drop;
     start_timer(cl->stm);
-    printf("Start timer take %ld\n", cl->stm->in_nsec);
     return (1);
   }
   setting = get_setting(NULL);
@@ -93,7 +90,6 @@ int   Drop_Object(t_client *cl, Ressource obj)
   if (cl->stm->in_use == Drop &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
-    printf("take %ld \n",cl->stm->in_nsec );
     cl->stm->in_use = -1;
     do_drop_obj(cl, obj);
     return (0);
