@@ -111,7 +111,6 @@ void  add_pl(int x, int y, t_client *pl)
   t_map_case ***map;
 
   map = get_map(NULL);
-  printf("try add pl in x'%d' y'%d'", x, y);
   if (MAP->client == NULL)
   {
     MAP->client = xmalloc(sizeof(t_pl_case));
