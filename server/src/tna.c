@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:33:47 2012 anatole carlier
-** Last update Thu Jun 14 17:00:06 2012 anatole carlier
+** Last update Fri Jun 15 11:58:50 2012 anatole carlier
 */
 
 #include <stdio.h>
@@ -20,7 +20,7 @@ int	tna(char **tab, t_client *client)
   int	y;
 
   y = 0;
-  while (tab[1+y*2])
+  while (tab[1+y*2] != NULL)
     {
       y++;
       str = xmalloc(sizeof(char) * 1024);

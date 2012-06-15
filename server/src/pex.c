@@ -5,14 +5,22 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:10:02 2012 anatole carlier
-** Last update Thu Jun 14 12:34:52 2012 randy lyvet
+** Last update Fri Jun 15 12:19:56 2012 anatole carlier
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "command_fonc.h"
+#include "network.h"
+#include "xfunc.h"
 
-int	pex(char **tab)
+int	pex(char **tab, t_client *client)
 {
-  tab = tab;
-  printf("pex\n");
+  char	*str;
+
+  str = xmalloc(sizeof(char) * 16);
+  sprintf("pex %s\n", tab[1]);
+  broadcast_to_one_client(str, client);
+  free(str);
   return (0);
 }

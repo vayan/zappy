@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:27:10 2012 anatole carlier
-** Last update Thu Jun 14 17:04:16 2012 anatole carlier
+** Last update Fri Jun 15 16:43:04 2012 anatole carlier
 */
 
 #include <stdio.h>
@@ -15,22 +15,44 @@
 #include "network.h"
 #include "setting.h" 
 #include "command_fonc.h"
+#include "map.h"
 
-int	mct(char **tab, t_client *client)
+int		mct(char **tab, t_client *client)
 {
-  char	*str;
-  int	y;
+  t_setting	*settings;
+  char		*str;
+  int		x;
+  int		y;
 
-  while (tab[y*10] != NULL)
-    { 
-      str = xmalloc(sizeof(char) * 1024);
-      sprintf("bct %s %s %s %s %s %s %s %s %s\n", tab[1+y*10], tab[2+y*10], 
-	      tab[3+y*10], tab[4+y*10], tab[5+y*10], tab[6+y*10], tab[6+y*10],
-	      tab[8+y*10],  tab[9+y*10]);
-      broadcast_to_one_client(str, client);
-      memset(str, 0, 1024);
-      y++;
+  settings = get_setting(NULL);
+  x = 0;
+  tab = tab;
+  while (x != settings->width_map)
+    {
+      y = 0;
+      while(y != settings->height_map)
+	{
+	  str = xmalloc(sizeof(char) * 1024);
+	  str = map_contents(str, x, y);
+	  broadcast_to_one_client(str, client);
+	  y++;
+	  free(str);
+	}
+      x++;
     }
-  free(str);
   return (0);
+}
+
+char	*map_contents(char *str, int x, int y)
+{
+  t_map_case    ***c_case;
+
+  c_case = get_map(NULL);
+  sprintf(str, "bct %i %i %i %i %i %i %i %i %i\n", x, y,
+	  (c_case[x][y])->rsrc[Nourriture],
+	  (c_case[x][y])->rsrc[Linemate],
+	  (c_case[x][y])->rsrc[Deraumere], (c_case[x][y])->rsrc[Sibur],
+	  (c_case[x][y])->rsrc[Mendiane], (c_case[x][y])->rsrc[Phiras],
+	  (c_case[x][y])->rsrc[Thystame]);
+  return (str);
 }

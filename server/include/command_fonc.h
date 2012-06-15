@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 14:41:40 2012 randy lyvet
-** Last update Thu Jun 14 16:54:10 2012 anatole carlier
+** Last update Fri Jun 15 15:05:31 2012 anatole carlier
 */
 
 #ifndef COMMAND_FONC_
@@ -40,6 +40,6 @@ int	seg(char **command, t_client *client);
 int	smg(char **command, t_client *client);
 int	suc(char **command, t_client *client);
 int	sbp(char **command, t_client *client);
-int	verif_map_value(t_setting *settings, char *X, char *Y);
+char	*map_contents(char *str, int x, int y);
 
 #endif /* !COMMAND_FONC_ */
