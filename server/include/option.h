@@ -5,16 +5,18 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:57:02 2012 randy lyvet
-** Last update Thu Jun 14 12:29:40 2012 randy lyvet
+** Last update Fri Jun 15 14:04:18 2012 randy lyvet
 */
 
 #ifndef OPTION_H_
 # define OPTION_H_
 
+#include	"network.h"
+
 typedef struct  s_option
 {
   char          *option;
-  int           (*op_func)(char **command);
+  int           (*op_func)(char **command, t_client *client);
 }               t_option;
 
 #endif /* !OPTION_H_ */

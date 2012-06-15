@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:37:00 2012 randy lyvet
-** Last update Tue Jun 12 15:46:52 2012 randy lyvet
+** Last update Fri Jun 15 14:08:58 2012 randy lyvet
 */
 
 #include	<string.h>
@@ -13,8 +13,9 @@
 
 #include	"option.h"
 #include	"my_strtowordtab.h"
+#include	"network.h";
 
-int			command_parser(t_option *tab, char *command)
+int			command_parser(t_option *tab, char *command, t_client *client)
 {
   int           j;
   char		**command_type;
@@ -23,12 +24,9 @@ int			command_parser(t_option *tab, char *command)
   j = -1;
   while (tab[++j].option != 0)
     if (strcmp(tab[j].option, command_type[0]) == 0)
-    {
-     return (tab[j].op_func(command_type));
-
-   }
-   j = -1;
-   while (command_type[++j] != 0)
+      return (tab[j].op_func(command_type, client));
+  j = -1;
+  while (command_type[++j] != 0)
     free(command_type[j]);
   free(command_type);
 }
