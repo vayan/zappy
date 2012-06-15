@@ -37,7 +37,7 @@ void  MoveClient(t_client *cl)
   {
     case Up:
     cl->y += 1;
-    if (cl->y > setting->height_map)
+    if (cl->y >= setting->height_map)
       cl->y = 0;
     break;
     case Down:
@@ -47,7 +47,7 @@ void  MoveClient(t_client *cl)
     break;
     case Right:
     cl->x += 1;
-    if (cl->x > setting->width_map)
+    if (cl->x >= setting->width_map)
       cl->x = 0;
     break;
     case Left:

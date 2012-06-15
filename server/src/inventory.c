@@ -65,7 +65,7 @@ int Inventory(t_client *cl)
 {
   t_setting *setting;
 
-  if (cl->stm->in_use != -1 && cl->stm->in_use != TurnLeft)
+  if (cl->stm->in_use != -1 && cl->stm->in_use != Inventaire)
     return (1);
   if (cl->stm->in_use == -1)
   { 
@@ -78,7 +78,7 @@ int Inventory(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Inventaire &&
-    ( (cl->stm->in_nsec) >= (1000000000/setting->delay)))
+    ( (cl->stm->in_nsec) >= (100000000/setting->delay)))
   {
     printf("send inv\n");
     cl->stm->in_use = -1;
