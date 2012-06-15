@@ -35,7 +35,6 @@ int     main(int ac, char **av)
 
   parser_setting(ac, av);
   aff_setting();
- 
 
   generate_new_map();
   aff_map();

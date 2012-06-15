@@ -61,6 +61,7 @@ typedef struct      s_client {
   int       x;
   int       y;
   int       action[12];
+  int       is_graphic;
   t_buffer_msg *buff_msg;
   Direction dir;
   t_serv_time *stm;

@@ -84,11 +84,9 @@ t_client  *add_client(t_client *all_client, int fd)
   new->stm = xmalloc(sizeof(t_serv_time));
   new->stm->in_use = -1;
   new->rsrc = xmalloc(7 * sizeof(int));
-  //new->buff_msg = xmalloc(11 * sizeof(char*));
-  //new->buffer_msg[0] = NULL;
   new->buff_msg = NULL;
+  new->is_graphic = 0;
   memset(new->rsrc, 0, 7 * sizeof(int));
-  //start_timer(new->stm);
   add_client_on_map(new);
   broadcast_to_one_client("BIENVENUE\n", new);
   aff_map(); //debug
