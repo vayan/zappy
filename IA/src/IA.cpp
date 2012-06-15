@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:51:45 2012 alexandre haulotte
-// Last update Thu Jun 14 17:12:15 2012 alexandre haulotte
+// Last update Fri Jun 15 13:00:45 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -37,12 +37,12 @@ void	Player::initTab()
   trTable[8][OK] = 1;
   trTable[8][KO] = 1;
 
-  fctTable[1] = &Player::Pond;
+  fctTable[1] = &Player::Droite;
   fctTable[2] = &Player::Avance;
   fctTable[3] = &Player::_AssezNourriture;
   fctTable[4] = &Player::_NourritureSurCase;
   fctTable[5] = &Player::Avance;
-  fctTable[6] = &Player::RamassezNourriture;
+  fctTable[6] = &Player::_RamassezNourriture;
   fctTable[7] = &Player::_PlaceSurServeur;
   fctTable[8] = &Player::Eclosion;
   fctTable[LOOP_CONNECT] = &Player::LoopPlaceSurServeur;

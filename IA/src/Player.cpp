@@ -5,10 +5,11 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Thu Jun 14 18:51:26 2012 alexandre haulotte
+// Last update Fri Jun 15 12:53:18 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
+
 
 void  Player::connexion()
 {
@@ -41,26 +42,19 @@ void  Player::play()
   ret = recv(_soc, buff, 8096, 0);
   initTab();
   tv.tv_sec = 0;
-  tv.tv_usec = 20;
-  send(_soc, &_teamName[0], 40, 0);
+  tv.tv_usec = 2000;
+  send(_soc, &_teamName[0], _teamName.length(), 0);
   send(_soc, "\n", 1, 0);
-
-  // Player Id
-  ret = recv(_soc, buff, 8096, 0);
-  buff[ret] = 0;
-  _id = strToInt(buff);
-  std::cout << "Mon Id est : " << _id;
-
-  // Map X Y
-  ret = recv(_soc, buff, 8096, 0);
-  buff[ret] = 0;
-  std::cout << "Taille Map : " << buff << std::endl;
-
+  recInfo();
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
   FD_SET(_soc, &readfds);
   while (select(_soc + 1, &readfds, NULL, NULL, &tv) != -1)
     {
+      tv.tv_sec = 0;
+      tv.tv_usec = 2000;
+      if (fctRet == ERR)
+	throw (new Errur("Msg not send"));
       if (FD_ISSET(_soc, &readfds))
 	{
 	  ret = recv(_soc, buff, 8096, 0);
@@ -68,17 +62,20 @@ void  Player::play()
 	  std::cout << buff << std::endl;
 	  _lastRep = buff;
 	  if (std::string(buff).find("mort") != std::string::npos)
-	    exit(0);
-	  if (fctRet == LOOP && *(_cmd.begin()) > LOOP_FUNC)
+	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
+	  if (fctRet == LOOP)
+	    std::cout << _id << ">>>>>><<loop" << std::endl;
+	  if (!_cmd.empty())
 	    {
-	      fctRet = (this->*fctTable[_cState])();
-	      std::cout << _cState << " " << fctRet << std::endl;
-	      _cState = trTable[_cState][fctRet];
-	      std::cout << _cState << std::endl;
-	    }
-	  if (_nbCmd > 0)
-	    {
-	      _nbCmd--;
+	      std::cout << _id << ">>>>>>END1<<loop" << fctRet << " " << *(_cmd.begin()) <<std::endl;
+	      if (fctRet == LOOP && *(_cmd.begin()) > LOOP_FUNC)
+		{
+		  std::cout << _id << ">>>>>>END2<<loop" << std::endl;
+		  fctRet = (this->*fctTable[_cState])();
+		  std::cout << _cState << " " << fctRet << std::endl;
+		  _cState = trTable[_cState][fctRet];
+		  std::cout << _cState << std::endl;
+		}
 	      _cmd.erase(_cmd.begin());
 	    }
 	}
@@ -96,8 +93,24 @@ void  Player::play()
     }
 }
 
+void	Player::recInfo()
+{
+  std::string	str;
+  int		ret;
+  char		buff[8096 + 1];
+
+  ret = recv(_soc, buff, 8096, 0);
+  buff[ret] = 0;
+  _id = strToInt(buff);
+  std::cout << "Mon Id est : " << _id << std::endl;
+  ret = recv(_soc, buff, 8096, 0);
+  buff[ret] = 0;
+  str = &buff[0];
+  std::cout << "Taille Map : " << buff << std::endl;
+}
+
 Player::Player(int compo)
-  :_x(0), _y(0), _width(0), _height(0), _dir(0), _lvl(0), _id(0),
+  :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
    _port(0), _addr(""), _nbCmd(0), _compo(0), _lastRep(""), _cState(1)
 {
   _teamName = "";
@@ -118,7 +131,7 @@ Player::Player(int compo)
 }
 
 Player::Player(int port, std::string ip, std::string team, int compo)
-  :_x(0), _y(0), _width(0), _height(0), _dir(0), _lvl(0), _id(0),
+  :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
    _port(port), _addr(ip), _nbCmd(0), _compo(0), _lastRep(""), _cState(1)
 {
   _teamName = team;
@@ -136,12 +149,6 @@ Player::Player(int port, std::string ip, std::string team, int compo)
 	    {4, 1, 2, 1, 3, 0, 0},
 	    {6, 1, 2, 3, 0, 1, 0},
 	    {6, 2, 2, 2, 2, 2, 1}};
-}
-
-void	Player::initCase(int x, int y)
-{
-  for (int i = 0; i < 9; i++)
-    (_map[x][y])[i] = 0;
 }
 
 void    Player::parse(int ac, char **av)
@@ -243,6 +250,11 @@ void  Player::setLvl(int lvl)
 void  Player::setRessource(int r, int nb)
 { _ressource[r] += nb; }
 
+void	Player::initCase(int x, int y)
+{
+  for (int i = 0; i < 9; i++)
+    (_map[x][y])[i] = 0;
+}
 void  Player::setMap(int x, int y, int p, int nb)
 {
   if (_map[x][y].empty())

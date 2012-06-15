@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Thu Jun 14 20:28:13 2012 alexandre haulotte
+// Last update Fri Jun 15 10:54:10 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -50,14 +50,14 @@ protected:
   int			_compo;
   std::string		_lastRep;
   int			_cState;
-  
+
 public:
   Player(int port, std::string ip, std::string team, int compo = 0);
   Player(int compo = 0);
   ~Player();
   void		connexion();
   void		play();
-  void		initCase(int x, int y);
+  void		recInfo();
   void		parse(int ac, char **av);
   int		strToInt(char* str);
   std::string	intToStr(int i);
@@ -86,6 +86,7 @@ public:
   void	setDir(int dir);
   void	setLvl(int lvl);
   void	setRessource(int r, int nb);
+  void	initCase(int x, int y);
   void	setMap(int x, int y, int p, int nb);
 
 #include	"IA.hh"

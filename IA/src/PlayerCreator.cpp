@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun 12 14:16:37 2012 alexandre haulotte
-// Last update Thu Jun 14 11:26:06 2012 alexandre haulotte
+// Last update Fri Jun 15 11:23:54 2012 alexandre haulotte
 //
 
 #include	<iostream>

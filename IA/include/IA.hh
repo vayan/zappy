@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Fri Jun 15 09:46:58 2012 alexandre haulotte
+// Last update Fri Jun 15 10:22:57 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -15,46 +15,56 @@
 //----------------------------------------------//
 //--------------- GenericBloc ------------------//
 //----------------------------------------------//
-int   Avance();
-int   Droite();
-int   Gauche();
-int   Pond();
-int   Eclosion();
+int	Avance();
+int	Droite();
+int	Gauche();
+int	Pond();
+int	Eclosion();
 
 //----------------------------------------------//
 //--------------- SearchBloc -------------------//
 //----------------------------------------------//
-int   _NourritureSurCase();
-int   LoopNourritureSurCase();
-int   _LinemateSurCase();
-int   LoopLinemateSurCase();
-int   _DeraumereSurCase();
-int   LoopDeraumereSurCase();
-int   _SibureSurCase();
-int   LoopSibureSurCase();
-int   _MendianeSurCase();
-int   LoopMendianeSurCase();
-int   _PhirasSurCase();
-int   LoopPhirasSurCase();
-int   _ThystameSurCase();
-int   LoopThystameSurCase();
+int	_NourritureSurCase();
+int	LoopNourritureSurCase();
+int	_LinemateSurCase();
+int	LoopLinemateSurCase();
+int	_DeraumereSurCase();
+int	LoopDeraumereSurCase();
+int	_SibureSurCase();
+int	LoopSibureSurCase();
+int	_MendianeSurCase();
+int	LoopMendianeSurCase();
+int	_PhirasSurCase();
+int	LoopPhirasSurCase();
+int	_ThystameSurCase();
+int	LoopThystameSurCase();
+int	_RessourceForLvlSurCase();
+int	LoopRessourceForLvlSurCase();
 
 //----------------------------------------------//
 //----------------- TakeBloc -------------------//
 //----------------------------------------------//
 
-int   RamassezNourriture();
-int   LoopRamassezNourriture();
+int	_RamassezNourriture();
+int	LoopRamassezNourriture();
+int	_RamassezLinemate();
+int	_RamassezDeraumere();
+int	_RamassezSibure();
+int	_RamassezMendiane();
+int	_RamassezPhiras();
+int	_RamassezThystame();
+int	_RamassezRessourceForLvl();
+int	LoopRamassezRessource();
 
 //----------------------------------------------//
 //----------------- TestBloc -------------------//
 //----------------------------------------------//
 
-int   _AssezNourriture();
-int   LoopAssezNourriture();
-int   _AssezRessourceForLevel();
-int   _PlaceSurServeur();
-int   LoopPlaceSurServeur();
+int	_AssezNourriture();
+int	LoopAssezNourriture();
+int	AssezRessourceForLevel();
+int	_PlaceSurServeur();
+int	LoopPlaceSurServeur();
 
 //-----------------EndIAFunc--------------------//
 
@@ -62,6 +72,7 @@ typedef int (Player::*fct)();
 
 std::map<int, std::map<int, int> > trTable;
 std::map<int, fct > fctTable;
+int	RWant;
 
 public:
 enum Direction
@@ -88,45 +99,13 @@ enum  Retour
     KO,
     OK,
     LOOP,
-    M_LINE,
-    M_DERA,
-    M_SIB,
-    M_MEND,
-    M_PHI,
-    M_THY,
     ERR
   };
 
 enum  cmd
   {
     AVANCE,
-    // DROITE,
-    // GAUCHE,
-    // VOIR,
-    // INVENTAIRE,
-    // PRENDRE_FOOD,
-    // PRENDRE_LINEMATE,
-    // PRENDRE_DERAUMERE,
-    // PRENDRE_SIBURE,
-    // PRENDRE_MENDIANE,
-    // PRENDRE_PHIRAS,
-    // PRENDRE_THYSTAME,
-    // POSE_FOOD,
-    // POSE_LINEMATE,
-    // POSE_DERAUMERE,
-    // POSE_SIBURE,
-    // POSE_MENDIANE,
-    // POSE_PHIRAS,
-    // POSE_THYSTAME,
-    // EXPULSE,
-    // BROADCAST,
-    // INCANTATION,
     FORK,
-    // CONNECT,
-    // ECLOSION,
-    // SEARCH_FOOD,
-    // ASSEZ_FOOD,
-    // TOURNE_DROITE,
     LOOP_FUNC = 2500,
     LOOP_CONNECT = 2501,
     LOOP_PRENDRE_FOOD = 2502,
