@@ -23,6 +23,7 @@
 #include <signal.h>
 #include "network.h"
 #include "xfunc.h"
+#include "option.h"
 
 int   broadcast_to_one_client(char *msg, t_client *me)
 {
@@ -44,17 +45,17 @@ int   broadcast_to_one_client(char *msg, t_client *me)
 int do_input_client(t_client *all_client)
 {
   t_client  *tmp;
+  t_option tab[26];
 
+  init_tab(&tab);
   tmp = all_client;
   while (tmp)
   {
-    if (tmp->buffer_msg != NULL && tmp->buffer_msg[0] != NULL)
+    if (tmp->buff_msg != NULL)
     {
-        //printf("debug : command '%s' a traiter\n", tmp->buffer_msg[0]);
-      
-
-       //buffer_msg[0] contient la commande 
-       //si ta fonction renvoie 0 tu appel rm_top_msg_from_buffer(client)
+        //printf("debug : command '%s' a traiter\n", tmp->buff_msg->msg);
+        if (command_parser(&tab, tmp->buff_msg->msg) == 0)
+          rm_top_msg_from_buffer(tmp);    
     }
     tmp = tmp->next;
   }

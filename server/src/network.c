@@ -27,15 +27,9 @@
 
 void    clean_quit()
 {
-  t_client  *all_client;
-
-  all_client = get_all_client(NULL);
-  while (all_client)
-  {
-    xclose(all_client->fd);
-    all_client = all_client->next;
-  }
-  xclose(3);
+  free_close_client();
+  //free_map();
+  free_setting();
   printf("\n");
   exit (11);
 }

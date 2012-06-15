@@ -14,7 +14,7 @@
 #include	"option.h"
 #include	"my_strtowordtab.h"
 
-void			command_parser(t_option *tab, char *command)
+int			command_parser(t_option *tab, char *command)
 {
   int           j;
   char		**command_type;
@@ -23,12 +23,12 @@ void			command_parser(t_option *tab, char *command)
   j = -1;
   while (tab[++j].option != 0)
     if (strcmp(tab[j].option, command_type[0]) == 0)
-      {
-	tab[j].op_func(command_type);
-	return;
-      }
-  j = -1;
-  while (command_type[++j] != 0)
+    {
+     return (tab[j].op_func(command_type));
+
+   }
+   j = -1;
+   while (command_type[++j] != 0)
     free(command_type[j]);
   free(command_type);
 }

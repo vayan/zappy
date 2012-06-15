@@ -47,6 +47,12 @@ typedef enum ActionClient {
   Dead
 } ActionClient;
 
+typedef struct s_buffer_msg
+{
+  char *msg;
+  struct s_buffer_msg *next;
+} t_buffer_msg;
+
 typedef struct      s_client {
   int       fd;
   int       id;
@@ -55,7 +61,7 @@ typedef struct      s_client {
   int       x;
   int       y;
   int       action[12];
-  char      **buffer_msg;
+  t_buffer_msg *buff_msg;
   Direction dir;
   t_serv_time *stm;
   Ressource     *rsrc;
@@ -76,7 +82,7 @@ int   MoveFront(t_client *cl);
 void  send_invent(t_client *cl);
 int Inventory(t_client *cl);
 void    show_all_msg(t_client *cl);
-void    add_msg_to_buffer(t_client *cl, char *msg);
+int    add_msg_to_buffer(t_client *cl, char *msg);
 
 
 #endif

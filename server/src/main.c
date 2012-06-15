@@ -25,16 +25,17 @@
 #include "network.h"
 #include "setting.h"
 #include "map.h"
+#include "option.h"
 
 int     main(int ac, char **av)
 {
   //if (parser_setting(ac, av) == -1)
     //return (-1);
+ 
 
   parser_setting(ac, av);
   aff_setting();
-
-
+ 
 
   generate_new_map();
   aff_map();

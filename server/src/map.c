@@ -92,11 +92,11 @@ void  rm_pl(int x, int y, t_client *pl)
     t_pl_case  *tmp;
 
     tmp = MAP->client;
-    if ((tmp->client->id == pl->id) && (tmp->client->next == NULL))
+    if ((tmp->client->id == pl->id) && (tmp->next == NULL))
       MAP->client = NULL;
     else
     {
-      while (tmp->next && tmp->next->client->id != pl->id)
+      while ((tmp->next != NULL) && (tmp->next->client->id != pl->id))
         tmp = tmp->next; 
       if (tmp->next->next == NULL)
         tmp->next = NULL;

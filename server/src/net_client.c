@@ -27,35 +27,57 @@
 void    show_all_msg(t_client *cl)
 {
   int i;
+  t_buffer_msg *tmp;
 
-  i = 0;
+  tmp = cl->buff_msg;
   printf("----------\n");
-  while (cl->buffer_msg[i])
+  while (tmp)
   {
-    printf("%d(%d) : '%s' \n", cl->id, i, cl->buffer_msg[i]);
+    printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
+    tmp = tmp->next;
     i++;
   }
 }
 
 void  rm_top_msg_from_buffer(t_client *cl)
 {
+  t_buffer_msg *tmp;
 
-
+  tmp = cl->buff_msg;
+  if (cl->buff_msg->next != NULL)
+    cl->buff_msg = cl->buff_msg->next;
+  else
+    cl->buff_msg = NULL;
+  free(tmp->msg);
+  free(tmp);
 }
 
-void    add_msg_to_buffer(t_client *cl, char *msg)
+int    add_msg_to_buffer(t_client *cl, char *msg)
 {
   int i;
+  t_buffer_msg *tmp;
 
-  if (msg[strlen(msg) -1] == '\n')
-    msg[strlen(msg) -1] = 0;    
+  tmp = cl->buff_msg;
+  if (msg[strlen(msg) - 1] == '\n')
+    msg[strlen(msg) - 1] = 0;    
   i = 0;
-  while (cl->buffer_msg[i] != NULL)
-    i++;
-  if (i < 10)
+  if (tmp == NULL)
   {
-    cl->buffer_msg[i] = strdup(msg);
-    cl->buffer_msg[i+1] = NULL;
+    cl->buff_msg = xmalloc(sizeof(t_buffer_msg));
+    cl->buff_msg->msg = strdup(msg);
+    cl->buff_msg->next = NULL; 
+    return (1);
+  }
+  while (tmp->next)
+  {
+    tmp = tmp->next;
+    i++;
+  }
+  if (i < 9)
+  {
+    tmp->next = xmalloc(sizeof(t_buffer_msg));
+    tmp->next->msg = strdup(msg);
+    tmp->next->next = NULL;
   }
 }
 
@@ -77,6 +99,8 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
         {
           add_msg_to_buffer(tmp, msg);
           printf("Receive message from %d : '%s'\n",tmp->id, msg);
+          printf("DEBUG ALLMSG FROM BUFFER %d :\n", tmp->id);
+          show_all_msg(tmp);
         }
       }
       if (ret == 0)
