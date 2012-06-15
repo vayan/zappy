@@ -5,145 +5,198 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Fri Jun 15 12:04:05 2012 alexandre haulotte
+// Last update Fri Jun 15 18:20:19 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
 
-int   Player::_RamassezNourriture()
+int   Player::RamassezNourriture()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  std::cout << "RammasseeNouriture" << std::endl;
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  std::cout << "RamasseeNouriture" << std::endl;
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend nourriture\n", 17, 0);
   if (ret == -1)
     return (ERR);
-  return (LOOP);
-}
-
-int   Player::LoopRamassezNourriture()
-{
-  std::cout << "LoopRammasseeNouriture" << std::endl;
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
   if (_lastRep.find("ok") != std::string::npos)
     return (OK);
   return (KO);
 }
 
-int   Player::_RamassezLinemate()
+int   Player::RamassezLinemate()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend linemate\n", 15, 0);
-  RWant = LINEMATE;
   if (ret == -1)
     return (ERR);
-  return (LOOP);
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
+  if (_lastRep.find("ok") != std::string::npos)
+    {
+      _ressource[LINEMATE] = _ressource[LINEMATE] + 1;
+      return (OK);
+    }
+  return (KO);
 }
 
-int   Player::_RamassezDeraumere()
+int   Player::RamassezDeraumere()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend deraumere\n", 16, 0);
-  RWant = DERAUMERE;
   if (ret == -1)
     return (ERR);
-  return (LOOP);
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
+  if (_lastRep.find("ok") != std::string::npos)
+    {
+      _ressource[DERAUMERE] = _ressource[DERAUMERE] + 1;
+      return (OK);
+    }
+  return (KO);
 }
 
-int   Player::_RamassezSibure()
+int   Player::RamassezSibure()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend sibure\n", 13, 0);
-  RWant = SIBURE;
   if (ret == -1)
     return (ERR);
-  return (LOOP);
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
+  if (_lastRep.find("ok") != std::string::npos)
+    {
+      _ressource[SIBURE] = _ressource[SIBURE] + 1;
+      return (OK);
+    }
+  return (KO);
 }
 
-int   Player::_RamassezMendiane()
+int   Player::RamassezMendiane()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend mendiane\n", 15, 0);
-  RWant = MENDIANE;
   if (ret == -1)
     return (ERR);
-  return (LOOP);
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
+  if (_lastRep.find("ok") != std::string::npos)
+    {
+      _ressource[SIBURE] = _ressource[SIBURE] + 1;
+      return (OK);
+    }
+  return (KO);
 }
 
-int   Player::_RamassezPhiras()
+int   Player::RamassezPhiras()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend phiras\n", 13, 0);
-  RWant = PHIRAS;
   if (ret == -1)
     return (ERR);
-  return (LOOP);
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
+  if (_lastRep.find("ok") != std::string::npos)
+    {
+      _ressource[PHIRAS] = _ressource[PHIRAS] + 1;
+      return (OK);
+    }
+  return (KO);
 }
 
-int   Player::_RamassezThystame()
+int   Player::RamassezThystame()
 {
   int   ret;
+  char          buff[8096 + 1];
 
-  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  _cmd.push_back(LOOP_RN);
   ret = send(_soc, "prend thystame\n", 15, 0);
-  RWant = THYSTAME;
   if (ret == -1)
     return (ERR);
-  return (LOOP);
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = &buff[0];
+  if (_lastRep.find("ok") != std::string::npos)
+    {
+      _ressource[THYSTAME] = _ressource[THYSTAME] + 1;
+      return (OK);
+    }
+  return (KO);
 }
-//-----------------Fct Ressource for lvl-----------------------//
-int   Player::_RamassezRessourceForLvl()
+
+int   Player::RamassezRessourceForLvl()
 {
+  std::cout << "RamassezRessourceForLvl" << std::endl;
   int   ret;
   int	i;
 
-  for (i = 0; i < 6; i++)
+  for (i = 1; i < 6; i++)
     {
-      if (_lvlTab[_lvl][i + 1] > _ressource[i])
+      if (_lvlTab[_lvl][i] > _ressource[i])
 	break;
+      if (i == 6)
+	return (OK);
     }
   switch (i)
     {
     case LINEMATE:
-      ret = _RamassezLinemate();
+      ret = RamassezLinemate();
       break;
     case DERAUMERE:
-      ret = _RamassezDeraumere();
+      ret = RamassezDeraumere();
       break;
     case SIBURE:
-      ret = _RamassezSibure();
+      ret = RamassezSibure();
       break;
     case MENDIANE:
-      ret = _RamassezMendiane();
+      ret = RamassezMendiane();
       break;
     case PHIRAS:
-      ret = _RamassezPhiras();
+      ret = RamassezPhiras();
       break;
     case THYSTAME:
-      ret = _RamassezThystame();
+      ret = RamassezThystame();
       break;
     default:
       return (ERR);
     }
   return (ret);
-}
-
-int   Player::LoopRamassezRessource()
-{
-  if (_lastRep.find("ok") != std::string::npos)
-    {
-      _ressource[RWant] = _ressource[RWant] + 1;
-      return (OK);
-    }
-  return (KO);
 }
