@@ -37,7 +37,7 @@ void  MoveClient(t_client *cl)
   {
     case Up:
     cl->y += 1;
-    if (cl->y > setting->height_map)
+    if (cl->y >= setting->height_map)
       cl->y = 0;
     break;
     case Down:
@@ -47,7 +47,7 @@ void  MoveClient(t_client *cl)
     break;
     case Right:
     cl->x += 1;
-    if (cl->x > setting->width_map)
+    if (cl->x >= setting->width_map)
       cl->x = 0;
     break;
     case Left:
@@ -56,6 +56,7 @@ void  MoveClient(t_client *cl)
       cl->x = setting->width_map;
     break;
   }
+  printf("try add pl in x'%d' y'%d' Direction %d\n", cl->x, cl->y, cl->dir);
   add_pl(cl->x, cl->y, cl);
 }
 

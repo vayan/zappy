@@ -79,7 +79,7 @@ void init_setting(t_setting *setting)
     setting->width_map = 5;
     setting->height_map = 7;
     setting->max_cl_per_team = 3;
-    setting->delay = 1;
+    setting->delay = 100;
     setting->name_teams = xmalloc(3 * sizeof(char*));
     setting->name_teams[0] = strdup("foo");  
     setting->name_teams[1] = strdup("bar"); 
