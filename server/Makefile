@@ -5,7 +5,7 @@
 ## Login   <lyvet_r@epitech.net>
 ## 
 ## Started on  Mon Nov  7 15:53:02 2011 randy lyvet
-## Last update Fri Jun 15 16:26:53 2012 randy lyvet
+## Last update Fri Jun 15 16:36:32 2012 randy lyvet
 ##
 
 NAME		=	serveur
@@ -15,9 +15,8 @@ NAMEFILE	=	$(NAME)
 INC_DIR		=	include/
 INC_LIB_SRC	=	libs/sources
 LIB_DIR		=	libs/
-SRC_DIR		=	compilator/
+SRC_DIR		=	src/
 OBJ_DIR		=	obj/
-COMPILATOR	=	@cp -f src/*/* $(SRC_DIR)
 LIBS		=	m X11
 SRCS_C		=	$(notdir $(wildcard $(SRC_DIR)/*.c))
 SRCS_O		=	$(addprefix $(OBJ_DIR), $(patsubst %.c, %.o, $(SRCS_C)))
@@ -47,7 +46,7 @@ ${NAME}		: $(SRCS_O)
 all		: compilator $(NAME)
 
 compilator	:
-		$(COMPILATOR)
+		cp -rf src/*/* $(SRC_DIR)
 
 clean		:
 		@rm -rf ./obj/*~ ./obj/#*# ./obj/*.o ./src/*/*~ ./src/*/#*# ./include/*~ ./include/#*# ./*~ ./#*#
