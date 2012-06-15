@@ -65,7 +65,7 @@ int Inventory(t_client *cl)
 {
   t_setting *setting;
 
-  if (cl->stm->in_use != -1 && cl->stm->in_use != TurnLeft)
+  if (cl->stm->in_use != -1 && cl->stm->in_use != Inventaire)
     return (1);
   if (cl->stm->in_use == -1)
   { 
