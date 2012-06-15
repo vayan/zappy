@@ -53,7 +53,6 @@ int do_input_client(t_client *all_client)
   {
     if (tmp->buff_msg != NULL)
     {
-        //printf("debug : command '%s' a traiter\n", tmp->buff_msg->msg);
         if (command_parser(&tab, tmp->buff_msg->msg) == 0)
           rm_top_msg_from_buffer(tmp);    
     }
