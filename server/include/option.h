@@ -5,13 +5,15 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:57:02 2012 randy lyvet
-** Last update Fri Jun 15 14:04:18 2012 randy lyvet
+** Last update Fri Jun 15 15:14:29 2012 randy lyvet
 */
 
 #ifndef OPTION_H_
 # define OPTION_H_
 
 #include	"network.h"
+
+#define		TAB_SIZE	26
 
 typedef struct  s_option
 {
