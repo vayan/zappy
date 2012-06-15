@@ -5,39 +5,49 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:51:45 2012 alexandre haulotte
-// Last update Thu Jun 14 12:58:51 2012 alexandre haulotte
+// Last update Thu Jun 14 17:12:15 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
 
 void	Player::initTab()
 {
-  trTable[FORK][OK] = AVANCE;
-  trTable[FORK][KO] = FORK;
-  trTable[AVANCE][OK] = ASSEZ_FOOD;
-  trTable[AVANCE][KO] = AVANCE;
-  trTable[ASSEZ_FOOD][OK] = FORK;
-  trTable[ASSEZ_FOOD][KO] = SEARCH_FOOD;
-  trTable[SEARCH_FOOD][OK] = PRENDRE_FOOD;
-  trTable[SEARCH_FOOD][KO] = AVANCE;
-  trTable[SEARCH_FOOD][LOOP] = LOOP_SEARCH_FOOD;
-  trTable[PRENDRE_FOOD][OK] = CONNECT;
-  trTable[PRENDRE_FOOD][KO] = AVANCE;
-  trTable[PRENDRE_FOOD][LOOP] = LOOP_PRENDRE_FOOD;
-  trTable[CONNECT][OK] = ECLOSION;
-  trTable[CONNECT][KO] = AVANCE;
-  trTable[CONNECT][LOOP] = LOOP_CONNECT;
-  trTable[ECLOSION][OK] = AVANCE;
-  trTable[ECLOSION][KO] = AVANCE;
+  trTable[1][OK] = 2;
+  trTable[1][KO] = 1;
+  trTable[2][OK] = 3;
+  trTable[2][KO] = 2;
+  trTable[LOOP_ASSEZ_FOOD][OK] = 1;
+  trTable[LOOP_ASSEZ_FOOD][KO] = 4;
+  trTable[3][KO] = 1;
+  trTable[3][LOOP] = LOOP_ASSEZ_FOOD;
+  trTable[LOOP_SEARCH_FOOD][OK] = 6;
+  trTable[LOOP_SEARCH_FOOD][KO] = 5;
+  trTable[4][KO] = 5;
+  trTable[4][LOOP] = LOOP_SEARCH_FOOD;
+  trTable[5][OK] = 4;
+  trTable[5][KO] = 1;
+  trTable[LOOP_PRENDRE_FOOD][OK] = 7;
+  trTable[LOOP_PRENDRE_FOOD][KO] = 1;
+  trTable[6][KO] = 5;
+  trTable[6][LOOP] = LOOP_PRENDRE_FOOD;
+  trTable[LOOP_CONNECT][OK] = 8;
+  trTable[LOOP_CONNECT][KO] = 1;
+  trTable[7][KO] = 1;
+  trTable[7][LOOP] = LOOP_CONNECT;
+  trTable[8][OK] = 1;
+  trTable[8][KO] = 1;
 
-  fctTable[FORK] = &Player::Pond;
-  fctTable[AVANCE] = &Player::Avance;
-  fctTable[ASSEZ_FOOD] = &Player::_AssezNouriture;
-  fctTable[SEARCH_FOOD] = &Player::_NouritureSurCase;
-  fctTable[PRENDRE_FOOD] = &Player::RamassezNouriture;
-  fctTable[CONNECT] = &Player::_PlaceSurServeur;
-  fctTable[ECLOSION] = &Player::Eclosion;
+  fctTable[1] = &Player::Pond;
+  fctTable[2] = &Player::Avance;
+  fctTable[3] = &Player::_AssezNourriture;
+  fctTable[4] = &Player::_NourritureSurCase;
+  fctTable[5] = &Player::Avance;
+  fctTable[6] = &Player::RamassezNourriture;
+  fctTable[7] = &Player::_PlaceSurServeur;
+  fctTable[8] = &Player::Eclosion;
   fctTable[LOOP_CONNECT] = &Player::LoopPlaceSurServeur;
-  fctTable[LOOP_SEARCH_FOOD] = &Player::LoopNouritureSurCase;
-  fctTable[LOOP_PRENDRE_FOOD] = &Player::LoopRamassezNouriture;
+  fctTable[LOOP_SEARCH_FOOD] = &Player::LoopNourritureSurCase;
+  fctTable[LOOP_PRENDRE_FOOD] = &Player::LoopRamassezNourriture;
+  fctTable[LOOP_ASSEZ_FOOD] = &Player::LoopAssezNourriture;
+  //fctTable[DROITE] = &Player::Droite;
 }

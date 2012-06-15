@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Thu Jun 14 12:58:00 2012 alexandre haulotte
+// Last update Thu Jun 14 20:28:13 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -39,6 +39,7 @@ protected:
   std::map< int, std::map< int, std::vector<int> > >	_map;
   int							_id;
   std::string						_teamName;
+  int 							_lvlTab[7][7];
 
 protected:
   int			_soc;
@@ -48,27 +49,8 @@ protected:
   std::vector<int>	_cmd;
   int			_compo;
   std::string		_lastRep;
-
-  //--------------------------------------//
-  //------------- Bloc IA ----------------//
-  //--------------------------------------//
-protected:
-  int   Avance();
-  //int tourne(Direction dir);
-  int   Pond();
-  int   RamassezNouriture();
-  int	LoopRamassezNouriture();
-  int	Eclosion();
-
-  // ------------------------------------- //
-  // ------------ Fct Noeud -------------- //
-  // ------------------------------------- //
-  int   _AssezNouriture();
-  int	_NouritureSurCase();
-  int	LoopNouritureSurCase();
-  int	_PlaceSurServeur();
-  int	LoopPlaceSurServeur();
-
+  int			_cState;
+  
 public:
   Player(int port, std::string ip, std::string team, int compo = 0);
   Player(int compo = 0);
@@ -106,68 +88,8 @@ public:
   void	setRessource(int r, int nb);
   void	setMap(int x, int y, int p, int nb);
 
-public:
-  enum Direction
-    {
-      NORD = 1,
-      EST = 2,
-      SUD = 3,
-      OUEST = 4
-    };
+#include	"IA.hh"
 
-  enum Ressources
-    {
-      FOOD,
-      LINEMATE,
-      DERAUMERE,
-      SIBURE,
-      MENDIANE,
-      PHIRAS,
-      THYSTAME
-    };
-  enum	Retour
-    {
-      KO,
-      OK,
-      LOOP,
-      ERR
-    };
-
-  enum	cmd
-    {
-      AVANCE,
-      DROITE,
-      GAUCHE,
-      VOIR,
-      INVENTAIRE,
-      PRENDRE_FOOD,
-      PRENDRE_LINEMATE,
-      PRENDRE_DERAUMERE,
-      PRENDRE_SIBURE,
-      PRENDRE_MENDIANE,
-      PRENDRE_PHIRAS,
-      PRENDRE_THYSTAME,
-      POSE_FOOD,
-      POSE_LINEMATE,
-      POSE_DERAUMERE,
-      POSE_SIBURE,
-      POSE_MENDIANE,
-      POSE_PHIRAS,
-      POSE_THYSTAME,
-      EXPULSE,
-      BROADCAST,
-      INCANTATION,
-      FORK,
-      CONNECT,
-      ECLOSION,
-      SEARCH_FOOD,
-      ASSEZ_FOOD,
-      LOOP_CONNECT,
-      LOOP_PRENDRE_FOOD,
-      LOOP_SEARCH_FOOD
-    };
-
-    #include	"IA.hh"
 };
 
 #endif

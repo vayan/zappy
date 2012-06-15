@@ -1,0 +1,158 @@
+//
+// BlocIA.cpp for BlocIA in /home/haulot_a//zappy-2015-2014s-haulot_a/IA
+// 
+// Made by alexandre haulotte
+// Login   <haulot_a@epitech.net>
+// 
+// Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
+// Last update Fri Jun 15 09:34:35 2012 alexandre haulotte
+//
+
+#include	"Player.hh"
+#include	"PlayerCreator.hh"
+
+int   Player::Avance()
+{
+  int	ret;
+
+    std::cout << "j'avance" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(AVANCE);
+  ret = send(_soc, "avance\n", 7, 0);
+  if (ret == -1)
+    return (KO);
+  return (OK);
+}
+
+int	Player::Droite()
+{
+  int   ret;
+
+  std::cout << "je tourne a droite" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(AVANCE);
+  ret = send(_soc, "droite\n", 7, 0);
+  if (ret == -1)
+    return (KO);
+  return (OK);
+}
+
+int     Player::Gauche()
+{
+  int   ret;
+
+  std::cout << "je tourne a gauche" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(AVANCE);
+  ret = send(_soc, "gauche\n", 7, 0);
+  if (ret == -1)
+    return (KO);
+  return (OK);
+}
+
+int   Player::Pond()
+{
+  int	ret;
+
+  std::cout << "je pond" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(FORK);
+  ret = send(_soc, "fork\n", 5, 0);
+  if (ret == -1)
+    return (KO);
+  return (OK);
+}
+
+int   Player::RamassezNourriture()
+{
+  int   ret;
+
+  std::cout << "RamassezNourriture" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(LOOP_PRENDRE_FOOD);
+  ret = send(_soc, "prend nourriture\n", 17, 0);
+  if (ret == -1)
+    return (KO);
+  return (LOOP);
+}
+
+int   Player::LoopRamassezNourriture()
+{
+  std::cout << "LoopRamassezNourriture : " << _lastRep << std::endl;
+  if (_lastRep.find("ok") != std::string::npos)
+    return (OK);
+  return (KO);
+}
+
+int   Player::Eclosion()
+{
+  PlayerCreator	pc;
+  std::cout << "Eclosion" << std::endl;
+  pc.create(_addr, _port, _teamName);
+  return (OK);
+}
+
+int   Player::_AssezNourriture()
+{
+  int   ret;
+
+  std::cout << "_AssezNourriture" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(LOOP_ASSEZ_FOOD);
+  ret = send(_soc, "inventaire\n", 12, 0);
+  if (ret == -1)
+    return (KO);
+  return (LOOP);
+}
+
+int   Player::LoopAssezNourriture()
+{
+  std::string	food;
+
+  std::cout << "LoopAssezNourriture" << std::endl;
+    std::cout << _lastRep << std::endl;
+  food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
+  food.replace(food.find("nourriture "), 10, "");
+  std::cout << strToInt(&food[0]) << std::endl;
+  if (strToInt(&food[0]) > 10)
+    {
+      std::cout << "assez de bouf" << std::endl;
+      return (OK);
+    }
+  return (KO);
+}
+
+
+int   Player::_AssezRessourceForLevel()
+{
+  std::cout << "_AssezRessource" << std::endl;
+  if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+      || _lvlTab[_lvl][2] > _ressource[DERAUMERE]
+      || _lvlTab[_lvl][3] > _ressource[SIBURE]
+      || _lvlTab[_lvl][4] > _ressource[MENDIANE]
+      || _lvlTab[_lvl][5] > _ressource[PHIRAS]
+      || _lvlTab[_lvl][6] > _ressource[THYSTAME])
+    return (KO);
+  return (OK);
+}
+
+int   Player::_PlaceSurServeur()
+{
+  int   ret;
+
+  std::cout << "PlaceServeur" << std::endl;
+  _nbCmd++;
+  _cmd.push_back(LOOP_CONNECT);
+  ret = send(_soc, "connect_nbr\n", 12, 0);
+  if (ret == -1)
+    return (KO);
+  return (LOOP);
+}
+
+int   Player::LoopPlaceSurServeur()
+{
+  std::cout << "LoopPlaceServeur : " << &_lastRep[0] << std::endl;
+  if (strToInt(&_lastRep[0]) > 0)
+      return (OK);
+  return (KO);
+}
