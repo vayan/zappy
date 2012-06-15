@@ -5,7 +5,7 @@
 ## Login   <lyvet_r@epitech.net>
 ## 
 ## Started on  Mon Nov  7 15:53:02 2011 randy lyvet
-## Last update Fri Jun 15 16:36:32 2012 randy lyvet
+## Last update Fri Jun 15 16:40:07 2012 randy lyvet
 ##
 
 NAME		=	serveur
@@ -43,13 +43,13 @@ ${NAME}		: $(SRCS_O)
 		$(CC) -o $(NAME) $(SRCS_O) $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE_LINK)
 		@echo "Terminer, un petit 'make cafe' avant de commencer ?"
 
-all		: compilator $(NAME)
+all		: $(NAME)
 
-compilator	:
-		cp -rf src/*/* $(SRC_DIR)
+run		: $(NAME)
+		./$(NAME)
 
 clean		:
-		@rm -rf ./obj/*~ ./obj/#*# ./obj/*.o ./src/*/*~ ./src/*/#*# ./include/*~ ./include/#*# ./*~ ./#*#
+		@rm -rf ./obj/*~ ./obj/#*# ./obj/*.o ./src/*~ ./src/#*# ./include/*~ ./include/#*# ./*~ ./#*#
 
 fclean		:	clean
 		@rm -f $(NAME)
