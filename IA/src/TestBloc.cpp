@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:48:02 2012 alexandre haulotte
-// Last update Fri Jun 15 17:41:40 2012 alexandre haulotte
+// Last update Fri Jun 15 19:32:15 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,18 +14,15 @@ int   Player::AssezNourriture()
 {
   int   ret;
   std::string   food;
-  char          buff[8096 + 1];
+  //  char          buff[8096 + 1];
 
   std::cout << "_AssezNourriture" << std::endl;
-  _cmd.push_back(LOOP_AN);
   ret = send(_soc, "inventaire\n", 12, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
   food.replace(food.find("nourriture "), 10, "");
   std::cout << strToInt(&food[0]) << std::endl;
@@ -51,18 +48,14 @@ int   Player::PlaceSurServeur()
 {
   int   ret;
   std::string   food;
-  char          buff[8096 + 1];
 
   std::cout << "PlaceServeur" << std::endl;
-  _cmd.push_back(LOOP_PSS);
   ret = send(_soc, "connect_nbr\n", 12, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (strToInt(&_lastRep[0]) > 0)
     return (OK);
   return (KO);

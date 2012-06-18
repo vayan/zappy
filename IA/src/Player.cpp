@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Fri Jun 15 17:52:49 2012 alexandre haulotte
+// Last update Fri Jun 15 19:25:02 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -90,7 +90,7 @@ void	Player::recInfo()
 
 Player::Player(int compo)
   :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
-   _port(0), _addr(""), _nbCmd(0), _compo(0), _lastRep(""), _cState(1)
+   _port(0), _addr(""), _compo(0), _lastRep(""), _cState(1)
 {
   _teamName = "";
   _ressource[FOOD] = 10;
@@ -111,7 +111,7 @@ Player::Player(int compo)
 
 Player::Player(int port, std::string ip, std::string team, int compo)
   :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
-   _port(port), _addr(ip), _nbCmd(0), _compo(0), _lastRep(""), _cState(1)
+   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(1)
 {
   _teamName = team;
   _ressource[FOOD] = 10;
@@ -259,13 +259,27 @@ std::string   Player::intToStr(int i)
   return (oss.str());
 }
 
- // std::string	Player::charToStr(char *buff)
- // {
- //   stringstream	ss;
- //   string 	s;
- //   ss << buff;
- //   ss >> s;
- //   return (s);
- // }
+int	Player::xrecv()
+{
+  int	ret;
+  char	buff[8096 + 1];
+
+  ret = recv(_soc, buff, 8096, 0);
+  if (ret == -1)
+    return (ERR);
+  buff[ret] = 0;
+  _lastRep = buff;
+  while (_lastRep.find("message") != std::string::npos)
+    {
+      _msg.push_back(_lastRep);
+      std::cout << _id << " : " << _lastRep;
+      ret = recv(_soc, buff, 8096, 0);
+      if (ret == -1)
+	return (ERR);
+      buff[ret] = 0;
+      _lastRep = buff;
+    }
+  return (ret);
+}
 
 Player::~Player() {}

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:33:05 2012 alexandre haulotte
-// Last update Fri Jun 15 17:13:18 2012 alexandre haulotte
+// Last update Fri Jun 15 19:34:29 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,18 +14,14 @@ int   Player::NourritureSurCase()
 {
   int   	ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
   std::cout << "NouritureSurCase" << std::endl;
-  _cmd.push_back(LOOP_NSC);
   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -40,18 +36,14 @@ int   Player::LinemateSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
   std::cout << "RessourceSurCase" << std::endl;
-  _cmd.push_back(LOOP_NSC);
   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -65,17 +57,13 @@ int   Player::DeraumereSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
-  _cmd.push_back(LOOP_NSC);
-  ret = send(_soc, "voir\n", 5, 0);
+   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -90,17 +78,13 @@ int   Player::SibureSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
-  _cmd.push_back(LOOP_NSC);
-  ret = send(_soc, "voir\n", 5, 0);
+   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -114,17 +98,13 @@ int   Player::MendianeSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
-  _cmd.push_back(LOOP_NSC);
-  ret = send(_soc, "voir\n", 5, 0);
+   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -138,17 +118,13 @@ int   Player::PhirasSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
-  _cmd.push_back(LOOP_NSC);
-  ret = send(_soc, "voir\n", 5, 0);
+   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -162,17 +138,13 @@ int   Player::ThystameSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
-  _cmd.push_back(LOOP_NSC);
-  ret = send(_soc, "voir\n", 5, 0);
+   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
@@ -186,19 +158,14 @@ int   Player::RessourceForLvlSurCase()
 {
   int   ret;
   std::string   food;
-  char     	buff[8096 + 1];
 
-  std::cout << "RessourceForLvlSurCase" << std::endl;
-  _cmd.push_back(LOOP_NSC);
-  ret = send(_soc, "voir\n", 5, 0);
+  std::cout << "RessourceForLvlSurCase : Level = " << _lvl << std::endl;
+   ret = send(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = xrecv();
   if (ret == -1)
     return (ERR);
-  buff[ret] = 0;
-  _lastRep = &buff[0];
-  std::cout << "LoopRessourceForLvlSurCase : Level = " << _lvl << std::endl;
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{") + 1, _lastRep.find(",") - _lastRep.find("{"));

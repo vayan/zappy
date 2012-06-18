@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Fri Jun 15 10:54:10 2012 alexandre haulotte
+// Last update Fri Jun 15 19:20:06 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -42,14 +42,13 @@ protected:
   int 							_lvlTab[7][7];
 
 protected:
-  int			_soc;
-  int			_port;
-  std::string		_addr;
-  int			_nbCmd;
-  std::vector<int>	_cmd;
-  int			_compo;
-  std::string		_lastRep;
-  int			_cState;
+  int				_soc;
+  int				_port;
+  std::string			_addr;
+  std::vector<std::string>	_msg;
+  int				_compo;
+  std::string			_lastRep;
+  int				_cState;
 
 public:
   Player(int port, std::string ip, std::string team, int compo = 0);
@@ -60,6 +59,7 @@ public:
   void		recInfo();
   void		parse(int ac, char **av);
   int		strToInt(char* str);
+  int		xrecv();
   std::string	intToStr(int i);
   void    	initTab();
   //  std::string	charToStr(char*);

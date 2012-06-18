@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Fri Jun 15 18:19:37 2012 alexandre haulotte
+// Last update Fri Jun 15 18:50:43 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -54,6 +54,12 @@ int	RamassezRessourceForLvl(); // OK - KO - ERR
 int	AssezNourriture(); // OK - KO - ERR
 int	AssezRessourceForLevel(); // OK - KO
 int	PlaceSurServeur(); // OK - KO - ERR
+
+//----------------------------------------------//
+//----------------- MsgBloc -------------------//
+//----------------------------------------------//
+
+int	CallRenfort(); // OK - ERR
 
 //-----------------EndIAFunc--------------------//
 
