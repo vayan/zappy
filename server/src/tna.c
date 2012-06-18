@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:33:47 2012 anatole carlier
-** Last update Fri Jun 15 11:58:50 2012 anatole carlier
+** Last update Fri Jun 15 18:03:27 2012 anatole carlier
 */
 
 #include <stdio.h>
@@ -13,21 +13,24 @@
 #include <string.h>
 #include "xfunc.h"
 #include "network.h"
+#include "setting.h"
 
-int	tna(char **tab, t_client *client)
+int		tna(char **tab, t_client *client)
 {
-  char	*str;
-  int	y;
+  t_setting	*settings;
+  char		*str;
+  int		i;
 
-  y = 0;
-  while (tab[1+y*2] != NULL)
+  i = 0;
+  tab = tab;
+  settings = get_setting(NULL);
+  while (settings->name_teams[i] != NULL)
     {
-      y++;
       str = xmalloc(sizeof(char) * 1024);
-      sprintf(str, "tna %s\n", tab[1+y]);
+      sprintf(str, "tna %s\n", settings->name_teams[i++]);
       broadcast_to_one_client(str, client);
-      memset(str, 0, 1024);
+      free(str);
     }
-  free(str);
+  printf("fin\n");
   return (0);
 }
