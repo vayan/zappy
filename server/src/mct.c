@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:27:10 2012 anatole carlier
-** Last update Tue Jun 19 14:02:17 2012 randy lyvet
+** Last update Tue Jun 19 14:17:16 2012 anatole carlier
 */
 
 #include	<stdio.h>
@@ -30,11 +30,9 @@ int		mct(char **tab, t_client *client)
   tab = tab;
   while (++x < settings->width_map)
     {
-      printf("%i\n", x);
       y = 0;
       while(y < settings->height_map)
 	{
-	  printf("%i\n", y);
 	  str = xmalloc(sizeof(char) * 1024);
 	  str = map_contents(str, x, y);
 	  broadcast_to_one_client(str, client);
