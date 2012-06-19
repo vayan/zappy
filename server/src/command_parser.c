@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:37:00 2012 randy lyvet
-** Last update Fri Jun 15 15:32:26 2012 randy lyvet
+** Last update Tue Jun 19 14:02:06 2012 randy lyvet
 */
 
 #include	<string.h>
@@ -29,8 +29,8 @@ int			command_parser(t_option *tab, char *command, t_client *client)
       {
 	ret = tab[j].op_func(command_type, client);
 	g = -1;
-	while (command_type[++j] != 0)
-	  free(command_type[j]);
+	while (command_type[++g] != 0)
+	  free(command_type[g]);
 	free(command_type);
 	return (ret);
       }

@@ -5,17 +5,18 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:27:10 2012 anatole carlier
-** Last update Fri Jun 15 17:25:16 2012 anatole carlier
+** Last update Tue Jun 19 14:02:17 2012 randy lyvet
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "xfunc.h"
-#include "network.h"
-#include "setting.h" 
-#include "command_fonc.h"
-#include "map.h"
+#include	<stdio.h>
+#include 	<stdlib.h>
+#include 	<string.h>
+
+#include 	"xfunc.h"
+#include 	"network.h"
+#include 	"setting.h"
+#include 	"command_fonc.h"
+#include 	"map.h"
 
 int		mct(char **tab, t_client *client)
 {
@@ -25,9 +26,9 @@ int		mct(char **tab, t_client *client)
   int		y;
 
   settings = get_setting(NULL);
-  x = 0;
+  x = -1;
   tab = tab;
-  while (x < settings->width_map)
+  while (++x < settings->width_map)
     {
       printf("%i\n", x);
       y = 0;
@@ -40,9 +41,7 @@ int		mct(char **tab, t_client *client)
 	  y++;
 	  free(str);
 	}
-      x++;
     }
-  printf("fin\n");
   return (0);
 }
 
