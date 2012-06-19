@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Tue Jun 19 12:00:57 2012 alexandre haulotte
+// Last update Tue Jun 19 12:02:58 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -139,7 +139,7 @@ int	Player::GoToMsgRenfort()
   return (KO);
 }
 
-int	VideCase()
+int	Player::VideCase()
 {
   int           ret;
   std::string   food;
