@@ -60,6 +60,8 @@ void  move_kicker(t_client *kicker, t_client *victim)
       victim->x = setting->width_map - 1;
     break;
   }
+
+  
   printf("on la rajoute pl %d\n\n", victim->id);
   add_pl(victim->x, victim->y, victim);
 }
