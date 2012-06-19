@@ -59,7 +59,7 @@ int    add_msg_to_buffer(t_client *cl, char *msg)
 
   tmp = cl->buff_msg;
   if (msg[strlen(msg) - 1] == '\n')
-    msg[strlen(msg) - 1] = 0;    
+    msg[strlen(msg) - 1] = '\0';    
   i = 0;
   if (tmp == NULL)
   {

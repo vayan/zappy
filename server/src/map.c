@@ -125,9 +125,9 @@ void  rm_pl(int x, int y, t_client *pl)
     {
       while ((tmp->next != NULL) && (tmp->next->client->id != pl->id))
         tmp = tmp->next; 
-      if (tmp->next->next == NULL)
+      if (tmp->next != NULL && tmp->next->next == NULL && (tmp->next->client->id == pl->id))
         tmp->next = NULL;
-      else
+      else if (tmp->next != NULL && tmp->next->next != NULL && (tmp->next->client->id == pl->id))
         tmp->next = tmp->next->next;
     }
   }

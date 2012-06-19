@@ -149,6 +149,7 @@ int   MoveFront(t_client *cl)
     cl->stm->in_use = -1;
     MoveClient(cl);
     broadcast_to_one_client("ok\n", cl);
+    aff_pl_test();
     return (0);
   }
   return (1);

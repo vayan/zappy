@@ -67,6 +67,7 @@ int   Take_Object(t_client *cl, Ressource obj)
   {
     cl->stm->in_use = -1;
     do_take_obj(cl, obj);
+    pgt(NULL);
     return (0);
   }
   return (1);
@@ -92,6 +93,7 @@ int   Drop_Object(t_client *cl, Ressource obj)
   {
     cl->stm->in_use = -1;
     do_drop_obj(cl, obj);
+    pdr(NULL); 
     return (0);
   }
   return (1);

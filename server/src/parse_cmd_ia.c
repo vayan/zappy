@@ -44,6 +44,7 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
   if (strcmp (tab[0], "GRAPHIC") == 0)
   {
     cl->is_graphic = 1;
+    get_graphic(cl);
     return (0);
   }
   else if (strcmp(tab[0], "avance") == 0)
@@ -59,9 +60,7 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
   else if (strcmp(tab[0], "pose") == 0)
     return(Drop_Object(cl, parse_rsr(tab[1])));
   else if (strcmp(tab[0], "expulse") == 0)
-  {
-
-  }
+    return(expelliarmus(cl));
   else if (strcmp(tab[0], "broadcast") == 0)
   {
 

@@ -25,6 +25,15 @@
 #include "xfunc.h"
 #include "option.h"
 
+t_client    *get_graphic(t_client *_cl)
+{
+  static t_client *cl = NULL;
+
+  if (_cl != NULL)
+    cl = _cl;
+  return (cl);
+}
+
 int   broadcast_to_one_client(char *msg, t_client *me)
 {
   t_client  *tmp;
