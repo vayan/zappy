@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Fri Jun 15 19:25:02 2012 alexandre haulotte
+// Last update Mon Jun 18 10:06:27 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -39,12 +39,9 @@ void  Player::play()
   int			fctRet = 0;
 
   connexion();
-  ret = recv(_soc, buff, 8096, 0);
   initTab();
   tv.tv_sec = 0;
   tv.tv_usec = 2000;
-  send(_soc, &_teamName[0], _teamName.length(), 0);
-  send(_soc, "\n", 1, 0);
   recInfo();
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
@@ -78,6 +75,9 @@ void	Player::recInfo()
   int		ret;
   char		buff[8096 + 1];
 
+  ret = recv(_soc, buff, 8096, 0);
+  send(_soc, &_teamName[0], _teamName.length(), 0);
+  send(_soc, "\n", 1, 0);
   ret = recv(_soc, buff, 8096, 0);
   buff[ret] = 0;
   _id = strToInt(buff);
