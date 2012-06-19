@@ -5,14 +5,23 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:37:08 2012 anatole carlier
-** Last update Thu Jun 14 12:35:32 2012 randy lyvet
+** Last update Tue Jun 19 09:26:36 2012 anatole carlier
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "command_fonc.h"
+#include "network.h"
+#include "xfunc.h"
 
-int	plv(char **tab)
+int     plv(char **tab, t_client *client)
 {
+  char  *str;
+
   tab = tab;
-  printf("plv\n");
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "pnw %i %i\n", client->id, client->level);
+  broadcast_to_one_client(str, client);
+  free(str);
   return (0);
 }

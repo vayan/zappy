@@ -5,14 +5,23 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:12:18 2012 anatole carlier
-** Last update Thu Jun 14 12:38:23 2012 randy lyvet
+** Last update Tue Jun 19 10:37:20 2012 anatole carlier
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "command_fonc.h"
+#include "network.h"
+#include "xfunc.h"
 
-int	pfk(char **tab)
+int     pfk(char **tab, t_client *client)
 {
+  char  *str;
+
   tab = tab;
-  printf("pfk\n");
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "pfk %i\n", client->id);
+  broadcast_to_one_client(str, client);
+  free(str);
   return (0);
 }

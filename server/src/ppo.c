@@ -5,14 +5,24 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:36:19 2012 anatole carlier
-** Last update Thu Jun 14 12:35:48 2012 randy lyvet
+** Last update Tue Jun 19 09:25:13 2012 anatole carlier
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "command_fonc.h"
+#include "network.h"
+#include "xfunc.h"
 
-int	ppo(char **tab)
+int     ppo(char **tab, t_client *client)
 {
+  char  *str;
+
   tab = tab;
-  printf("ppo\n");
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "pnw %i %i %i %i\n", client->id, client->x, client->y, 
+	  client->dir);
+  broadcast_to_one_client(str, client);
+  free(str);
   return (0);
 }
