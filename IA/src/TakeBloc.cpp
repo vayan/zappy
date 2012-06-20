@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Tue Jun 19 11:44:18 2012 alexandre haulotte
+// Last update Wed Jun 20 12:36:42 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,8 +14,8 @@ int   Player::RamassezNourriture()
 {
   int   ret;
 
-  std::cout << "PrendNouriture" << std::endl;
-  ret = send(_soc, "prend nourriture\n", 17, 0);
+  //std::cout << "PrendNouriture" << std::endl;
+  ret = xsend(_soc, "prend nourriture\n", 17, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -30,7 +30,7 @@ int   Player::RamassezLinemate()
 {
   int   ret;
 
-  ret = send(_soc, "prend linemate\n", 15, 0);
+  ret = xsend(_soc, "prend linemate\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -48,7 +48,7 @@ int   Player::RamassezDeraumere()
 {
   int   ret;
 
-  ret = send(_soc, "prend deraumere\n", 16, 0);
+  ret = xsend(_soc, "prend deraumere\n", 16, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -62,11 +62,11 @@ int   Player::RamassezDeraumere()
   return (KO);
 }
 
-int   Player::RamassezSibure()
+int   Player::RamassezSibur()
 {
   int   ret;
 
-  ret = send(_soc, "prend sibure\n", 13, 0);
+  ret = xsend(_soc, "prend sibur\n", 13, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -74,7 +74,7 @@ int   Player::RamassezSibure()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[SIBURE] = _ressource[SIBURE] + 1;
+      _ressource[SIBUR] = _ressource[SIBUR] + 1;
       return (OK);
     }
   return (KO);
@@ -84,7 +84,7 @@ int   Player::RamassezMendiane()
 {
   int   ret;
 
-  ret = send(_soc, "prend mendiane\n", 15, 0);
+  ret = xsend(_soc, "prend mendiane\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -92,7 +92,7 @@ int   Player::RamassezMendiane()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[SIBURE] = _ressource[SIBURE] + 1;
+      _ressource[MENDIANE] = _ressource[MENDIANE] + 1;
       return (OK);
     }
   return (KO);
@@ -102,7 +102,7 @@ int   Player::RamassezPhiras()
 {
   int   ret;
 
-  ret = send(_soc, "prend phiras\n", 13, 0);
+  ret = xsend(_soc, "prend phiras\n", 13, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -120,7 +120,7 @@ int   Player::RamassezThystame()
 {
   int   ret;
 
-  ret = send(_soc, "prend thystame\n", 15, 0);
+  ret = xsend(_soc, "prend thystame\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -136,7 +136,7 @@ int   Player::RamassezThystame()
 
 int   Player::RamassezRessourceForLvl()
 {
-  std::cout << "RamassezRessourceForLvl" << std::endl;
+  //std::cout << "RamassezRessourceForLvl" << std::endl;
   int   ret;
   int	i;
 
@@ -155,8 +155,8 @@ int   Player::RamassezRessourceForLvl()
     case DERAUMERE:
       ret = RamassezDeraumere();
       break;
-    case SIBURE:
-      ret = RamassezSibure();
+    case SIBUR:
+      ret = RamassezSibur();
       break;
     case MENDIANE:
       ret = RamassezMendiane();

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Fri Jun 15 18:50:43 2012 alexandre haulotte
+// Last update Tue Jun 19 13:57:08 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -21,6 +21,8 @@ int	Gauche(); // OK - ERR
 int	Pond(); // OK - ERR
 int	Eclosion(); // OK
 int	Incantation(); // OK - KO - ERR
+int	GoToMsgRenfort(); // OK - KO - ERR
+int	VideCase(); // OK - ERR
 
 //----------------------------------------------//
 //--------------- SearchBloc -------------------//
@@ -28,7 +30,7 @@ int	Incantation(); // OK - KO - ERR
 int	NourritureSurCase(); // OK - KO - ERR
 int	LinemateSurCase(); // OK - KO - ERR
 int	DeraumereSurCase(); // OK - KO - ERR
-int	SibureSurCase(); // OK - KO - ERR
+int	SiburSurCase(); // OK - KO - ERR
 int	MendianeSurCase(); // OK - KO - ERR
 int	PhirasSurCase(); // OK - KO - ERR
 int	ThystameSurCase(); // OK - KO - ERR
@@ -41,11 +43,24 @@ int	RessourceForLvlSurCase(); // OK - KO - ALREADY - ERR
 int	RamassezNourriture(); // OK - KO - ERR
 int	RamassezLinemate(); // OK - KO - ERR
 int	RamassezDeraumere(); // OK - KO - ERR
-int	RamassezSibure(); // OK - KO - ERR
+int	RamassezSibur(); // OK - KO - ERR
 int	RamassezMendiane(); // OK - KO - ERR
 int	RamassezPhiras(); // OK - KO - ERR
 int	RamassezThystame(); // OK - KO - ERR
 int	RamassezRessourceForLvl(); // OK - KO - ERR
+
+//----------------------------------------------//
+//----------------- PoseBloc -------------------//
+//----------------------------------------------//
+
+int     PoserNourriture(); // OK - KO - ERR
+int     PoserLinemate(); // OK - KO - ERR
+int     PoserDeraumere(); // OK - KO - ERR
+int     PoserSibur(); // OK - KO - ERR
+int     PoserMendiane(); // OK - KO - ERR
+int     PoserPhiras(); // OK - KO - ERR
+int     PoserThystame(); // OK - KO - ERR
+int     PoserRessourceForLvl(); // OK - KO - ERR
 
 //----------------------------------------------//
 //----------------- TestBloc -------------------//
@@ -54,14 +69,18 @@ int	RamassezRessourceForLvl(); // OK - KO - ERR
 int	AssezNourriture(); // OK - KO - ERR
 int	AssezRessourceForLevel(); // OK - KO
 int	PlaceSurServeur(); // OK - KO - ERR
+int	AssezPlayerForLvl(); // OK - KO - ERR
 
 //----------------------------------------------//
 //----------------- MsgBloc -------------------//
 //----------------------------------------------//
 
 int	CallRenfort(); // OK - ERR
+int	RecvRenfort(); // OK - KO - ERR
 
 //-----------------EndIAFunc--------------------//
+
+int	rDir;
 
 typedef int (Player::*fct)();
 
@@ -82,7 +101,7 @@ enum Ressources
     FOOD,
     LINEMATE,
     DERAUMERE,
-    SIBURE,
+    SIBUR,
     MENDIANE,
     PHIRAS,
     THYSTAME

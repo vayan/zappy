@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Tue Jun 19 11:42:26 2012 alexandre haulotte
+// Last update Wed Jun 20 12:35:33 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,8 +14,8 @@ int   Player::PoserNourriture()
 {
   int   ret;
 
-  std::cout << "PoseNouriture" << std::endl;
-  ret = send(_soc, "pose nourriture\n", 17, 0);
+  //std::cout << "PoseNouriture" << std::endl;
+  ret = xsend(_soc, "pose nourriture\n", 17, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -30,7 +30,7 @@ int   Player::PoserLinemate()
 {
   int   ret;
 
-  ret = send(_soc, "pose linemate\n", 15, 0);
+  ret = xsend(_soc, "pose linemate\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -48,7 +48,7 @@ int   Player::PoserDeraumere()
 {
   int   ret;
 
-  ret = send(_soc, "pose deraumere\n", 16, 0);
+  ret = xsend(_soc, "pose deraumere\n", 16, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -62,11 +62,11 @@ int   Player::PoserDeraumere()
   return (KO);
 }
 
-int   Player::PoserSibure()
+int   Player::PoserSibur()
 {
   int   ret;
 
-  ret = send(_soc, "pose sibure\n", 13, 0);
+  ret = xsend(_soc, "pose sibur\n", 13, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -74,7 +74,7 @@ int   Player::PoserSibure()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[SIBURE] = _ressource[SIBURE] + 1;
+      _ressource[SIBUR] = _ressource[SIBUR] + 1;
       return (OK);
     }
   return (KO);
@@ -84,7 +84,7 @@ int   Player::PoserMendiane()
 {
   int   ret;
 
-  ret = send(_soc, "pose mendiane\n", 15, 0);
+  ret = xsend(_soc, "pose mendiane\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -92,7 +92,7 @@ int   Player::PoserMendiane()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[SIBURE] = _ressource[SIBURE] + 1;
+      _ressource[MENDIANE] = _ressource[MENDIANE] + 1;
       return (OK);
     }
   return (KO);
@@ -102,7 +102,7 @@ int   Player::PoserPhiras()
 {
   int   ret;
 
-  ret = send(_soc, "pose phiras\n", 13, 0);
+  ret = xsend(_soc, "pose phiras\n", 13, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -120,7 +120,7 @@ int   Player::PoserThystame()
 {
   int   ret;
 
-  ret = send(_soc, "pose thystame\n", 15, 0);
+  ret = xsend(_soc, "pose thystame\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -136,39 +136,42 @@ int   Player::PoserThystame()
 
 int   Player::PoserRessourceForLvl()
 {
-  std::cout << "PoserRessourceForLvl" << std::endl;
-  int   ret;
-  int	i;
+  //std::cout << "PoserRessourceForLvl" << std::endl;
+  int	i = 1;
+  int	res;
+  int	ret = 0;
 
-  for (i = 1; i < 6; i++)
+  while (i < 7)
     {
-      if (_lvlTab[_lvl][i] > _ressource[i])
-	break;
-      if (i == 6)
-	return (OK);
+      res = _lvlTab[_lvl][i];
+      while (res > 0)
+	{
+	  switch (i)
+	    {
+	    case LINEMATE:
+	      ret = PoserLinemate();
+	      break;
+	    case DERAUMERE:
+	      ret = PoserDeraumere();
+	      break;
+	    case SIBUR:
+	      ret = PoserSibur();
+	      break;
+	    case MENDIANE:
+	      ret = PoserMendiane();
+	      break;
+	    case PHIRAS:
+	      ret = PoserPhiras();
+	      break;
+	    case THYSTAME:
+	      ret = PoserThystame();
+	      break;
+	    }
+	  if (ret == KO)
+	    return (KO);
+	  res--;
+	}
+      i++;
     }
-  switch (i)
-    {
-    case LINEMATE:
-      ret = PoserLinemate();
-      break;
-    case DERAUMERE:
-      ret = PoserDeraumere();
-      break;
-    case SIBURE:
-      ret = PoserSibure();
-      break;
-    case MENDIANE:
-      ret = PoserMendiane();
-      break;
-    case PHIRAS:
-      ret = PoserPhiras();
-      break;
-    case THYSTAME:
-      ret = PoserThystame();
-      break;
-    default:
-      return (ERR);
-    }
-  return (ret);
+  return (OK);
 }

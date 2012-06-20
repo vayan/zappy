@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Fri Jun 15 19:20:06 2012 alexandre haulotte
+// Last update Wed Jun 20 12:38:17 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -60,6 +60,7 @@ public:
   void		parse(int ac, char **av);
   int		strToInt(char* str);
   int		xrecv();
+  int		xsend(int soc, const void* msg, int size, int flag);
   std::string	intToStr(int i);
   void    	initTab();
   //  std::string	charToStr(char*);

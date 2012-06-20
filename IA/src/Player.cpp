@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Mon Jun 18 10:06:27 2012 alexandre haulotte
+// Last update Wed Jun 20 12:53:12 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -61,8 +61,11 @@ void  Player::play()
 	  if (std::string(buff).find("mort") != std::string::npos)
 	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
 	}
+      std::cout << "--------" << _cState << "----dqdqs12-------------" << std::endl;
       fctRet = (this->*fctTable[_cState])();
+      std::cout << "------" << _cState << "----321dqdqs12-------------" << std::endl;
       _cState = trTable[_cState][fctRet];
+      std::cout << "----" << _cState << "----321321dqdqs12-------------" << std::endl;
       FD_ZERO(&readfds);
       FD_SET(0, &readfds);
       FD_SET(_soc, &readfds);
@@ -96,7 +99,7 @@ Player::Player(int compo)
   _ressource[FOOD] = 10;
   _ressource[LINEMATE] = 0;
   _ressource[DERAUMERE] = 0;
-  _ressource[SIBURE] = 0;
+  _ressource[SIBUR] = 0;
   _ressource[MENDIANE] = 0;
   _ressource[PHIRAS] = 0;
   _ressource[THYSTAME] = 0;
@@ -117,7 +120,7 @@ Player::Player(int port, std::string ip, std::string team, int compo)
   _ressource[FOOD] = 10;
   _ressource[LINEMATE] = 0;
   _ressource[DERAUMERE] = 0;
-  _ressource[SIBURE] = 0;
+  _ressource[SIBUR] = 0;
   _ressource[MENDIANE] = 0;
   _ressource[PHIRAS] = 0;
   _ressource[THYSTAME] = 0;
@@ -269,16 +272,28 @@ int	Player::xrecv()
     return (ERR);
   buff[ret] = 0;
   _lastRep = buff;
+  if (_lastRep.find("mort") != std::string::npos)
+    return (ERR);
   while (_lastRep.find("message") != std::string::npos)
     {
       _msg.push_back(_lastRep);
-      std::cout << _id << " : " << _lastRep;
+      //      std::cout << "LOLO<<<<>>>> " <<_id << " : " << _lastRep;
       ret = recv(_soc, buff, 8096, 0);
       if (ret == -1)
 	return (ERR);
       buff[ret] = 0;
       _lastRep = buff;
+      if (_lastRep.find("mort") != std::string::npos)
+	return (ERR);
     }
+  return (ret);
+}
+
+int	Player::xsend(int soc, const void* msg, int size, int flag)
+{
+  int	ret;
+  //  ret = xrecv();
+  ret = send(soc, msg, size, flag);
   return (ret);
 }
 

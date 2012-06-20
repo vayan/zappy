@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Tue Jun 19 12:02:58 2012 alexandre haulotte
+// Last update Wed Jun 20 12:35:47 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -17,8 +17,8 @@ int   Player::Avance()
   int	ret;
   //  char          buff[8096 + 1];
 
-  std::cout << "j'avance" << std::endl;
-  ret = send(_soc, "avance\n", 7, 0);
+  std::cout << _id << " : j'avance" << std::endl;
+  ret = xsend(_soc, "avance\n", 7, 0);
 // switch (_dir)
   //   {
   //   case NORD:
@@ -46,8 +46,8 @@ int	Player::Droite()
 {
   int   ret;
 
-  std::cout << "je tourne a droite" << std::endl;
-  ret = send(_soc, "droite\n", 7, 0);
+  std::cout << _id << " : je tourne a droite" << std::endl;
+  ret = xsend(_soc, "droite\n", 7, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -60,8 +60,8 @@ int     Player::Gauche()
 {
   int   ret;
 
-  std::cout << "je tourne a gauche" << std::endl;
-  ret = send(_soc, "gauche\n", 7, 0);
+  std::cout << _id << " : je tourne a gauche" << std::endl;
+  ret = xsend(_soc, "gauche\n", 7, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -74,8 +74,8 @@ int   Player::Pond()
 {
   int	ret;
 
-  std::cout << "je pond" << std::endl;
-  ret = send(_soc, "fork\n", 5, 0);
+  //std::cout << "je pond" << std::endl;
+  ret = xsend(_soc, "fork\n", 5, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -87,7 +87,7 @@ int   Player::Pond()
 int   Player::Eclosion()
 {
   PlayerCreator	pc;
-  std::cout << "Eclosion" << std::endl;
+  //std::cout << "Eclosion" << std::endl;
   pc.create(_addr, _port, _teamName);
   return (OK);
 }
@@ -96,7 +96,7 @@ int	Player::Incantation()
 {
   int	ret;
 
-  ret = send(_soc, "incantation\n", 12, 0);
+  ret = xsend(_soc, "incantation\n", 12, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -116,23 +116,27 @@ int	Player::Incantation()
 
 int	Player::GoToMsgRenfort()
 {
+  std::cout << _id << " >>>>>>>GoToMsgRenfort " << rDir << std::endl;
   if (rDir == 1 || rDir == 2 || rDir == 8)
     Avance();
   else if (rDir == 7 || rDir == 6)
     {
       Droite();
       Avance();
+      rDir = 0;
     }
   else if (rDir == 3 || rDir == 4)
     {
       Gauche();
       Avance();
+      rDir = 0;
     }
   else if (rDir == 5)
     {
       Gauche();
       Gauche();
       Avance();
+      rDir = 0;
     }
   else
     return (OK);
@@ -144,7 +148,7 @@ int	Player::VideCase()
   int           ret;
   std::string   food;
 
-  ret = send(_soc, "voir\n", 5, 0);
+  ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -152,23 +156,52 @@ int	Player::VideCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
+      food = _lastRep.substr(_lastRep.find("{") + 2, _lastRep.find(",") - _lastRep.find("{") - 2);
       ret = OK;
-      while (ret == OK)
+      while (food.find("nourriture") != std::string::npos
+	     || food.find("linemate") != std::string::npos
+	     || food.find("deraumere") != std::string::npos
+	     || food.find("sibur") != std::string::npos
+	     || food.find("mendiane") != std::string::npos
+	     || food.find("phiras") != std::string::npos
+	     || food.find("thystame") != std::string::npos)
 	{
-	  ret = RamassezNourriture();
-	  if (RamassezLinemate() == OK)
-	    ret = OK;
-	  if (RamassezDeraumere() == OK)
-	    ret = OK;
-	  if (RamassezSibure() == OK)
-	    ret = OK;
-	  if (RamassezMendiane() == OK)
-	    ret = OK;
-	  if (RamassezPhiras() == OK)
-	    ret = OK;
-	  if (RamassezThystame() == OK)
-	    ret = OK;
+	  //	  std::cout << "--------->" << food << std::endl;
+	  if (food.find("nourriture") != std::string::npos)
+	    {
+	      food.replace(food.find(" nourriture"), 11, "");
+	      RamassezNourriture();
+	    }
+	  if (food.find("linemate") != std::string::npos)
+	    {
+	      food.replace(food.find(" linemate"), 9, "");
+	      RamassezLinemate();
+	    }
+	  if (food.find("deraumere") != std::string::npos)
+	    {
+	      food.replace(food.find(" deraumere"), 10, "");
+	      RamassezDeraumere();
+	    }
+	  if (food.find("sibur") != std::string::npos)
+	    {
+	      food.replace(food.find(" sibur"), 6, "");
+	      RamassezSibur();
+	    }
+	  if (food.find("mendiane") != std::string::npos)
+	    {
+	      food.replace(food.find(" mendiane"), 9, "");
+	      RamassezMendiane();
+	    }
+	  if (food.find("phiras") != std::string::npos)
+	    {
+	      food.replace(food.find(" phiras"), 7, "");
+	      RamassezPhiras();
+	    }
+	  if (food.find("thystame") != std::string::npos)
+	    {
+	      food.replace(food.find(" thystame"), 9, "");
+	      RamassezThystame();
+	    }
 	}
     }
   return (OK);

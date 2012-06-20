@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun  5 13:19:33 2012 alexandre haulotte
-// Last update Wed Jun 13 14:51:32 2012 alexandre haulotte
+// Last update Wed Jun 20 11:57:30 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,11 +14,11 @@
 
 int	main(int ac, char **av)
 {
-  Player	pl;
+  Player	*pl = new Player();
   try
     {
-      pl.parse(ac, av);
-      pl.play();
+      pl->parse(ac, av);
+      pl->play();
     }
   catch (Errur* e)
     {
