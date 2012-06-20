@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:12:18 2012 anatole carlier
-** Last update Tue Jun 19 10:37:20 2012 anatole carlier
+** Last update Wed Jun 20 11:08:48 2012 anatole carlier
 */
 
 #include <stdio.h>
@@ -20,7 +20,7 @@ int     pfk(char **tab, t_client *client)
 
   tab = tab;
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "pfk %i\n", client->id);
+  sprintf(str, "pfk %i %i\n", client->id);
   broadcast_to_one_client(str, client);
   free(str);
   return (0);

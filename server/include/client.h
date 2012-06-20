@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:38:47 2012 yann vaillant
-** Last update Thu Jun 14 14:57:48 2012 anatole carlier
+** Last update Wed Jun 20 11:21:53 2012 anatole carlier
 */
 
 #ifndef _CLIENT_H
@@ -70,20 +70,21 @@ typedef struct      s_client {
 }    t_client;
 
 
-t_client    *get_all_client(t_client *_all_client);
-int         remove_client(t_client *to_remove);
-void      remove_client_on_map(t_client *cl);
-void      add_client_on_map(t_client *new);
-t_client  *add_client(t_client *all_client, int fd);
-void  MoveClient(t_client *cl);
-void TurnClient(t_client *cl, int turn);
-int   turnLeft(t_client *cl);
-int   turnRight(t_client *cl);
-int   MoveFront(t_client *cl);
-void  send_invent(t_client *cl);
-int Inventory(t_client *cl);
-void    show_all_msg(t_client *cl);
-int    add_msg_to_buffer(t_client *cl, char *msg);
-
+t_client        *get_all_client(t_client *_all_client);
+int		remove_client(t_client *to_remove);
+void		remove_client_on_map(t_client *cl);
+void		add_client_on_map(t_client *new);
+t_client        *add_client(t_client *all_client, int fd);
+void		 MoveClient(t_client *cl);
+void		TurnClient(t_client *cl, int turn);
+int		turnLeft(t_client *cl);
+int		turnRight(t_client *cl);
+int		MoveFront(t_client *cl);
+void		send_invent(t_client *cl);
+int		Inventory(t_client *cl);
+void		show_all_msg(t_client *cl);
+int		add_msg_to_buffer(t_client *cl, char *msg);
+int		broad_ia(t_client *cl, t_client *all_client, char *msg);
+int		do_say(t_client *client, char *msg);
 
 #endif

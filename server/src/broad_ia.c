@@ -1,0 +1,41 @@
+/*
+** broad_ia.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by anatole carlier
+** Login   <carlie_a@epitech.net>
+** 
+** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
+** Last update Wed Jun 20 11:21:49 2012 anatole carlier
+*/
+
+int		broad_ia(t_client *cl, t_client *all_client, char *msg)
+{
+  t_setting	*setting;
+
+  if (cl->stm->in_use != -1 && cl->stm->in_use != Say)
+    return (1);
+  if (cl->stm->in_use == -1)
+    {
+      cl->stm->in_use = Say;
+      start_timer(cl->stm);
+      return (1);
+    }
+  setting = get_setting(NULL);
+  set_elapse_time(cl->stm);
+  set_elapse_sec(cl->stm);
+  if (cl->stm->in_use == Say &&
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      do_say(all_client, msg);
+      return (0);
+    }
+  return (1);
+}
+
+int		do_say(t_client *all_client, char *msg)
+{
+  client = client;
+  msg = msg;
+  return (0);
+}
