@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Wed Jun 20 11:32:00 2012 anatole carlier
+** Last update Wed Jun 20 11:34:17 2012 anatole carlier
 */
 
 #include <sys/types.h>
@@ -46,20 +46,21 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
       ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
-      do_say(all_client, msg);
+      do_say(cl, all_client, msg);
       return (0);
     }
   return (1);
 }
 
-int		do_say(t_client *all_client, char *msg)
+int		do_say(t_client *me, t_client *all_client, char *msg)
 {
   t_client	*tmp;
 
   tmp = all_client;
-  while(tmp->next != NULL)
+  while(tmp)
     {
-      broadcast_to_one_client(msg, tmp);
+      if (tmp != me)
+	broadcast_to_one_client(msg, tmp);
       tmp = tmp->next;
     }
   return (0);
