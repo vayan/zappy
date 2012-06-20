@@ -110,8 +110,6 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
 
   }
   else if (strcmp(tab[0], "voir") == 0) 
-  {
-
-  }
+    return (Want_See(cl));
   return (0);
 }
