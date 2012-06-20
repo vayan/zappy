@@ -12,6 +12,8 @@
 #define __SETTING_
 
 #define USAGE "Usage : %s -p port -x width -y height -n nameteam1 nameteam2 [..] -c MaxClientPerTeam -t delay\n"
+#define FLAGDEBUG 1 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
+
 
 typedef struct s_setting {
   int   port;

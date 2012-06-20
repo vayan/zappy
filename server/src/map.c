@@ -19,34 +19,6 @@
 #include "client.h"
 #include "network.h"
 
-void    aff_pl_test()
-{
-  t_map_case ***map;
-  t_setting    *setting;
-  int x;
-  int y;
-
-  y = 0;
-  map = get_map(NULL);
-  setting = get_setting(NULL);
-  while (y < setting->height_map)
-  {
-    x = 0;
-    while (x < setting->width_map)
-    {
-      if (MAP->client != NULL)
-      {
-        printf("*");
-      }
-      else
-        printf(".");
-      x++;
-    }
-    printf("\n");
-    y++;
-  }
-}
-
 t_map_case    ***get_map(t_map_case ***_map)
 {
   static t_map_case ***map = NULL;
@@ -56,60 +28,6 @@ t_map_case    ***get_map(t_map_case ***_map)
   return (map);
 }
 
-void  aff_rsrc(Ressource* rsrc)
-{
-  int i;
-
-  i = 0;
-  while (i < 7)
-  {
-    printf("%d*%d | ", i, rsrc[i]);
-    i++;
-  }
-}
-
-void  aff_player(t_pl_case* pl)
-{
-  t_pl_case *tmp;
-
-  tmp = pl;
-  if (pl == NULL)
-    printf(" Aucun Player ");
-  else
-  {
-    while (tmp)
-    {
-      printf(" Player %d |", tmp->client->id);
-      tmp = tmp->next;
-    }
-  }
-}
-
-void  aff_map()
-{
-  t_map_case ***map;
-  t_setting    *setting;
-  int x;
-  int y;
-
-  y = 0;
-  map = get_map(NULL);
-  setting = get_setting(NULL);
-  while (y < setting->height_map)
-  {
-    x = 0;
-    while (x < setting->width_map)
-    {
-      printf("[%d][%d] -> Ressource : ", x, y);
-      aff_rsrc(MAP->rsrc);
-      aff_player(MAP->client);
-      printf("\n");
-      x++;
-    }
-    printf("\n");
-    y++;
-  }
-}
 
 void  rm_pl(int x, int y, t_client *pl)
 {
@@ -163,66 +81,4 @@ void  add_pl(int x, int y, t_client *pl)
   new->client = pl;
   tmp->next = new;
 }
-}
-
-Ressource *gen_rsrc()
-{
-  Ressource *rsrc;
-
-  rsrc = xmalloc(7 * sizeof(int));
-  rsrc[Nourriture] = random() % 3;
-  rsrc[Linemate] = random() % 3;
-  rsrc[Deraumere] = random() % 3;
-  rsrc[Sibur] = random() % 3;
-  rsrc[Mendiane] = random() % 3;
-  rsrc[Phiras] = random() % 3;
-  rsrc[Thystame] = random() % 3;
-
-  return (rsrc);
-}
-
-void  init_map(t_map_case ***new_map, t_setting *setting)
-{
- int          x;
- int          y;
- t_map_case   *newcase;
-
- y = 0;
- while (y < setting->height_map)
- {
-  x = 0;
-  while (x < setting->width_map)
-  {
-    newcase = xmalloc(1 * sizeof(t_map_case));
-    newcase->x = x;
-    newcase->y = y;
-    newcase->rsrc = gen_rsrc();
-    newcase->client = NULL;
-    new_map[x][y] = newcase;
-    x++;
-  }
-  y++;
-}
-new_map[x] = NULL;
-}
-
-void    generate_new_map()
-{
- t_setting    *setting;
- t_map_case   ***new_map;
- int i;
-
- i = 0; 
- printf("\033[1;%sm--Generating new map...\033[0;0;00m", COLOR_BLU);
-   setting = get_setting(NULL);
-   srandom(time(NULL) * geteuid());
-   new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
-   while (i < setting->width_map)
-   {
-    new_map[i] = xmalloc(setting->height_map * sizeof(t_map_case*));
-    i++;
-  }
-  init_map(new_map, setting);
-  get_map(new_map);
-  printf("\033[1;%smDone\033[0;0;00m\n", COLOR_BLU);
 }

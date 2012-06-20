@@ -11,6 +11,6 @@
 #ifndef COMMAND_PARSER_
 # define COMMAND_PARSER_
 
-int	command_parser(t_option *tab, char *command);
+int	command_parser(t_option *tab, char *command, t_client *client);
 
 #endif /* !COMMAND_PARSER_ */

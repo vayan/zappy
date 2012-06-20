@@ -17,35 +17,22 @@
 #include "setting.h"
 #include "client.h"
 
-void strcat_player(t_pl_case *tmp, char *msg)
-{
-  while (tmp)
-  {
-    strcat(msg," joueur ");
-    tmp = tmp->next;
-  }  
-}
-
-void  strcat_rsrc(Ressource *rsrc, char *msg)
-{ 
-  int i;
-
-  i = 0;
-  while (rsrc[i])
-  {
-    strcat(msg, " ");
-    strcat(msg, Ressource_to_char(rsrc[i]));
-    strcat(msg, " ");
-    i++;
-  }
-}
-
 char  *get_see_one_case(int x, int y)
 {
   t_map_case ***map;
   map = get_map(NULL);
   char *msg;
+  t_setting *setting;
 
+  setting = get_setting(NULL);
+  if (y >= setting->height_map)
+    y = 0;
+  if (y < 0)
+    y = setting->height_map - 1;
+  if (x >= setting->width_map)
+    x = 0;
+  if (x < 0)
+    x = setting->width_map - 1;
   msg = xmalloc(500 * sizeof(*msg));
   memset(msg, 0, 500);
   if (MAP->client != NULL)
@@ -55,21 +42,41 @@ char  *get_see_one_case(int x, int y)
   return(msg);
 }
 
+void  scan_case(t_client *cl, char *msg)
+{
+  int lvl;
+  int base;
+  int i;
+
+  base = 3;
+  lvl = 1;
+  strcat(msg, get_see_one_case(cl->x, cl->y));
+  while (lvl <= cl->level)
+  {
+    i = 0;
+    while (i < base)
+    {
+      strcat(msg, ",");
+      strcat(msg, get_see_one_case((cl->x - lvl) + i, cl->y + lvl));
+      i++;
+    }
+    lvl++;
+    base += 2;
+  }
+}
+
 int do_see(t_client *cl)
 {
-  t_setting *setting;
-  t_map_case ***map;
   char  *msg;
 
   msg = xmalloc (100000 * sizeof(*msg));
   memset(msg, 0, 100000);
-  map = get_map(NULL);
-  setting = get_setting(NULL);
   strcat(msg, "{");
-  strcat(msg, get_see_one_case(cl->x, cl->y));
+  scan_case(cl, msg);
   strcat(msg, "}\n");
-  broadcast_to_one_client(msg, cl);
+  broadcast_to_one_client(clean_see(msg), cl);
   free(msg);
+  return (0);
 }
 
 int Want_See(t_client *cl)

@@ -24,6 +24,7 @@
 #include "network.h"
 #include "xfunc.h"
 #include "setting.h"
+#include "map.h"
 
 void    clean_quit()
 {

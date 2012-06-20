@@ -25,6 +25,7 @@
 #include "xfunc.h"
 #include "map.h"
 #include "setting.h"
+#include "command_fonc.h"
 
 int   remove_client(t_client *to_remove)
 {
@@ -37,7 +38,6 @@ int   remove_client(t_client *to_remove)
     if (tmp->fd == to_remove->fd)
     {
       tmp->fd = -1;
-    //aff_map(); // debug
       return (0);
     }
     while (tmp)
@@ -49,7 +49,6 @@ int   remove_client(t_client *to_remove)
       }
       tmp = tmp->next;
     }
-  //aff_map(); //debug
     return (1);
   }
 
@@ -86,6 +85,7 @@ int   remove_client(t_client *to_remove)
 
     new = xmalloc(sizeof(t_client));
     tmp = all_client;
+    new->level = 2;
     new->fd = fd;
     new->id = id++;
     new->next = NULL;
@@ -103,7 +103,6 @@ int   remove_client(t_client *to_remove)
     broadcast_to_one_client(buff_int, new);
     if (get_graphic(NULL) != NULL)
       pnw(NULL, get_graphic(NULL));
-  //aff_map(); //debug
     if (tmp == NULL)
       return (new);
     while (tmp->next)

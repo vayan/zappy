@@ -24,6 +24,7 @@
 #include "network.h"
 #include "xfunc.h"
 #include "option.h"
+#include "command_parser.h"
 
 t_client    *get_graphic(t_client *_cl)
 {
@@ -54,15 +55,16 @@ int   broadcast_to_one_client(char *msg, t_client *me)
 int do_input_client(t_client *all_client)
 {
   t_client  *tmp;
-  t_option tab[26];
+  t_option *tab;
 
-  init_tab(&tab);
+  tab = xmalloc (26 * sizeof(t_option));
+  init_tab(tab);
   tmp = all_client;
   while (tmp)
   {
     if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
     {
-      if (command_parser(&tab, tmp->buff_msg->msg, tmp) == 0)
+      if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
         rm_top_msg_from_buffer(tmp);    
     }
     else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
@@ -72,4 +74,5 @@ int do_input_client(t_client *all_client)
     }
     tmp = tmp->next;
   }
+  return (0);
 }

@@ -10,10 +10,9 @@
 
 #include	<string.h>
 #include	<stdlib.h>
-
 #include	"option.h"
 #include	"my_strtowordtab.h"
-#include	"network.h";
+#include	"network.h"
 
 int			command_parser(t_option *tab, char *command, t_client *client)
 {

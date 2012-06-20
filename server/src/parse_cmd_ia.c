@@ -1,4 +1,4 @@
-  #include <sys/types.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -15,60 +15,8 @@
 #include "xfunc.h"
 #include "option.h"
 #include "client.h"
+#include "map.h"
 #include "my_strtowordtab.h"
-
-char  *Ressource_to_char(Ressource rsrc)
-{
-  char *ret;
-
-  ret = xmalloc(15 * sizeof(*ret));
-  memset(ret, 0, 15);
-
-  switch (rsrc)
-  {
-    case Nourriture:
-    strcat(ret, "nourriture");
-    break;
-    case Linemate:
-    strcat(ret, "linemate");
-    break;
-    case Deraumere:
-    strcat(ret, "deraumere");
-    break;
-    case Sibur:
-    strcat(ret, "sibur");
-    break;
-    case Mendiane:
-    strcat(ret, "mendiane");
-    break;
-    case Phiras:
-    strcat(ret, "phiras");
-    break;
-    case Thystame:
-    strcat(ret, "thystame");
-    break;
-  }
-  return (ret);
-}
-
-Ressource parse_rsr(char *rsrc)
-{
-  if (strcmp(rsrc, "nourriture") == 0)
-    return (Nourriture);
-  if (strcmp(rsrc, "linemate") == 0)
-    return (Linemate);
-  if (strcmp(rsrc, "deraumere") == 0)
-    return (Deraumere);
-  if (strcmp(rsrc, "sibur") == 0)
-    return (Sibur);
-  if (strcmp(rsrc, "mendiane") == 0)
-    return (Mendiane);
-  if (strcmp(rsrc, "phiras") == 0)
-    return (Phiras);
-  if (strcmp(rsrc, "thystame") == 0)
-    return (Thystame);
-  return (-1);
-}
 
 int   parse_cmd_ia(char *cmd, t_client *cl)
 {
@@ -99,15 +47,12 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
     return (broad_ia(cl, get_all_client(NULL), parse_msg(cmd)));
   else if (strcmp(tab[0], "incantation") == 0)
   {
-
   }
   else if (strcmp(tab[0], "fork") == 0)
   {
-
   }
   else if (strcmp(tab[0], "connect_nbr") == 0)
   {
-
   }
   else if (strcmp(tab[0], "voir") == 0) 
     return (Want_See(cl));

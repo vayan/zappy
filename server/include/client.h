@@ -87,5 +87,22 @@ int		add_msg_to_buffer(t_client *cl, char *msg);
 int		broad_ia(t_client *cl, t_client *all_client, char *msg);
 int		do_say(t_client *me, t_client *all_client, char *msg);
 char		*parse_msg(char *msg);
+t_client    *get_graphic(t_client *_cl);
+char   *inttochar(int i);
+int   get_direction(t_client *emeter, t_client *receiver);
+void  rm_top_msg_from_buffer(t_client *cl);
+int   parse_cmd_ia(char *cmd, t_client *cl);
+int do_input_client(t_client *all_client);
+void  do_take_obj(t_client *cl, Ressource obj);
+void  do_drop_obj(t_client *cl, Ressource obj);
+int   Take_Object(t_client *cl, Ressource obj);
+int   Drop_Object(t_client *cl, Ressource obj);
+int expelliarmus(t_client *cl);
+int Want_See(t_client *cl);
+char *clean_see(char *msg);
+char  *get_see_one_case(int x, int y);
+void  scan_case(t_client *cl, char *msg);
+void  strcat_rsrc(Ressource *rsrc, char *msg);
+int do_see(t_client *cl);
 
 #endif

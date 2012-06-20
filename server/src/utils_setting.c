@@ -1,0 +1,68 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <time.h>
+#include <signal.h>
+#include "setting.h"
+#include "xfunc.h"
+#include "network.h"
+
+t_setting    *get_setting(t_setting *_setting)
+{
+  static t_setting *setting = NULL;
+
+  if (_setting != NULL)
+    setting = _setting;
+  return (setting);
+}
+
+void  aff_tab(char **tab)
+{
+  int i;
+
+  printf("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
+  if (tab != NULL)
+  {
+    i = 0;
+    while (tab[i])
+    {
+      printf("\033[1;%sm\t%s\033[0;0;00m\n", WHITE_BLUE, tab[i]);
+      i++;
+    }
+  }
+}
+
+void aff_setting()
+{
+  t_setting *setting;
+
+  setting = get_setting(NULL);
+  printf("\033[1;%sm*****************************\033[0;0;00m\n", WHITE_BLUE);
+  printf("\033[1;%sm Listening on port %d... \n Configuration : \n\tMax(%d) \n\tWorldX(%d)\
+    \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n", 
+    WHITE_BLUE, setting->port, setting->max_cl_per_team, setting->width_map,
+    setting->height_map, setting->delay); 
+  aff_tab(setting->name_teams);
+  printf("\033[1;%sm*****************************\n\033[0;0;00m\n", WHITE_BLUE);
+}
+
+int count_nb_team(char **av, int i, int ac)
+{
+  int nb;
+
+  nb = 0;
+  while (i < ac && av[i][0] != '-')
+  {
+    nb++;
+    i++;
+  }
+  return (nb);
+}

@@ -16,83 +16,71 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
-#include "command_fonc.h"
 
-void  do_take_obj(t_client *cl, Ressource obj)
+void TurnClient(t_client *cl, int turn)
 {
-  t_map_case ***map;
-
-  map = get_map(NULL);
-  if ((map[cl->x][cl->y])->rsrc[obj] > 0)
+  if (turn == 1) //right
   {
-    (map[cl->x][cl->y])->rsrc[obj]--;
-    cl->rsrc[obj]++;
-    broadcast_to_one_client("ok\n", cl);
+    cl->dir += 1;
+    if (cl->dir > Left)
+      cl->dir = Up;
   }
-  else
-    broadcast_to_one_client("ko\n", cl);
+  if (turn == 0) //left
+  {
+    if (cl->dir == 0)
+      cl->dir = Left;
+    else
+      cl->dir -= 1;
+  }
 }
 
-void  do_drop_obj(t_client *cl, Ressource obj)
-{
-  t_map_case ***map;
-
-  map = get_map(NULL);
-  if (cl->rsrc[obj] > 0)
-  {
-    (map[cl->x][cl->y])->rsrc[obj]++;
-    cl->rsrc[obj]--;
-    broadcast_to_one_client("ok\n", cl);
-  }
-  else
-    broadcast_to_one_client("ko\n", cl);
-}
-
-int   Take_Object(t_client *cl, Ressource obj)
+int   turnLeft(t_client *cl)
 {
   t_setting *setting;
 
-  if (cl->stm->in_use != -1 && cl->stm->in_use != Take)
+  if (cl->stm->in_use != -1 && cl->stm->in_use != TurnLeft)
     return (1);
   if (cl->stm->in_use == -1)
   { 
-    cl->stm->in_use = Take;
+    cl->stm->in_use = TurnLeft;
     start_timer(cl->stm);
     return (1);
   }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
-  if (cl->stm->in_use == Take &&
+  if (cl->stm->in_use == TurnLeft &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
     cl->stm->in_use = -1;
-    do_take_obj(cl, obj);
+    TurnClient(cl, 0);
+    broadcast_to_one_client("ok\n", cl);
     return (0);
   }
   return (1);
 }
 
-int   Drop_Object(t_client *cl, Ressource obj)
+int   turnRight(t_client *cl)
 {
   t_setting *setting;
 
-  if (cl->stm->in_use != -1 && cl->stm->in_use != Drop)
+  if (cl->stm->in_use != -1 && cl->stm->in_use != TurnRight)
     return (1);
   if (cl->stm->in_use == -1)
   { 
-    cl->stm->in_use = Drop;
+    cl->stm->in_use = TurnRight;
     start_timer(cl->stm);
     return (1);
   }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
-  if (cl->stm->in_use == Drop &&
+  if (cl->stm->in_use == TurnRight &&
     ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
   {
     cl->stm->in_use = -1;
-    do_drop_obj(cl, obj);
+    TurnClient(cl, 1);
+    broadcast_to_one_client("ok\n", cl);
     return (0);
   }
   return (1);

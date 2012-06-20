@@ -21,4 +21,6 @@ typedef struct  s_option
   int           (*op_func)(char **command, t_client *client);
 }               t_option;
 
+void    init_tab(t_option *tab);
+
 #endif /* !OPTION_H_ */

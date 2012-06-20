@@ -37,6 +37,15 @@ void  rm_pl(int x, int y, t_client *pl);
 void  add_pl(int x, int y, t_client *pl);
 Ressource *gen_rsrc();
 void    generate_new_map();
+void    aff_pl_test();
+void  free_close_client();
+int   free_map();
+int   free_setting();
+int  free_buff_msg(t_buffer_msg *buff_msg);
+int   free_client_map(t_pl_case *client);
+char  *Ressource_to_char(Ressource rsrc);
+Ressource parse_rsr(char *rsrc);
+void strcat_player(t_pl_case *tmp, char *msg);
 
 
 #endif
