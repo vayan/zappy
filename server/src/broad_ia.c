@@ -34,21 +34,21 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
   if (cl->stm->in_use != -1 && cl->stm->in_use != Say)
     return (1);
   if (cl->stm->in_use == -1)
-    {
-      cl->stm->in_use = Say;
-      start_timer(cl->stm);
-      return (1);
-    }
+  {
+    cl->stm->in_use = Say;
+    start_timer(cl->stm);
+    return (1);
+  }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Say &&
-      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
-    {
-      cl->stm->in_use = -1;
-      do_say(cl, all_client, msg);
-      return (0);
-    }
+    ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+  {
+    cl->stm->in_use = -1;
+    do_say(cl, all_client, msg);
+    return (0);
+  }
   return (1);
 }
 
@@ -56,31 +56,25 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
 {
   t_client	*tmp;
 
+  strcat(msg, "\n");
   tmp = all_client;
   while(tmp)
-    {
-      if (tmp != me)
-	broadcast_to_one_client(msg, tmp);
-      tmp = tmp->next;
-    }
-  broadcast_to_one_client("ok\n", me);
-  return (0);
+  {
+    if (tmp != me)
+     broadcast_to_one_client(msg, tmp);
+   tmp = tmp->next;
+ }
+ broadcast_to_one_client("ok\n", me);
+ return (0);
 }
 
 char	*parse_msg(char *msg)
 {
-  char	*new;
-  int	len;
-  int	i;
+  int i;
 
-  len = 0;
-  while (msg[len] != ' ')
-    len++;
-  new = xmalloc(sizeof(char) * (len + 1));
-  len++;
   i = 0;
-  while (msg[len])
-    new[i++] = msg[len++];
-  new[i] = '\0';
-  return (new);
+  while (msg[i] != ' ')
+    msg++;
+  msg++;
+  return (msg);
 }

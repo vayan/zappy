@@ -35,7 +35,9 @@ void    aff_pl_test()
     while (x < setting->width_map)
     {
       if (MAP->client != NULL)
+      {
         printf("*");
+      }
       else
         printf(".");
       x++;
@@ -114,21 +116,25 @@ void  rm_pl(int x, int y, t_client *pl)
   t_map_case ***map;
 
   map = get_map(NULL);
+
   if (MAP->client != NULL)
   {
-    t_pl_case  *tmp;
+    t_pl_case *tmp;
 
     tmp = MAP->client;
-    if ((tmp->client->id == pl->id) && (tmp->next == NULL))
+
+    if (tmp->next == NULL && tmp->client == pl)
       MAP->client = NULL;
+    else if (tmp->client == pl)
+      MAP->client = tmp->next;
     else
     {
-      while ((tmp->next != NULL) && (tmp->next->client->id != pl->id))
-        tmp = tmp->next; 
-      if (tmp->next != NULL && tmp->next->next == NULL && (tmp->next->client->id == pl->id))
-        tmp->next = NULL;
-      else if (tmp->next != NULL && tmp->next->next != NULL && (tmp->next->client->id == pl->id))
-        tmp->next = tmp->next->next;
+      while (tmp)
+      {
+        if (tmp->next != NULL && tmp->next->client == pl)
+          tmp->next = tmp->next->next;
+        tmp = tmp->next;
+      }
     }
   }
 }
@@ -208,15 +214,15 @@ void    generate_new_map()
 
  i = 0; 
  printf("\033[1;%sm--Generating new map...\033[0;0;00m", COLOR_BLU);
- setting = get_setting(NULL);
- srandom(time(NULL) * geteuid());
- new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
- while (i < setting->width_map)
- {
-  new_map[i] = xmalloc(setting->height_map * sizeof(t_map_case*));
-  i++;
-}
-init_map(new_map, setting);
-get_map(new_map);
-printf("\033[1;%smDone\033[0;0;00m\n", COLOR_BLU);
+   setting = get_setting(NULL);
+   srandom(time(NULL) * geteuid());
+   new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
+   while (i < setting->width_map)
+   {
+    new_map[i] = xmalloc(setting->height_map * sizeof(t_map_case*));
+    i++;
+  }
+  init_map(new_map, setting);
+  get_map(new_map);
+  printf("\033[1;%smDone\033[0;0;00m\n", COLOR_BLU);
 }

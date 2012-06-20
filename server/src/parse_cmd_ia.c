@@ -17,6 +17,40 @@
 #include "client.h"
 #include "my_strtowordtab.h"
 
+char  *Ressource_to_char(Ressource rsrc)
+{
+  char *ret;
+
+  ret = xmalloc(15 * sizeof(*ret));
+  memset(ret, 0, 15);
+
+  switch (rsrc)
+  {
+    case Nourriture:
+    strcat(ret, "nourriture");
+    break;
+    case Linemate:
+    strcat(ret, "linemate");
+    break;
+    case Deraumere:
+    strcat(ret, "deraumere");
+    break;
+    case Sibur:
+    strcat(ret, "sibur");
+    break;
+    case Mendiane:
+    strcat(ret, "mendiane");
+    break;
+    case Phiras:
+    strcat(ret, "phiras");
+    break;
+    case Thystame:
+    strcat(ret, "thystame");
+    break;
+  }
+  return (ret);
+}
+
 Ressource parse_rsr(char *rsrc)
 {
   if (strcmp(rsrc, "nourriture") == 0)
@@ -62,9 +96,7 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
   else if (strcmp(tab[0], "expulse") == 0)
     return(expelliarmus(cl));
   else if (strcmp(tab[0], "broadcast") == 0)
-  {
     return (broad_ia(cl, get_all_client(NULL), parse_msg(cmd)));
-  }
   else if (strcmp(tab[0], "incantation") == 0)
   {
 

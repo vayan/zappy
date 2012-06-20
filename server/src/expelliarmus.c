@@ -17,24 +17,10 @@
 #include "setting.h"
 #include "client.h"
 
-void  rm_from_case(t_pl_case *pl, t_client *cl)
-{
-  t_pl_case   *tmp;
-
-  tmp = pl;
-  while (tmp)
-  {
-    if (tmp->client != cl)
-      rm_pl(tmp->client->x, tmp->client->y, tmp->client);
-    tmp = tmp->next;
-  } 
-}
-
 void  move_kicker(t_client *kicker, t_client *victim)
 {
   t_setting *setting;
 
-  printf("Remove pl %d\n\n", victim->id);
   rm_pl(victim->x, victim->y, victim);
   setting = get_setting(NULL);
   switch (kicker->dir)
@@ -60,9 +46,7 @@ void  move_kicker(t_client *kicker, t_client *victim)
       victim->x = setting->width_map - 1;
     break;
   }
-
-  
-  printf("on la rajoute pl %d\n\n", victim->id);
+  printf("Now is %d %d %d\n\n",victim->x, victim->y, victim->id);
   add_pl(victim->x, victim->y, victim);
 }
 
@@ -78,7 +62,7 @@ int do_expelliarmus(t_client *cl)
     return (-1);
   while (tmp)
   {
-    if (tmp != NULL && tmp->client->id != cl->id)
+    if (tmp->client->id != cl->id)
     {
       msg = xmalloc(50 * sizeof(*msg));
       memset(msg, 0, 50);
@@ -91,7 +75,6 @@ int do_expelliarmus(t_client *cl)
     }
     tmp = tmp->next;
   }
-  //rm_from_case((map[cl->x][cl->y])->client, cl);
   return (0);
 }
 
@@ -118,6 +101,7 @@ int expelliarmus(t_client *cl)
       broadcast_to_one_client("ko\n", cl);
     else
       broadcast_to_one_client("ok\n", cl);
+    aff_map();
     aff_pl_test();
     return (0);
   }
