@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:38:47 2012 yann vaillant
-** Last update Wed Jun 20 11:34:35 2012 anatole carlier
+** Last update Wed Jun 20 11:45:42 2012 anatole carlier
 */
 
 #ifndef _CLIENT_H
@@ -86,5 +86,6 @@ void		show_all_msg(t_client *cl);
 int		add_msg_to_buffer(t_client *cl, char *msg);
 int		broad_ia(t_client *cl, t_client *all_client, char *msg);
 int		do_say(t_client *me, t_client *all_client, char *msg);
+char		*parse_msg(char *msg);
 
 #endif

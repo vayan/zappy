@@ -63,7 +63,7 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
     return(expelliarmus(cl));
   else if (strcmp(tab[0], "broadcast") == 0)
   {
-
+    return (broad_ia(cl, get_all_client(NULL), parse_msg(cmd)));
   }
   else if (strcmp(tab[0], "incantation") == 0)
   {

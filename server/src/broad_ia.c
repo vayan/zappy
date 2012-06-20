@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Wed Jun 20 11:34:17 2012 anatole carlier
+** Last update Wed Jun 20 11:46:20 2012 anatole carlier
 */
 
 #include <sys/types.h>
@@ -63,5 +63,24 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
 	broadcast_to_one_client(msg, tmp);
       tmp = tmp->next;
     }
+  broadcast_to_one_client("ok\n", me);
   return (0);
+}
+
+char	*parse_msg(char *msg)
+{
+  char	*new;
+  int	len;
+  int	i;
+
+  len = 0;
+  while (msg[len] != ' ')
+    len++;
+  new = xmalloc(sizeof(char) * (len + 1));
+  len++;
+  i = 0;
+  while (msg[len])
+    new[i++] = msg[len++];
+  new[i] = '\0';
+  return (new);
 }
