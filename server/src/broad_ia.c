@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Wed Jun 20 11:29:28 2012 anatole carlier
+** Last update Wed Jun 20 11:32:00 2012 anatole carlier
 */
 
 #include <sys/types.h>
@@ -54,10 +54,13 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
 
 int		do_say(t_client *all_client, char *msg)
 {
-  while(all_client->next != NULL)
+  t_client	*tmp;
+
+  tmp = all_client;
+  while(tmp->next != NULL)
     {
-      broadcast_to_one_client(msg, all_client);
-      all_client = all_client->next;
+      broadcast_to_one_client(msg, tmp);
+      tmp = tmp->next;
     }
   return (0);
 }
