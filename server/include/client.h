@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:38:47 2012 yann vaillant
-** Last update Wed Jun 20 11:21:53 2012 anatole carlier
+** Last update Wed Jun 20 11:29:41 2012 anatole carlier
 */
 
 #ifndef _CLIENT_H
@@ -75,7 +75,7 @@ int		remove_client(t_client *to_remove);
 void		remove_client_on_map(t_client *cl);
 void		add_client_on_map(t_client *new);
 t_client        *add_client(t_client *all_client, int fd);
-void		 MoveClient(t_client *cl);
+void		MoveClient(t_client *cl);
 void		TurnClient(t_client *cl, int turn);
 int		turnLeft(t_client *cl);
 int		turnRight(t_client *cl);

@@ -5,8 +5,27 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Wed Jun 20 11:21:49 2012 anatole carlier
+** Last update Wed Jun 20 11:29:28 2012 anatole carlier
 */
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/time.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <time.h>
+#include <signal.h>
+#include "network.h"
+#include "xfunc.h"
+#include "map.h"
+#include "setting.h"
+#include "client.h"
 
 int		broad_ia(t_client *cl, t_client *all_client, char *msg)
 {
@@ -35,7 +54,10 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
 
 int		do_say(t_client *all_client, char *msg)
 {
-  client = client;
-  msg = msg;
+  while(all_client->next != NULL)
+    {
+      broadcast_to_one_client(msg, all_client);
+      all_client = all_client->next;
+    }
   return (0);
 }
