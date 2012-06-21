@@ -76,10 +76,6 @@ int   remove_client(t_client *to_remove)
     t_client  *new;
     t_setting *setting;
 
-    char *buff_int;
-
-    buff_int = xmalloc(50 * sizeof(char*));
-
     setting = get_setting(NULL);
     static int  id = 0;
 
@@ -89,20 +85,14 @@ int   remove_client(t_client *to_remove)
     new->fd = fd;
     new->id = id++;
     new->next = NULL;
+    new->teams = NULL;
     new->stm = xmalloc(sizeof(t_serv_time));
     new->stm->in_use = -1;
     new->rsrc = xmalloc(7 * sizeof(int));
     new->buff_msg = NULL;
     new->is_graphic = 0;
     memset(new->rsrc, 0, 7 * sizeof(int));
-    add_client_on_map(new);
     broadcast_to_one_client("BIENVENUE\n", new);
-    sprintf(buff_int, "%d\n", new->id);
-    broadcast_to_one_client(buff_int, new);
-    sprintf(buff_int, "%d %d\n", setting->width_map, setting->height_map);
-    broadcast_to_one_client(buff_int, new);
-    if (get_graphic(NULL) != NULL)
-      pnw(NULL, get_graphic(NULL));
     if (tmp == NULL)
       return (new);
     while (tmp->next)

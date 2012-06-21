@@ -12,7 +12,7 @@
 #define _CLIENT_H
 
 #include "serv_time.h"
-//#include "map.h"
+#include "setting.h"
 
 typedef enum Ressource {
   Nourriture,
@@ -57,7 +57,8 @@ typedef struct      s_client {
   int       fd;
   int       id;
   int       level;
-  char      *team;
+  //char      *team;
+  t_team    *teams;
   int       x;
   int       y;
   int       action[12];

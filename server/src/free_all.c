@@ -27,8 +27,7 @@ void  free_close_client()
   {
     tmp = all_client;
     xclose(all_client->fd);
-    if (all_client->team != NULL)
-      free(all_client->team);
+    //FREE TEAM
     free_buff_msg(all_client->buff_msg);
     all_client = all_client->next;
     if (tmp != NULL)
@@ -79,15 +78,7 @@ int   free_setting()
 
   i = 0;
   setting = get_setting(NULL);
-  if (setting->name_teams != NULL)
-  {
-    while (setting->name_teams[i])
-    {
-      if (setting->name_teams[i] != NULL)
-        free (setting->name_teams[i]);
-      i++;
-    }  
-  }
+  //FREE ALL STRUCT TEAM
   if (setting != NULL)
     free (setting);
   return (0);

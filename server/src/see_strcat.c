@@ -33,7 +33,7 @@ char *clean_see(char *msg)
       i++;
     if (msg[i] == ' ' && msg[i + 1] == ',')
       i++;
-     if (msg[i] == ' ' && msg[i + 1] == ' ')
+    if (msg[i] == ' ' && msg[i + 1] == ' ')
       i++;
     msg_clean[j] = msg[i];
     i++;
@@ -54,13 +54,19 @@ void strcat_player(t_pl_case *tmp, char *msg)
 void  strcat_rsrc(Ressource *rsrc, char *msg)
 { 
   int i;
+  int j;
 
   i = 0;
   while (rsrc[i])
   {
-    strcat(msg, " ");
-    strcat(msg, Ressource_to_char(rsrc[i]));
-    strcat(msg, " ");
+    j = 0;
+    while (j < rsrc[i])
+    {
+      strcat(msg, " ");
+      strcat(msg, Ressource_to_char(rsrc[i]));
+      strcat(msg, " ");
+      j++;
+    }
     i++;
   }
 }

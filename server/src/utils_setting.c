@@ -24,18 +24,19 @@ t_setting    *get_setting(t_setting *_setting)
   return (setting);
 }
 
-void  aff_tab(char **tab)
+void  aff_team(t_team *team)
 {
   int i;
+  t_team *tmp;
 
+  tmp = team;
   printf("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
-  if (tab != NULL)
+  if (tmp != NULL)
   {
-    i = 0;
-    while (tab[i])
+    while (tmp)
     {
-      printf("\033[1;%sm\t%s\033[0;0;00m\n", WHITE_BLUE, tab[i]);
-      i++;
+      printf("\033[1;%sm\t%s\033[0;0;00m\n", WHITE_BLUE, tmp->name);
+      tmp = tmp->next;
     }
   }
 }
@@ -50,7 +51,7 @@ void aff_setting()
     \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n", 
     WHITE_BLUE, setting->port, setting->max_cl_per_team, setting->width_map,
     setting->height_map, setting->delay); 
-  aff_tab(setting->name_teams);
+  aff_team(setting->all_team);
   printf("\033[1;%sm*****************************\n\033[0;0;00m\n", WHITE_BLUE);
 }
 

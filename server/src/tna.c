@@ -19,17 +19,17 @@ int		tna(char **tab, t_client *client)
 {
   t_setting	*settings;
   char		*str;
-  int		i;
+  t_team *tmp;
 
-  i = 0;
   tab = tab;
   settings = get_setting(NULL);
-  while (settings->name_teams[i] != NULL)
-    {
-      str = xmalloc(sizeof(char) * 1024);
-      sprintf(str, "tna %s\n", settings->name_teams[i++]);
-      broadcast_to_one_client(str, client);
-      free(str);
-    }
+  tmp = settings->all_team;
+  while (tmp)
+  {
+    str = xmalloc(sizeof(char) * 1024);
+    sprintf(str, "tna %s\n", tmp->name);
+    broadcast_to_one_client(str, client);
+    free(str);
+  }
   return (0);
 }

@@ -29,7 +29,9 @@
 
 int     main(int ac, char **av)
 {
-  parser_setting(ac, av);
+  if (parser_setting(ac, av) == -1)
+    return (0);
+  printf("test\n");
   aff_setting();
   generate_new_map();
   network();

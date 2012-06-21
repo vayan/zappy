@@ -25,6 +25,27 @@
 #include "xfunc.h"
 #include "network.h"
 
+void  add_team(t_setting *setting, char *name, int max)
+{
+  t_team *tmp;
+  t_team *new;
+
+  tmp = setting->all_team;
+  new = xmalloc (sizeof(t_team));
+  new->name = strdup(name);
+  new->max = max;
+  new->left = max;
+  new->next = NULL;
+  if (tmp == NULL)
+    setting->all_team = new;
+  else 
+  {
+    while (tmp->next)
+      tmp = tmp->next;
+    tmp->next = new;
+  }
+}
+
 void init_setting(t_setting *setting)
 {
   if (FLAGDEBUG == 0)
@@ -34,7 +55,7 @@ void init_setting(t_setting *setting)
     setting->height_map = -1;
     setting->max_cl_per_team = -1;
     setting->delay = -1;
-    setting->name_teams = NULL;  
+    setting->all_team = NULL;
   }
   if (FLAGDEBUG == 1)
   {
@@ -43,10 +64,8 @@ void init_setting(t_setting *setting)
     setting->height_map = 7;
     setting->max_cl_per_team = 3;
     setting->delay = 100;
-    setting->name_teams = xmalloc(3 * sizeof(char*));
-    setting->name_teams[0] = strdup("foo");  
-    setting->name_teams[1] = strdup("bar"); 
-    setting->name_teams[2] = NULL;
+    add_team(setting, "foo", 3);
+    add_team(setting, "bar", 3);
   }
 }
 
@@ -77,17 +96,16 @@ void fill_setting(char **set, int ac, t_setting *setting)
     while (i < ac)
     {
       b = 0;   
+      i = fill_struct_set(set, setting, i, ac);
       if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
       {
         i++;
-        i = fill_struct_set(set, setting, i, ac);
-        setting->name_teams = xmalloc((count_nb_team(set, i, ac) + 1) * sizeof(char*));
         while (i < ac && set[i][0] != '-')
         {
-          setting->name_teams[b++] = strdup(set[i]);
-          setting->name_teams[b] = NULL;
+          add_team(setting, set[i], 0);
           i++;
         }
+        b = 1;
       }
       if (b == 0)
         i++;

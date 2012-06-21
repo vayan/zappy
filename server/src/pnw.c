@@ -21,7 +21,7 @@ int	pnw(char **tab, t_client *client)
   tab = tab;
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pnw %i %i %i %i %i %s\n", client->id, client->x, client->y, 
-	  client->dir, client->level, client->team);
+	  client->dir, client->level, client->teams->name);
   broadcast_to_one_client(str, client);
   free(str);
   return (0);

@@ -16,7 +16,7 @@
 #include <signal.h>
 #include "client.h"
 
-#define MAX_INPUT 50000
+#define MAX_INPUT 900000
 
 #define COLOR_BLU "1;34"
 #define WHITE_BLUE "36"
