@@ -72,7 +72,7 @@ int main_loop(int s, socklen_t client_sin_len,
       get_data_from_client(all_client, &readf);
       do_input_client(all_client);
       check_timer_all_team();
-      if (FLAGDEBUG == 0)
+      if (NEVER_DIE == 0)
         check_death_all_player();
     }
   }
