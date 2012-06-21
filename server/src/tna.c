@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:33:47 2012 anatole carlier
-** Last update Tue Jun 19 14:17:03 2012 anatole carlier
+** Last update Thu Jun 21 12:38:11 2012 anatole carlier
 */
 
 #include <stdio.h>
@@ -30,6 +30,7 @@ int		tna(char **tab, t_client *client)
     sprintf(str, "tna %s\n", tmp->name);
     broadcast_to_one_client(str, client);
     free(str);
+    tmp = tmp->next;
   }
   return (0);
 }
