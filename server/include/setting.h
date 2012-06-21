@@ -11,6 +11,8 @@
 #ifndef __SETTING_
 #define __SETTING_
 
+#include "serv_time.h"
+
 #define USAGE "Usage : %s -p port -x width -y height -n nameteam1 nameteam2 [..] -c MaxClientPerTeam -t delay\n"
 #define FLAGDEBUG 1 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
 
@@ -18,6 +20,8 @@ typedef struct s_team {
   char *name;
   int   max;
   int   left;
+  int   to_open;
+  t_serv_time *stm;
   struct s_team *next;
 } t_team;
 

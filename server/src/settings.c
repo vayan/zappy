@@ -35,6 +35,9 @@ void  add_team(t_setting *setting, char *name, int max)
   new->name = strdup(name);
   new->max = max;
   new->left = max;
+  new->to_open = 0;
+  new->stm = xmalloc(sizeof(t_serv_time));
+  new->stm->in_use = -1;
   new->next = NULL;
   if (tmp == NULL)
     setting->all_team = new;

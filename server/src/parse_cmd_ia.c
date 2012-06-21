@@ -53,11 +53,12 @@ int   get_type_client(char *cmd, t_client *cl)
   {
     if (tm->left == 0)
     {
-      broadcast_to_one_client("ko", cl);
+      broadcast_to_one_client("ko\n", cl);
       return (1);
     }     
     add_client_on_map(cl);
     cl->teams = check_team(cmd);
+    tm->left--;
     sprintf(buff_int, "%d\n", cl->id);
     broadcast_to_one_client(buff_int, cl);
     sprintf(buff_int, "%d %d\n", setting->width_map, setting->height_map);
@@ -97,11 +98,9 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
     {
     }
     else if (strcmp(tab[0], "fork") == 0)
-    {
-    }
+      return (fork_cl(cl));
     else if (strcmp(tab[0], "connect_nbr") == 0)
-    {
-    }
+      return (do_connect_nbr(cl));
     else if (strcmp(tab[0], "voir") == 0) 
       return (Want_See(cl));
   }
