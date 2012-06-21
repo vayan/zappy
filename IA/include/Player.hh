@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Wed Jun 20 12:38:17 2012 alexandre haulotte
+// Last update Thu Jun 21 11:05:54 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -24,6 +24,8 @@
 #include        <netdb.h>
 #include        <sstream>
 #include        <stdlib.h>
+#include 	<algorithm>
+#include 	<iterator>
 #include	"Errur.hh"
 
 class Player
@@ -54,16 +56,20 @@ public:
   Player(int port, std::string ip, std::string team, int compo = 0);
   Player(int compo = 0);
   ~Player();
-  void		connexion();
-  void		play();
-  void		recInfo();
-  void		parse(int ac, char **av);
-  int		strToInt(char* str);
-  int		xrecv();
-  int		xsend(int soc, const void* msg, int size, int flag);
-  std::string	intToStr(int i);
-  void    	initTab();
-  //  std::string	charToStr(char*);
+  void				connexion();
+  void				play();
+  void				recInfo();
+  void				parse(int ac, char **av);
+  int				strToInt(char* str);
+  int				xrecv();
+  int				xsend(int soc, const void* msg, int size, int flag);
+  std::string			intToStr(int i);
+  void    			initTab();
+  std::vector<std::string>	split_to_vec(std::string , std::string);
+  void 				Tokenize(const std::string& str,
+					 std::vector<std::string>& tokens,
+					 const std::string& delimiters);
+  int     			searchDir(std::vector<std::string>, std::string);
 
 public:
   //-------------------------------------//

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Wed Jun 20 12:53:12 2012 alexandre haulotte
+// Last update Thu Jun 21 12:00:33 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -56,16 +56,20 @@ void  Player::play()
 	{
 	  ret = recv(_soc, buff, 8096, 0);
 	  buff[ret] = 0;
-	  std::cout << buff << std::endl;
+	  //std::cout << buff << std::endl;
 	  _lastRep = buff;
 	  if (std::string(buff).find("mort") != std::string::npos)
 	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
 	}
-      std::cout << "--------" << _cState << "----dqdqs12-------------" << std::endl;
       fctRet = (this->*fctTable[_cState])();
-      std::cout << "------" << _cState << "----321dqdqs12-------------" << std::endl;
+      ret = recv(_soc, buff, 8096, MSG_DONTWAIT);
+      if (ret > 0)
+	{
+	  buff[ret] = 0;
+	  if (std::string(buff).find("mort") != std::string::npos)
+	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
+	}
       _cState = trTable[_cState][fctRet];
-      std::cout << "----" << _cState << "----321321dqdqs12-------------" << std::endl;
       FD_ZERO(&readfds);
       FD_SET(0, &readfds);
       FD_SET(_soc, &readfds);
@@ -114,7 +118,7 @@ Player::Player(int compo)
 
 Player::Player(int port, std::string ip, std::string team, int compo)
   :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
-   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(1)
+   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(compo)
 {
   _teamName = team;
   _ressource[FOOD] = 10;
@@ -272,8 +276,6 @@ int	Player::xrecv()
     return (ERR);
   buff[ret] = 0;
   _lastRep = buff;
-  if (_lastRep.find("mort") != std::string::npos)
-    return (ERR);
   while (_lastRep.find("message") != std::string::npos)
     {
       _msg.push_back(_lastRep);
@@ -283,8 +285,6 @@ int	Player::xrecv()
 	return (ERR);
       buff[ret] = 0;
       _lastRep = buff;
-      if (_lastRep.find("mort") != std::string::npos)
-	return (ERR);
     }
   return (ret);
 }
@@ -295,6 +295,60 @@ int	Player::xsend(int soc, const void* msg, int size, int flag)
   //  ret = xrecv();
   ret = send(soc, msg, size, flag);
   return (ret);
+}
+
+void 	Player::Tokenize(const std::string& str, std::vector<std::string>& tokens,
+			 const std::string& delimiters)
+{
+  std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+  std::string::size_type pos     = str.find_first_of(delimiters, lastPos);
+
+  //  std::cout << pos << " : "<< lastPos << " : " << str << std::endl;
+  while (std::string::npos != pos || std::string::npos != lastPos)
+    {
+      tokens.push_back(str.substr(lastPos, pos - lastPos));
+      lastPos = str.find_first_not_of(delimiters, pos);
+      pos = str.find_first_of(delimiters, lastPos);
+    }
+}
+
+std::vector<std::string> Player::split_to_vec(std::string to_split,
+					      std::string delim)
+{
+  std::vector<std::string> tokens;
+
+  while (to_split.find(",,") != std::string::npos)
+    to_split.replace(to_split.find(",,"), 2, ", nada,");
+  while (to_split.find(",\n") != std::string::npos)
+    to_split.replace(to_split.find(",\n"), 2, ", nada");
+  Tokenize(to_split, tokens, delim);
+  return (tokens);
+}
+
+int     Player::searchDir(std::vector<std::string> food, std::string tok)
+{
+  uint	i = 0;
+
+  while ( i < food.size() && (food[i]).find(tok) == std::string::npos)
+    i++;
+  //  std::cout << "Search vector size : " << food.size() <<  " case = "  << i << std::endl;
+  switch (i)
+    {
+    case 0:
+      return (OK);
+    case 1:
+      rDir = 2;
+      return (GODIR);
+    case 2:
+      rDir = 1;
+      return (GODIR);
+    case 3:
+      rDir = 8;
+      return (GODIR);
+    default:
+      rDir = 0;
+      return (KO);
+    }
 }
 
 Player::~Player() {}

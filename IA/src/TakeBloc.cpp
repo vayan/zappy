@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Wed Jun 20 12:36:42 2012 alexandre haulotte
+// Last update Wed Jun 20 16:45:30 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -23,6 +23,33 @@ int   Player::RamassezNourriture()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     return (OK);
+  return (KO);
+}
+
+int   Player::RamassezAllNourriture()
+{
+  int           ret;
+  std::string   food;
+
+  ret = xsend(_soc, "voir\n", 5, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  if (_lastRep.find("{") != std::string::npos)
+    {
+      food = _lastRep.substr(_lastRep.find("{") + 2, _lastRep.find(",") - _lastRep.find("{") - 2);
+      ret = OK;
+      while (food.find("nourriture") != std::string::npos)
+	{
+	  food.replace(food.find(" nourriture"), 11, "");
+	  ret = RamassezNourriture();
+	  if (ret == KO)
+	    return (KO);
+	}
+      return (OK);
+    }
   return (KO);
 }
 
@@ -66,7 +93,7 @@ int   Player::RamassezSibur()
 {
   int   ret;
 
-  ret = xsend(_soc, "prend sibur\n", 13, 0);
+  ret = xsend(_soc, "prend sibur\n", 12, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Wed Jun 20 12:35:47 2012 alexandre haulotte
+// Last update Thu Jun 21 11:39:24 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -17,7 +17,7 @@ int   Player::Avance()
   int	ret;
   //  char          buff[8096 + 1];
 
-  std::cout << _id << " : j'avance" << std::endl;
+  //  std::cout << _id << " : j'avance" << std::endl;
   ret = xsend(_soc, "avance\n", 7, 0);
 // switch (_dir)
   //   {
@@ -46,7 +46,7 @@ int	Player::Droite()
 {
   int   ret;
 
-  std::cout << _id << " : je tourne a droite" << std::endl;
+  //  std::cout << _id << " : je tourne a droite" << std::endl;
   ret = xsend(_soc, "droite\n", 7, 0);
   if (ret == -1)
     return (ERR);
@@ -60,8 +60,36 @@ int     Player::Gauche()
 {
   int   ret;
 
-  std::cout << _id << " : je tourne a gauche" << std::endl;
+  //  std::cout << _id << " : je tourne a gauche" << std::endl;
   ret = xsend(_soc, "gauche\n", 7, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  return (OK);
+}
+
+int     Player::Inventaire()
+{
+  int   ret;
+
+  //std::cout << _id << " : je tourne a gauche" << std::endl;
+  ret = xsend(_soc, "inventaire\n", 11, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  return (OK);
+}
+
+int     Player::Voir()
+{
+  int   ret;
+
+  //std::cout << _id << " : je tourne a gauche" << std::endl;
+  ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -105,8 +133,6 @@ int	Player::Incantation()
       ret = xrecv();
       if (_lastRep.find("niveau") != std::string::npos)
 	{
-	  for (int i = 0; i < 6; i++)
-	    _ressource[i] = _ressource[i] - _lvlTab[_lvl][i + 1];
 	  _lvl++;
 	  return (OK);
 	}
@@ -114,32 +140,51 @@ int	Player::Incantation()
   return (KO);
 }
 
-int	Player::GoToMsgRenfort()
+int	Player::GoToDir()
 {
-  std::cout << _id << " >>>>>>>GoToMsgRenfort " << rDir << std::endl;
-  if (rDir == 1 || rDir == 2 || rDir == 8)
-    Avance();
-  else if (rDir == 7 || rDir == 6)
+  //  std::cout << _id << " >>>>>>>GoToMsgRenfort direct : " << rDir << std::endl;
+  switch (rDir)
     {
+    case 1:
+      Avance();
+      break;
+    case 2:
+      Avance();
+      Gauche();
+      Avance();
+      break;
+    case 8:
+      Avance();
       Droite();
       Avance();
-      rDir = 0;
-    }
-  else if (rDir == 3 || rDir == 4)
-    {
+      break;
+    case 7:
+      Droite();
+      Avance();
+      break;
+    case 6:
+      Droite();
+      Avance();
+      Droite();
+      break;
+    case 5:
+      Gauche();
       Gauche();
       Avance();
-      rDir = 0;
-    }
-  else if (rDir == 5)
-    {
-      Gauche();
+      break;
+    case 4:
       Gauche();
       Avance();
-      rDir = 0;
+      Gauche();
+      break;
+    case 3:
+      Gauche();
+      Avance();
+      break;
+    default:
+      return (OK);
     }
-  else
-    return (OK);
+  rDir = 0;
   return (KO);
 }
 
@@ -204,5 +249,11 @@ int	Player::VideCase()
 	    }
 	}
     }
+  return (OK);
+}
+
+int     Player::StopRenfort()
+{
+  isRenf = false;
   return (OK);
 }

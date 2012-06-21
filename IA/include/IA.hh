@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Tue Jun 19 13:57:08 2012 alexandre haulotte
+// Last update Thu Jun 21 11:50:11 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -21,26 +21,30 @@ int	Gauche(); // OK - ERR
 int	Pond(); // OK - ERR
 int	Eclosion(); // OK
 int	Incantation(); // OK - KO - ERR
-int	GoToMsgRenfort(); // OK - KO - ERR
+int	GoToDir(); // OK - KO - ERR
 int	VideCase(); // OK - ERR
+int	Inventaire(); // OK - ERR
+int	Voir(); // OK - ERR
+int	StopRenfort(); // OK
 
 //----------------------------------------------//
 //--------------- SearchBloc -------------------//
 //----------------------------------------------//
-int	NourritureSurCase(); // OK - KO - ERR
-int	LinemateSurCase(); // OK - KO - ERR
-int	DeraumereSurCase(); // OK - KO - ERR
-int	SiburSurCase(); // OK - KO - ERR
-int	MendianeSurCase(); // OK - KO - ERR
-int	PhirasSurCase(); // OK - KO - ERR
-int	ThystameSurCase(); // OK - KO - ERR
-int	RessourceForLvlSurCase(); // OK - KO - ALREADY - ERR
+int	SearchNourriture(); // OK - GODIR - KO - ERR
+int	SearchLinemate(); // OK - GODIR - KO - ERR
+int	SearchDeraumere(); // OK - GODIR - KO - ERR
+int	SearchSibur(); // OK - GODIR - KO - ERR
+int	SearchMendiane(); // OK - GODIR - KO - ERR
+int	SearchPhiras(); // OK - GODIR - KO - ERR
+int	SearchThystame(); // OK - KO - ERR
+int	SearchRessourceForLvl(); // OK - GODIR - KO - ALREADY - ERR
 
 //----------------------------------------------//
 //----------------- TakeBloc -------------------//
 //----------------------------------------------//
 
 int	RamassezNourriture(); // OK - KO - ERR
+int	RamassezAllNourriture(); // OK - KO - ERR
 int	RamassezLinemate(); // OK - KO - ERR
 int	RamassezDeraumere(); // OK - KO - ERR
 int	RamassezSibur(); // OK - KO - ERR
@@ -70,20 +74,30 @@ int	AssezNourriture(); // OK - KO - ERR
 int	AssezRessourceForLevel(); // OK - KO
 int	PlaceSurServeur(); // OK - KO - ERR
 int	AssezPlayerForLvl(); // OK - KO - ERR
+int	CaseReady(); // OK - KO - LOOP - ERR
 
 //----------------------------------------------//
 //----------------- MsgBloc -------------------//
 //----------------------------------------------//
 
 int	CallRenfort(); // OK - ERR
-int	RecvRenfort(); // OK - KO - ERR
+int	RecvRenfort(); // GODIR - KO - ERR
+int	CallJGLR(); // OK - ERR (JeGereLesResource)
+int	RecvJGLR(); // OK - KO - ERR
+
+//----------------------------------------------//
+//----------------- AlgoBloc -------------------//
+//----------------------------------------------//
+
+int	While5(); // OK - LOOP
+int	While10(); // OK - LOOP
+int	IfIsRenf(); // OK - KO
 
 //-----------------EndIAFunc--------------------//
 
 int	rDir;
-
+bool	isRenf;
 typedef int (Player::*fct)();
-
 std::map<int, std::map<int, int> > trTable;
 std::map<int, fct > fctTable;
 
@@ -113,6 +127,7 @@ enum  Retour
     OK,
     LOOP,
     ALREADY,
+    GODIR,
     ERR
   };
 

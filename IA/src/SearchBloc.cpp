@@ -5,17 +5,16 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:33:05 2012 alexandre haulotte
-// Last update Wed Jun 20 12:48:11 2012 alexandre haulotte
+// Last update Thu Jun 21 12:07:18 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
 
-int   Player::NourritureSurCase()
+int   Player::SearchNourriture()
 {
-  int   	ret;
-  std::string   food;
+  int   			ret;
+  std::vector<std::string>	food;
 
-  //std::cout << "NouritureSurCase" << std::endl;
   ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
@@ -24,20 +23,19 @@ int   Player::NourritureSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      //std::cout << "LoopNouritureSurCase " << food << std::endl;
-      if (food.find("nourriture") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "nourriture"));
     }
   return (KO);
 }
 
-int   Player::LinemateSurCase()
+int   Player::SearchLinemate()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
-  //std::cout << "RessourceSurCase" << std::endl;
   ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
@@ -46,17 +44,18 @@ int   Player::LinemateSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      if (food.find("linemate") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "linemate"));
     }
   return (KO);
 }
 
-int   Player::DeraumereSurCase()
+int   Player::SearchDeraumere()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
    ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
@@ -66,18 +65,19 @@ int   Player::DeraumereSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      if (food.find("deraumere") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "deraumere"));
     }
   return (KO);
 }
 
 
-int   Player::SiburSurCase()
+int   Player::SearchSibur()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
    ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
@@ -87,17 +87,18 @@ int   Player::SiburSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      if (food.find("sibur") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "sibur"));
     }
   return (KO);
 }
 
-int   Player::MendianeSurCase()
+int   Player::SearchMendiane()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
    ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
@@ -107,17 +108,18 @@ int   Player::MendianeSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      if (food.find("mendiane") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "mendiane"));
     }
   return (KO);
 }
 
-int   Player::PhirasSurCase()
+int   Player::SearchPhiras()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
    ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
@@ -127,17 +129,18 @@ int   Player::PhirasSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      if (food.find("phiras") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "phiras"));
     }
   return (KO);
 }
 
-int   Player::ThystameSurCase()
+int   Player::SearchThystame()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
    ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
@@ -147,21 +150,20 @@ int   Player::ThystameSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
-      if (food.find("thystame") != std::string::npos)
-	return (OK);
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "thystame"));
     }
   return (KO);
 }
 
-int   Player::RessourceForLvlSurCase()
+int   Player::SearchRessourceForLvl()
 {
   int   ret;
-  std::string   food;
+  std::vector<std::string>	food;
 
-  std::cout << "RessourceForLvlSurCase : Level = " << _lvl << std::endl;
-   ret = xsend(_soc, "voir\n", 5, 0);
-   std::cout << "RessourceForLvlSurCase : Level = " << _lvl << std::endl;
+  ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -169,20 +171,42 @@ int   Player::RessourceForLvlSurCase()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
-      food = _lastRep.substr(_lastRep.find("{") + 1, _lastRep.find(",") - _lastRep.find("{"));
+      _lastRep.replace(_lastRep.find("{"), 1, "");
+      _lastRep.replace(_lastRep.find("}"), 1, "");
+      food = split_to_vec(_lastRep, ",");
+      return (searchDir(food, "thystame"));
+
       if ((_lvlTab[_lvl][1] > _ressource[LINEMATE]
-	   && food.find("linemate") != std::string::npos)
+	   && searchDir(food, "linemate") == OK)
 	  || (_lvlTab[_lvl][2] > _ressource[DERAUMERE]
-	      && food.find("deraumere") != std::string::npos)
+	      && searchDir(food, "deraumere") == OK)
 	  || (_lvlTab[_lvl][3] > _ressource[SIBUR]
-	      && food.find("sibur") != std::string::npos)
+	      && searchDir(food, "sibur") == OK)
 	  || (_lvlTab[_lvl][4] > _ressource[MENDIANE]
-	      && food.find("mendiane") != std::string::npos)
+	      && searchDir(food, "mendiane") == OK)
 	  || (_lvlTab[_lvl][5] > _ressource[PHIRAS]
-	      && food.find("phiras") != std::string::npos)
+	      && searchDir(food, "phiras") == OK)
 	  || (_lvlTab[_lvl][6] > _ressource[THYSTAME]
-	      && food.find("thystame") != std::string::npos))
+	      && searchDir(food, "thystame") == OK))
 	return (OK);
+      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	       && searchDir(food, "linemate") == GODIR)
+	return (searchDir(food, "linemate"));
+      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	       && searchDir(food, "deraumere") == GODIR)
+	return (searchDir(food, "deraumere"));
+      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	       && searchDir(food, "sibur") == GODIR)
+	return (searchDir(food, "sibur"));
+      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	       && searchDir(food, "mendiane") == GODIR)
+	return (searchDir(food, "mendiane"));
+      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	       && searchDir(food, "phiras") == GODIR)
+	return (searchDir(food, "phiras"));
+      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	       && searchDir(food, "thystame") == GODIR)
+	return (searchDir(food, "thystame"));
       if (_lvlTab[_lvl][1] <= _ressource[LINEMATE]
 	  && _lvlTab[_lvl][2] <= _ressource[DERAUMERE]
 	  && _lvlTab[_lvl][3] <= _ressource[SIBUR]

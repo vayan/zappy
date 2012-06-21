@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Wed Jun 20 12:35:33 2012 alexandre haulotte
+// Last update Wed Jun 20 16:45:17 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -15,7 +15,7 @@ int   Player::PoserNourriture()
   int   ret;
 
   //std::cout << "PoseNouriture" << std::endl;
-  ret = xsend(_soc, "pose nourriture\n", 17, 0);
+  ret = xsend(_soc, "pose nourriture\n", 16, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -38,7 +38,7 @@ int   Player::PoserLinemate()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[LINEMATE] = _ressource[LINEMATE] + 1;
+      _ressource[LINEMATE] = _ressource[LINEMATE] - 1;
       return (OK);
     }
   return (KO);
@@ -48,7 +48,7 @@ int   Player::PoserDeraumere()
 {
   int   ret;
 
-  ret = xsend(_soc, "pose deraumere\n", 16, 0);
+  ret = xsend(_soc, "pose deraumere\n", 15, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -56,7 +56,7 @@ int   Player::PoserDeraumere()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[DERAUMERE] = _ressource[DERAUMERE] + 1;
+      _ressource[DERAUMERE] = _ressource[DERAUMERE] - 1;
       return (OK);
     }
   return (KO);
@@ -66,7 +66,7 @@ int   Player::PoserSibur()
 {
   int   ret;
 
-  ret = xsend(_soc, "pose sibur\n", 13, 0);
+  ret = xsend(_soc, "pose sibur\n", 11, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -74,7 +74,7 @@ int   Player::PoserSibur()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[SIBUR] = _ressource[SIBUR] + 1;
+      _ressource[SIBUR] = _ressource[SIBUR] - 1;
       return (OK);
     }
   return (KO);
@@ -84,7 +84,7 @@ int   Player::PoserMendiane()
 {
   int   ret;
 
-  ret = xsend(_soc, "pose mendiane\n", 15, 0);
+  ret = xsend(_soc, "pose mendiane\n", 14, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -92,7 +92,7 @@ int   Player::PoserMendiane()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[MENDIANE] = _ressource[MENDIANE] + 1;
+      _ressource[MENDIANE] = _ressource[MENDIANE] - 1;
       return (OK);
     }
   return (KO);
@@ -102,7 +102,7 @@ int   Player::PoserPhiras()
 {
   int   ret;
 
-  ret = xsend(_soc, "pose phiras\n", 13, 0);
+  ret = xsend(_soc, "pose phiras\n", 12, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -110,7 +110,7 @@ int   Player::PoserPhiras()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[PHIRAS] = _ressource[PHIRAS] + 1;
+      _ressource[PHIRAS] = _ressource[PHIRAS] - 1;
       return (OK);
     }
   return (KO);
@@ -128,7 +128,7 @@ int   Player::PoserThystame()
     return (ERR);
   if (_lastRep.find("ok") != std::string::npos)
     {
-      _ressource[THYSTAME] = _ressource[THYSTAME] + 1;
+      _ressource[THYSTAME] = _ressource[THYSTAME] - 1;
       return (OK);
     }
   return (KO);
