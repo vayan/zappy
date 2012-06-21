@@ -31,7 +31,6 @@ int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
-  to_remove->rm_all_plz = 1;
   printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n", COLOR_BLU, to_remove->id);
     xclose(to_remove->fd);
     remove_client_on_map(to_remove);
@@ -76,10 +75,9 @@ int   remove_client(t_client *to_remove)
     t_client  *tmp;
     t_client  *new;
     t_setting *setting;
-
-    setting = get_setting(NULL);
     static int  id = 0;
 
+    setting = get_setting(NULL);    
     new = xmalloc(sizeof(t_client));
     tmp = all_client;
     new->level = 2;
@@ -92,10 +90,10 @@ int   remove_client(t_client *to_remove)
     new->death = xmalloc(sizeof(t_serv_time));
     new->death->in_use = 2;
     new->rsrc = xmalloc(7 * sizeof(int));
-    new->rsrc[Nourriture] = 10;
     new->buff_msg = NULL;
     new->is_graphic = 0;
     memset(new->rsrc, 0, 7 * sizeof(int));
+    new->rsrc[Nourriture] = 10;
     broadcast_to_one_client("BIENVENUE\n", new);
     if (tmp == NULL)
       return (new);

@@ -58,12 +58,12 @@ int main_loop(int s, socklen_t client_sin_len,
     FD_SET(s, &readf);
     if (select(get_higher_fd(all_client) + 1, &readf, NULL, NULL, &tv) == -1)
       printf("Errror : select fail\n");
+    if (all_client != NULL && all_client->next == NULL && all_client->fd == -1)
+      all_client = NULL;
     if (FD_ISSET(s, &readf))
     {
       cs = accept(s, (struct sockaddr *)&client_sin, &client_sin_len);
       printf("\033[1;%sm%s\033[0;0;00m\n", COLOR_BLU, "--New Connexion");
-        if (all_client != NULL && all_client->rm_all_plz == 1)
-          printf("\n\n\nI WANT TO FUCKING DIE\n\n\n");
         if (all_client == NULL)
           get_all_client(all_client = add_client(all_client, cs));
         else

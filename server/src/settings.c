@@ -66,7 +66,7 @@ void init_setting(t_setting *setting)
     setting->width_map = 5;
     setting->height_map = 7;
     setting->max_cl_per_team = 3;
-    setting->delay = 600;
+    setting->delay = 100;
     add_team(setting, "foo", 3);
     add_team(setting, "bar", 3);
   }

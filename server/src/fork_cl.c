@@ -34,7 +34,6 @@ int fork_cl(t_client *cl)
   { 
     cl->stm->in_use = Fork;
     start_timer(cl->stm);
-    printf("start timer pose oeuf\n");
     return (1);
   }
   setting = get_setting(NULL);
@@ -45,7 +44,6 @@ int fork_cl(t_client *cl)
   {
     cl->stm->in_use = -1;
     do_fork_pl(cl);
-    printf("oeuf pose tes libre\n");
     return (0);
   }
   return (1);

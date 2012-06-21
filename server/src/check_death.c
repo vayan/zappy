@@ -35,7 +35,6 @@ int   kill_player(t_client *cl)
   remove_client(cl);
 }
 
-
 int start_dying(t_client *cl)
 {
   t_setting *setting;
