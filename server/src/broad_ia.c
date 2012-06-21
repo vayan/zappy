@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Wed Jun 20 11:46:20 2012 anatole carlier
+** Last update Thu Jun 21 14:58:49 2012 anatole carlier
 */
 
 #include <sys/types.h>
@@ -55,18 +55,23 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
 int		do_say(t_client *me, t_client *all_client, char *msg)
 {
   t_client	*tmp;
+  char		*str;
 
   strcat(msg, "\n");
-  //format : message K,texte\n
   tmp = all_client;
   while(tmp)
-  {
-    if (tmp != me)
-     broadcast_to_one_client(msg, tmp);
-   tmp = tmp->next;
- }
- broadcast_to_one_client("ok\n", me);
- return (0);
+    {
+      if (tmp != me)
+	{
+	  str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
+	  sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
+	  broadcast_to_one_client(str, tmp);
+	  free(str);
+	}
+      tmp = tmp->next;
+    }
+  broadcast_to_one_client(msg, me);
+  return (0);
 }
 
 char	*parse_msg(char *msg)
