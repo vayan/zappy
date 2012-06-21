@@ -35,7 +35,7 @@ ssize_t		xsend(int sockfd, const void *buf, size_t len, int flags)
   if ((ret = send(sockfd, buf, len, flags)) == -1)
     {
       perror("send");
-      exit(EXIT_FAILURE);
+      //exit(EXIT_FAILURE);
     }
   return (ret);
 }

@@ -57,15 +57,16 @@ typedef struct      s_client {
   int       fd;
   int       id;
   int       level;
-  //char      *team;
   t_team    *teams;
   int       x;
   int       y;
   int       action[12];
   int       is_graphic;
+  int       rm_all_plz;
   t_buffer_msg *buff_msg;
   Direction dir;
   t_serv_time *stm;
+  t_serv_time *death;
   Ressource     *rsrc;
   struct  s_client  *next;
 }    t_client;

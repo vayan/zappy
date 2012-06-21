@@ -44,35 +44,37 @@ int   broadcast_to_one_client(char *msg, t_client *me)
   memset(full_msg, 0, MAX_INPUT);
   strcat(full_msg, msg);
   tmp = me;
-  xsend (tmp->fd, full_msg, strlen(full_msg), MSG_DONTWAIT);
+  if (tmp->fd > 0)
+    xsend (tmp->fd, full_msg, strlen(full_msg), MSG_DONTWAIT);
   if (full_msg[strlen(full_msg) -1 ] == '\n')
     full_msg[strlen(full_msg) -1] = 0;
   printf("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n", RED, me->id, full_msg);
-  free(full_msg);
-  return (0);
-}
-
-int do_input_client(t_client *all_client)
-{
-  t_client  *tmp;
-  t_option *tab;
-
-  tab = xmalloc (26 * sizeof(t_option));
-  init_tab(tab);
-  tmp = all_client;
-  while (tmp)
-  {
-    if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
-    {
-      if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
-        rm_top_msg_from_buffer(tmp);    
-    }
-    else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
-    {
-      if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
-        rm_top_msg_from_buffer(tmp); 
-    }
-    tmp = tmp->next;
+    free(full_msg);
+    return (0);
   }
-  return (0);
-}
+
+
+  int do_input_client(t_client *all_client)
+  {
+    t_client  *tmp;
+    t_option *tab;
+
+    tab = xmalloc (26 * sizeof(t_option));
+    init_tab(tab);
+    tmp = all_client;
+    while (tmp)
+    {
+      if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
+      {
+        if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
+          rm_top_msg_from_buffer(tmp);    
+      }
+      else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
+      {
+        if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
+          rm_top_msg_from_buffer(tmp); 
+      }
+      tmp = tmp->next;
+    }
+    return (0);
+  }
