@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Thu Jun 21 11:39:24 2012 alexandre haulotte
+// Last update Thu Jun 21 17:31:01 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -134,6 +134,7 @@ int	Player::Incantation()
       if (_lastRep.find("niveau") != std::string::npos)
 	{
 	  _lvl++;
+	  std::cout << "je suis lvl: " << _lvl << std::endl;
 	  return (OK);
 	}
     }
@@ -185,7 +186,7 @@ int	Player::GoToDir()
       return (OK);
     }
   rDir = 0;
-  return (KO);
+  return (OK);
 }
 
 int	Player::VideCase()

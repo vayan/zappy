@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Wed Jun 20 16:45:30 2012 alexandre haulotte
+// Last update Thu Jun 21 16:13:41 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -166,36 +166,52 @@ int   Player::RamassezRessourceForLvl()
   //std::cout << "RamassezRessourceForLvl" << std::endl;
   int   ret;
   int	i;
+  std::string      food;
 
-  for (i = 1; i < 6; i++)
+  ret = xsend(_soc, "voir\n", 5, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  if (_lastRep.find("{") != std::string::npos)
     {
-      if (_lvlTab[_lvl][i] > _ressource[i])
-	break;
-      if (i == 6)
-	return (OK);
-    }
-  switch (i)
-    {
-    case LINEMATE:
-      ret = RamassezLinemate();
-      break;
-    case DERAUMERE:
-      ret = RamassezDeraumere();
-      break;
-    case SIBUR:
-      ret = RamassezSibur();
-      break;
-    case MENDIANE:
-      ret = RamassezMendiane();
-      break;
-    case PHIRAS:
-      ret = RamassezPhiras();
-      break;
-    case THYSTAME:
-      ret = RamassezThystame();
-      break;
-    default:
-      return (ERR);
+      food = _lastRep.substr(_lastRep.find("{") + 1, _lastRep.find(",") - _lastRep.find("{") + 1);
+      for (i = 1; i < 6; i++)
+        {
+          if (_lvlTab[_lvl][i] > _ressource[i])
+	    {
+	      switch (i)
+		{
+		case LINEMATE:
+		  if (food.find("linemate") != std::string::npos)
+		    ret = RamassezLinemate();
+		  break;
+		case DERAUMERE:
+		  if (food.find("deraumere") != std::string::npos)
+		    ret = RamassezDeraumere();
+		  break;
+		case SIBUR:
+		  if (food.find("sibur") != std::string::npos)
+		  ret = RamassezSibur();
+		  break;
+		case MENDIANE:
+		  if (food.find("mendiane") != std::string::npos)
+		  ret = RamassezMendiane();
+		  break;
+		case PHIRAS:
+		  if (food.find("phiras") != std::string::npos)
+		  ret = RamassezPhiras();
+		  break;
+		case THYSTAME:
+		  if (food.find("thystame") != std::string::npos)
+		  ret = RamassezThystame();
+		  break;
+		default:
+		  return (ERR);
+		}
+	    }
+	}
     }
   return (ret);
 }

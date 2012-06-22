@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:48:02 2012 alexandre haulotte
-// Last update Wed Jun 20 23:05:16 2012 alexandre haulotte
+// Last update Fri Jun 22 10:46:09 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -23,16 +23,32 @@ int   Player::AssezNourriture()
   ret = xrecv();
   if (ret == -1)
     return (ERR);
-  food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
-  food.replace(food.find("nourriture "), 10, "");
-  if (strToInt(&food[0]) > 10)
-    return (OK);
+  if (_lastRep.find("nourriture") != std::string::npos)
+    {
+      food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
+      food.replace(food.find("nourriture "), 10, "");
+      if (strToInt(&food[0]) > 30)
+	return (OK);
+    }
+  else
+    {
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      if (_lastRep.find("nourriture") != std::string::npos)
+	{
+	  food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
+	  food.replace(food.find("nourriture "), 10, "");
+	  if (strToInt(&food[0]) > 30)
+	    return (OK);
+	}
+    }
   return (KO);
 }
 
 int   Player::AssezRessourceForLevel()
 {
-  std::cout << _id << " : _AssezRessource" << std::endl;
+  //std::cout << _id << " : _AssezRessource" << std::endl;
   if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
       || _lvlTab[_lvl][2] > _ressource[DERAUMERE]
       || _lvlTab[_lvl][3] > _ressource[SIBUR]
@@ -84,10 +100,10 @@ int	Player::AssezPlayerForLvl()
 	  food.replace(food.find("joueur"), 6, "");
 	  nbP++;
 	}
-      // std::cout << "Player sur case : " << nbP <<std::endl;
       // std::cout << "Player demander : " << _lvlTab[_lvl][0] <<std::endl;
       if (nbP >= _lvlTab[_lvl][0])
 	{
+	  //std::cout << _id << " | Player sur case : " << nbP <<std::endl;
 	  return (OK);
 	}
     }
@@ -102,7 +118,6 @@ int	Player::CaseReady()
   int   nbP[] = {0, 0, 0, 0, 0, 0, 0};
 
   ret = xsend(_soc, "voir\n", 5, 0);
-  ret = xsend(_soc, "YoplaOups\n", 10, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -119,7 +134,6 @@ int	Player::CaseReady()
 	     || food.find("phiras") != std::string::npos
 	     || food.find("thystame") != std::string::npos)
 	{
-	  std::cout << _id << " : LOOP CaseReady" << food << std::endl;
 	  if (food.find("joueur") != std::string::npos)
 	    {
 	      food.replace(food.find("joueur"), 6, "");
@@ -163,24 +177,44 @@ int	Player::CaseReady()
 	      && _lvlTab[_lvl][5] == nbP[PHIRAS]
 	      && _lvlTab[_lvl][6] == nbP[THYSTAME])
 	    {
-	      std::cout << _id << " : LOOP CaseReady" << std::endl;
-	      ret = xrecv();
-	      std::cout << _id << " : LOOP CaseReady BIS" << std::endl;
 	      return (OK);
 	    }
 	}
      }
-  std::cout << _id << " : LOOP Case Pas Ready" << std::endl;
-  ret = xrecv();
-  std::cout << _id << " : LOOP Case Pas Ready BIS" << std::endl;
   if (nbLoop < 4)
     {
-      std::cout << _id << " : je loop  : " << nbLoop << std::endl;
       nbLoop++;
       return (LOOP);
     }
   else
     nbLoop = 0;
-  std::cout << "je sors" << std::endl;
+  return (KO);
+}
+
+int	Player::JoueurSurCase()
+{
+  int           ret;
+  std::string   food;
+  int	nbP = 0;
+
+  ret = xsend(_soc, "voir\n", 5, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  if (_lastRep.find("{") != std::string::npos)
+    {
+      food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
+      while (food.find("joueur") != std::string::npos)
+	{
+	  food.replace(food.find("joueur"), 6, "");
+	  nbP++;
+	}
+      if (nbP > 1)
+	{
+	  return (OK);
+	}
+    }
   return (KO);
 }

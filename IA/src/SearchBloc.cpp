@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:33:05 2012 alexandre haulotte
-// Last update Thu Jun 21 12:07:18 2012 alexandre haulotte
+// Last update Thu Jun 21 17:31:11 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -163,6 +163,7 @@ int   Player::SearchRessourceForLvl()
   int   ret;
   std::vector<std::string>	food;
 
+  //  std::cout << _id << " | SRFL" << std::endl;
   ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
@@ -174,8 +175,13 @@ int   Player::SearchRessourceForLvl()
       _lastRep.replace(_lastRep.find("{"), 1, "");
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
-      return (searchDir(food, "thystame"));
-
+      if (_lvlTab[_lvl][1] <= _ressource[LINEMATE]
+	  && _lvlTab[_lvl][2] <= _ressource[DERAUMERE]
+	  && _lvlTab[_lvl][3] <= _ressource[SIBUR]
+	  && _lvlTab[_lvl][4] <= _ressource[MENDIANE]
+	  && _lvlTab[_lvl][5] <= _ressource[PHIRAS]
+	  && _lvlTab[_lvl][6] <= _ressource[THYSTAME])
+	return (ALREADY);
       if ((_lvlTab[_lvl][1] > _ressource[LINEMATE]
 	   && searchDir(food, "linemate") == OK)
 	  || (_lvlTab[_lvl][2] > _ressource[DERAUMERE]
@@ -191,29 +197,22 @@ int   Player::SearchRessourceForLvl()
 	return (OK);
       else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
 	       && searchDir(food, "linemate") == GODIR)
-	return (searchDir(food, "linemate"));
-      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+	  return (searchDir(food, "linemate"));
+      else if (_lvlTab[_lvl][1] > _ressource[DERAUMERE]
 	       && searchDir(food, "deraumere") == GODIR)
 	return (searchDir(food, "deraumere"));
-      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+      else if (_lvlTab[_lvl][1] > _ressource[SIBUR]
 	       && searchDir(food, "sibur") == GODIR)
 	return (searchDir(food, "sibur"));
-      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+      else if (_lvlTab[_lvl][1] > _ressource[MENDIANE]
 	       && searchDir(food, "mendiane") == GODIR)
 	return (searchDir(food, "mendiane"));
-      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+      else if (_lvlTab[_lvl][1] > _ressource[PHIRAS]
 	       && searchDir(food, "phiras") == GODIR)
 	return (searchDir(food, "phiras"));
-      else if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
+      else if (_lvlTab[_lvl][1] > _ressource[THYSTAME]
 	       && searchDir(food, "thystame") == GODIR)
 	return (searchDir(food, "thystame"));
-      if (_lvlTab[_lvl][1] <= _ressource[LINEMATE]
-	  && _lvlTab[_lvl][2] <= _ressource[DERAUMERE]
-	  && _lvlTab[_lvl][3] <= _ressource[SIBUR]
-	  && _lvlTab[_lvl][4] <= _ressource[MENDIANE]
-	  && _lvlTab[_lvl][5] <= _ressource[PHIRAS]
-	  && _lvlTab[_lvl][6] <= _ressource[THYSTAME])
-	return (ALREADY);
     }
   return (KO);
 }

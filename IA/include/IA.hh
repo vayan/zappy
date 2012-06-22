@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Thu Jun 21 11:50:11 2012 alexandre haulotte
+// Last update Thu Jun 21 17:49:36 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -21,7 +21,7 @@ int	Gauche(); // OK - ERR
 int	Pond(); // OK - ERR
 int	Eclosion(); // OK
 int	Incantation(); // OK - KO - ERR
-int	GoToDir(); // OK - KO - ERR
+int	GoToDir(); // OK - ERR
 int	VideCase(); // OK - ERR
 int	Inventaire(); // OK - ERR
 int	Voir(); // OK - ERR
@@ -75,13 +75,14 @@ int	AssezRessourceForLevel(); // OK - KO
 int	PlaceSurServeur(); // OK - KO - ERR
 int	AssezPlayerForLvl(); // OK - KO - ERR
 int	CaseReady(); // OK - KO - LOOP - ERR
+int	JoueurSurCase(); // OK - KO - ERR
 
 //----------------------------------------------//
 //----------------- MsgBloc -------------------//
 //----------------------------------------------//
 
 int	CallRenfort(); // OK - ERR
-int	RecvRenfort(); // GODIR - KO - ERR
+int	RecvRenfort(); // OK - GODIR - KO - ERR
 int	CallJGLR(); // OK - ERR (JeGereLesResource)
 int	RecvJGLR(); // OK - KO - ERR
 
@@ -92,6 +93,7 @@ int	RecvJGLR(); // OK - KO - ERR
 int	While5(); // OK - LOOP
 int	While10(); // OK - LOOP
 int	IfIsRenf(); // OK - KO
+int	IfFoodSup10(); // OK - KO - ERR
 
 //-----------------EndIAFunc--------------------//
 
