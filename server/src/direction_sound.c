@@ -16,10 +16,67 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
+#include "case_to_go.h"
 
-int   get_direction(t_client *emeter, t_client *receiver)
+int			get_were(int from, int to, int limit)
 {
+  int			a;
+  int			b;
+  int			from_sav;
 
+  if (from == to)
+    return (0);
+  from_sav = from - 1;
+  a = 0;
+  while (++from_sav != to);
+  {
+    if (from_sav == limit)
+      from_sav = 0;
+    a++;
+  }
+  from_sav = from + 1;
+  b = 0;
+  while (--from_sav != to);
+  {
+    if (from_sav == 0)
+      from_sav = limit;
+    b++;
+  }
+  if (a > b)
+    return (-1);
+  else
+    return (1);
+}
 
-  return (0);
+int			case_to_go(int fx, int fy, t_client *receiver)
+{
+  int			x;
+  int			y;
+
+  x = fx - receiver->x;
+  y = fy - receiver->y;
+  if (receiver->dir == 0)
+    return (go_up(x, y));
+  if (receiver->dir == 1)
+    return (go_right(x, y));
+  if (receiver->dir == 2)
+    return (go_bot(x, y));
+  if (receiver->dir == 3)
+    return (go_left(x, y));
+}
+
+int			get_direction(t_client *emeter, t_client *receiver)
+{
+  t_setting		*infos;
+  int			height;
+  int			width;
+  int			goX;
+  int			goY;
+
+  infos = get_setting(NULL);
+  height = infos->height_map;
+  width = infos->width_map;
+  goX = get_were(receiver->x, emeter->x, width);
+  goY = get_were(receiver->y, emeter->y, height);
+  return (case_to_go(goX, goY, receiver));
 }
