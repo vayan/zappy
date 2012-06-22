@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Thu Jun 21 17:31:01 2012 alexandre haulotte
+// Last update Fri Jun 22 13:07:04 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -115,8 +115,13 @@ int   Player::Pond()
 int   Player::Eclosion()
 {
   PlayerCreator	pc;
+  static int	i = 0;
   //std::cout << "Eclosion" << std::endl;
-  pc.create(_addr, _port, _teamName);
+  //  if (i < 20)
+  //    {
+      pc.create(_addr, _port, _teamName, _id + i);
+      i++;
+      //    }
   return (OK);
 }
 
@@ -257,4 +262,27 @@ int     Player::StopRenfort()
 {
   isRenf = false;
   return (OK);
+}
+
+int	Player::MyLvl()
+{
+  switch (_lvl)
+    {
+    case 0:
+      return (UN);
+    case 1:
+      return (DEUX);
+    case 2:
+      return (TROIS);
+    case 3:
+      return (QUATRE);
+    case 4:
+      return (CINQ);
+    case 5:
+      return (SIX);
+    case 6:
+      return (SEPT);
+    default:
+      return (UN);
+    }
 }

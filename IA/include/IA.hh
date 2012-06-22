@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Thu Jun 21 17:49:36 2012 alexandre haulotte
+// Last update Fri Jun 22 14:22:00 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -26,6 +26,7 @@ int	VideCase(); // OK - ERR
 int	Inventaire(); // OK - ERR
 int	Voir(); // OK - ERR
 int	StopRenfort(); // OK
+int	MyLvl(); // UN - DEUX - TROIS - QUATRE - CINQ - SIX - SEPT
 
 //----------------------------------------------//
 //--------------- SearchBloc -------------------//
@@ -94,6 +95,7 @@ int	While5(); // OK - LOOP
 int	While10(); // OK - LOOP
 int	IfIsRenf(); // OK - KO
 int	IfFoodSup10(); // OK - KO - ERR
+int	IfFoodSup5(); // OK - KO - ERR
 
 //-----------------EndIAFunc--------------------//
 
@@ -130,21 +132,28 @@ enum  Retour
     LOOP,
     ALREADY,
     GODIR,
+    UN,
+    DEUX,
+    TROIS,
+    QUATRE,
+    CINQ,
+    SIX,
+    SEPT,
     ERR
   };
 
-enum  cmd
-  {
-    AVANCE,
-    FORK,
-    LOOP_FUNC = 2500,
-    LOOP_PSS = 2501,
-    LOOP_RN = 2502,
-    LOOP_NSC = 2503,
-    LOOP_AN = 2504,
-    LOOP_I = 2505,
-    LOOP_RFLSC = 2506,
-    LOOP_RRFL = 2057
-  };
+// enum  cmd
+//   {
+//     AVANCE,
+//     FORK,
+//     LOOP_FUNC = 2500,
+//     LOOP_PSS = 2501,
+//     LOOP_RN = 2502,
+//     LOOP_NSC = 2503,
+//     LOOP_AN = 2504,
+//     LOOP_I = 2505,
+//     LOOP_RFLSC = 2506,
+//     LOOP_RRFL = 2057
+//   };
 
 #endif

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Thu Jun 21 11:05:54 2012 alexandre haulotte
+// Last update Fri Jun 22 11:39:38 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -53,7 +53,7 @@ protected:
   int				_cState;
 
 public:
-  Player(int port, std::string ip, std::string team, int compo = 0);
+  Player(int port, std::string ip, std::string team, int compo = 0, int id = 0);
   Player(int compo = 0);
   ~Player();
   void				connexion();

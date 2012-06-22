@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Fri Jun 22 10:34:39 2012 alexandre haulotte
+// Last update Fri Jun 22 12:47:58 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -89,7 +89,7 @@ void	Player::recInfo()
   send(_soc, "\n", 1, 0);
   ret = recv(_soc, buff, 8096, 0);
   buff[ret] = 0;
-  _id = strToInt(buff);
+  //  _id = strToInt(buff);
   std::cout << "Mon Id est : " << _id << std::endl;
   ret = recv(_soc, buff, 8096, 0);
   buff[ret] = 0;
@@ -118,8 +118,8 @@ Player::Player(int compo)
 	    {6, 2, 2, 2, 2, 2, 1}};
 }
 
-Player::Player(int port, std::string ip, std::string team, int compo)
-  :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
+Player::Player(int port, std::string ip, std::string team, int compo, int id)
+  :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(id),
    _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(compo)
 {
   _teamName = team;
@@ -270,23 +270,60 @@ std::string   Player::intToStr(int i)
 
 int	Player::xrecv()
 {
-  int	ret;
-  char	buff[8096 + 1];
+  fd_set				readfds;
+  int					ret;
+  struct timeval			tv;
+  char					buff[8096 + 1];
+  std::vector<std::string>		rep;
+  std::vector<std::string>::iterator	it;
+  std::string				save = "";
 
-  ret = recv(_soc, buff, 8096, 0);
-  if (ret == -1)
-    return (ERR);
-  buff[ret] = 0;
-  _lastRep = buff;
-  while (_lastRep.find("message") != std::string::npos)
+  tv.tv_sec = 3;
+  tv.tv_usec = 0;
+  FD_ZERO(&readfds);
+  FD_SET(_soc, &readfds);
+  while (select(_soc + 1, &readfds, NULL, NULL, &tv) != -1)
     {
-      _msg.push_back(_lastRep);
-      //      std::cout << "LOLO<<<<>>>> " <<_id << " : " << _lastRep;
-      ret = recv(_soc, buff, 8096, 0);
-      if (ret == -1)
-	return (ERR);
-      buff[ret] = 0;
-      _lastRep = buff;
+      tv.tv_sec = 3;
+      tv.tv_usec = 0;
+      if (FD_ISSET(_soc, &readfds))
+	{
+	  ret = recv(_soc, buff, 8096, 0);
+	  if (ret == -1)
+	    return (ERR);
+	  buff[ret] = 0;
+	  _lastRep = buff;
+	  rep = split_to_vec(_lastRep, "\n");
+	  if (rep.size() > 1)
+	    {
+	      save = "";
+	      for (it = rep.begin(); it != rep.end(); it++)
+		{
+		  _lastRep = (*it);
+		  if (_lastRep.find("message") != std::string::npos)
+		    _msg.push_back(_lastRep);
+		  else
+		    save = _lastRep;
+		}
+	      if (save != "")
+		{
+		  _lastRep = save;
+		  break;
+		}
+	    }
+	  if (_lastRep.find("message") == std::string::npos)
+	    break;
+	  else
+	    _msg.push_back(_lastRep);
+	}
+      else
+	{
+	  //	  std::cout << _id << " | je recois rien" << std::endl;
+	  break;
+	}
+      //      std::cout << _id << " | je recois un message : " << _lastRep << std::endl;
+      FD_ZERO(&readfds);
+      FD_SET(_soc, &readfds);
     }
   return (ret);
 }
