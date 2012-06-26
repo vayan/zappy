@@ -5,14 +5,24 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:13:01 2012 anatole carlier
-** Last update Thu Jun 14 12:35:04 2012 randy lyvet
+** Last update Tue Jun 26 10:30:28 2012 robin maitre
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "xfunc.h"
+#include "command_fonc.h"
+#include "network.h"
+#include "setting.h"
 
-int	pgt(char **tab)
+int	pgt(char **tab, t_client *client)
 {
+  char  *str;
+
   tab = tab;
-  printf("pgt\n");
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf("pgt %i %i\n", client->id, client->rsrc);
+  broadcast_to_one_client(str, client);
+  free(str);
   return (0);
 }

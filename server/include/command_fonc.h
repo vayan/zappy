@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 14:41:40 2012 randy lyvet
-** Last update Fri Jun 15 15:05:31 2012 anatole carlier
+** Last update Tue Jun 26 10:25:24 2012 robin maitre
 */
 
 #ifndef COMMAND_FONC_
@@ -30,14 +30,14 @@ int	pfk(char **command, t_client *client);
 int	pdr(char **command, t_client *client);
 int	pgt(char **command, t_client *client);
 int	pdi(char **command, t_client *client);
-int	enw(char **command, t_client *client);
-int	eht(char **command, t_client *client);
-int	ebo(char **command, t_client *client);
-int	edi(char **command, t_client *client);
+int	enw(int id_egg, t_client *client);
+int	eht(int id, t_client *client);
+int	ebo(int id, t_client *client);
+int	edi(int id, t_client *client);
 int	sgt(char **command, t_client *client);
 int	sst(char **command, t_client *client);
 int	seg(char **command, t_client *client);
-int	smg(char **command, t_client *client);
+int	smg(char *mess, t_client *client);
 int	suc(char **command, t_client *client);
 int	sbp(char **command, t_client *client);
 char	*map_contents(char *str, int x, int y);

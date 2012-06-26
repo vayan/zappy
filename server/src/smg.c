@@ -5,14 +5,23 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:17:29 2012 anatole carlier
-** Last update Thu Jun 14 12:36:22 2012 randy lyvet
+** Last update Tue Jun 26 10:26:45 2012 robin maitre
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "xfunc.h"
+#include "command_fonc.h"
+#include "network.h"
+#include "setting.h"
 
-int	smg(char **tab)
+int	smg(char *mess, t_client *client)
 {
-  tab = tab;
-  printf("smg\n");
+  char	*str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str,"smg %s\n", mess);
+  broadcast_to_one_client(str, client);
+  free(str);
   return (0);
 }

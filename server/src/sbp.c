@@ -5,12 +5,17 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Tue Jun 12 11:18:39 2012 anatole carlier
-** Last update Thu Jun 14 12:40:27 2012 randy lyvet
+** Last update Tue Jun 26 10:27:40 2012 robin maitre
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "xfunc.h"
+#include "command_fonc.h"
+#include "network.h"
+#include "setting.h"
 
-int	sbp(char **tab)
+int	sbp(char **tab, t_client *client)
 {
   tab = tab;
   printf("sbp\n");
