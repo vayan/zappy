@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Tue Jun 26 10:01:35 2012 alexandre haulotte
+// Last update Tue Jun 26 11:55:07 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -85,6 +85,8 @@ int	CallRenfort(); // OK - ERR
 int	RecvRenfort(); // OK - GODIR - KO - ERR
 int	CallJGLR(); // OK - ERR (JeGereLesResource)
 int	RecvJGLR(); // OK - KO - ERR
+int	CallArrive() // OK - ERR
+int	RecvArrive() // OK - KO - ERR
 
 //----------------------------------------------//
 //----------------- AlgoBloc -------------------//
@@ -101,6 +103,7 @@ int	IfFoodSup30(); // OK - KO - ERR
 
 int	rDir;
 bool	isRenf;
+int	_nbRenf;
 typedef int (Player::*fct)();
 std::map<int, std::map<int, int> > trTable;
 std::map<int, fct > fctTable;
