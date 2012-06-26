@@ -18,11 +18,13 @@
 int	pdi(char **tab, t_client *client)
 {
   char	*str;
+   t_client *graphic;
 
+  graphic = get_graphic(NULL);
   tab = tab;
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pdi %i\n", client->id);
-  broadcast_to_one_client(str, client);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

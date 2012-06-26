@@ -22,12 +22,22 @@ int		bct(char **tab, t_client *client)
   char		*str;
   int		x;
   int		y;
+  t_client *graphic;
 
+  graphic = get_graphic(NULL);
   str = xmalloc(sizeof(char) * 1024);
-  x = atoi(tab[1]);
-  y = atoi(tab[2]);
+  if (tab[1] != NULL && tab[2] != NULL)
+  {
+    x = atoi(tab[1]);
+    y = atoi(tab[2]);
+  }
+  else
+  {
+    sbp(NULL, client);
+    return (0);
+  }
   str = map_contents(str, x, y);
-  broadcast_to_one_client(str, client);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

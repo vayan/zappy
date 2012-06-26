@@ -20,7 +20,9 @@
 int   add_slot_team(t_team *cl)
 {
   cl->left += 1;
+  eht(cl->to_open, cl);
   cl->to_open -= 1;
+
 }
 
 int   check_timer(t_team *cl)

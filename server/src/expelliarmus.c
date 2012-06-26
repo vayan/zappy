@@ -60,6 +60,7 @@ int do_expelliarmus(t_client *cl)
   tmp = (map[cl->x][cl->y])->client;
   if (tmp->next == NULL)
     return (-1);
+  pex(NULL, cl);
   while (tmp)
   {
     if (tmp->client->id != cl->id)

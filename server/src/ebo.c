@@ -18,10 +18,12 @@
 int	ebo(int id, t_client *client)
 {
   char *str;
+   t_client *graphic;
 
+  graphic = get_graphic(NULL);
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "ebo %d\n", id);
-  broadcast_to_one_client(str, client);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

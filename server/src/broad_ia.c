@@ -60,18 +60,19 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
   strcat(msg, "\n");
   tmp = all_client;
   while(tmp)
+  {
+    if (tmp != me)
     {
-      if (tmp != me)
-	{
-	  str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
-	  sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
-	  broadcast_to_one_client(str, tmp);
-	  free(str);
-	}
-      tmp = tmp->next;
-    }
-  broadcast_to_one_client(msg, me);
-  return (0);
+     str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
+     sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
+     broadcast_to_one_client(str, tmp);
+     free(str);
+   }
+   tmp = tmp->next;
+ }
+ broadcast_to_one_client(msg, me);
+ pbc(msg, me);
+ return (0);
 }
 
 char	*parse_msg(char *msg)

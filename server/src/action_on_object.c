@@ -28,6 +28,7 @@ void  do_take_obj(t_client *cl, Ressource obj)
     (map[cl->x][cl->y])->rsrc[obj]--;
     cl->rsrc[obj]++;
     broadcast_to_one_client("ok\n", cl);
+    pdr(obj, cl);
   }
   else
     broadcast_to_one_client("ko\n", cl);
@@ -43,6 +44,7 @@ void  do_drop_obj(t_client *cl, Ressource obj)
     (map[cl->x][cl->y])->rsrc[obj]++;
     cl->rsrc[obj]--;
     broadcast_to_one_client("ok\n", cl);
+    pgt(obj, cl);
   }
   else
     broadcast_to_one_client("ko\n", cl);

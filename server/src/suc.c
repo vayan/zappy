@@ -18,7 +18,9 @@
 int	suc(char **tab, t_client *client)
 {
   tab = tab;
+   t_client *graphic;
 
-  broadcast_to_one_client("suc\n", client);
+  graphic = get_graphic(NULL);
+  broadcast_to_one_client("suc\n", graphic);
   return (0);
 }

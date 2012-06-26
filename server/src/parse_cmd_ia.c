@@ -22,7 +22,9 @@
 void  first_data_graphic(t_client *cl)
 {
   msz(NULL, cl);
-
+  sgt(NULL, cl);
+  mct(NULL, cl);
+  tna(NULL, cl);
 }
 
 t_team *check_team(char *team)
@@ -53,6 +55,7 @@ int   get_type_client(char *cmd, t_client *cl)
   {
     cl->is_graphic = 1;
     get_graphic(cl);
+    first_data_graphic(cl);
     return (0);
   }
   else if (cl->teams == NULL && (tm = check_team(cmd)) != NULL)
@@ -62,7 +65,8 @@ int   get_type_client(char *cmd, t_client *cl)
       broadcast_to_one_client("ko\n", cl);
       cl->death->in_use = -1;
       return (1);
-    }     
+    } 
+    pnw(NULL, cl);
     add_client_on_map(cl);
     cl->teams = check_team(cmd);
     tm->left--;

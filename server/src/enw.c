@@ -18,10 +18,12 @@
 int	enw(int	id_egg, t_client *client)
 {
   char	*str;
+   t_client *graphic;
 
+  graphic = get_graphic(NULL);
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "enw %d %i %i %i\n", id_egg, client->id, client->x, client->y);
-  broadcast_to_one_client(str, client);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

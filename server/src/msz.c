@@ -19,12 +19,14 @@ int		msz(char **tab, t_client *client)
 {
   char		*str;
   t_setting	*settings;
+  t_client *graphic;
 
+  graphic = get_graphic(NULL);
   tab = tab;
   str = xmalloc(sizeof(char) * 64);
   settings = get_setting(NULL);
   sprintf(str, "msz %i %i\n", settings->width_map, settings->height_map);
-  broadcast_to_one_client(str, client);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

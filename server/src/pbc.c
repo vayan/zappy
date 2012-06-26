@@ -15,13 +15,15 @@
 #include "network.h"
 #include "xfunc.h"
 
-int	pbc(char **tab, t_client *client)
+int	pbc(char *msg, t_client *client)
 {
   char	*str;
+  t_client *graphic;
 
+  graphic = get_graphic(NULL);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf("pbc %i %s\n", client->id, tab[2]);
-  broadcast_to_one_client(str, client);
+  sprintf("pbc %i %s\n", client->id, msg);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

@@ -34,6 +34,7 @@ int   kill_player(t_client *cl)
   if (cl->rsrc[Nourriture] <= 0)
   {
     broadcast_to_one_client("mort\n", cl);
+    pdi(NULL, cl);
     remove_client(cl);
   }
 }

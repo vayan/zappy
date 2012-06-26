@@ -18,6 +18,9 @@
 int	sbp(char **tab, t_client *client)
 {
   tab = tab;
-  printf("sbp\n");
+  t_client *graphic;
+  
+  graphic = get_graphic(NULL);
+  broadcast_to_one_client("sbp\n", graphic);
   return (0);
 }

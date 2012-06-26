@@ -21,62 +21,30 @@ void		init_tab2(t_option *tab)
   tab[2].op_func = mct;
   tab[3].option = "tna";
   tab[3].op_func = tna;
-  tab[4].option = "pnw";
-  tab[4].op_func = pnw;
-  tab[5].option = "ppo";
-  tab[5].op_func = ppo;
-  tab[6].option = "plv";
-  tab[6].op_func = plv;
-  tab[7].option = "pin";
-  tab[7].op_func = pin;
-  tab[8].option = "pex";
-  tab[8].op_func = pex;
-  tab[9].option = "pbc";
-  tab[9].op_func = pbc;
-  tab[10].option = "pic";
-  tab[10].op_func = pic;
-  tab[11].option = "pie";
-  tab[11].op_func = pie;
+  tab[4].option = "ppo";
+  tab[4].op_func = ppo;
+  tab[5].option = "plv";
+  tab[5].op_func = plv;
+  tab[6].option = "pin";
+  tab[6].op_func = pin;
 }
 
 void		init_tab3(t_option *tab)
 {
-  tab[12].option = "pfk";
-  tab[12].op_func = pfk;
-  tab[13].option = "pdr";
-  tab[13].op_func = pdr;
-  tab[14].option = "pgt";
-  tab[14].op_func = pgt;
-  tab[15].option = "pdi";
-  tab[15].op_func = pdi;
-  tab[16].option = "enw";
-  tab[16].op_func = enw;
-  tab[17].option = "eht";
-  tab[17].op_func = eht;
-  tab[18].option = "ebo";
-  tab[18].op_func = ebo;
-  tab[19].option = "edi";
-  tab[19].op_func = edi;
-  tab[20].option = "sgt";
-  tab[20].op_func = sgt;
-  tab[21].option = "sst";
-  tab[21].op_func = sst;
-  tab[22].option = "seg";
-  tab[22].op_func = seg;
-  tab[23].option = "smg";
-  tab[23].op_func = smg;
+  tab[7].option = "sgt";
+  tab[7].op_func = sgt;
+  tab[8].option = "sst";
+  tab[8].op_func = sst;
 }
 
 void		init_tab4(t_option *tab)
 {
-  tab[24].option = "suc";
-  tab[24].op_func = suc;
-  tab[25].option = "sbp";
-  tab[25].op_func = sbp;
+
 }
 
 void		init_tab(t_option *tab)
 {
+  memset(tab, 0, TAB_SIZE);
   init_tab2(tab);
   init_tab3(tab);
   init_tab4(tab);

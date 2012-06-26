@@ -22,6 +22,8 @@ int   do_fork_pl(t_client *cl)
 {
   cl->teams->to_open += 1;
   broadcast_to_one_client("ok\n", cl);
+  enw(cl->teams->to_open, cl);
+
 }
 
 int fork_cl(t_client *cl)
@@ -34,6 +36,7 @@ int fork_cl(t_client *cl)
   { 
     cl->stm->in_use = Fork;
     start_timer(cl->stm);
+    pfk(NULL, cl);
     return (1);
   }
   setting = get_setting(NULL);

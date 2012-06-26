@@ -15,14 +15,15 @@
 #include "network.h"
 #include "setting.h"
 
-int	pgt(char **tab, t_client *client)
+int	pgt(Ressource rsrc, t_client *client)
 {
   char  *str;
+   t_client *graphic;
 
-  tab = tab;
+  graphic = get_graphic(NULL);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf("pgt %i %i\n", client->id, client->rsrc);
-  broadcast_to_one_client(str, client);
+  sprintf("pgt %i %i\n", client->id, rsrc);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

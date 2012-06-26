@@ -20,7 +20,9 @@ int		tna(char **tab, t_client *client)
   t_setting	*settings;
   char		*str;
   t_team *tmp;
+  t_client *graphic;
 
+  graphic = get_graphic(NULL);
   tab = tab;
   settings = get_setting(NULL);
   tmp = settings->all_team;
@@ -28,7 +30,7 @@ int		tna(char **tab, t_client *client)
   {
     str = xmalloc(sizeof(char) * 1024);
     sprintf(str, "tna %s\n", tmp->name);
-    broadcast_to_one_client(str, client);
+    broadcast_to_one_client(str, graphic);
     free(str);
     tmp = tmp->next;
   }
