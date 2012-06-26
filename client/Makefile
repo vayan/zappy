@@ -5,7 +5,7 @@
 ## Login   <lyvet_r@epitech.net>
 ## 
 ## Started on  Mon Nov  7 15:53:02 2011 randy lyvet
-## Last update Fri Jun 22 14:46:20 2012 yuguo cao
+## Last update Tue Jun 26 11:39:51 2012 yuguo cao
 ##
 
 NAME		=	client
@@ -25,7 +25,8 @@ SRCS_H		=	$(wildcard $(INC_DIR)/*.hpp)
 SVN		=	svn co svn+ssh://kscm@koala-rendus.epitech.net/$(SVN_NAME)
 SVN_NAME	=	#Nom du depos#
 
-CC		=	@clang++ -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+CC		=	@clang++
+SFML_LIB	=	 -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 CFLAGS		=	-W -Wall -g3 -ggdb
 DEBUGFLAGS	=	-g3 -ansi -pedantic
 LFLAGS		=	##$(addprefix -l, $(LIBS)) $(addprefix -L, $(LIB_DIR)) \
@@ -40,7 +41,7 @@ DARK_BLUE	=	1;34
 ###################################
 ${NAME}		:	$(SRCS_O)
 		@echo -e " \033[1;$(WHITE_BLUE)m"'\n  -------- Begin Link -------- '"\033[0;0;00m"''
-		$(CC) -o $(NAME) $(SRCS_O) $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE_LINK)
+		$(CC) -o $(NAME) $(SRCS_O) $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE_LINK) $(SFML_LIB)
 		@echo "Terminer, un petit 'make cafe' avant de commencer ?"
 
 all		:	$(NAME)

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 10:22:18 2012 alexandre haulotte
-// Last update Fri Jun 22 14:51:43 2012 yuguo cao
+// Last update Tue Jun 26 12:07:47 2012 yuguo cao
 //
 
 #ifndef		__CORE_HH__
@@ -23,7 +23,7 @@
 #include	<netdb.h>
 #include	<sstream>
 #include	<signal.h>
-//#include	"Graph.hh"
+#include	"Graph.hh"
 #include	"Errur.hh"
 #include	"Parser.hh"
 
@@ -33,7 +33,7 @@ private:
   typedef void		(Core::*f)(const std::vector<int>);
 
   int			soc;
-  //  Graph			*graph;
+  Graph			*graph;
   Parser		*parser;
   std::string		teamName;
   std::string		macName;
@@ -57,6 +57,7 @@ private:
   void			takePlayer(const std::vector<int>);
   void			addEgg(const std::vector<int>);
   void			eggHatched(const std::vector<int>);
+  void			rien(const std::vector<int>);
 
 public:
   Core(int ac, char **av);
