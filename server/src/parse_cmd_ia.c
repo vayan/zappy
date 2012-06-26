@@ -66,7 +66,7 @@ int   get_type_client(char *cmd, t_client *cl)
       cl->death->in_use = -1;
       return (1);
     } 
-    pnw(NULL, cl);
+
     add_client_on_map(cl);
     cl->teams = check_team(cmd);
     tm->left--;
@@ -75,8 +75,7 @@ int   get_type_client(char *cmd, t_client *cl)
     broadcast_to_one_client(buff_int, cl);
     sprintf(buff_int, "%d %d\n", setting->width_map, setting->height_map);
     broadcast_to_one_client(buff_int, cl);
-    if (get_graphic(NULL) != NULL)
-      pnw(NULL, get_graphic(NULL));
+    pnw(NULL, cl);
     return (0);
   }
   return (1);

@@ -39,7 +39,8 @@ int   broadcast_to_one_client(char *msg, t_client *me)
 {
   t_client  *tmp;
   char    *full_msg;
-
+  if (me == NULL)
+    return (0);
   full_msg = xmalloc(MAX_INPUT * sizeof(char*));
   memset(full_msg, 0, MAX_INPUT);
   strcat(full_msg, msg);
