@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Tue Jun 26 11:54:58 2012 alexandre haulotte
+// Last update Tue Jun 26 15:05:49 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -273,7 +273,7 @@ std::string   Player::intToStr(int i)
 int	Player::xrecv()
 {
   fd_set				readfds;
-  int					ret;
+  int					ret = 0;
   struct timeval			tv;
   char					buff[16192 + 1];
   std::vector<std::string>		rep;

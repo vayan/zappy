@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Tue Jun 26 11:55:07 2012 alexandre haulotte
+// Last update Tue Jun 26 13:38:18 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -25,8 +25,8 @@ int	GoToDir(); // OK - ERR
 int	VideCase(); // OK - ERR
 int	Inventaire(); // OK - ERR
 int	Voir(); // OK - ERR
-int	StopRenfort(); // OK
 int	MyLvl(); // UN - DEUX - TROIS - QUATRE - CINQ - SIX - SEPT
+int	RaZRenfort(); // OK
 
 //----------------------------------------------//
 //--------------- SearchBloc -------------------//
@@ -85,8 +85,9 @@ int	CallRenfort(); // OK - ERR
 int	RecvRenfort(); // OK - GODIR - KO - ERR
 int	CallJGLR(); // OK - ERR (JeGereLesResource)
 int	RecvJGLR(); // OK - KO - ERR
-int	CallArrive() // OK - ERR
-int	RecvArrive() // OK - KO - ERR
+int	CallArrive(); // OK - ERR
+int	CallRenfortOK(); // OK - ERR
+int	RecvArrive(); // OK - KO - ERR
 
 //----------------------------------------------//
 //----------------- AlgoBloc -------------------//

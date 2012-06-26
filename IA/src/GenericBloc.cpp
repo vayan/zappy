@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Tue Jun 26 10:21:15 2012 alexandre haulotte
+// Last update Tue Jun 26 15:27:38 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -116,26 +116,30 @@ int   Player::Eclosion()
 {
   PlayerCreator	pc;
   static int	i = 0;
-  //std::cout << "Eclosion" << std::endl;
-  //   if (i < 8)
-  //     {
+  // std::cout << "Eclosion" << std::endl;
+  // if (i < 8)
+  //   {
       pc.create(_addr, _port, _teamName, _id + i);
-  i++;
-     // }
+      i++;
+      //    }
   return (OK);
 }
 
 int	Player::Incantation()
 {
-  int	ret;
+  int	ret = 0;
 
   ret = xsend(_soc, "incantation\n", 12, 0);
   if (ret == -1)
     return (ERR);
   ret = xrecv();
+  if (ret == -1)
+    return (ERR);
   if (_lastRep.find("elevation") != std::string::npos)
     {
-      ret = xrecv();
+      while ((ret = xrecv()) == 0);
+      if (ret == -1)
+	return (ERR);
       if (_lastRep.find("niveau") != std::string::npos)
 	{
 	  _lvl++;
@@ -258,12 +262,6 @@ int	Player::VideCase()
   return (OK);
 }
 
-int     Player::StopRenfort()
-{
-  isRenf = false;
-  return (OK);
-}
-
 int	Player::MyLvl()
 {
   switch (_lvl)
@@ -285,4 +283,11 @@ int	Player::MyLvl()
     default:
       return (UN);
     }
+}
+
+int	Player::RaZRenfort()
+{
+  _nbRenf = 0;
+  isRenf = false;
+  return (OK);
 }
