@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun 12 14:16:37 2012 alexandre haulotte
-// Last update Tue Jun 26 15:27:22 2012 alexandre haulotte
+// Last update Tue Jun 26 17:01:15 2012 alexandre haulotte
 //
 
 #include	<iostream>
@@ -18,7 +18,7 @@
 int	PlayerCreator::create(std::string& ip, int port, std::string& teamName, int id)
 {
   int		pid;
-  Player	*pl;
+  Player	* pl;
 
   pid = fork();
   if (pid == -1)
@@ -29,7 +29,7 @@ int	PlayerCreator::create(std::string& ip, int port, std::string& teamName, int 
       pl->play();
       exit(0);
     }
-  return (pid);
+  return ( pid);
 }
 
 PlayerCreator::PlayerCreator() {}

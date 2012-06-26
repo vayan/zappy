@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:48:02 2012 alexandre haulotte
-// Last update Tue Jun 26 10:01:10 2012 alexandre haulotte
+// Last update Tue Jun 26 17:00:46 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -180,5 +180,12 @@ int	Player::JoueurSurCase()
 	  return (OK);
 	}
     }
+  return (KO);
+}
+
+int	Player::GPondu()
+{
+  if (gPondu == true)
+    return (OK);
   return (KO);
 }

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:51:45 2012 alexandre haulotte
-// Last update Tue Jun 26 15:27:09 2012 alexandre haulotte
+// Last update Tue Jun 26 16:59:41 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -15,34 +15,36 @@ void	Player::initTab()
   // ------------------ Test IA 3 ----------------//
 
   // Compo 1
-  // trTable[1][OK] = 2;
-  // trTable[2][OK] = 3;
-  // trTable[2][KO] = 9;
-  // trTable[3][OK] = 4;
-  // trTable[3][KO] = 2;
-  // trTable[4][OK] = 1;
-  // trTable[5][OK] = 7;
-  // trTable[5][GODIR] = 6;
-  // trTable[5][KO] = 8;
-  // trTable[6][OK] = 5;
-  // trTable[7][OK] = 2;
-  // trTable[7][KO] = 5;
-  // trTable[8][OK] = 5;
-  // trTable[9][LOOP] = 5;
-  // trTable[9][OK] = 2;
+  trTable[1][OK] = 2;
+  trTable[2][OK] = 3;
+  trTable[2][KO] = 9;
+  trTable[3][OK] = 4;
+  trTable[3][KO] = 2;
+  trTable[4][OK] = 1;
+  trTable[5][OK] = 7;
+  trTable[5][GODIR] = 6;
+  trTable[5][KO] = 8;
+  trTable[6][OK] = 5;
+  trTable[7][OK] = 2;
+  trTable[7][KO] = 5;
+  trTable[8][OK] = 5;
+  trTable[9][LOOP] = 5;
+  trTable[9][OK] = 2;
 
 
-  // fctTable[1] = &Player::Pond;
-  // fctTable[2] = &Player::IfFoodSup10;
-  // fctTable[3] = &Player::PlaceSurServeur;
-  // fctTable[4] = &Player::Eclosion;
-  // fctTable[5] = &Player::SearchNourriture;
-  // fctTable[6] = &Player::GoToDir;
-  // fctTable[7] = &Player::RamassezAllNourriture;
-  // fctTable[8] = &Player::Avance;
-  // fctTable[9] = &Player::While10;
+  fctTable[1] = &Player::Pond;
+  fctTable[2] = &Player::IfFoodSup10;
+  fctTable[3] = &Player::PlaceSurServeur;
+  fctTable[4] = &Player::Eclosion;
+  fctTable[5] = &Player::SearchNourriture;
+  fctTable[6] = &Player::GoToDir;
+  fctTable[7] = &Player::RamassezAllNourriture;
+  fctTable[8] = &Player::Avance;
+  fctTable[9] = &Player::While10;
 
-  // // Compo 2
+  trTable[10][OK] = 10;
+  fctTable[10] = &Player::Avance;
+  //  // Compo 2
   // trTable[10][OK] = 16;
   // trTable[10][KO] = 11;
   // trTable[11][LOOP] = 12;
@@ -65,7 +67,7 @@ void	Player::initTab()
   // trTable[19][KO] = 39;
   // trTable[20][OK] = 10;
   // trTable[20][LOOP] = 21;
-  // trTable[21][OK] = 41;
+  // trTable[21][OK] = 10;
   // trTable[21][KO] = 20;
   // trTable[22][OK] = 28;
   // trTable[22][KO] = 33;
@@ -82,7 +84,7 @@ void	Player::initTab()
   // trTable[29][OK] = 30;
   // trTable[29][KO] = 10;
   // trTable[29][LOOP] = 29;
-  // trTable[30][OK] = 41;
+  // trTable[30][OK] = 10;
   // trTable[30][KO] = 10;
   // trTable[31][OK] = 10;
   // trTable[31][LOOP] = 22;
@@ -106,13 +108,13 @@ void	Player::initTab()
   // trTable[39][KO] = 10;
   // trTable[40][OK] = 19;
   // trTable[40][KO] = 10;
-  // trTable[41][UN] = 10;
-  // trTable[41][DEUX] = 10;
-  // trTable[41][TROIS] = 10;
-  // trTable[41][QUATRE] = 10;
-  // trTable[41][CINQ] = 10;
-  // trTable[41][SIX] = 10;
-  // trTable[41][SEPT] = 42;
+  // // trTable[41][UN] = 10;
+  // // trTable[41][DEUX] = 10;
+  // // trTable[41][TROIS] = 10;
+  // // trTable[41][QUATRE] = 10;
+  // // trTable[41][CINQ] = 10;
+  // // trTable[41][SIX] = 10;
+  // // trTable[41][SEPT] = 42;
 
   // fctTable[10] = &Player::IfFoodSup30;
   // fctTable[11] = &Player::While5;
@@ -352,6 +354,7 @@ void	Player::initTab()
   // trTable[3][OK] = 3;
   // trTable[4][GODIR] = 5;
   // trTable[4][KO] = 4;
+  // trTable[4][OK] = 4;
   // trTable[5][OK] = 4;
   // trTable[5][KO] = 4;
   // trTable[6][OK] = 4;
@@ -493,4 +496,5 @@ void	Player::initTab()
   // fctTable[12] = &Player::Incantation;
   // fctTable[13] = &Player::GoToDir;
   rDir = 0;
+  gPondu = false;
 }

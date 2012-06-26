@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Tue Jun 26 15:27:38 2012 alexandre haulotte
+// Last update Tue Jun 26 16:59:21 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -104,6 +104,7 @@ int   Player::Pond()
 
   //std::cout << "je pond" << std::endl;
   ret = xsend(_soc, "fork\n", 5, 0);
+  gPondu = true;
   if (ret == -1)
     return (ERR);
   ret = xrecv();

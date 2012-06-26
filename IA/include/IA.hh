@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Tue Jun 26 13:38:18 2012 alexandre haulotte
+// Last update Tue Jun 26 17:00:16 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -76,6 +76,7 @@ int	PlaceSurServeur(); // OK - KO - ERR
 int	AssezPlayerForLvl(); // OK - KO - ERR
 int	CaseReady(); // OK - KO - LOOP - ERR
 int	JoueurSurCase(); // OK - KO - ERR
+int	GPondu(); // OK - KO
 
 //----------------------------------------------//
 //----------------- MsgBloc -------------------//
@@ -105,6 +106,7 @@ int	IfFoodSup30(); // OK - KO - ERR
 int	rDir;
 bool	isRenf;
 int	_nbRenf;
+bool	gPondu;
 typedef int (Player::*fct)();
 std::map<int, std::map<int, int> > trTable;
 std::map<int, fct > fctTable;
