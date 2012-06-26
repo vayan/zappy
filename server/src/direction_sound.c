@@ -78,5 +78,7 @@ int			get_direction(t_client *emeter, t_client *receiver)
   width = infos->width_map;
   goX = get_were(receiver->x, emeter->x, width);
   goY = get_were(receiver->y, emeter->y, height);
+  if (goY == 0 && goX == 0)
+    return (0);
   return (case_to_go(goX, goY, receiver));
 }
