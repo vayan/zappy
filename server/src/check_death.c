@@ -31,8 +31,11 @@ int   check_death_all_player()
 
 int   kill_player(t_client *cl)
 {
-  broadcast_to_one_client("mort\n", cl);
-  remove_client(cl);
+  if (cl->rsrc[Nourriture] <= 0)
+  {
+    broadcast_to_one_client("mort\n", cl);
+    remove_client(cl);
+  }
 }
 
 int start_dying(t_client *cl)
@@ -50,8 +53,9 @@ int start_dying(t_client *cl)
   setting = get_setting(NULL);
   set_elapse_time(cl->death);
   set_elapse_sec(cl->death);
-  if (((cl->death->in_nsec) >= ((cl->rsrc[Nourriture] * 126000000000)/setting->delay)))
+  if (((cl->death->in_nsec) >= ((126000000000)/setting->delay)))
   {
+    cl->rsrc[Nourriture] -= 1;
     cl->death->in_use = -1;
     kill_player(cl);
     return (0);

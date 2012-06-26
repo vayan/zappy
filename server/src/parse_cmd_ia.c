@@ -19,6 +19,12 @@
 #include "setting.h"
 #include "my_strtowordtab.h"
 
+void  first_data_graphic(t_client *cl)
+{
+  msz(NULL, cl);
+
+}
+
 t_team *check_team(char *team)
 {
   t_setting *setting;
