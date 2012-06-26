@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:37 2012 yuguo cao
-// Last update Fri Jun 15 12:47:52 2012 yuguo cao
+// Last update Fri Jun 15 14:06:18 2012 yuguo cao
 //
 
 #include	"Imman.hh"
@@ -24,7 +24,7 @@ void		Imman::loadImages()
   _images["mage_charset1"].CreateMaskFromColor(sf::Color(0, 0, 255));
 
   _images["back"].LoadFromFile("assets/back.bmp");
-  _images["mage_charset1"].CreateMaskFromColor(sf::Color(0, 0, 255));
+  _images["back"].CreateMaskFromColor(sf::Color(0, 0, 255));
 }
 
 sf::Image&	Imman::getImage(const std::string& name)

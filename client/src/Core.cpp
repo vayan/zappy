@@ -5,14 +5,23 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Wed Jun 13 12:45:35 2012 alexandre haulotte
+// Last update Fri Jun 22 14:53:44 2012 yuguo cao
 //
 
-#include 	<sstream>
-#include	<signal.h>
 #include	"Core.hh"
-#include	"Parser.hh"
-#include	"PlayerCreator.hh"
+
+Core::Core(int ac, char **av)
+  :soc(0), teamName(""), macName(""), port(0)
+{
+  beginParse(ac, av);
+
+  
+}
+
+Core::~Core()
+{
+
+}
 
 void			Core::go()
 {
@@ -23,7 +32,6 @@ void			Core::go()
   struct timeval	tv;
   int			i , j, save = 0;
   Parser		p;
-  PlayerCreator		plCreat;
   std::vector<int>	vec;
 
   init();
@@ -31,7 +39,6 @@ void			Core::go()
   tv.tv_sec = 0;
   tv.tv_usec = 2000;
   send(soc, "GRAPHIC\n", 8, 0);
-  send(soc, "tna lola\n", 9, 0);
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
   FD_SET(soc, &readfds);
@@ -56,12 +63,10 @@ void			Core::go()
 	      cmd[j] = '\0';
 	      if (buff[i] == '\n')
 		{
-		  vec = p.parseThat(cmd);
-		  if (!vec.empty())
-		    {
-		      joueurs.push_back(plCreat.create(vec, macName, port));
-		    }
+		  vec = p.parse(cmd);
 		  std::cout << "Commande = " << cmd << std::endl;
+		  for(std::vector<int>::iterator i = vec.begin(); i != vec.end();++i)
+		    std::cout << *i << std::endl;
 		}
 	      i++;
 	      save = 0;
@@ -162,17 +167,84 @@ std::string   Core::intToStr(int i)
   return (oss.str());
 }
 
-Core::Core(int ac, char **av)
-  :soc(0), teamName(""), macName(""), port(0)
+void			Core::initTab()
 {
-  beginParse(ac, av);
+  funcs.push_back(&Core::updaMapSize);
+  funcs.push_back(&Core::updaCaseInfo);
+  funcs.push_back(&Core::updaCaseInfo);
 }
 
-Core::~Core()
+void			Core::updaMapSize(const std::vector<int>)
 {
-  std::vector<int>::iterator it;
-  for (it = joueurs.begin(); it != joueurs.end(); it++)
-    {
-      kill((*it), SIGKILL);
-    }
+
+}
+
+void			Core::updaCaseInfo(const std::vector<int> v)
+{
+
+}
+
+void			Core::requCaseInfo(const std::vector<int> v)
+{
+  
+}
+
+void			Core::addPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::movePlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::requPlayerInfo(const std::vector<int> v)
+{
+  
+}
+
+void			Core::expuPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::broaPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::incdPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::incfPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::pondPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::dropPlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::takePlayer(const std::vector<int> v)
+{
+  
+}
+
+void			Core::addEgg(const std::vector<int> v)
+{
+  
+}
+
+void			Core::eggHatched(const std::vector<int> v)
+{
+  
 }

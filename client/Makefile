@@ -5,10 +5,10 @@
 ## Login   <lyvet_r@epitech.net>
 ## 
 ## Started on  Mon Nov  7 15:53:02 2011 randy lyvet
-## Last update Fri Jun 22 13:54:37 2012 randy lyvet
+## Last update Fri Jun 22 14:46:20 2012 yuguo cao
 ##
 
-NAME		=	NAME
+NAME		=	client
 
 NAMEFILE	=	$(NAME)
 
@@ -25,7 +25,7 @@ SRCS_H		=	$(wildcard $(INC_DIR)/*.hpp)
 SVN		=	svn co svn+ssh://kscm@koala-rendus.epitech.net/$(SVN_NAME)
 SVN_NAME	=	#Nom du depos#
 
-CC		=	@g++ -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+CC		=	@clang++ -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 CFLAGS		=	-W -Wall -g3 -ggdb
 DEBUGFLAGS	=	-g3 -ansi -pedantic
 LFLAGS		=	##$(addprefix -l, $(LIBS)) $(addprefix -L, $(LIB_DIR)) \

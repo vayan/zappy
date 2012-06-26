@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 20:17:42 2012 yuguo cao
-// Last update Fri Jun 15 11:51:25 2012 yuguo cao
+// Last update Wed Jun 20 14:57:27 2012 yuguo cao
 //
 
 #ifndef		__ASPRITE__
@@ -16,6 +16,7 @@
 
 enum ACTION
   {
+    NO,
     UP,
     DOWN,
     LEFT,
@@ -30,6 +31,7 @@ class ASprite
 {
 protected:
   sf::Image		_image;
+  ACTION		_orientation;
   ACTION		_lastAction;
   LayerAnimation	_mUp;
   LayerAnimation	_mDown;
@@ -55,9 +57,11 @@ public:
   virtual void		mCast() = 0;
   virtual void		mBroad() = 0;
   virtual void		mDie() = 0;
-  LayerAnimation	anim(ACTION, ACTION last = UP);
+  LayerAnimation	anim(const ACTION a = NO);
   void			move(const float, const float);
-  void			setPos(const int, const int);
+  void			setLastAction(const ACTION);
+  void			setPosition(const int, const int);
+  const sf::Vector2f&	getPosition();
 };
 
 #endif
