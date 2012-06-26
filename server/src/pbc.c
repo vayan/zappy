@@ -21,8 +21,10 @@ int	pbc(char *msg, t_client *client)
   t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf("pbc %i %s\n", client->id, msg);
+  sprintf(str, "pbc %d %s\n", client->id, msg);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);

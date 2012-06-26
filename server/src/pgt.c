@@ -21,8 +21,10 @@ int	pgt(Ressource rsrc, t_client *client)
    t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf("pgt %i %i\n", client->id, rsrc);
+  sprintf(str, "pgt %i %i\n", client->id, rsrc);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);

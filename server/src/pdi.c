@@ -21,6 +21,8 @@ int	pdi(char **tab, t_client *client)
    t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   tab = tab;
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pdi %i\n", client->id);

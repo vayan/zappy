@@ -14,6 +14,20 @@
 #include "network.h"
 #include "xfunc.h"
 
+int pin_one(t_client *graphic, t_client *clients)
+{
+  char    *str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "pnw %i %i %i %i %i %i %i %i %i %i\n", clients->id, clients->x, 
+    clients->y, clients->rsrc[Nourriture], clients->rsrc[Linemate], 
+    clients->rsrc[Deraumere], clients->rsrc[Sibur], clients->rsrc[Mendiane],
+    clients->rsrc[Phiras], clients->rsrc[Thystame]);
+  broadcast_to_one_client(str, graphic);
+  free(str);
+  return (0);
+}
+
 int		pin(char **tab, t_client *client)
 {
   char		*str;
@@ -22,24 +36,28 @@ int		pin(char **tab, t_client *client)
 
   clients = get_all_client(NULL);
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
+  if (tab == NULL)
+    return (pin_one(graphic, client));
   if (tab[1] != NULL)
+  {
+    while (clients)
     {
-      while (clients)
-        {
-          if (clients->id == atoi(tab[1]))
-            {
-	      str = xmalloc(sizeof(char) * 1024);
-	      sprintf(str, "pnw %i %i %i %i %i %i %i %i %i %i\n", clients->id, clients->x, 
-		      clients->y, clients->rsrc[Nourriture], clients->rsrc[Linemate], 
-		      clients->rsrc[Deraumere], clients->rsrc[Sibur], clients->rsrc[Mendiane],
-		      clients->rsrc[Phiras], clients->rsrc[Thystame]);
-	      broadcast_to_one_client(str, graphic);
-	      free(str);
-	      return (0);
-	    }
-          clients = clients->next;
-        }
-    }
-  sbp(NULL, client);
-  return (0);
+      if (clients->id == atoi(tab[1]))
+      {
+       str = xmalloc(sizeof(char) * 1024);
+       sprintf(str, "pnw %i %i %i %i %i %i %i %i %i %i\n", clients->id, clients->x, 
+        clients->y, clients->rsrc[Nourriture], clients->rsrc[Linemate], 
+        clients->rsrc[Deraumere], clients->rsrc[Sibur], clients->rsrc[Mendiane],
+        clients->rsrc[Phiras], clients->rsrc[Thystame]);
+       broadcast_to_one_client(str, graphic);
+       free(str);
+       return (0);
+     }
+     clients = clients->next;
+   }
+ }
+ sbp(NULL, client);
+ return (0);
 }

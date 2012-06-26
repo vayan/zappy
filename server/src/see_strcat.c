@@ -1,3 +1,13 @@
+/*
+** see_strcat.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Tue Jun 26 12:55:49 2012 yann vaillant
+** Last update Tue Jun 26 12:55:50 2012 yann vaillant
+*/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

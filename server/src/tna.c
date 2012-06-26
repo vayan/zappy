@@ -23,6 +23,8 @@ int		tna(char **tab, t_client *client)
   t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   tab = tab;
   settings = get_setting(NULL);
   tmp = settings->all_team;

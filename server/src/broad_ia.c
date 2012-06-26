@@ -70,8 +70,8 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
    }
    tmp = tmp->next;
  }
- broadcast_to_one_client(msg, me);
  pbc(msg, me);
+ broadcast_to_one_client(msg, me);
  return (0);
 }
 

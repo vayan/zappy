@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:37:52 2012 yann vaillant
-** Last update Thu Jun  7 15:37:53 2012 yann vaillant
+** Last update Tue Jun 26 12:59:04 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -55,27 +55,27 @@ int   broadcast_to_one_client(char *msg, t_client *me)
   }
 
 
-  int do_input_client(t_client *all_client)
-  {
-    t_client  *tmp;
-    t_option *tab;
-
-    tab = xmalloc (26 * sizeof(t_option));
-    init_tab(tab);
-    tmp = all_client;
-    while (tmp)
+int do_input_client(t_client *all_client)
+{
+  t_client  *tmp;
+  t_option *tab;
+  
+  tab = xmalloc (26 * sizeof(t_option));
+  init_tab(tab);
+  tmp = all_client;
+  while (tmp)
     {
       if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
-      {
-        if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
-          rm_top_msg_from_buffer(tmp);    
-      }
+	{
+	  if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
+	    rm_top_msg_from_buffer(tmp);    
+	}
       else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
-      {
-        if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
-          rm_top_msg_from_buffer(tmp); 
-      }
+	{
+	  if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
+	    rm_top_msg_from_buffer(tmp); 
+	}
       tmp = tmp->next;
     }
-    return (0);
-  }
+  return (0);
+}

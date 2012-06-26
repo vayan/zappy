@@ -18,11 +18,14 @@
 int	pdr(Ressource rsrc, t_client *client)
 {
   char	*str;
-   t_client *graphic;
+  t_client *graphic;
 
   graphic = get_graphic(NULL);
+  printf("debug %d \n", rsrc);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf("pdr %i %i\n", client->id, rsrc);
+  sprintf(str, "pdr %d %d\n", client->id, rsrc);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);

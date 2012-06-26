@@ -21,6 +21,8 @@ int	smg(char *mess, t_client *client)
    t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str,"smg %s\n", mess);
   broadcast_to_one_client(str, graphic);

@@ -1,3 +1,13 @@
+/*
+** parse_cmd_ia.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Tue Jun 26 12:55:26 2012 yann vaillant
+** Last update Tue Jun 26 12:55:27 2012 yann vaillant
+*/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -21,10 +31,22 @@
 
 void  first_data_graphic(t_client *cl)
 {
+  t_client *all_cl;
+
+  all_cl = get_all_client(NULL);
   msz(NULL, cl);
   sgt(NULL, cl);
   mct(NULL, cl);
   tna(NULL, cl);
+
+  if (all_cl != NULL)
+  {
+    while (all_cl)
+    {
+      pnw(NULL, all_cl);
+      all_cl = all_cl->next;
+    }
+  }
 }
 
 t_team *check_team(char *team)
@@ -97,9 +119,9 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
       return (turnLeft(cl));
     else if (strcmp(tab[0], "inventaire") == 0)
       return (Inventory(cl));
-    else if (strcmp(tab[0], "prend") == 0)
+    else if (strcmp(tab[0], "prend") == 0 && parse_rsr(tab[1]) != -1)
       return(Take_Object(cl, parse_rsr(tab[1])));
-    else if (strcmp(tab[0], "pose") == 0)
+    else if (strcmp(tab[0], "pose") == 0 && parse_rsr(tab[1]) != -1)
       return(Drop_Object(cl, parse_rsr(tab[1])));
     else if (strcmp(tab[0], "expulse") == 0)
       return(expelliarmus(cl));

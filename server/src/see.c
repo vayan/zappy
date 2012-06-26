@@ -81,25 +81,25 @@ int do_see(t_client *cl)
 
 int Want_See(t_client *cl)
 {
- t_setting *setting;
+  t_setting *setting;
 
- if (cl->stm->in_use != -1 && cl->stm->in_use != See)
+  if (cl->stm->in_use != -1 && cl->stm->in_use != See)
+    return (1);
+  if (cl->stm->in_use == -1)
+    { 
+      cl->stm->in_use = See;
+      start_timer(cl->stm);
+      return (1);
+    }
+  setting = get_setting(NULL);
+  set_elapse_time(cl->stm);
+  set_elapse_sec(cl->stm);
+  if (cl->stm->in_use == See &&
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      do_see(cl);
+      return (0);
+    }
   return (1);
-if (cl->stm->in_use == -1)
-{ 
-  cl->stm->in_use = See;
-  start_timer(cl->stm);
-  return (1);
-}
-setting = get_setting(NULL);
-set_elapse_time(cl->stm);
-set_elapse_sec(cl->stm);
-if (cl->stm->in_use == See &&
-  ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
-{
-  cl->stm->in_use = -1;
-  do_see(cl);
-  return (0);
-}
-return (1);
 }

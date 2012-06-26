@@ -22,6 +22,8 @@ int     plv(char **tab, t_client *client)
 
   clients = get_all_client(NULL);
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   if (tab[1] != NULL)
     {
       while (clients)

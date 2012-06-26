@@ -21,6 +21,8 @@ int	eht(int id, t_client *client)
    t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "eht %d\n", id);
   broadcast_to_one_client(str, graphic);

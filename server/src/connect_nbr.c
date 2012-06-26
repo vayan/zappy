@@ -1,3 +1,13 @@
+/*
+** connect_nbr.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Tue Jun 26 12:53:17 2012 yann vaillant
+** Last update Tue Jun 26 12:53:18 2012 yann vaillant
+*/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

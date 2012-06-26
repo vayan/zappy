@@ -33,7 +33,7 @@ char	**my_alloc_tab(char *str, char sep)
   int	k;
   int	szw;
 
-  tab = xmalloc(sizeof(*tab) * (my_count_word(str, sep) + 1));
+  tab = xmalloc(sizeof(*tab) * (my_count_word(str, sep) + 2));
   i = 0;
   k = 0;
   while (str[i] != '\0')
@@ -45,7 +45,7 @@ char	**my_alloc_tab(char *str, char sep)
 	  i++;
 	}
       if (szw)
-	tab[k++] = xmalloc(sizeof(**tab) * (szw + 1));
+	tab[k++] = xmalloc(sizeof(**tab) * (szw + 2));
       i++;
     }
   tab[k] = '\0';

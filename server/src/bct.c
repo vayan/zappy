@@ -17,6 +17,17 @@
 #include "map.h"
 #include "client.h"
 
+int bct_one(t_client *graphic, t_client *client)
+{
+  char *str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  str = map_contents(str, client->x, client->y);
+  broadcast_to_one_client(str, graphic);
+  free(str);
+  return (0);
+}
+
 int		bct(char **tab, t_client *client)
 {
   char		*str;
@@ -25,6 +36,10 @@ int		bct(char **tab, t_client *client)
   t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
+  if (tab == NULL)
+    return (bct_one(graphic, client));
   str = xmalloc(sizeof(char) * 1024);
   if (tab[1] != NULL && tab[2] != NULL)
   {

@@ -1,3 +1,13 @@
+/*
+** turn_player.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by yann vaillant
+** Login   <vailla_y@epitech.net>
+** 
+** Started on  Tue Jun 26 12:56:08 2012 yann vaillant
+** Last update Tue Jun 26 12:56:09 2012 yann vaillant
+*/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -32,6 +42,7 @@ void TurnClient(t_client *cl, int turn)
     else
       cl->dir -= 1;
   }
+  ppo(NULL, cl);
 }
 
 int   turnLeft(t_client *cl)

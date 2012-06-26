@@ -20,6 +20,8 @@ int     pex(char **tab, t_client *client)
   t_client *graphic;
 
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   tab = tab;
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pex %i\n", client->id);

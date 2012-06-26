@@ -21,6 +21,8 @@ int	sbp(char **tab, t_client *client)
   t_client *graphic;
   
   graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   broadcast_to_one_client("sbp\n", graphic);
   return (0);
 }
