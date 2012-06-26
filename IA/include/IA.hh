@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Fri Jun 22 14:22:00 2012 alexandre haulotte
+// Last update Tue Jun 26 10:01:35 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -71,7 +71,6 @@ int     PoserRessourceForLvl(); // OK - KO - ERR
 //----------------- TestBloc -------------------//
 //----------------------------------------------//
 
-int	AssezNourriture(); // OK - KO - ERR
 int	AssezRessourceForLevel(); // OK - KO
 int	PlaceSurServeur(); // OK - KO - ERR
 int	AssezPlayerForLvl(); // OK - KO - ERR
@@ -96,6 +95,7 @@ int	While10(); // OK - LOOP
 int	IfIsRenf(); // OK - KO
 int	IfFoodSup10(); // OK - KO - ERR
 int	IfFoodSup5(); // OK - KO - ERR
+int	IfFoodSup30(); // OK - KO - ERR
 
 //-----------------EndIAFunc--------------------//
 

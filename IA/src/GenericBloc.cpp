@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Fri Jun 22 13:07:04 2012 alexandre haulotte
+// Last update Tue Jun 26 10:21:15 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -117,11 +117,11 @@ int   Player::Eclosion()
   PlayerCreator	pc;
   static int	i = 0;
   //std::cout << "Eclosion" << std::endl;
-  //  if (i < 20)
-  //    {
+  //   if (i < 8)
+  //     {
       pc.create(_addr, _port, _teamName, _id + i);
-      i++;
-      //    }
+  i++;
+     // }
   return (OK);
 }
 

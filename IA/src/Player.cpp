@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Fri Jun 22 12:47:58 2012 alexandre haulotte
+// Last update Fri Jun 22 15:40:00 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -35,7 +35,7 @@ void  Player::play()
   fd_set		readfds;
   struct timeval	tv;
   int                   ret;
-  char                  buff[8096 + 1];
+  char                  buff[16192 + 1];
   int			fctRet = 0;
 
   connexion();
@@ -54,7 +54,7 @@ void  Player::play()
 	throw (new Errur("Msg not send"));
       if (FD_ISSET(_soc, &readfds))
 	{
-	  ret = recv(_soc, buff, 8096, 0);
+	  ret = recv(_soc, buff, 16192, 0);
 	  buff[ret] = 0;
 	  //std::cout << buff << std::endl;
 	  _lastRep = buff;
@@ -64,7 +64,7 @@ void  Player::play()
       //std::cout << _id << " | Etat : " << _cState << std::endl;
       fctRet = (this->*fctTable[_cState])();
       //std::cout << _id << " | Retour Fct : " << fctRet << std::endl;
-      ret = recv(_soc, buff, 8096, MSG_DONTWAIT);
+      ret = recv(_soc, buff, 16192, MSG_DONTWAIT);
       if (ret > 0)
 	{
 	  buff[ret] = 0;
@@ -82,16 +82,16 @@ void	Player::recInfo()
 {
   std::string	str;
   int		ret;
-  char		buff[8096 + 1];
+  char		buff[16192 + 1];
 
-  ret = recv(_soc, buff, 8096, 0);
+  ret = recv(_soc, buff, 16192, 0);
   send(_soc, &_teamName[0], _teamName.length(), 0);
   send(_soc, "\n", 1, 0);
-  ret = recv(_soc, buff, 8096, 0);
+  ret = recv(_soc, buff, 16192, 0);
   buff[ret] = 0;
   //  _id = strToInt(buff);
   std::cout << "Mon Id est : " << _id << std::endl;
-  ret = recv(_soc, buff, 8096, 0);
+  ret = recv(_soc, buff, 16192, 0);
   buff[ret] = 0;
   str = &buff[0];
   std::cout << "Taille Map : " << buff << std::endl;
@@ -273,22 +273,22 @@ int	Player::xrecv()
   fd_set				readfds;
   int					ret;
   struct timeval			tv;
-  char					buff[8096 + 1];
+  char					buff[16192 + 1];
   std::vector<std::string>		rep;
   std::vector<std::string>::iterator	it;
   std::string				save = "";
 
-  tv.tv_sec = 3;
+  tv.tv_sec = 5;
   tv.tv_usec = 0;
   FD_ZERO(&readfds);
   FD_SET(_soc, &readfds);
   while (select(_soc + 1, &readfds, NULL, NULL, &tv) != -1)
     {
-      tv.tv_sec = 3;
+      tv.tv_sec = 5;
       tv.tv_usec = 0;
       if (FD_ISSET(_soc, &readfds))
 	{
-	  ret = recv(_soc, buff, 8096, 0);
+	  ret = recv(_soc, buff, 16192, 0);
 	  if (ret == -1)
 	    return (ERR);
 	  buff[ret] = 0;

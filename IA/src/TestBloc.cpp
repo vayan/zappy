@@ -5,46 +5,10 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:48:02 2012 alexandre haulotte
-// Last update Fri Jun 22 10:46:09 2012 alexandre haulotte
+// Last update Tue Jun 26 10:01:10 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
-
-int   Player::AssezNourriture()
-{
-  int   ret;
-  std::string   food;
-  //  char          buff[8096 + 1];
-
-  //  std::cout << "_AssezNourriture" << std::endl;
-  ret = xsend(_soc, "inventaire\n", 12, 0);
-  if (ret == -1)
-    return (ERR);
-  ret = xrecv();
-  if (ret == -1)
-    return (ERR);
-  if (_lastRep.find("nourriture") != std::string::npos)
-    {
-      food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
-      food.replace(food.find("nourriture "), 10, "");
-      if (strToInt(&food[0]) > 30)
-	return (OK);
-    }
-  else
-    {
-      ret = xrecv();
-      if (ret == -1)
-	return (ERR);
-      if (_lastRep.find("nourriture") != std::string::npos)
-	{
-	  food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
-	  food.replace(food.find("nourriture "), 10, "");
-	  if (strToInt(&food[0]) > 30)
-	    return (OK);
-	}
-    }
-  return (KO);
-}
 
 int   Player::AssezRessourceForLevel()
 {
