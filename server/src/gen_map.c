@@ -24,7 +24,7 @@ Ressource *gen_rsrc()
   Ressource *rsrc;
 
   rsrc = xmalloc(7 * sizeof(int));
-  rsrc[Nourriture] = random() % 3;
+  rsrc[Nourriture] = random() % 10;
   rsrc[Linemate] = random() % 3;
   rsrc[Deraumere] = random() % 3;
   rsrc[Sibur] = random() % 3;

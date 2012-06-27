@@ -14,14 +14,17 @@
 #include "network.h"
 #include "xfunc.h"
 
-int     pie(char **tab, t_client *client)
+int     pie(t_client *client, int res)
 {
   char  *str;
+  t_client *graphic;
 
-  tab = tab;
+  graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "pie %i %i %i %s\n", client->id, client->x, client->y, tab[1]);
-  broadcast_to_one_client(str, client);
+  sprintf(str, "pie %d %d %d\n", client->x, client->y, res);
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }

@@ -14,6 +14,17 @@
 #include "network.h"
 #include "xfunc.h"
 
+int plv_one(t_client *client, t_client *graphic)
+{
+  char  *str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "pnw %i %i\n", client->id, client->level);
+  broadcast_to_one_client(str, graphic);
+  free(str);
+  return (0);  
+}
+
 int     plv(char **tab, t_client *client)
 {
   char  *str;
@@ -24,21 +35,23 @@ int     plv(char **tab, t_client *client)
   graphic = get_graphic(NULL);
   if (graphic == NULL)
     return (0);
+  if (tab == NULL)
+    return (plv_one(client, graphic));
   if (tab[1] != NULL)
+  {
+    while (clients)
     {
-      while (clients)
-        {
-          if (clients->id == atoi(tab[1]))
-            {
-              str = xmalloc(sizeof(char) * 1024);
-	      sprintf(str, "pnw %i %i\n", client->id, client->level);
-	      broadcast_to_one_client(str, graphic);
-	      free(str);
-	      return (0);
-	    }
-	  clients = clients->next;
-        }
+      if (clients->id == atoi(tab[1]))
+      {
+        str = xmalloc(sizeof(char) * 1024);
+        sprintf(str, "pnw %i %i\n", client->id, client->level);
+        broadcast_to_one_client(str, graphic);
+        free(str);
+        return (0);
+      }
+      clients = clients->next;
     }
+  }
   sbp(NULL, client);
   return (0);
 }

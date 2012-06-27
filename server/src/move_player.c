@@ -81,8 +81,6 @@ int   MoveFront(t_client *cl)
     MoveClient(cl);
     broadcast_to_one_client("ok\n", cl);
     ppo(NULL, cl);
-    aff_map();
-    aff_pl_test();
     return (0);
   }
   return (1);

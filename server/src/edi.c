@@ -15,7 +15,7 @@
 #include "network.h"
 #include "setting.h"
 
-int	edi(int id, t_client *client)
+int	edi(int id)
 {
   char	*str;
    t_client *graphic;

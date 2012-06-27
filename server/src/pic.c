@@ -15,46 +15,31 @@
 #include "merge.h"
 #include "network.h"
 #include "xfunc.h"
+#include "map.h"
 
-int	pic(char **tab, t_client *client)
-{
-  char	*str;
-  char	*players;
-  int	y;
+int	pic(t_client *client, t_map_case *cas)
+{  
+  char  *str;
+  char  *tmp;
+  t_client *graphic;
+  t_pl_case *tmp_c;
 
+  tmp_c = cas->client;
+  graphic = get_graphic(NULL);
+  if (graphic == NULL)
+    return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "pic");
-  players = xmalloc(sizeof(char) * 16);
-  sprintf(players, " %s", tab[1]);
-  str = my_merge(str, players);
-  y = 2;
-  while (tab[y] != NULL)
-    {
-      memset(players, 16, 0);
-      sprintf(players, " %s", tab[y++]);
-      str = my_merge(str, players);
-    }
-  free(players);
-  str = my_merge(str, "\n");
-  broadcast_to_one_client(str, client);
+  sprintf(str, "pic %d %d %d ", client->x, client->y, client->level + 1);
+  while (tmp_c)
+  {
+    tmp = xmalloc(50 * sizeof(char));
+    sprintf(tmp, "%d ", tmp_c->client->id);
+    tmp_c = tmp_c->next;
+    strcat(str, tmp);
+    free(tmp);
+  }
+  strcat(str, "\n");
+  broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
-}
-
-char            *my_merge(char *path, char *name)
-{
-  char          *new;
-  int           i;
-  int           a;
-
-  a = -1;
-  i = -1;
-  new = xmalloc(sizeof(path) + sizeof(name) + 2);
-  while (path[++i] != 0)
-    new[i] = path[i];
-  i = i - 1;
-  while (name[++a] != 0)
-    new[++i] = name[a];
-  new[++i] = 0;
-  return (new);
 }

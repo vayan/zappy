@@ -35,9 +35,10 @@ void  add_team(t_setting *setting, char *name, int max)
   new->name = strdup(name);
   new->max = max;
   new->left = max;
-  new->to_open = 0;
+  new->egg = NULL;
   new->stm = xmalloc(sizeof(t_serv_time));
   new->stm->in_use = -1;
+  new->nbr_pl = 0;
   new->next = NULL;
   if (tmp == NULL)
     setting->all_team = new;
@@ -65,10 +66,10 @@ void init_setting(t_setting *setting)
     setting->port =  4242;
     setting->width_map = 5;
     setting->height_map = 7;
-    setting->max_cl_per_team = 3;
+    setting->max_cl_per_team = 2;
     setting->delay = 100;
-    add_team(setting, "foo", 3);
-    add_team(setting, "bar", 3);
+    add_team(setting, "foo", 2);
+    add_team(setting, "bar", 2);
   }
 }
 

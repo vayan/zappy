@@ -27,36 +27,97 @@
 #include "setting.h"
 #include "client.h"
 
-int   add_slot_team(t_team *cl)
+int   rm_slot_team(t_team *cl, t_eggs *to_remove)
+{
+ t_eggs  *tmp;
+
+ tmp = cl->egg;
+ if (tmp->next == NULL && tmp == to_remove)
+ {
+  cl->egg = NULL;
+  return (0);
+}
+while(tmp)
+{
+  if (tmp->next != NULL && tmp->next == to_remove)
+  {
+    tmp->next = tmp->next->next;
+    return (0);
+  }
+  tmp = tmp->next;
+}
+return (1);
+}
+
+int   add_slot_team(t_team *cl, t_eggs *egg)
 {
   cl->left += 1;
-  eht(cl->to_open, cl);
-  cl->to_open -= 1;
+  eht(cl->egg->id, cl);
+  egg->state = 1;
+}
 
+int   check_time_all_egg(t_eggs *egg, t_team *cl)
+{
+ t_setting *setting;
+
+ if (egg->state == 1)
+  return (1);
+if (egg->stm->in_use == -1)
+{ 
+  egg->stm->in_use = 1;
+  start_timer(egg->stm);
+  return (1);
+}
+setting = get_setting(NULL);
+set_elapse_time(egg->stm);
+set_elapse_sec(egg->stm);
+if (( (egg->stm->in_nsec) >= (600000000000/setting->delay)))
+{
+  egg->stm->in_use = -1;
+  add_slot_team(cl, egg);
+  return (0);
+}
+return (1);  
+}
+
+int   check_time_pourriture_all_egg(t_eggs *egg, t_team *cl)
+{
+ t_setting *setting;
+
+ if (egg->state == 0)
+  return (1);
+if (egg->stm->in_use == -1)
+{ 
+  egg->stm->in_use = 1;
+  start_timer(egg->stm);
+  return (1);
+}
+setting = get_setting(NULL);
+set_elapse_time(egg->stm);
+set_elapse_sec(egg->stm);
+if (( (egg->stm->in_nsec) >= ((10 * 126000000000)/setting->delay)))
+{
+  egg->stm->in_use = -1;
+  rm_slot_team(cl, egg);
+  edi(egg->id);
+  return (0);
+}
+return (1);  
 }
 
 int   check_timer(t_team *cl)
 {
-  t_setting *setting;
+  t_eggs *tmp;
 
-  if (cl->stm->in_use == -1)
-  { 
-    printf("start timer ouverture slot %s\n", cl->name);
-    cl->stm->in_use = 1;
-    start_timer(cl->stm);
-    return (1);
-  }
-  setting = get_setting(NULL);
-  set_elapse_time(cl->stm);
-  set_elapse_sec(cl->stm);
-  if (( (cl->stm->in_nsec) >= (600000000000/setting->delay)))
+  tmp = cl->egg;
+
+  while (tmp)
   {
-    cl->stm->in_use = -1;
-    printf("nouveau slot team %s\n", cl->name);
-    add_slot_team(cl);
-    return (0);
+    check_time_all_egg(tmp, cl);
+    check_time_pourriture_all_egg(tmp, cl);
+    tmp = tmp->next;
   }
-  return (1);  
+  return (0);
 }
 
 int   check_timer_all_team()
@@ -68,7 +129,7 @@ int   check_timer_all_team()
   tmp = setting->all_team;
   while (tmp)
   {
-    if (tmp->to_open > 0)
+    if (tmp->egg != NULL)
       check_timer(tmp);    
     tmp = tmp->next;
   }

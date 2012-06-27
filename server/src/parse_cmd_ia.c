@@ -29,6 +29,27 @@
 #include "setting.h"
 #include "my_strtowordtab.h"
 
+void  data_egg_graphic()
+{
+  t_setting *setting;
+  t_team    *tmp;
+  t_eggs    *egg;
+
+  setting = get_setting(NULL);
+  tmp = setting->all_team;
+
+  while (tmp)
+  {
+    egg = tmp->egg;
+    while (egg)
+    {
+      enw(egg);
+      egg = egg->next;
+    }
+    tmp = tmp->next;
+  }
+}
+
 void  first_data_graphic(t_client *cl)
 {
   t_client *all_cl;
@@ -47,6 +68,7 @@ void  first_data_graphic(t_client *cl)
       all_cl = all_cl->next;
     }
   }
+  data_egg_graphic();
 }
 
 t_team *check_team(char *team)
@@ -88,11 +110,20 @@ int   get_type_client(char *cmd, t_client *cl)
       cl->death->in_use = -1;
       return (1);
     } 
-
-    add_client_on_map(cl);
     cl->teams = check_team(cmd);
-    tm->left--;
     cl->death->in_use = -1;
+    cl->teams->nbr_pl++;
+    tm->left--;
+
+    if (cl->teams->nbr_pl > tm->max)
+    {
+      cl->x = cl->teams->egg->x;
+      cl->y = cl->teams->egg->y; 
+      ebo(cl, cl->teams->egg->id);
+      cl->teams->egg = cl->teams->egg->next;
+    }
+    add_client_on_map(cl);
+    printf("current %d sur %d\n", cl->teams->nbr_pl, cl->teams->max);
     sprintf(buff_int, "%d\n", cl->id);
     broadcast_to_one_client(buff_int, cl);
     sprintf(buff_int, "%d %d\n", setting->width_map, setting->height_map);
@@ -128,8 +159,7 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
     else if (strcmp(tab[0], "broadcast") == 0)
       return (broad_ia(cl, get_all_client(NULL), parse_msg(cmd)));
     else if (strcmp(tab[0], "incantation") == 0)
-    {
-    }
+      return (incant(cl));
     else if (strcmp(tab[0], "fork") == 0)
       return (fork_cl(cl));
     else if (strcmp(tab[0], "connect_nbr") == 0)

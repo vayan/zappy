@@ -13,15 +13,26 @@
 
 #include "serv_time.h"
 
-#define NEVER_DIE 1
+#define NEVER_DIE 0
 #define USAGE "Usage : %s -p port -x width -y height -n nameteam1 nameteam2 [..] -c MaxClientPerTeam -t delay\n"
 #define FLAGDEBUG 1 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
+
+typedef struct s_eggs {
+  int id;
+  int from;
+  int x;
+  int y;
+  t_serv_time *stm;
+  int   state;
+  struct s_eggs *next;
+} t_eggs;
 
 typedef struct s_team {
   char *name;
   int   max;
+  int   nbr_pl;
   int   left;
-  int   to_open;
+  t_eggs *egg;
   t_serv_time *stm;
   struct s_team *next;
 } t_team;
@@ -30,7 +41,6 @@ typedef struct s_setting {
   int   port;
   int   height_map;
   int   width_map;
-  //char  **name_teams;
   t_team    *all_team;
   int   max_cl_per_team;
   int   delay;

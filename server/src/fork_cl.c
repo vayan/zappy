@@ -27,13 +27,41 @@
 #include "setting.h"
 #include "client.h"
 
+t_eggs  *add_egg(t_team *tm, t_client *cl)
+{
+  static int id = 0;
+  t_eggs  *new;
+  t_eggs  *tmp;
+
+  new = xmalloc(sizeof(t_eggs));
+  new->id = id++;
+  new->from = cl->id;
+  new->x = cl->x;
+  new->y = cl->y;
+  new->state = 0;
+  new->stm = xmalloc(sizeof(t_serv_time));
+  new->stm->in_use = -1;
+  new->state = 0;
+  new->next = NULL;
+  if (tm->egg == NULL)
+  {
+    tm->egg = new;
+    return (new);
+  }
+  tmp = tm->egg;
+  while (tmp->next)
+    tmp = tmp->next;
+  tmp->next = new;
+  return (new);
+}
 
 int   do_fork_pl(t_client *cl)
 {
-  cl->teams->to_open += 1;
+  t_eggs *egg;
+  
+  egg = add_egg(cl->teams, cl);
   broadcast_to_one_client("ok\n", cl);
-  enw(cl->teams->to_open, cl);
-
+  enw(egg);
 }
 
 int fork_cl(t_client *cl)

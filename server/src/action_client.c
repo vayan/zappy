@@ -31,6 +31,11 @@ int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
+  if (to_remove->teams != NULL)
+  {
+    to_remove->teams->left++;
+    to_remove->teams->nbr_pl--;
+  }
   printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n", COLOR_BLU, to_remove->id);
     xclose(to_remove->fd);
     remove_client_on_map(to_remove);
@@ -80,7 +85,7 @@ int   remove_client(t_client *to_remove)
     setting = get_setting(NULL);    
     new = xmalloc(sizeof(t_client));
     tmp = all_client;
-    new->level = 2;
+    new->level = 1;
     new->fd = fd;
     new->id = id++;
     new->next = NULL;

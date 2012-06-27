@@ -20,7 +20,7 @@ int	pnw(char **tab, t_client *client)
   t_client *graphic;
 
   graphic = get_graphic(NULL);
-  if (graphic == NULL || client->is_graphic == 1)
+  if (graphic == NULL || client->is_graphic == 1 || client == NULL)
     return (0);
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pnw %i %i %i %i %i %s\n", client->id, client->x, client->y, 
