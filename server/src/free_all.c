@@ -84,9 +84,7 @@ return (0);
 int   free_setting()
 {
   t_setting *setting;
-  int   i;
 
-  i = 0;
   setting = get_setting(NULL);
   //FREE ALL STRUCT TEAM
   if (setting != NULL)

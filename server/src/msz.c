@@ -21,6 +21,7 @@ int		msz(char **tab, t_client *client)
   t_setting	*settings;
   t_client *graphic;
 
+  client = client;
   graphic = get_graphic(NULL);
   if (graphic == NULL)
     return (0);

@@ -26,6 +26,7 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
+#include "command_fonc.h"
 
 t_eggs  *add_egg(t_team *tm, t_client *cl)
 {
@@ -62,6 +63,7 @@ int   do_fork_pl(t_client *cl)
   egg = add_egg(cl->teams, cl);
   broadcast_to_one_client("ok\n", cl);
   enw(egg);
+  return (0);
 }
 
 int fork_cl(t_client *cl)

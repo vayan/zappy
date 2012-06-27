@@ -20,6 +20,7 @@ int	smg(char *mess, t_client *client)
   char	*str;
    t_client *graphic;
 
+  client = client;
   graphic = get_graphic(NULL);
   if (graphic == NULL)
     return (0);

@@ -79,10 +79,8 @@ int   remove_client(t_client *to_remove)
   {
     t_client  *tmp;
     t_client  *new;
-    t_setting *setting;
     static int  id = 0;
-
-    setting = get_setting(NULL);    
+   
     new = xmalloc(sizeof(t_client));
     tmp = all_client;
     new->level = 1;

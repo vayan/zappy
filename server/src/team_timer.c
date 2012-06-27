@@ -26,6 +26,7 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
+#include "command_fonc.h"
 
 int   rm_slot_team(t_team *cl, t_eggs *to_remove)
 {
@@ -52,8 +53,9 @@ return (1);
 int   add_slot_team(t_team *cl, t_eggs *egg)
 {
   cl->left += 1;
-  eht(cl->egg->id, cl);
+  eht(cl->egg->id);
   egg->state = 1;
+  return (0);
 }
 
 int   check_time_all_egg(t_eggs *egg, t_team *cl)

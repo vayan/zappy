@@ -106,5 +106,11 @@ char  *get_see_one_case(int x, int y);
 void  scan_case(t_client *cl, char *msg);
 void  strcat_rsrc(Ressource *rsrc, char *msg);
 int do_see(t_client *cl);
+int incant(t_client *cl);
+int fork_cl(t_client *cl);
+int   do_connect_nbr(t_client *cl);
+int   check_timer_all_team();
+int   check_death_all_player();
+
 
 #endif

@@ -25,7 +25,7 @@ int	seg(char **tab, t_client *client)
     return (0);
   tab = tab;
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "seg %s\n", client->teams);
+  sprintf(str, "seg %s\n", client->teams->name);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);

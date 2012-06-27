@@ -22,6 +22,7 @@ int		tna(char **tab, t_client *client)
   t_team *tmp;
   t_client *graphic;
 
+  client = client;
   graphic = get_graphic(NULL);
   if (graphic == NULL)
     return (0);

@@ -26,18 +26,7 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
-
-int   check_death_all_player()
-{
-  t_client *client;
-
-  client = get_all_client(NULL);
-  while (client)
-  {
-    start_dying(client);
-    client = client->next;
-  }
-}
+#include "command_fonc.h"
 
 int   kill_player(t_client *cl)
 {
@@ -47,6 +36,7 @@ int   kill_player(t_client *cl)
     pdi(NULL, cl);
     remove_client(cl);
   }
+  return (0);
 }
 
 int start_dying(t_client *cl)
@@ -73,3 +63,20 @@ int start_dying(t_client *cl)
   }
   return (1);
 }
+
+int   check_death_all_player()
+{
+  t_client *client;
+
+  client = get_all_client(NULL);
+  while (client)
+  {
+    start_dying(client);
+    client = client->next;
+  }
+  return (0);
+}
+
+
+
+

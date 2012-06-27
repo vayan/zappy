@@ -8,6 +8,7 @@
 ** Last update Thu Jun 14 12:30:28 2012 randy lyvet
 */
 
+#include  <string.h>
 #include	"option.h"
 #include	"command_fonc.h"
 
@@ -37,15 +38,9 @@ void		init_tab3(t_option *tab)
   tab[8].op_func = sst;
 }
 
-void		init_tab4(t_option *tab)
-{
-
-}
-
 void		init_tab(t_option *tab)
 {
   memset(tab, 0, TAB_SIZE);
   init_tab2(tab);
   init_tab3(tab);
-  init_tab4(tab);
 }

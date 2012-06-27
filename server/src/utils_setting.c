@@ -36,7 +36,6 @@ t_setting    *get_setting(t_setting *_setting)
 
 void  aff_team(t_team *team)
 {
-  int i;
   t_team *tmp;
 
   tmp = team;

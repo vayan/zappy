@@ -26,6 +26,7 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
+#include "command_fonc.h"
 
 void TurnClient(t_client *cl, int turn)
 {

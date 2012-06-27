@@ -19,6 +19,7 @@ int	pnw(char **tab, t_client *client)
   char	*str;
   t_client *graphic;
 
+  tab = tab;
   graphic = get_graphic(NULL);
   if (graphic == NULL || client->is_graphic == 1 || client == NULL)
     return (0);

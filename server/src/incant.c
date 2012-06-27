@@ -16,6 +16,20 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
+#include "command_fonc.h"
+
+int   count_pl_on_case(t_pl_case *all_cl_case)
+{
+  int i ;
+
+  i = 0;
+  while(all_cl_case)
+  {
+    i++;
+    all_cl_case = all_cl_case->next;
+  }
+  return (i);
+}
 
 void  init_tab_req(char *val, int *req)
 {
@@ -35,10 +49,10 @@ int   do_elev(int *req, t_client *cl, t_map_case *cas)
   int   nb_pl;
 
   nb_pl = count_pl_on_case(cas->client);
-  if (nb_pl < req[0] || req[Linemate] < cas->rsrc[Linemate] || 
-    req[Deraumere] < cas->rsrc[Deraumere] || req[Sibur] < cas->rsrc[Sibur] ||
-    req[Mendiane] < cas->rsrc[Mendiane] || req[Phiras] < cas->rsrc[Phiras] ||
-    req[Thystame] < cas->rsrc[Thystame])
+  if (nb_pl < req[0] || (int)req[Linemate] < (int)cas->rsrc[Linemate] || 
+    (int)req[Deraumere] < (int)cas->rsrc[Deraumere] || (int)req[Sibur] < (int)cas->rsrc[Sibur] ||
+    (int)req[Mendiane] < (int)cas->rsrc[Mendiane] || (int)req[Phiras] < (int)cas->rsrc[Phiras] ||
+    (int)req[Thystame] < (int)cas->rsrc[Thystame])
     return(0);
 
   cas->rsrc[Linemate] -= req[Linemate];
@@ -51,24 +65,10 @@ int   do_elev(int *req, t_client *cl, t_map_case *cas)
   return (1);
 }
 
-int   count_pl_on_case(t_pl_case *all_cl_case)
-{
-  int i ;
-
-  i = 0;
-  while(all_cl_case)
-  {
-    i++;
-    all_cl_case = all_cl_case->next;
-  }
-  return (i);
-}
-
 int do_incant(t_client *cl)
 {
   t_map_case  ***map;
   t_pl_case   *all_cl_case;
-  int     nb;
   int     *req;
   char    *msg;
 
@@ -77,7 +77,6 @@ int do_incant(t_client *cl)
   memset(req, 0, 10);
   map = get_map(NULL);
   all_cl_case = (map[cl->x][cl->y])->client;
-  nb = count_pl_on_case(all_cl_case);
   if (cl->level == 1)
     init_tab_req("1100000", req);
   if (cl->level == 2)
@@ -98,6 +97,7 @@ int do_incant(t_client *cl)
   sprintf(msg, "niveau actuel : %d\n", cl->level);
   broadcast_to_one_client(msg, all_cl_case->client);
   free(msg);
+  return (0);
 }
 
 int   start_incant_all_on_case(t_client *cl)
@@ -111,8 +111,8 @@ int   start_incant_all_on_case(t_client *cl)
   while(all_cl_case)
   {
       broadcast_to_one_client("elevation en cours\n", all_cl_case->client);
-    if (all_cl_case != cl)
-      incant(all_cl_case);
+    if (all_cl_case->client != cl)
+      incant(all_cl_case->client);
     all_cl_case = all_cl_case->next;
   }
   return (0);

@@ -15,7 +15,7 @@
 #include "network.h"
 #include "setting.h"
 
-int	eht(int id, t_client *client)
+int	eht(int id)
 {
   char *str;
    t_client *graphic;

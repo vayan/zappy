@@ -26,6 +26,7 @@
 #include "map.h"
 #include "setting.h"
 #include "client.h"
+#include "command_fonc.h"
 
 void  move_kicker(t_client *kicker, t_client *victim)
 {

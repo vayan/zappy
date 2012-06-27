@@ -13,6 +13,7 @@
 #include	"option.h"
 #include	"my_strtowordtab.h"
 #include	"network.h"
+#include "command_fonc.h"
 
 int			command_parser(t_option *tab, char *command, t_client *client)
 {

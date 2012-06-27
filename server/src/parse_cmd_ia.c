@@ -28,6 +28,7 @@
 #include "map.h"
 #include "setting.h"
 #include "my_strtowordtab.h"
+#include "command_fonc.h"
 
 void  data_egg_graphic()
 {
@@ -120,7 +121,7 @@ int   get_type_client(char *cmd, t_client *cl)
     {
       cl->x = cl->teams->egg->x;
       cl->y = cl->teams->egg->y; 
-      ebo(cl, cl->teams->egg->id);
+      ebo(cl->teams->egg->id, cl);
       cl->teams->egg = cl->teams->egg->next;
     }
     add_client_on_map(cl);
@@ -151,9 +152,9 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
       return (turnLeft(cl));
     else if (strcmp(tab[0], "inventaire") == 0)
       return (Inventory(cl));
-    else if (strcmp(tab[0], "prend") == 0 && parse_rsr(tab[1]) != -1)
+    else if (strcmp(tab[0], "prend") == 0)// && parse_rsr(tab[1]) != -1)
       return(Take_Object(cl, parse_rsr(tab[1])));
-    else if (strcmp(tab[0], "pose") == 0 && parse_rsr(tab[1]) != -1)
+    else if (strcmp(tab[0], "pose") == 0 )//&& parse_rsr(tab[1]) != -1)
       return(Drop_Object(cl, parse_rsr(tab[1])));
     else if (strcmp(tab[0], "expulse") == 0)
       return(expelliarmus(cl));

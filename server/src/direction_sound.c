@@ -73,6 +73,7 @@ int			case_to_go(int fx, int fy, t_client *receiver)
     return (go_bot(x, y));
   if (receiver->dir == 3)
     return (go_left(x, y));
+  return (0);
 }
 
 int			get_direction(t_client *emeter, t_client *receiver)
