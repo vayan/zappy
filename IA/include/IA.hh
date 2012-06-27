@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Tue Jun 26 17:00:16 2012 alexandre haulotte
+// Last update Wed Jun 27 11:05:49 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -27,6 +27,7 @@ int	Inventaire(); // OK - ERR
 int	Voir(); // OK - ERR
 int	MyLvl(); // UN - DEUX - TROIS - QUATRE - CINQ - SIX - SEPT
 int	RaZRenfort(); // OK
+int	RaZGPondu(); // OK
 
 //----------------------------------------------//
 //--------------- SearchBloc -------------------//

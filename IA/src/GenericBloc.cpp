@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Tue Jun 26 16:59:21 2012 alexandre haulotte
+// Last update Wed Jun 27 11:06:42 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -290,5 +290,11 @@ int	Player::RaZRenfort()
 {
   _nbRenf = 0;
   isRenf = false;
+  return (OK);
+}
+
+int	Player::RaZGPondu()
+{
+  gPondu = false;
   return (OK);
 }
