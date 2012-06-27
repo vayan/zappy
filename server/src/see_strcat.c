@@ -70,10 +70,10 @@ void  strcat_rsrc(Ressource *rsrc, char *msg)
   while (rsrc[i])
   {
     j = 0;
-    while (j < rsrc[i])
+    while (j < (int)rsrc[i])
     {
       strcat(msg, " ");
-      strcat(msg, Ressource_to_char(rsrc[i]));
+      strcat(msg, Ressource_to_char(i));
       strcat(msg, " ");
       j++;
     }

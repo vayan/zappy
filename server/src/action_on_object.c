@@ -33,7 +33,7 @@ void  do_take_obj(t_client *cl, Ressource obj)
   t_map_case ***map;
 
   map = get_map(NULL);
-  if (obj > 0 && (map[cl->x][cl->y])->rsrc[obj] > 0)
+  if ((map[cl->x][cl->y])->rsrc[obj] > 0)
   {
     (map[cl->x][cl->y])->rsrc[obj]--;
     cl->rsrc[obj]++;
@@ -51,7 +51,7 @@ void  do_drop_obj(t_client *cl, Ressource obj)
   t_map_case ***map;
 
   map = get_map(NULL);
-  if (obj > 0 && cl->rsrc[obj] > 0)
+  if (cl->rsrc[obj] > 0)
   {
     (map[cl->x][cl->y])->rsrc[obj]++;
     cl->rsrc[obj]--;

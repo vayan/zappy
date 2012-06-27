@@ -25,13 +25,12 @@ Ressource *gen_rsrc()
 
   rsrc = xmalloc(7 * sizeof(int));
   rsrc[Nourriture] = random() % 10;
-  rsrc[Linemate] = random() % 3;
-  rsrc[Deraumere] = random() % 3;
-  rsrc[Sibur] = random() % 3;
-  rsrc[Mendiane] = random() % 3;
-  rsrc[Phiras] = random() % 3;
-  rsrc[Thystame] = random() % 3;
-
+  rsrc[Linemate] = random() % 5;
+  rsrc[Deraumere] = random() % 5;
+  rsrc[Sibur] = random() % 5;
+  rsrc[Mendiane] = random() % 5;
+  rsrc[Phiras] = random() % 5;
+  rsrc[Thystame] = random() % 5;
   return (rsrc);
 }
 

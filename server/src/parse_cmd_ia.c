@@ -64,7 +64,8 @@ void  first_data_graphic(t_client *cl)
   {
     while (all_cl)
     {
-      pnw(NULL, all_cl);
+      if (all_cl->teams != NULL)
+        pnw(NULL, all_cl);
       all_cl = all_cl->next;
     }
   }

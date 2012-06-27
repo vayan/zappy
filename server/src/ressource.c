@@ -33,8 +33,6 @@ char  *Ressource_to_char(Ressource rsrc)
 
   ret = xmalloc(15 * sizeof(*ret));
   memset(ret, 0, 15);
-  if (rsrc == Nourriture)
-    strcat(ret, "nourriture");
   if (rsrc == Linemate)
     strcat(ret, "linemate");
   if (rsrc == Deraumere)
@@ -47,6 +45,8 @@ char  *Ressource_to_char(Ressource rsrc)
     strcat(ret, "phiras");
   if (rsrc == Thystame)
     strcat(ret, "thystame");
+  if (rsrc == Nourriture)
+    strcat(ret, "nourriture");
   return (ret);
 }
 
