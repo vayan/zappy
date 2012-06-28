@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Tue Jun 26 12:53:30 2012 yann vaillant
-** Last update Tue Jun 26 12:53:30 2012 yann vaillant
+** Last update Thu Jun 28 19:21:13 2012 randy lyvet
 */
 
 #include <sys/types.h>
@@ -38,7 +38,7 @@ int			get_were(int from, int to, int limit)
     return (0);
   from_sav = from - 1;
   a = 0;
-  while (++from_sav != to);
+  while (++from_sav != to)
   {
     if (from_sav == limit)
       from_sav = 0;
@@ -46,7 +46,7 @@ int			get_were(int from, int to, int limit)
   }
   from_sav = from + 1;
   b = 0;
-  while (--from_sav != to);
+  while (--from_sav != to)
   {
     if (from_sav == 0)
       from_sav = limit;

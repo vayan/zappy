@@ -1,11 +1,11 @@
 ##
-## Makefile for Makefile in /home/lyvet_r//tek2ed/MyLS/my_ls
-## 
-## Made by randy lyvet
-## Login   <lyvet_r@epitech.net>
-## 
-## Started on  Mon Nov  7 15:53:02 2011 randy lyvet
-## Last update Fri Jun 15 16:40:07 2012 randy lyvet
+## Makefile for the mini-Shell in /home/haulot_a//SystemeUnix/mysh/minishell1-2015-haulot_a
+##
+## Made by alexandre haulotte
+## Login   <haulot_a@epitech.net>
+##
+## Started on  Thu Nov 10 09:53:25 2011 alexandre haulotte
+## ast update Tue Jun 26 23:10:35 2012 randy lyvet
 ##
 
 NAME		=	serveur
@@ -25,7 +25,7 @@ SRCS_H		=	$(wildcard $(INC_DIR)/*.h)
 SVN		=	svn co svn+ssh://kscm@koala-rendus.epitech.net/$(SVN_NAME)
 SVN_NAME	=	#Nom du depos#
 
-CC		=	@gcc -lrt
+CC		=	@gcc
 CFLAGS		=	-W -Wall -g3 -ggdb
 DEBUGFLAGS	=	-g3 -ansi -pedantic
 LFLAGS		=	$(addprefix -l, $(LIBS)) $(addprefix -L, $(LIB_DIR)) \
@@ -39,8 +39,8 @@ WHITE_BLUE	=	36
 DARK_BLUE	=	1;34
 ###################################
 ${NAME}		: $(SRCS_O)
-		@echo -e " \033[1;$(WHITE_BLUE)m"'\n  -------- Begin Link -------- '"\033[0;0;00m"''
-		$(CC) -o $(NAME) $(SRCS_O) $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE_LINK)
+		@echo " \033[1;$(WHITE_BLUE)m"'\n  -------- Begin Link -------- '"\033[0;0;00m"''
+		$(CC) -o $(NAME) $(SRCS_O) $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE_LINK) -lrt
 		@echo "Terminer, un petit 'make cafe' avant de commencer ?"
 
 all		: $(NAME)
@@ -57,10 +57,8 @@ fclean		:	clean
 re		:	fclean all
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c $(SRCS_H)
-		@echo -e -n ' [ '"\033[$(GREEN)m"' BUILDING '
-		@echo -e -n $@
-		@echo -e ''"\033[0;0;00m"' ] '
-		$(CC) -c -o $@ $< $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE)
+		@echo ' ['"\033[$(GREEN)m"' BUILDING $@ '"\033[0;0;00m"'] '
+		$(CC) -c -o $@ $< $(CFLAGS) $(LFLAGS) $(IFLAGS) $(PARSE) -lrt
 
 ################~UTILITAIRES~##########################
 
@@ -68,50 +66,50 @@ svn		:
 		$(SVN)
 
 norme		:
-		@echo -e -n '\033[$(RED)m Norme des .c \033[0;0;00m '
+		@echo '\033[$(RED)m Norme des .c \033[0;0;00m '
 		@/u/all/lyvet_r/public/script/tools/norme/normeastek src/*
-		@echo -e -n '\033[$(RED)m Norme des .h \033[0;0;00m '
+		@echo '\033[$(RED)m Norme des .h \033[0;0;00m '
 		@/u/all/lyvet_r/public/script/tools/norme/normeastek include/*
 
 gnorme		:
-		@echo -e -n '\033[$(RED)m Norme des .c \033[0;0;00m '
+		@echo '\033[$(RED)m Norme des .c \033[0;0;00m '
 		@/u/all/lyvet_r/public/script/tools/norme/normeastek -nocheat src/*
-		@echo -e -n '\033[$(RED)m Norme des .h \033[0;0;00m '
+		@echo '\033[$(RED)m Norme des .h \033[0;0;00m '
 		@/u/all/lyvet_r/public/script/tools/norme/normeastek -nocheat include/*
 
 mklib		:
-		@echo -e -n '\033[$(GREEN)m COMPILATION \033[0;0;00m '
-		@echo -e lib$(NAME).a
+		@echo '\033[$(GREEN)m COMPILATION \033[0;0;00m '
+		@echo lib$(NAME).a
 		@ar rc lib$(NAME).a $(SRCS_O)
 		@ar tv lib$(NAME).a
-		@echo -e '\033[$(GREEN)m RANLIB \033[0;0;00m '
+		@echo '\033[$(GREEN)m RANLIB \033[0;0;00m '
 		@ranlib lib$(NAME).a
-		@echo -e '\033[$(GREEN)m TERMINER \033[0;0;00m '
+		@echo '\033[$(GREEN)m TERMINER \033[0;0;00m '
 
 cl		:
 		rm -r -f $(SRC_DIR)*.c~
 		rm -r -f $(INC_DIR)*.h~
 
 begin		:
-		@echo -e -n '\033[$(DARK_BLUE)m CREATING DIR obj/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m CREATING DIR obj/ \033[0;0;00m \n'
 		@mkdir -p $(OBJ_DIR)
-		@echo -e -n '\033[$(DARK_BLUE)m CREATING DIR src/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m CREATING DIR src/ \033[0;0;00m \n'
 		@mkdir -p $(SRC_DIR)
-		@echo -e -n '\033[$(DARK_BLUE)m CREATING DIR libs/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m CREATING DIR libs/ \033[0;0;00m \n'
 		@mkdir -p $(LIB_DIR)
-		@echo -e -n '\033[$(DARK_BLUE)m CREATING DIR include/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m CREATING DIR include/ \033[0;0;00m \n'
 		@mkdir -p $(INC_DIR)
-		@echo -e -n '\033[$(DARK_BLUE)m CREATING DIR libs/sources \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m CREATING DIR libs/sources \033[0;0;00m \n'
 		@mkdir -p $(INC_LIB_SRC)
-		@echo -e -n '\033[$(DARK_BLUE)m yours libs LINKED IN libs/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m yours libs LINKED IN libs/ \033[0;0;00m \n'
 		@cp -f /u/all/${USER}/rendu/lib/libmy* $(LIB_DIR)
-		@echo -e -n '\033[$(DARK_BLUE)m all sources of yours libs LINKED IN libs/sources\033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m all sources of yours libs LINKED IN libs/sources\033[0;0;00m \n'
 		@cp -rf /u/all/${USER}/rendu/lib/my* $(INC_LIB_SRC)
-		@echo -e -n '\033[$(DARK_BLUE)m my.h LINKED IN include/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m my.h LINKED IN include/ \033[0;0;00m \n'
 		@cp /u/all/${USER}/rendu/include/*.h $(INC_DIR)
 
 main		:
-		@echo -e -n '\033[$(DARK_BLUE)m main.c LINKED IN src/ \033[0;0;00m \n'
+		@echo '\033[$(DARK_BLUE)m main.c LINKED IN src/ \033[0;0;00m \n'
 		@cp /u/all/${USER}/rendu/main/main.c $(SRC_DIR)
 
 dead		:	fclean
