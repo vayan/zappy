@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:38:27 2012 yann vaillant
-** Last update Thu Jun  7 15:38:28 2012 yann vaillant
+** Last update Fri Jun 29 12:11:50 2012 randy lyvet
 */
 
 #include <sys/types.h>
@@ -64,8 +64,8 @@ void init_setting(t_setting *setting)
   if (FLAGDEBUG == 1)
   {
     setting->port =  4242;
-    setting->width_map = 5;
-    setting->height_map = 7;
+    setting->width_map = 10;
+    setting->height_map = 10;
     setting->max_cl_per_team = 2;
     setting->delay = 100;
     add_team(setting, "foo", 2);
@@ -99,7 +99,7 @@ void fill_setting(char **set, int ac, t_setting *setting)
   {
     while (i < ac)
     {
-      b = 0;   
+      b = 0;
       i = fill_struct_set(set, setting, i, ac);
       if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
       {
