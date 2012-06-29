@@ -5,12 +5,12 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:48:02 2012 alexandre haulotte
-// Last update Tue Jun 26 17:00:46 2012 alexandre haulotte
+// Last update Fri Jun 29 11:22:33 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
 
-int   Player::AssezRessourceForLevel()
+int   Player::AssezRessourceForLvl()
 {
   //std::cout << _id << " : _AssezRessource" << std::endl;
   if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
@@ -76,7 +76,6 @@ int	Player::AssezPlayerForLvl()
 
 int	Player::CaseReady()
 {
-  static int	nbLoop = 0;
   int           ret;
   std::string   food;
   int   nbP[] = {0, 0, 0, 0, 0, 0, 0};
@@ -145,13 +144,6 @@ int	Player::CaseReady()
 	    }
 	}
      }
-  if (nbLoop < 4)
-    {
-      nbLoop++;
-      return (LOOP);
-    }
-  else
-    nbLoop = 0;
   return (KO);
 }
 

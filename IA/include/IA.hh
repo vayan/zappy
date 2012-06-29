@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Wed Jun 27 11:05:49 2012 alexandre haulotte
+// Last update Fri Jun 29 11:23:11 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -72,10 +72,10 @@ int     PoserRessourceForLvl(); // OK - KO - ERR
 //----------------- TestBloc -------------------//
 //----------------------------------------------//
 
-int	AssezRessourceForLevel(); // OK - KO
+int	AssezRessourceForLvl(); // OK - KO
 int	PlaceSurServeur(); // OK - KO - ERR
 int	AssezPlayerForLvl(); // OK - KO - ERR
-int	CaseReady(); // OK - KO - LOOP - ERR
+int	CaseReady(); // OK - KO - ERR
 int	JoueurSurCase(); // OK - KO - ERR
 int	GPondu(); // OK - KO
 

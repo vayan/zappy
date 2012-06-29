@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun  5 13:19:33 2012 alexandre haulotte
-// Last update Wed Jun 20 23:19:43 2012 alexandre haulotte
+// Last update Fri Jun 29 11:23:33 2012 alexandre haulotte
 //
 
 #include	<signal.h>
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
   Player	*pl = new Player();
   try
     {
-      //      signal(SIGPIPE, &signal_pipe);
+      signal(SIGPIPE, &signal_pipe);
       pl->parse(ac, av);
       pl->play();
     }
