@@ -111,6 +111,18 @@ int fork_cl(t_client *cl);
 int   do_connect_nbr(t_client *cl);
 int   check_timer_all_team();
 int   check_death_all_player();
-
+int check_place_left_in_team(t_client *cl, char *cmd, t_team *tm);
+t_team *check_team(char *team);
+int   get_type_client(char *cmd, t_client *cl);
+void  data_egg_graphic();
+void  first_data_graphic(t_client *cl);
+void  correction_down(t_client *victim, t_client *kicker, t_setting *setting);
+void  correction_up(t_client *victim, t_client *kicker, t_setting *setting);
+void  correction_right(t_client *victim, t_client *kicker, t_setting *setting);
+void  correction_left(t_client *victim, t_client *kicker, t_setting *setting);
+void correction_move_down(t_client *cl, t_setting *setting);
+void correction_move_up(t_client *cl, t_setting *setting);
+void correction_move_right(t_client *cl, t_setting *setting);
+void correction_move_left(t_client *cl, t_setting *setting);
 
 #endif

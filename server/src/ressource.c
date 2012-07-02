@@ -50,7 +50,7 @@ char  *Ressource_to_char(Ressource rsrc)
   return (ret);
 }
 
-Ressource parse_rsr(char *rsrc)
+int parse_rsr(char *rsrc)
 {
   if (strcmp(rsrc, "nourriture") == 0)
     return (Nourriture);

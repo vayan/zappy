@@ -1,11 +1,11 @@
 /*
 ** net_client.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Thu Jun  7 15:38:17 2012 yann vaillant
-** Last update Thu Jun  7 15:38:17 2012 yann vaillant
+** Last update Mon Jul  2 12:06:47 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -32,11 +32,11 @@ void    show_all_msg(t_client *cl)
   tmp = cl->buff_msg;
   printf("----------\n");
   while (tmp)
-  {
-    printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
-    tmp = tmp->next;
-    i++;
-  }
+    {
+      printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
+      tmp = tmp->next;
+      i++;
+    }
 }
 
 void    get_data_from_client(t_client *all_client, fd_set *readfs)
@@ -48,22 +48,23 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
   memset(msg, 0, MAX_INPUT);
   tmp = all_client;
   while (tmp)
-  {
-    if (FD_ISSET(tmp->fd, readfs))
     {
-      if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
-      {
-        if (msg[0] != 0 && msg[0] != '\n')
+      if (FD_ISSET(tmp->fd, readfs))
         {
-          add_msg_to_buffer(tmp, msg);
-          printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, msg);
+          if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
+            {
+              if (msg[0] != 0 && msg[0] != '\n')
+                {
+                  add_msg_to_buffer(tmp, msg);
+                  printf("\033[1;%sm<--\tReceive message from %d : \
+'%s'\033[0;0;00m\n", DARK_RED, tmp->id, msg);
+                }
+            }
+          if (ret == 0)
+            remove_client(tmp);
         }
-      }
-      if (ret == 0)
-        remove_client(tmp);
+      tmp = tmp->next;
     }
-    tmp = tmp->next;
-  }
 }
 
 int   get_higher_fd(t_client *all_client)
@@ -85,8 +86,8 @@ void    select_list(t_client *all_client, fd_set *readf)
   tmp = all_client;
   FD_ZERO(readf);
   while (tmp)
-  {
-    FD_SET(tmp->fd, readf);
-    tmp = tmp->next;
-  }
+    {
+      FD_SET(tmp->fd, readf);
+      tmp = tmp->next;
+    }
 }

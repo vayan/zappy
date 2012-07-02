@@ -15,7 +15,7 @@
 #include "network.h"
 #include "setting.h"
 
-int	seg(char **tab, t_client *client)
+int	seg(t_team *tm)
 {
   char	*str;
    t_client *graphic;
@@ -23,9 +23,8 @@ int	seg(char **tab, t_client *client)
   graphic = get_graphic(NULL);
   if (graphic == NULL)
     return (0);
-  tab = tab;
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "seg %s\n", client->teams->name);
+  sprintf(str, "seg %s\n", tm->name);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);

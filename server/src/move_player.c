@@ -1,11 +1,11 @@
 /*
 ** move_player.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Thu Jun 14 15:40:18 2012 yann vaillant
-** Last update Thu Jun 14 15:40:19 2012 yann vaillant
+** Last update Mon Jul  2 12:07:10 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -34,29 +34,10 @@ void  MoveClient(t_client *cl)
 
   rm_pl(cl->x, cl->y, cl);
   setting = get_setting(NULL);
-  switch (cl->dir)
-  {
-    case Down:
-    cl->y += 1;
-    if (cl->y >= setting->height_map)
-      cl->y = 0;
-    break;
-    case Up:
-    cl->y -= 1;
-    if (cl->y < 0)
-      cl->y = setting->height_map - 1;
-    break;
-    case Right:
-    cl->x += 1;
-    if (cl->x >= setting->width_map)
-      cl->x = 0;
-    break;
-    case Left:
-    cl->x -= 1;
-    if (cl->x < 0)
-      cl->x = setting->width_map - 1;
-    break;
-  }
+  correction_move_down(cl, setting);
+  correction_move_up(cl, setting);
+  correction_move_right(cl, setting);
+  correction_move_left(cl, setting);
   add_pl(cl->x, cl->y, cl);
 }
 
@@ -67,22 +48,22 @@ int   MoveFront(t_client *cl)
   if (cl->stm->in_use != -1 && cl->stm->in_use != GoFront)
     return (1);
   if (cl->stm->in_use == -1)
-  { 
-    cl->stm->in_use = GoFront;
-    start_timer(cl->stm);
-    return (1);
-  }
+    {
+      cl->stm->in_use = GoFront;
+      start_timer(cl->stm);
+      return (1);
+    }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == GoFront &&
-    ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
-  {
-    cl->stm->in_use = -1;
-    MoveClient(cl);
-    broadcast_to_one_client("ok\n", cl);
-    ppo(NULL, cl);
-    return (0);
-  }
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      MoveClient(cl);
+      broadcast_to_one_client("ok\n", cl);
+      ppo(NULL, cl);
+      return (0);
+    }
   return (1);
 }

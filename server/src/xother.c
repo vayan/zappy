@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:39:31 2012 yann vaillant
-** Last update Thu Jun  7 15:39:32 2012 yann vaillant
+** Last update Mon Jul  2 11:56:34 2012 yann vaillant
 */
 
 #include <unistd.h>
@@ -35,7 +35,6 @@ ssize_t		xsend(int sockfd, const void *buf, size_t len, int flags)
   if ((ret = send(sockfd, buf, len, flags)) == -1)
     {
       perror("send");
-      //exit(EXIT_FAILURE);
     }
   return (ret);
 }

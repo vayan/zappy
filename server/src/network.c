@@ -35,48 +35,6 @@ void    clean_quit()
   exit (11);
 }
 
-void  init_socket(struct sockaddr_in    *sin, int port)
-{
-  sin->sin_family = AF_INET;
-  sin->sin_port = htons(port);
-  sin->sin_addr.s_addr = INADDR_ANY;
-}
-
-int main_loop(int s, socklen_t client_sin_len,
-	      struct sockaddr_in client_sin, t_client *all_client)
-{
-  int cs;
-  
-  while (11)
-    {
-      fd_set    readf;
-      struct  timeval tv;
-      
-      tv.tv_sec = 0;
-      tv.tv_usec = 1;
-      select_list(all_client, &readf);
-      FD_SET(s, &readf);
-      if (select(get_higher_fd(all_client) + 1, &readf, NULL, NULL, &tv) == -1)
-	printf("Errror : select fail\n");
-      if (all_client != NULL && all_client->next == NULL && all_client->fd == -1)
-	all_client = NULL;
-      if (FD_ISSET(s, &readf))
-	{
-	  cs = accept(s, (struct sockaddr *)&client_sin, &client_sin_len);
-	  printf("\033[1;%sm%s\033[0;0;00m\n", COLOR_BLU, "--New Connexion");
-	  if (all_client == NULL)
-	    get_all_client(all_client = add_client(all_client, cs));
-	  else
-	    add_client(all_client, cs);
-	}
-      get_data_from_client(all_client, &readf);
-      do_input_client(all_client);
-      check_timer_all_team();
-      if (NEVER_DIE == 0)
-        check_death_all_player();
-    }
-}
-
 int network()
 {
   int     s;
@@ -90,10 +48,10 @@ int network()
   xsignal(SIGINT, clean_quit);
   all_client = NULL;
   if ((s = socket(PF_INET, SOCK_STREAM, 0)) == -1)
-    {
-      perror("socket");
-      return (-1);
-    }
+  {
+    perror("socket");
+    return (-1);
+  }
   init_socket(&sin, setting->port);
   setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &client_sin, sizeof(client_sin));
   xbind(s, (struct sockaddr*)&sin, sizeof(sin));

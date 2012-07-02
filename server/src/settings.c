@@ -1,11 +1,11 @@
-  /*
+/*
 ** settings.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Thu Jun  7 15:38:27 2012 yann vaillant
-** Last update Fri Jun 29 12:11:50 2012 randy lyvet
+** Last update Mon Jul  2 12:00:34 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -24,54 +24,6 @@
 #include "setting.h"
 #include "xfunc.h"
 #include "network.h"
-
-void  add_team(t_setting *setting, char *name, int max)
-{
-  t_team *tmp;
-  t_team *new;
-
-  tmp = setting->all_team;
-  new = xmalloc (sizeof(t_team));
-  new->name = strdup(name);
-  new->max = max;
-  new->left = max;
-  new->egg = NULL;
-  new->stm = xmalloc(sizeof(t_serv_time));
-  new->stm->in_use = -1;
-  new->nbr_pl = 0;
-  new->next = NULL;
-  if (tmp == NULL)
-    setting->all_team = new;
-  else 
-  {
-    while (tmp->next)
-      tmp = tmp->next;
-    tmp->next = new;
-  }
-}
-
-void init_setting(t_setting *setting)
-{
-  if (FLAGDEBUG == 0)
-  {
-    setting->port = -1;
-    setting->width_map = -1;
-    setting->height_map = -1;
-    setting->max_cl_per_team = -1;
-    setting->delay = -1;
-    setting->all_team = NULL;
-  }
-  if (FLAGDEBUG == 1)
-  {
-    setting->port =  4242;
-    setting->width_map = 10;
-    setting->height_map = 10;
-    setting->max_cl_per_team = 2;
-    setting->delay = 100;
-    add_team(setting, "foo", 2);
-    add_team(setting, "bar", 2);
-  }
-}
 
 int  fill_struct_set(char **set, t_setting *setting, int i, int ac)
 {
@@ -96,31 +48,32 @@ void fill_setting(char **set, int ac, t_setting *setting)
   i = 1;
   init_setting(setting);
   if (FLAGDEBUG == 0)
-  {
-    while (i < ac)
     {
-      b = 0;
-      i = fill_struct_set(set, setting, i, ac);
-      if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
-      {
-        i++;
-        while (i < ac && set[i][0] != '-')
+      while (i < ac)
         {
-          add_team(setting, set[i], 0);
-          i++;
+          b = 0;
+          i = fill_struct_set(set, setting, i, ac);
+          if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
+            {
+              i++;
+              while (i < ac && set[i][0] != '-')
+                {
+                  add_team(setting, set[i], 0);
+                  i++;
+                }
+              b = 1;
+            }
+          if (b == 0)
+            i++;
         }
-        b = 1;
-      }
-      if (b == 0)
-        i++;
     }
-  }
 }
 
 int   check_setting(t_setting *setting)
 {
-  if (setting->port == -1 || setting->width_map == -1 || setting->height_map == - 1 || 
-    setting->max_cl_per_team == -1 || setting->delay == -1)
+  if (setting->port == -1 || setting->width_map == -1 ||
+      setting->height_map == - 1 || setting->max_cl_per_team == -1 ||
+      setting->delay == -1)
     printf(USAGE, "test");
   else if (setting->port < 2000)
     printf("Error : port < 2000\n");
@@ -146,10 +99,10 @@ int   parser_setting(int ac, char **av)
   if (FLAGDEBUG == 1)
     printf("==DEBUG ACTIVEE!!==\n");
   if (ac < 13 && FLAGDEBUG == 0)
-  {
-    printf(USAGE, av[0]);
-    return (-1);
-  }
+    {
+      printf(USAGE, av[0]);
+      return (-1);
+    }
   fill_setting(av, ac, setting);
   get_setting(setting);
   return (check_setting(setting));

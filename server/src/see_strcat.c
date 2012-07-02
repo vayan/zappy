@@ -1,11 +1,11 @@
 /*
 ** see_strcat.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Tue Jun 26 12:55:49 2012 yann vaillant
-** Last update Tue Jun 26 12:55:50 2012 yann vaillant
+** Last update Mon Jul  2 12:01:27 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -38,45 +38,45 @@ char *clean_see(char *msg)
   i = 0;
   j = 0;
   while (msg[i])
-  {
-    if (i > 0 && msg[i - 1] == '{' && msg[i] == ' ')
+    {
+      if (i > 0 && msg[i - 1] == '{' && msg[i] == ' ')
+        i++;
+      if (msg[i] == ' ' && msg[i + 1] == ',')
+        i++;
+      if (msg[i] == ' ' && msg[i + 1] == ' ')
+        i++;
+      msg_clean[j] = msg[i];
       i++;
-    if (msg[i] == ' ' && msg[i + 1] == ',')
-      i++;
-    if (msg[i] == ' ' && msg[i + 1] == ' ')
-      i++;
-    msg_clean[j] = msg[i];
-    i++;
-    j++; 
-  }
+      j++;
+    }
   return (msg_clean);
 }
 
 void strcat_player(t_pl_case *tmp, char *msg)
 {
   while (tmp)
-  {
-    strcat(msg," joueur ");
-    tmp = tmp->next;
-  }  
+    {
+      strcat(msg, " joueur ");
+      tmp = tmp->next;
+    }
 }
 
 void  strcat_rsrc(Ressource *rsrc, char *msg)
-{ 
+{
   int i;
   int j;
 
   i = 0;
   while (rsrc[i])
-  {
-    j = 0;
-    while (j < (int)rsrc[i])
     {
-      strcat(msg, " ");
-      strcat(msg, Ressource_to_char(i));
-      strcat(msg, " ");
-      j++;
+      j = 0;
+      while (j < (int)rsrc[i])
+        {
+          strcat(msg, " ");
+          strcat(msg, Ressource_to_char(i));
+          strcat(msg, " ");
+          j++;
+        }
+      i++;
     }
-    i++;
-  }
 }

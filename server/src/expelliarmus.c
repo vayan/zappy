@@ -1,11 +1,11 @@
 /*
 ** expelliarmus.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Tue Jun 26 12:53:38 2012 yann vaillant
-** Last update Tue Jun 26 12:53:38 2012 yann vaillant
+** Last update Mon Jul  2 12:11:01 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -34,30 +34,10 @@ void  move_kicker(t_client *kicker, t_client *victim)
 
   rm_pl(victim->x, victim->y, victim);
   setting = get_setting(NULL);
-  switch (kicker->dir)
-  {
-    case Down:
-    victim->y += 1;
-    if (victim->y >= setting->height_map)
-      victim->y = 0;
-    break;
-    case Up:
-    victim->y -= 1;
-    if (victim->y < 0)
-      victim->y = setting->height_map - 1;
-    break;
-    case Right:
-    victim->x += 1;
-    if (victim->x >= setting->width_map)
-      victim->x = 0;
-    break;
-    case Left:
-    victim->x -= 1;
-    if (victim->x < 0)
-      victim->x = setting->width_map - 1;
-    break;
-  }
-  printf("Now is %d %d %d\n\n",victim->x, victim->y, victim->id);
+  correction_down(victim, kicker, setting);
+  correction_up(victim, kicker, setting);
+  correction_right(victim, kicker, setting);
+  correction_left(victim, kicker, setting);
   add_pl(victim->x, victim->y, victim);
 }
 
@@ -66,27 +46,27 @@ int do_expelliarmus(t_client *cl)
   t_map_case  ***map;
   t_pl_case   *tmp;
   char    *msg;
-  
+
   map = get_map(NULL);
   tmp = (map[cl->x][cl->y])->client;
   if (tmp->next == NULL)
     return (-1);
   pex(NULL, cl);
   while (tmp)
-  {
-    if (tmp->client->id != cl->id)
     {
-      msg = xmalloc(50 * sizeof(*msg));
-      memset(msg, 0, 50);
-      strcat(msg, "deplacement: ");
-      strcat(msg, inttochar(get_direction(cl, tmp->client)));
-      strcat(msg, "\n");
-      broadcast_to_one_client(msg, tmp->client);
-      free(msg);
-      move_kicker(cl, tmp->client);
+      if (tmp->client->id != cl->id)
+        {
+          msg = xmalloc(50 * sizeof(*msg));
+          memset(msg, 0, 50);
+          strcat(msg, "deplacement: ");
+          strcat(msg, inttochar(get_direction(cl, tmp->client)));
+          strcat(msg, "\n");
+          broadcast_to_one_client(msg, tmp->client);
+          free(msg);
+          move_kicker(cl, tmp->client);
+        }
+      tmp = tmp->next;
     }
-    tmp = tmp->next;
-  }
   return (0);
 }
 
@@ -97,25 +77,23 @@ int expelliarmus(t_client *cl)
   if (cl->stm->in_use != -1 && cl->stm->in_use != Kick)
     return (1);
   if (cl->stm->in_use == -1)
-  { 
-    cl->stm->in_use = Kick;
-    start_timer(cl->stm);
-    return (1);
-  }
+    {
+      cl->stm->in_use = Kick;
+      start_timer(cl->stm);
+      return (1);
+    }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Kick &&
-    ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
-  {
-    cl->stm->in_use = -1;
-    if (do_expelliarmus(cl) == -1)
-      broadcast_to_one_client("ko\n", cl);
-    else
-      broadcast_to_one_client("ok\n", cl);
-    aff_map();
-    aff_pl_test();
-    return (0);
-  }
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      if (do_expelliarmus(cl) == -1)
+        broadcast_to_one_client("ko\n", cl);
+      else
+        broadcast_to_one_client("ok\n", cl);
+      return (0);
+    }
   return (1);
 }

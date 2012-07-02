@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:27:10 2012 anatole carlier
-** Last update Tue Jun 19 14:17:16 2012 anatole carlier
+** Last update Mon Jul  2 12:07:22 2012 yann vaillant
 */
 
 #include	<stdio.h>
@@ -31,7 +31,7 @@ int		mct(char **tab, t_client *client)
   while (++x < settings->width_map)
     {
       y = 0;
-      while(y < settings->height_map)
+      while (y < settings->height_map)
 	{
 	  str = xmalloc(sizeof(char) * 1024);
 	  str = map_contents(str, x, y);

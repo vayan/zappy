@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 ** 
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Thu Jun 21 14:58:49 2012 anatole carlier
+** Last update Mon Jul  2 12:12:14 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -60,7 +60,7 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
 
   strcat(msg, "\n");
   tmp = all_client;
-  while(tmp)
+  while (tmp)
   {
     if (tmp != me)
     {

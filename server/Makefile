@@ -1,11 +1,11 @@
 ##
-## Makefile for the mini-Shell in /home/haulot_a//SystemeUnix/mysh/minishell1-2015-haulot_a
-##
-## Made by alexandre haulotte
-## Login   <haulot_a@epitech.net>
-##
-## Started on  Thu Nov 10 09:53:25 2011 alexandre haulotte
-## ast update Tue Jun 26 23:10:35 2012 randy lyvet
+## Makefile for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server
+## 
+## Made by yann vaillant
+## Login   <vailla_y@epitech.net>
+## 
+## Started on  Thu Jun 28 17:26:48 2012 yann vaillant
+## Last update Thu Jun 28 17:26:50 2012 yann vaillant
 ##
 
 NAME		=	serveur

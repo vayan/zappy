@@ -29,7 +29,7 @@ int	eht(int id);
 int	ebo(int id, t_client *client);
 int	sgt(char **command, t_client *client);
 int	sst(char **command, t_client *client);
-int	seg(char **command, t_client *client);
+int	seg(t_team *tm);
 int	smg(char *mess, t_client *client);
 int	suc(char **command, t_client *client);
 int	sbp(char **command, t_client *client);

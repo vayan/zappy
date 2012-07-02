@@ -1,11 +1,11 @@
 /*
 ** inventory.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Thu Jun 14 15:40:05 2012 yann vaillant
-** Last update Thu Jun 14 15:40:05 2012 yann vaillant
+** Last update Mon Jul  2 12:09:03 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -30,16 +30,16 @@
 char   *inttochar(int i)
 {
   char *buff_int;
-  
+
   buff_int = xmalloc(16 * sizeof(char*));
   sprintf(buff_int, "%d", i);
-  return(buff_int); 
+  return (buff_int);
 }
 
 void  send_invent(t_client *cl)
-{ 
+{
   char *invent;
-  
+
   invent = xmalloc(500 * sizeof(char*));
   memset(invent, 0, 500);
   strcat(invent, "{nourriture ");
@@ -68,20 +68,20 @@ int Inventory(t_client *cl)
   if (cl->stm->in_use != -1 && cl->stm->in_use != Inventaire)
     return (1);
   if (cl->stm->in_use == -1)
-  { 
-    cl->stm->in_use = Inventaire;
-    start_timer(cl->stm);
-    return (1);
-  }
+    {
+      cl->stm->in_use = Inventaire;
+      start_timer(cl->stm);
+      return (1);
+    }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Inventaire &&
-    ( (cl->stm->in_nsec) >= (1000000000/setting->delay)))
-  {
-    cl->stm->in_use = -1;
-    send_invent(cl);
-    return (0);
-  }
+      ( (cl->stm->in_nsec) >= (1000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      send_invent(cl);
+      return (0);
+    }
   return (1);
 }

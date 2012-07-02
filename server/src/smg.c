@@ -1,11 +1,11 @@
 /*
 ** smg.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by anatole carlier
 ** Login   <carlie_a@epitech.net>
-** 
+**
 ** Started on  Tue Jun 12 11:17:29 2012 anatole carlier
-** Last update Tue Jun 26 10:26:45 2012 robin maitre
+** Last update Mon Jul  2 12:00:01 2012 yann vaillant
 */
 
 #include <stdio.h>
@@ -15,17 +15,17 @@
 #include "network.h"
 #include "setting.h"
 
-int	smg(char *mess, t_client *client)
+int     smg(char *mess, t_client *client)
 {
-  char	*str;
-   t_client *graphic;
+  char  *str;
+  t_client *graphic;
 
   client = client;
   graphic = get_graphic(NULL);
   if (graphic == NULL)
     return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str,"smg %s\n", mess);
+  sprintf(str, "smg %s\n", mess);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);

@@ -1,11 +1,11 @@
 /*
 ** pic.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by anatole carlier
 ** Login   <carlie_a@epitech.net>
-** 
+**
 ** Started on  Tue Jun 12 11:11:50 2012 anatole carlier
-** Last update Fri Jun 15 14:01:45 2012 anatole carlier
+** Last update Mon Jul  2 12:04:42 2012 yann vaillant
 */
 
 #include <stdio.h>
@@ -17,8 +17,8 @@
 #include "xfunc.h"
 #include "map.h"
 
-int	pic(t_client *client, t_map_case *cas)
-{  
+int     pic(t_client *client, t_map_case *cas)
+{
   char  *str;
   char  *tmp;
   t_client *graphic;
@@ -31,13 +31,13 @@ int	pic(t_client *client, t_map_case *cas)
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pic %d %d %d ", client->x, client->y, client->level + 1);
   while (tmp_c)
-  {
-    tmp = xmalloc(50 * sizeof(char));
-    sprintf(tmp, "%d ", tmp_c->client->id);
-    tmp_c = tmp_c->next;
-    strcat(str, tmp);
-    free(tmp);
-  }
+    {
+      tmp = xmalloc(50 * sizeof(char));
+      sprintf(tmp, "%d ", tmp_c->client->id);
+      tmp_c = tmp_c->next;
+      strcat(str, tmp);
+      free(tmp);
+    }
   strcat(str, "\n");
   broadcast_to_one_client(str, graphic);
   free(str);

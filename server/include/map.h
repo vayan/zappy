@@ -44,8 +44,12 @@ int   free_setting();
 int  free_buff_msg(t_buffer_msg *buff_msg);
 int   free_client_map(t_pl_case *client);
 char  *Ressource_to_char(Ressource rsrc);
-Ressource parse_rsr(char *rsrc);
+int parse_rsr(char *rsrc);
 void strcat_player(t_pl_case *tmp, char *msg);
-
+void set_y_see(t_client *cl, int *y, int lvl, int i);
+void  set_x_see(t_client *cl, int *x, int lvl, int i);
+int   count_pl_on_case(t_pl_case *all_cl_case);
+void fill_tab_req(int *req, int level);
+void  gen_new_rsrc();
 
 #endif

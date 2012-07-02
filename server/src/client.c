@@ -1,11 +1,11 @@
 /*
 ** client.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Thu Jun  7 15:37:52 2012 yann vaillant
-** Last update Tue Jun 26 12:59:04 2012 yann vaillant
+** Last update Mon Jul  2 12:11:23 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -49,32 +49,32 @@ int   broadcast_to_one_client(char *msg, t_client *me)
     xsend (tmp->fd, full_msg, strlen(full_msg), MSG_DONTWAIT);
   if (full_msg[strlen(full_msg) -1 ] == '\n')
     full_msg[strlen(full_msg) -1] = 0;
-  printf("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n", RED, me->id, full_msg);
-    free(full_msg);
-    return (0);
-  }
-
+  printf("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n",
+         RED, me->id, full_msg);
+  free(full_msg);
+  return (0);
+}
 
 int do_input_client(t_client *all_client)
 {
   t_client  *tmp;
   t_option *tab;
-  
+
   tab = xmalloc (26 * sizeof(t_option));
   init_tab(tab);
   tmp = all_client;
   while (tmp)
     {
       if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
-	{
-	  if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
-	    rm_top_msg_from_buffer(tmp);    
-	}
+        {
+          if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
+            rm_top_msg_from_buffer(tmp);
+        }
       else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
-	{
-	  if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
-	    rm_top_msg_from_buffer(tmp); 
-	}
+        {
+          if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
+            rm_top_msg_from_buffer(tmp);
+        }
       tmp = tmp->next;
     }
   return (0);

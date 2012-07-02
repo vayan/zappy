@@ -1,11 +1,11 @@
 /*
 ** free_all.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Tue Jun 26 12:53:55 2012 yann vaillant
-** Last update Tue Jun 26 12:53:56 2012 yann vaillant
+** Last update Mon Jul  2 12:10:33 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -34,51 +34,51 @@ void  free_close_client()
 
   all_client = get_all_client(NULL);
   while (all_client)
-  {
-    tmp = all_client;
-    xclose(all_client->fd);
-    //FREE TEAM
-    free_buff_msg(all_client->buff_msg);
-    all_client = all_client->next;
-    if (tmp != NULL)
-      free(tmp);
-  }
+    {
+      tmp = all_client;
+      xclose(all_client->fd);
+      //FREE TEAM
+      free_buff_msg(all_client->buff_msg);
+      all_client = all_client->next;
+      if (tmp != NULL)
+        free(tmp);
+    }
 }
 
 int   free_map()
 {
- t_map_case ***map;
- t_map_case *tmp;
- t_setting    *setting;
- int x;
- int y;
+  t_map_case ***map;
+  t_map_case *tmp;
+  t_setting    *setting;
+  int x;
+  int y;
 
- y = 0;
- tmp = NULL;
- map = get_map(NULL);
- setting = get_setting(NULL);
- if (map != NULL && setting != NULL)
- {
-   while (y < setting->height_map)
-   {
-    x = 0;
-    while (x < setting->width_map)
+  y = 0;
+  tmp = NULL;
+  map = get_map(NULL);
+  setting = get_setting(NULL);
+  if (map != NULL && setting != NULL)
     {
-      tmp = MAP;
-      if (MAP->rsrc != NULL)
-        free (MAP->rsrc);
-      free_client_map(MAP->client);
-      x++;
-      if (tmp != NULL)
-        free(tmp);
+      while (y < setting->height_map)
+        {
+          x = 0;
+          while (x < setting->width_map)
+            {
+              tmp = MAP;
+              if (MAP->rsrc != NULL)
+                free (MAP->rsrc);
+              free_client_map(MAP->client);
+              x++;
+              if (tmp != NULL)
+                free(tmp);
+            }
+          if (map[y] != NULL)
+            free(map[y]);
+          y++;
+        }
+      free(map);
     }
-    if (map[y] != NULL)
-      free(map[y]);
-    y++;
-  }
-  free(map);
-}
-return (0);
+  return (0);
 }
 
 int   free_setting()
