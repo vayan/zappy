@@ -61,7 +61,7 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
   tmp = all_client;
   while (tmp)
   {
-    if (tmp != me)
+    if (tmp != me && tmp->teams != NULL)
     {
      str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
      sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
@@ -80,8 +80,9 @@ char	*parse_msg(char *msg)
   int i;
 
   i = 0;
-  while (msg[i] != ' ')
+  while (msg[i] != '\0' && msg[i] != ' ')
     msg++;
-  msg++;
+  if (msg[i] != '\0')
+    msg++;
   return (msg);
 }
