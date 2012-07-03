@@ -22,7 +22,7 @@ int bct_int(int x, int y)
   char    *str;
   t_client *graphic;
 
-  graphic = get_graphic(NULL);
+  graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
     return (0);
   str = xmalloc(sizeof(char) * 1024);
@@ -52,7 +52,7 @@ int		bct(char **tab, t_client *client)
 
   x = -1;
   y = -1;
-  graphic = get_graphic(NULL);
+  graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
     return (0);
   if (tab == NULL)

@@ -89,7 +89,7 @@ int		add_msg_to_buffer(t_client *cl, char *msg);
 int		broad_ia(t_client *cl, t_client *all_client, char *msg);
 int		do_say(t_client *me, t_client *all_client, char *msg);
 char		*parse_msg(char *msg);
-t_client    *get_graphic(t_client *_cl);
+t_client    *get_graphic(t_client *_cl, int reset);
 char   *inttochar(int i);
 int   get_direction(t_client *emeter, t_client *receiver);
 void  rm_top_msg_from_buffer(t_client *cl);

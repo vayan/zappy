@@ -19,7 +19,7 @@ int     pfk(char **tab, t_client *client)
   char  *str;
   t_client *graphic;
 
-  graphic = get_graphic(NULL);
+  graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
     return (0);
   tab = tab;

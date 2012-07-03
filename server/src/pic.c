@@ -25,7 +25,7 @@ int     pic(t_client *client, t_map_case *cas)
   t_pl_case *tmp_c;
 
   tmp_c = cas->client;
-  graphic = get_graphic(NULL);
+  graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
     return (0);
   str = xmalloc(sizeof(char) * 1024);

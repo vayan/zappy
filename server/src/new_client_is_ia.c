@@ -70,7 +70,7 @@ int   get_type_client(char *cmd, t_client *cl)
   if (strcmp (cmd, "GRAPHIC") == 0)
   {
     cl->is_graphic = 1;
-    get_graphic(cl);
+    get_graphic(cl, 0);
     first_data_graphic(cl);
     return (0);
   }

@@ -42,6 +42,8 @@ int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
+  if (to_remove->is_graphic == 1)
+    get_graphic(NULL, 1);
   remove_client_from_team(to_remove);
   xclose(to_remove->fd);
   if (to_remove->teams != NULL)

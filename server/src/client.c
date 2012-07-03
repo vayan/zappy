@@ -26,12 +26,14 @@
 #include "option.h"
 #include "command_parser.h"
 
-t_client    *get_graphic(t_client *_cl)
+t_client    *get_graphic(t_client *_cl, int reset)
 {
   static t_client *cl = NULL;
 
   if (_cl != NULL)
     cl = _cl;
+  if (reset == 1)
+    cl = NULL;
   return (cl);
 }
 

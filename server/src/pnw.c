@@ -20,7 +20,7 @@ int     pnw(char **tab, t_client *client)
   t_client *graphic;
 
   tab = tab;
-  graphic = get_graphic(NULL);
+  graphic = get_graphic(NULL, 0);
   if (graphic == NULL || client->is_graphic == 1 || client == NULL)
     return (0);
   str = xmalloc(sizeof(char) * 1024);
