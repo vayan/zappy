@@ -30,12 +30,12 @@
 void  remove_client_from_team(t_client *to_remove)
 {
   if (to_remove->teams != NULL)
-    {
-      to_remove->teams->left++;
-      to_remove->teams->nbr_pl--;
-    }
+  {
+    to_remove->teams->left++;
+    to_remove->teams->nbr_pl--;
+  }
   printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
-         COLOR_BLU, to_remove->id);
+   COLOR_BLU, to_remove->id);
 }
 
 int   remove_client(t_client *to_remove)
@@ -48,21 +48,27 @@ int   remove_client(t_client *to_remove)
   xclose(to_remove->fd);
   if (to_remove->teams != NULL)
     remove_client_on_map(to_remove);
-  tmp = get_all_client(NULL);
+  tmp = get_all_client(NULL, 0);
+  if (tmp->fd == to_remove->fd && to_remove->next != NULL)
+  {
+    get_all_client(to_remove->next, 0);
+    return (0);
+  }
   if (tmp->fd == to_remove->fd)
-    {
-      tmp->fd = -1;
-      return (0);
-    }
+  {
+    printf("remove le first client\n");
+    tmp->fd = -1;
+    return (0);
+  }
   while (tmp)
+  {
+    if (tmp->next != NULL)
     {
-      if (tmp->next != NULL)
-        {
-          if (tmp->next->fd == to_remove->fd)
-            tmp->next = tmp->next->next;
-        }
-      tmp = tmp->next;
+      if (tmp->next->fd == to_remove->fd)
+        tmp->next = tmp->next->next;
     }
+    tmp = tmp->next;
+  }
   return (1);
 }
 

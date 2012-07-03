@@ -32,11 +32,11 @@ void    show_all_msg(t_client *cl)
   tmp = cl->buff_msg;
   printf("----------\n");
   while (tmp)
-    {
-      printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
-      tmp = tmp->next;
-      i++;
-    }
+  {
+    printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
+    tmp = tmp->next;
+    i++;
+  }
 }
 
 void    get_data_from_client(t_client *all_client, fd_set *readfs)
@@ -50,47 +50,47 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
   cl_msg = NULL;
   tmp = all_client;
   while (tmp)
+  {
+    if (FD_ISSET(tmp->fd, readfs))
     {
-      if (FD_ISSET(tmp->fd, readfs))
+      if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
+      {
+        cl_msg = clean_msg(msg);
+        if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n')
         {
-          if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
-            {
-              cl_msg = clean_msg(msg);
-              if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n')
-                {
-                  add_msg_to_buffer(tmp, cl_msg);
-                  printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, cl_msg);
-                  free(cl_msg);
-                }
-            }
-          if (ret == 0)
-            remove_client(tmp);
+          add_msg_to_buffer(tmp, cl_msg);
+          printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, cl_msg);
+            free(cl_msg);
+          }
         }
+        if (ret == 0)
+          remove_client(tmp);
+      }
       tmp = tmp->next;
     }
-}
+  }
 
-int   get_higher_fd(t_client *all_client)
-{
-  t_client  *tmp;
+  int   get_higher_fd(t_client *all_client)
+  {
+    t_client  *tmp;
 
-  tmp = all_client;
-  if (tmp == NULL)
-    return (3);
-  while (tmp->next)
-    tmp = tmp->next;
-  return (tmp->fd);
-}
+    tmp = all_client;
+    if (tmp == NULL)
+      return (3);
+    while (tmp->next)
+      tmp = tmp->next;
+    return (tmp->fd);
+  }
 
-void    select_list(t_client *all_client, fd_set *readf)
-{
-  t_client  *tmp;
+  void    select_list(t_client *all_client, fd_set *readf)
+  {
+    t_client  *tmp;
 
-  tmp = all_client;
-  FD_ZERO(readf);
-  while (tmp)
+    tmp = all_client;
+    FD_ZERO(readf);
+    while (tmp)
     {
       FD_SET(tmp->fd, readf);
       tmp = tmp->next;
     }
-}
+  }

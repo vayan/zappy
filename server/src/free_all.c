@@ -32,7 +32,7 @@ void  free_close_client()
   t_client  *all_client;
   t_client  *tmp;
 
-  all_client = get_all_client(NULL);
+  all_client = get_all_client(NULL, 0);
   while (all_client)
     {
       tmp = all_client;

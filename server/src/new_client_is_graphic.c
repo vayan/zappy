@@ -40,35 +40,36 @@ void  data_egg_graphic()
   tmp = setting->all_team;
 
   while (tmp)
+  {
+    egg = tmp->egg;
+    while (egg)
     {
-      egg = tmp->egg;
-      while (egg)
-        {
-          enw(egg);
-          egg = egg->next;
-        }
-      tmp = tmp->next;
+      enw(egg);
+      egg = egg->next;
     }
+    tmp = tmp->next;
+  }
 }
 
 void  first_data_graphic(t_client *cl)
 {
   t_client *all_cl;
 
-  all_cl = get_all_client(NULL);
+  all_cl = get_all_client(NULL, 0);
   msz(NULL, cl);
   sgt(NULL, cl);
   mct(NULL, cl);
   tna(NULL, cl);
 
+
   if (all_cl != NULL)
+  {
+    while (all_cl)
     {
-      while (all_cl)
-        {
-          if (all_cl->teams != NULL)
-            pnw(NULL, all_cl);
-          all_cl = all_cl->next;
-        }
+      if (all_cl->teams != NULL)
+        pnw(NULL, all_cl);
+      all_cl = all_cl->next;
     }
+  }
   data_egg_graphic();
 }

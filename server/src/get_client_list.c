@@ -23,11 +23,13 @@
 #include <signal.h>
 #include "network.h"
 
-t_client    *get_all_client(t_client *_all_client)
+t_client    *get_all_client(t_client *_all_client, int reset)
 {
   static t_client *client = NULL;
 
   if (_all_client != NULL)
     client = _all_client;
+  if (reset == 1)
+    client = NULL;
   return (client);
 }

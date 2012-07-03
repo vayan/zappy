@@ -72,7 +72,7 @@ typedef struct      s_client {
 }    t_client;
 
 
-t_client        *get_all_client(t_client *_all_client);
+t_client        *get_all_client(t_client *_all_client, int reset);
 int		remove_client(t_client *to_remove);
 void		remove_client_on_map(t_client *cl);
 void		add_client_on_map(t_client *new);

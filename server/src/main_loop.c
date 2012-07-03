@@ -53,11 +53,12 @@ int main_loop(int s, socklen_t client_sin_len,
       fd_set    readf;
       struct  timeval tv;
 
+      all_client = get_all_client(NULL, 0);
       tv.tv_sec = 0;
       tv.tv_usec = 1;
       select_list(all_client, &readf);
       FD_SET(s, &readf);
-      if (select(get_higher_fd(all_client) + 1, &readf, NULL, NULL, &tv) == -1)
+      if (select(get_higher_fd(all_client) + 3, &readf, NULL, NULL, &tv) == -1)
         printf("Errror : select fail\n");
       if (all_client != NULL && all_client->next == NULL
           && all_client->fd == -1)
@@ -67,7 +68,7 @@ int main_loop(int s, socklen_t client_sin_len,
           cs = accept(s, (struct sockaddr *)&client_sin, &client_sin_len);
           printf("\033[1;%sm%s\033[0;0;00m\n", COLOR_BLU, "--New Connexion");
           if (all_client == NULL)
-            get_all_client(all_client = add_client(all_client, cs));
+            get_all_client(all_client = add_client(all_client, cs), 0);
           else
             add_client(all_client, cs);
         }

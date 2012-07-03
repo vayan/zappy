@@ -68,7 +68,7 @@ int   check_death_all_player()
 {
   t_client *client;
 
-  client = get_all_client(NULL);
+  client = get_all_client(NULL, 0);
   while (client)
     {
       start_dying(client);

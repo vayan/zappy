@@ -31,7 +31,7 @@ int     plv(char **tab, t_client *client)
   t_client *graphic;
   t_client      *clients;
 
-  clients = get_all_client(NULL);
+  clients = get_all_client(NULL, 0);
   graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
     return (0);

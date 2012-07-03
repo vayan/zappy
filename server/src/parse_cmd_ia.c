@@ -70,7 +70,7 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
       else if (strcmp(tab[0], "pose") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
         return (Drop_Object(cl, parse_rsr(tab[1])));
       else if (strcmp(tab[0], "broadcast") == 0)
-        return (broad_ia(cl, get_all_client(NULL), parse_msg(cmd)));
+        return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
     }
   return (0);
 }
