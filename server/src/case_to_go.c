@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Fri Jun 22 10:32:29 2012 randy lyvet
-** Last update Fri Jun 29 12:20:41 2012 randy lyvet
+** Last update Tue Jul  3 13:09:00 2012 randy lyvet
 */
 
 int			go_up(int x, int y)
