@@ -44,6 +44,28 @@ void  new_msg_to_buffer(t_client *cl, char *msg)
   cl->buff_msg->next = NULL;
 }
 
+char*  clean_msg(char *msg)
+{
+  char *clean;
+  int i;
+  int j;
+
+  i = 0;
+  j = 0;
+  clean = xmalloc (strlen(msg) * sizeof(*clean));
+  while (msg[i] != '\0')
+  { 
+    if (msg[i] >= 31 && msg[i] <= 126)
+    {
+      clean[j] = msg[i];
+      j++;
+    }
+    i++;
+  }
+  clean[j] = 0;
+  return (clean);
+}
+
 int    add_msg_to_buffer(t_client *cl, char *msg)
 {
   int i;
@@ -54,20 +76,20 @@ int    add_msg_to_buffer(t_client *cl, char *msg)
     msg[strlen(msg) - 1] = '\0';
   i = 0;
   if (tmp == NULL)
-    {
-      new_msg_to_buffer(cl, msg);
-      return (1);
-    }
+  {
+    new_msg_to_buffer(cl, msg);
+    return (1);
+  }
   while (tmp->next)
-    {
-      tmp = tmp->next;
-      i++;
-    }
+  {
+    tmp = tmp->next;
+    i++;
+  }
   if (i < 9)
-    {
-      tmp->next = xmalloc(sizeof(t_buffer_msg));
-      tmp->next->msg = strdup(msg);
-      tmp->next->next = NULL;
-    }
+  {
+    tmp->next = xmalloc(sizeof(t_buffer_msg));
+    tmp->next->msg = strdup(msg);
+    tmp->next->next = NULL;
+  }
   return (0);
 }

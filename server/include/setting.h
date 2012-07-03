@@ -13,9 +13,9 @@
 
 #include "serv_time.h"
 
-#define NEVER_DIE 1
+#define NEVER_DIE 0
 #define USAGE "Usage : %s -p port -x width -y height -n nameteam1 nameteam2 [..] -c MaxClientPerTeam -t delay\n"
-#define FLAGDEBUG 1 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
+#define FLAGDEBUG 0 //1 = valeur par defaut pas besoin de foutre tout les options - 0 = normal
 
 typedef struct s_eggs {
   int id;

@@ -19,7 +19,7 @@ int plv_one(t_client *client, t_client *graphic)
   char  *str;
 
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "pnw %i %i\n", client->id, client->level);
+  sprintf(str, "plv %i %i\n", client->id, client->level);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
@@ -44,7 +44,7 @@ int     plv(char **tab, t_client *client)
           if (clients->id == atoi(tab[1]))
             {
               str = xmalloc(sizeof(char) * 1024);
-              sprintf(str, "pnw %i %i\n", client->id, client->level);
+              sprintf(str, "plv %i %i\n", client->id, client->level);
               broadcast_to_one_client(str, graphic);
               free(str);
               return (0);

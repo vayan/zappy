@@ -77,13 +77,20 @@ int			get_direction(t_client *emeter, t_client *receiver)
   int			width;
   int			goX;
   int			goY;
+  int debug;
 
+  printf("start direction\n");
   infos = get_setting(NULL);
   height = infos->height_map;
   width = infos->width_map;
   goX = get_were(receiver->x, emeter->x, width);
   goY = get_were(receiver->y, emeter->y, height);
   if (goY == 0 && goX == 0)
+  {
+    printf("fin direction 0\n");
     return (0);
-  return (case_to_go(goX, goY, receiver));
+  }
+  debug = case_to_go(goX, goY, receiver);
+  printf("fin direction\n");
+  return (debug);
 }

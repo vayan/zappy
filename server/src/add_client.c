@@ -48,7 +48,7 @@ void      init_val_new_client(t_client *new, int fd, int id)
   new->y = -1;
   new->level = 1;
   new->fd = fd;
-  new->id = id++;
+  new->id = id;
   new->next = NULL;
   new->teams = NULL;
   new->stm = xmalloc(sizeof(t_serv_time));
@@ -71,6 +71,7 @@ t_client  *add_client(t_client *all_client, int fd)
   new = xmalloc(sizeof(t_client));
   tmp = all_client;
   init_val_new_client(new, fd, id);
+  id++;
   broadcast_to_one_client("BIENVENUE\n", new);
   if (tmp == NULL)
     return (new);

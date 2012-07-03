@@ -43,9 +43,11 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
 {
   t_client  *tmp;
   char    msg[MAX_INPUT];
+  char    *cl_msg;
   int   ret;
 
   memset(msg, 0, MAX_INPUT);
+  cl_msg = NULL;
   tmp = all_client;
   while (tmp)
     {
@@ -53,11 +55,12 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
         {
           if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
             {
-              if (msg[0] != 0 && msg[0] != '\n')
+              cl_msg = clean_msg(msg);
+              if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n')
                 {
-                  add_msg_to_buffer(tmp, msg);
-                  printf("\033[1;%sm<--\tReceive message from %d : \
-'%s'\033[0;0;00m\n", DARK_RED, tmp->id, msg);
+                  add_msg_to_buffer(tmp, cl_msg);
+                  printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, cl_msg);
+                  free(cl_msg);
                 }
             }
           if (ret == 0)

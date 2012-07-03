@@ -36,14 +36,17 @@ int   client_team_init(t_client *cl, char *cmd, t_team *tm)
   cl->death->in_use = -1;
   cl->teams->nbr_pl++;
   tm->left--;
-  if (cl->teams->nbr_pl > tm->max)
+  if (cl->teams->nbr_pl >= tm->max)
+  {
+    if (cl->teams->egg != NULL)
     {
-      cl->x = cl->teams->egg->x;
       cl->y = cl->teams->egg->y;
+      cl->x = cl->teams->egg->x; 
       ebo(cl->teams->egg->id, cl);
       cl->teams->egg = cl->teams->egg->next;
     }
-    return (0);
+  }
+  return (0);
 }
 
 void  send_message_start_client(t_client *cl)
@@ -65,20 +68,20 @@ int   get_type_client(char *cmd, t_client *cl)
   t_team *tm;
 
   if (strcmp (cmd, "GRAPHIC") == 0)
-    {
-      cl->is_graphic = 1;
-      get_graphic(cl);
-      first_data_graphic(cl);
-      return (0);
-    }
+  {
+    cl->is_graphic = 1;
+    get_graphic(cl);
+    first_data_graphic(cl);
+    return (0);
+  }
   else if (cl->teams == NULL && (tm = check_team(cmd)) != NULL)
-    {
-      check_place_left_in_team(cl, cmd, tm);
-      client_team_init(cl, cmd, tm);
-      add_client_on_map(cl);
-      send_message_start_client(cl);
-      pnw(NULL, cl);
-      return (0);
-    }
+  {
+    check_place_left_in_team(cl, cmd, tm);
+    client_team_init(cl, cmd, tm);
+    add_client_on_map(cl);
+    send_message_start_client(cl);
+    pnw(NULL, cl);
+    return (0);
+  }
   return (1);
 }

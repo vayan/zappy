@@ -19,7 +19,7 @@ int pin_one(t_client *graphic, t_client *clients)
   char    *str;
 
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "pnw %i %i %i %i %i %i %i %i %i %i\n", clients->id, clients->x,
+  sprintf(str, "pin %i %i %i %i %i %i %i %i %i %i\n", clients->id, clients->x,
           clients->y, clients->rsrc[Nourriture], clients->rsrc[Linemate],
           clients->rsrc[Deraumere], clients->rsrc[Sibur],
           clients->rsrc[Mendiane], clients->rsrc[Phiras],
@@ -48,7 +48,7 @@ int             pin(char **tab, t_client *client)
           if (clients->id == atoi(tab[1]))
             {
               str = xmalloc(sizeof(char) * 1024);
-              sprintf(str, "pnw %i %i %i %i %i %i %i %i %i %i\n",
+              sprintf(str, "pin %i %i %i %i %i %i %i %i %i %i\n",
                       clients->id, clients->x, clients->y,
                       clients->rsrc[Nourriture], clients->rsrc[Linemate],
                       clients->rsrc[Deraumere], clients->rsrc[Sibur],

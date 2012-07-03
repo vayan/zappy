@@ -44,36 +44,40 @@ void fill_setting(char **set, int ac, t_setting *setting)
 {
   int i;
   int b;
+  int save;
 
   i = 1;
   init_setting(setting);
   if (FLAGDEBUG == 0)
+  {
+    while (i < ac)
     {
-      while (i < ac)
-        {
-          b = 0;
-          i = fill_struct_set(set, setting, i, ac);
-          if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
-            {
-              i++;
-              while (i < ac && set[i][0] != '-')
-                {
-                  add_team(setting, set[i], 0);
-                  i++;
-                }
-              b = 1;
-            }
-          if (b == 0)
-            i++;
-        }
+      b = 0;
+      i = fill_struct_set(set, setting, i, ac);
+      if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
+        save = i;
+      i++;
     }
+  }
+  if (strcmp("-n", set[save]) == 0 && save + 1 <= ac)
+  {
+    save++;
+    while (save < ac && set[save][0] != '-')
+    {
+      printf("jadd team '%s' de taille %d\n", set[save], setting->max_cl_per_team);
+      add_team(setting, set[save], setting->max_cl_per_team);
+      save++;
+    }
+    b = 1;
+  }
+
 }
 
 int   check_setting(t_setting *setting)
 {
   if (setting->port == -1 || setting->width_map == -1 ||
-      setting->height_map == - 1 || setting->max_cl_per_team == -1 ||
-      setting->delay == -1)
+    setting->height_map == - 1 || setting->max_cl_per_team == -1 ||
+    setting->delay == -1)
     printf(USAGE, "test");
   else if (setting->port < 2000)
     printf("Error : port < 2000\n");
@@ -99,10 +103,10 @@ int   parser_setting(int ac, char **av)
   if (FLAGDEBUG == 1)
     printf("==DEBUG ACTIVEE!!==\n");
   if (ac < 13 && FLAGDEBUG == 0)
-    {
-      printf(USAGE, av[0]);
-      return (-1);
-    }
+  {
+    printf(USAGE, av[0]);
+    return (-1);
+  }
   fill_setting(av, ac, setting);
   get_setting(setting);
   return (check_setting(setting));

@@ -58,7 +58,7 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
   t_client	*tmp;
   char		*str;
 
-  strcat(msg, "\n");
+  //strcat(msg, "\n");
   tmp = all_client;
   while (tmp)
   {
