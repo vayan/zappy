@@ -58,7 +58,7 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
   t_client	*tmp;
   char		*str;
 
-  if (msg == NULL)
+  if (msg[0] == 0)
     return (1);
   tmp = all_client;
   while (tmp)
@@ -81,10 +81,8 @@ char	*parse_msg(char *msg)
 {
   int i;
 
-  if (msg == NULL || msg[0] == '\n')
-    return (NULL);
   i = 0;
-  while (msg[i] != ' ')
+  while (msg[i] || msg[i] != ' ')
     msg++;
   msg++;
   return (msg);
