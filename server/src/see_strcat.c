@@ -68,7 +68,7 @@ void  strcat_rsrc(Ressource *rsrc, char *msg)
   char *rc;
 
   i = 0;
-  while (rsrc[i])
+  while (i <= Thystame)
     {
       j = 0;
       while (j < (int)rsrc[i])

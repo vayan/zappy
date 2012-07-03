@@ -64,7 +64,6 @@ void fill_setting(char **set, int ac, t_setting *setting)
     save++;
     while (save < ac && set[save][0] != '-')
     {
-      printf("jadd team '%s' de taille %d\n", set[save], setting->max_cl_per_team);
       add_team(setting, set[save], setting->max_cl_per_team);
       save++;
     }

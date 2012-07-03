@@ -58,11 +58,12 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
   t_client	*tmp;
   char		*str;
 
-  //strcat(msg, "\n");
+  if (msg == NULL)
+    return (1);
   tmp = all_client;
   while (tmp)
   {
-    if (tmp != me)
+    if (tmp != me && tmp->teams != NULL)
     {
      str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
      sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
@@ -72,7 +73,7 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
    tmp = tmp->next;
  }
  pbc(msg, me);
- broadcast_to_one_client(msg, me);
+ broadcast_to_one_client("ok\n", me);
  return (0);
 }
 
@@ -80,6 +81,8 @@ char	*parse_msg(char *msg)
 {
   int i;
 
+  if (msg == NULL || msg[0] == '\n')
+    return (NULL);
   i = 0;
   while (msg[i] != ' ')
     msg++;

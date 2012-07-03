@@ -43,9 +43,9 @@ void  do_take_obj(t_client *cl, Ressource obj)
       pdr(obj, cl);
       pin(NULL, cl);
       bct(NULL, cl);
-      if (stat == 20)
+      if (stat == 10)
         {
-          //gen_new_rsrc();
+          gen_new_rsrc();
           stat = 0;
         }
     }

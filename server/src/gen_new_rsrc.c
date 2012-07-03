@@ -34,7 +34,8 @@ void  gen_new_rsrc()
       x = 0;
       while (x < setting->width_map)
         {
-          gen_rsrc(MAP->rsrc, 3, 2);
+          gen_rsrc(MAP->rsrc, 2, 2);
+          bct_int(x, y);
           x++;
         }
       y++;
