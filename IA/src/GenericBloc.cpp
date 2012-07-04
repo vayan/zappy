@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Wed Jun 27 11:06:42 2012 alexandre haulotte
+// Last update Wed Jul  4 13:16:39 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -117,12 +117,44 @@ int   Player::Eclosion()
 {
   PlayerCreator	pc;
   static int	i = 0;
-  // std::cout << "Eclosion" << std::endl;
-  // if (i < 8)
-  //   {
-      pc.create(_addr, _port, _teamName, _id + i);
+  pc.create(_addr, _port, _teamName, _id + i, 1);
+  i++;
+  return (OK);
+}
+
+int   Player::Eclosion2()
+{
+  PlayerCreator	pc;
+  static int	i = 0;
+  pc.create(_addr, _port, _teamName, _id + i, 2);
+  i++;
+  return (OK);
+}
+
+int   Player::Eclosion3()
+{
+  PlayerCreator	pc;
+  static int	i = 0;
+  pc.create(_addr, _port, _teamName, _id + i, 3);
+  i++;
+  return (OK);
+}
+
+int   Player::Eclosion4()
+{
+  PlayerCreator	pc;
+  static int	i = 0;
+  pc.create(_addr, _port, _teamName, _id + i, 4);
       i++;
-      //    }
+  return (OK);
+}
+
+int   Player::Eclosion5()
+{
+  PlayerCreator	pc;
+  static int	i = 0;
+  pc.create(_addr, _port, _teamName, _id + i, 5);
+  i++;
   return (OK);
 }
 

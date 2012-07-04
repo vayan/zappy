@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Fri Jun 29 11:23:11 2012 alexandre haulotte
+// Last update Wed Jul  4 13:16:04 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -20,6 +20,10 @@ int	Droite(); // OK - ERR
 int	Gauche(); // OK - ERR
 int	Pond(); // OK - ERR
 int	Eclosion(); // OK
+int	Eclosion2(); // OK
+int	Eclosion3(); // OK
+int	Eclosion4(); // OK
+int	Eclosion5(); // OK
 int	Incantation(); // OK - KO - ERR
 int	GoToDir(); // OK - ERR
 int	VideCase(); // OK - ERR

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun 12 10:42:26 2012 alexandre haulotte
-// Last update Fri Jun 22 11:39:51 2012 alexandre haulotte
+// Last update Tue Jul  3 10:58:20 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYERCREATOR_HH__
@@ -19,7 +19,7 @@ class PlayerCreator
 public:
   PlayerCreator();
   ~PlayerCreator();
-  int	create(std::string& ip, int port, std::string& teamName, int id);
+  int	create(std::string& ip, int port, std::string& teamName, int id, int comp);
 };
 
 #endif
