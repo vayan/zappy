@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Wed Jul  4 13:16:39 2012 alexandre haulotte
+// Last update Thu Jul  5 11:52:16 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -17,7 +17,7 @@ int   Player::Avance()
   int	ret;
   //  char          buff[8096 + 1];
 
-  //  std::cout << _id << " : j'avance" << std::endl;
+  //  // std::cout << _id << " : j'avance" << std::endl;
   ret = xsend(_soc, "avance\n", 7, 0);
 // switch (_dir)
   //   {
@@ -46,7 +46,7 @@ int	Player::Droite()
 {
   int   ret;
 
-  //  std::cout << _id << " : je tourne a droite" << std::endl;
+  //  // std::cout << _id << " : je tourne a droite" << std::endl;
   ret = xsend(_soc, "droite\n", 7, 0);
   if (ret == -1)
     return (ERR);
@@ -60,7 +60,7 @@ int     Player::Gauche()
 {
   int   ret;
 
-  //  std::cout << _id << " : je tourne a gauche" << std::endl;
+  //  // std::cout << _id << " : je tourne a gauche" << std::endl;
   ret = xsend(_soc, "gauche\n", 7, 0);
   if (ret == -1)
     return (ERR);
@@ -74,7 +74,7 @@ int     Player::Inventaire()
 {
   int   ret;
 
-  //std::cout << _id << " : je tourne a gauche" << std::endl;
+  //// std::cout << _id << " : je tourne a gauche" << std::endl;
   ret = xsend(_soc, "inventaire\n", 11, 0);
   if (ret == -1)
     return (ERR);
@@ -88,7 +88,7 @@ int     Player::Voir()
 {
   int   ret;
 
-  //std::cout << _id << " : je tourne a gauche" << std::endl;
+  //// std::cout << _id << " : je tourne a gauche" << std::endl;
   ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);
@@ -102,7 +102,7 @@ int   Player::Pond()
 {
   int	ret;
 
-  //std::cout << "je pond" << std::endl;
+  //// std::cout << "je pond" << std::endl;
   ret = xsend(_soc, "fork\n", 5, 0);
   gPondu = true;
   if (ret == -1)
@@ -176,16 +176,18 @@ int	Player::Incantation()
       if (_lastRep.find("niveau") != std::string::npos)
 	{
 	  _lvl++;
-	  std::cout << "je suis lvl: " << _lvl << std::endl;
+	  // std::cout << "je suis lvl: " << _lvl << std::endl;
+	  isRenf = false;
 	  return (OK);
 	}
     }
+  isRenf = false;
   return (KO);
 }
 
 int	Player::GoToDir()
 {
-  //  std::cout << _id << " >>>>>>>GoToMsgRenfort direct : " << rDir << std::endl;
+  //  // std::cout << _id << " >>>>>>>GoToMsgRenfort direct : " << rDir << std::endl;
   switch (rDir)
     {
     case 1:
@@ -254,39 +256,46 @@ int	Player::VideCase()
 	     || food.find("phiras") != std::string::npos
 	     || food.find("thystame") != std::string::npos)
 	{
-	  //	  std::cout << "--------->" << food << std::endl;
+	  //	  // std::cout << "--------->" << food << std::endl;
 	  if (food.find("nourriture") != std::string::npos)
 	    {
+	      // std::cout << "VideCase" << std::endl;
 	      food.replace(food.find(" nourriture"), 11, "");
 	      RamassezNourriture();
 	    }
 	  if (food.find("linemate") != std::string::npos)
 	    {
+	      // std::cout << "VideCase2" << std::endl;
 	      food.replace(food.find(" linemate"), 9, "");
 	      RamassezLinemate();
 	    }
 	  if (food.find("deraumere") != std::string::npos)
 	    {
+	      	      // std::cout << "VideCase3" << std::endl;
 	      food.replace(food.find(" deraumere"), 10, "");
 	      RamassezDeraumere();
 	    }
 	  if (food.find("sibur") != std::string::npos)
 	    {
+	      	      // std::cout << "VideCase7" << std::endl;
 	      food.replace(food.find(" sibur"), 6, "");
 	      RamassezSibur();
 	    }
 	  if (food.find("mendiane") != std::string::npos)
 	    {
+	      	      // std::cout << "VideCase4" << std::endl;
 	      food.replace(food.find(" mendiane"), 9, "");
 	      RamassezMendiane();
 	    }
 	  if (food.find("phiras") != std::string::npos)
 	    {
+	      	      // std::cout << "VideCase5" << std::endl;
 	      food.replace(food.find(" phiras"), 7, "");
 	      RamassezPhiras();
 	    }
 	  if (food.find("thystame") != std::string::npos)
 	    {
+	      	      // std::cout << "VideCase6" << std::endl;
 	      food.replace(food.find(" thystame"), 9, "");
 	      RamassezThystame();
 	    }

@@ -5,14 +5,14 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:48:02 2012 alexandre haulotte
-// Last update Fri Jun 29 11:22:33 2012 alexandre haulotte
+// Last update Thu Jul  5 11:58:10 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
 
 int   Player::AssezRessourceForLvl()
 {
-  //std::cout << _id << " : _AssezRessource" << std::endl;
+  //// std::cout << _id << " : _AssezRessource" << std::endl;
   if (_lvlTab[_lvl][1] > _ressource[LINEMATE]
       || _lvlTab[_lvl][2] > _ressource[DERAUMERE]
       || _lvlTab[_lvl][3] > _ressource[SIBUR]
@@ -61,13 +61,14 @@ int	Player::AssezPlayerForLvl()
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
       while (food.find("joueur") != std::string::npos)
 	{
+	  // std::cout << "AssezPlayerForLvl" << std::endl;
 	  food.replace(food.find("joueur"), 6, "");
 	  nbP++;
 	}
-      // std::cout << "Player demander : " << _lvlTab[_lvl][0] <<std::endl;
+      // // std::cout << "Player demander : " << _lvlTab[_lvl][0] <<std::endl;
       if (nbP >= _lvlTab[_lvl][0])
 	{
-	  //std::cout << _id << " | Player sur case : " << nbP <<std::endl;
+	  //// std::cout << _id << " | Player sur case : " << nbP <<std::endl;
 	  return (OK);
 	}
     }
@@ -99,36 +100,43 @@ int	Player::CaseReady()
 	{
 	  if (food.find("joueur") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady1" << std::endl;
 	      food.replace(food.find("joueur"), 6, "");
 	      nbP[0]++;
 	    }
 	  if (food.find("linemate") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady2" << std::endl;
 	      food.replace(food.find("linemate"), 8, "");
 	      nbP[1]++;
 	    }
 	  if (food.find("deraumere") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady3" << std::endl;
 	      food.replace(food.find("deraumere"), 9, "");
 	      nbP[2]++;
 	    }
 	  if (food.find("sibur") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady4" << std::endl;
 	      food.replace(food.find("sibur"), 5, "");
 	      nbP[3]++;
 	    }
 	  if (food.find("mendiane") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady5" << std::endl;
 	      food.replace(food.find("mendiane"), 8, "");
 	      nbP[4]++;
 	    }
 	  if (food.find("phiras") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady6" << std::endl;
 	      food.replace(food.find("phiras"), 6, "");
 	      nbP[5]++;
 	    }
 	  if (food.find("thystame") != std::string::npos)
 	    {
+	      // std::cout << "CaseReady7" << std::endl;
 	      food.replace(food.find(" thystame"), 8, "");
 	      nbP[6]++;
 	    }
@@ -164,6 +172,7 @@ int	Player::JoueurSurCase()
       food = _lastRep.substr(_lastRep.find("{"), _lastRep.find(",") - _lastRep.find("{"));
       while (food.find("joueur") != std::string::npos)
 	{
+	  // std::cout << "JoueurSurCase" << std::endl;
 	  food.replace(food.find("joueur"), 6, "");
 	  nbP++;
 	}

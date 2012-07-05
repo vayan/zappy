@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 18:50:57 2012 alexandre haulotte
-// Last update Tue Jun 26 15:37:03 2012 alexandre haulotte
+// Last update Thu Jul  5 11:58:12 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,7 +14,7 @@ int	Player::CallRenfort()
 {
   int   ret;
 
-  //  std::cout << "Renfort!!!!!!!!!" << std::endl;
+  //  // std::cout << "Renfort!!!!!!!!!" << std::endl;
   std::string str = "broadcast xxrenfortxx" + intToStr(_lvl) + "\n";
   ret = xsend(_soc, &str[0], str.size(), 0);
   if (ret == -1)
@@ -29,7 +29,7 @@ int	Player::CallJGLR()
 {
   int   ret;
 
-  //  std::cout << "Renfort!!!!!!!!!" << std::endl;
+  //  // std::cout << "Renfort!!!!!!!!!" << std::endl;
   std::string str = "broadcast xxjglrxx\n";
   ret = xsend(_soc, &str[0], str.size(), 0);
   if (ret == -1)
@@ -49,7 +49,7 @@ int	Player::RecvRenfort()
     {
       for (it = _msg.rbegin(); it != _msg.rend(); it++)
 	{
-	  if ((*it).find("xxrenfortokxx") != std::string::npos)
+	  if ((*it).find("xxrenfortokxx") != std::string::npos && isRenf)
 	    {
 	      rDir = (*it)[8] - '0';
 	      rfLvl = strToInt(&((*it).substr((*it).find("xxrenfortokxx") + 13, (*it).find("xxrenfortxx") + 14))[0]);
@@ -59,6 +59,15 @@ int	Player::RecvRenfort()
 		  if (rDir == 0)
 		    return (OK);
 		  return (GODIR);
+		}
+	    }
+	  else if ((*it).find("xxrenfortokxx") != std::string::npos)
+	    {
+	      rfLvl = strToInt(&((*it).substr((*it).find("xxrenfortokxx") + 13, (*it).find("xxrenfortxx") + 14))[0]);
+	      if (rfLvl == _lvl)
+		{
+		  _msg.clear();
+		  return (KO);
 		}
 	    }
 	  if ((*it).find("xxrenfortxx") != std::string::npos)
@@ -104,7 +113,7 @@ int	Player::CallArrive()
 {
   int   ret;
 
-  //  std::cout << "Renfort!!!!!!!!!" << std::endl;
+  // std::cout << _id << " : Jarrive!!!!!!!!!" << std::endl;
   std::string str = "broadcast xxJarrivexx" + intToStr(_lvl) + "\n";
   ret = xsend(_soc, &str[0], str.size(), 0);
   isRenf = true;
@@ -120,10 +129,9 @@ int	Player::CallRenfortOK()
 {
   int   ret;
 
-  //  std::cout << "Renfort!!!!!!!!!" << std::endl;
+  //  // std::cout << "Renfort!!!!!!!!!" << std::endl;
   std::string str = "broadcast xxrenfortokxx" + intToStr(_lvl) + "\n";
   ret = xsend(_soc, &str[0], str.size(), 0);
-  isRenf = true;
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -148,9 +156,10 @@ int	Player::RecvArrive()
 	    }
 	}
       _msg.clear();
+      // std::cout << _id << " : " << _nbRenf << std::endl;
       if (_nbRenf >= _lvlTab[_lvl][0])
 	{
-	  _nbRenf = 0;
+	  _nbRenf = 1;
 	  return (OK);
 	}
     }

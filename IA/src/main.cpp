@@ -5,11 +5,12 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun  5 13:19:33 2012 alexandre haulotte
-// Last update Fri Jun 29 11:23:33 2012 alexandre haulotte
+// Last update Thu Jul  5 11:42:04 2012 alexandre haulotte
 //
 
 #include	<signal.h>
 #include	"Player.hh"
+#include	"PlayerCreator.hh"
 #include	"Errur.hh"
 
 void	signal_pipe(int sig)
@@ -31,6 +32,11 @@ int	main(int ac, char **av)
     {
       std::cout << e->what() << std::endl;
     }
+  // catch (std::out_of_range a)
+  //   {
+  //     //      std::cout << "Out of range :" << a.where() << std::endl;
+  //     main(ac, av);
+  //   }
   return (0);
 }
 

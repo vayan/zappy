@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:33:05 2012 alexandre haulotte
-// Last update Thu Jun 21 17:31:11 2012 alexandre haulotte
+// Last update Thu Jul  5 11:58:11 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -23,7 +23,9 @@ int   Player::SearchNourriture()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchNourriture1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchNourriture2" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "nourriture"));
@@ -44,7 +46,9 @@ int   Player::SearchLinemate()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchLine1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchLine2" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "linemate"));
@@ -65,7 +69,9 @@ int   Player::SearchDeraumere()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchDerau1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchDerau1" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "deraumere"));
@@ -87,7 +93,9 @@ int   Player::SearchSibur()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchSib1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchSib2" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "sibur"));
@@ -108,7 +116,9 @@ int   Player::SearchMendiane()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchMend1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchMend2" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "mendiane"));
@@ -129,7 +139,9 @@ int   Player::SearchPhiras()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchPhi1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchPhi2" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "phiras"));
@@ -150,7 +162,9 @@ int   Player::SearchThystame()
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
+      // std::cout << "SearchThy1" << std::endl;
       _lastRep.replace(_lastRep.find("{"), 1, "");
+      // std::cout << "SearchThy2" << std::endl;
       _lastRep.replace(_lastRep.find("}"), 1, "");
       food = split_to_vec(_lastRep, ",");
       return (searchDir(food, "thystame"));
@@ -163,7 +177,7 @@ int   Player::SearchRessourceForLvl()
   int   ret;
   std::vector<std::string>	food;
 
-  //  std::cout << _id << " | SRFL" << std::endl;
+  //  // std::cout << _id << " | SRFL" << std::endl;
   ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);

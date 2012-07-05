@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Thu Jun 28 16:25:47 2012 anatole carlier
+// Last update Wed Jul  4 14:06:48 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -116,8 +116,7 @@ Player::Player(int compo)
 	    {4, 1, 2, 1, 3, 0, 0},
 	    {6, 1, 2, 3, 0, 1, 0},
 	    {6, 2, 2, 2, 2, 2, 1}};
-  _nbRenf = 0;
-  rDir = 0;
+  _nbRenf = 1;
 }
 
 Player::Player(int port, std::string ip, std::string team, int compo, int id)
@@ -139,8 +138,7 @@ Player::Player(int port, std::string ip, std::string team, int compo, int id)
 	    {4, 1, 2, 1, 3, 0, 0},
 	    {6, 1, 2, 3, 0, 1, 0},
 	    {6, 2, 2, 2, 2, 2, 1}};
-  _nbRenf = 0;
-  rDir = 0;
+  _nbRenf = 1;
 }
 
 void    Player::parse(int ac, char **av)

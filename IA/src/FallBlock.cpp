@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Fri Jun 22 15:22:25 2012 alexandre haulotte
+// Last update Thu Jul  5 11:58:12 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -14,7 +14,7 @@ int   Player::PoserNourriture()
 {
   int   ret;
 
-  //std::cout << "PoseNouriture" << std::endl;
+  //// std::cout << "PoseNouriture" << std::endl;
   ret = xsend(_soc, "pose nourriture\n", 16, 0);
   if (ret == -1)
     return (ERR);
@@ -136,7 +136,7 @@ int   Player::PoserThystame()
 
 int   Player::PoserRessourceForLvl()
 {
-  //  std::cout << _id << " | PoserRessourceForLvl" << std::endl;
+  //  // std::cout << _id << " | PoserRessourceForLvl" << std::endl;
   int	i = 1;
   int	res;
   int	ret = 0;

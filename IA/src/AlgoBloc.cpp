@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 21 09:47:33 2012 alexandre haulotte
-// Last update Tue Jun 26 10:24:13 2012 alexandre haulotte
+// Last update Thu Jul  5 11:58:13 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -43,7 +43,7 @@ int     Player::IfFoodSup10()
   std::string   food;
   //  char          buff[8096 + 1];
 
-  //  std::cout << "_AssezNourriture" << std::endl;
+  //  // std::cout << "_AssezNourriture" << std::endl;
   ret = xsend(_soc, "inventaire\n", 12, 0);
   if (ret == -1)
     return (ERR);
@@ -53,7 +53,8 @@ int     Player::IfFoodSup10()
   if (_lastRep.find("nourriture") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
-      food.replace(food.find("nourriture "), 10, "");
+      // std::cout << "IfFoodSup10" << std::endl;
+      food.replace(food.find("nourriture"), 10, "");
       if (strToInt(&food[0]) > 10)
 	return (OK);
     }
@@ -66,7 +67,7 @@ int     Player::IfFoodSup5()
   std::string   food;
   //  char          buff[8096 + 1];
 
-  //  std::cout << "_AssezNourriture" << std::endl;
+  //  // std::cout << "_AssezNourriture" << std::endl;
   ret = xsend(_soc, "inventaire\n", 12, 0);
   if (ret == -1)
     return (ERR);
@@ -76,7 +77,8 @@ int     Player::IfFoodSup5()
   if (_lastRep.find("nourriture") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
-      food.replace(food.find("nourriture "), 10, "");
+      // std::cout << "IfFoodSup5" << std::endl;
+      food.replace(food.find("nourriture"), 10, "");
       if (strToInt(&food[0]) > 5)
 	return (OK);
     }
@@ -89,7 +91,7 @@ int     Player::IfFoodSup30()
   std::string   food;
   //  char          buff[8096 + 1];
 
-  //  std::cout << "_AssezNourriture" << std::endl;
+  //  // std::cout << "_AssezNourriture" << std::endl;
   ret = xsend(_soc, "inventaire\n", 12, 0);
   if (ret == -1)
     return (ERR);
@@ -99,7 +101,8 @@ int     Player::IfFoodSup30()
   if (_lastRep.find("nourriture") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
-      food.replace(food.find("nourriture "), 10, "");
+      // std::cout << "IfFoodSup30" << std::endl;
+      food.replace(food.find("nourriture"), 10, "");
       if (strToInt(&food[0]) > 30)
 	return (OK);
     }
