@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Thu Jul  5 11:52:16 2012 alexandre haulotte
+// Last update Thu Jul  5 12:47:18 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -55,6 +55,21 @@ int	Player::Droite()
     return (ERR);
   return (OK);
 }
+
+int     Player::Expulse()
+{
+  int   ret;
+
+  std::cout << _id << " : Expulse" << std::endl;
+  ret = xsend(_soc, "expulse\n", 8, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  return (OK);
+}
+
 
 int     Player::Gauche()
 {

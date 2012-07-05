@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 12:06:09 2012 alexandre haulotte
-// Last update Wed Jul  4 13:16:04 2012 alexandre haulotte
+// Last update Thu Jul  5 12:39:53 2012 alexandre haulotte
 //
 
 #ifndef	__IA_HH__
@@ -17,6 +17,7 @@
 //----------------------------------------------//
 int	Avance(); // OK - ERR
 int	Droite(); // OK - ERR
+int	Expulse(); // OK - ERR
 int	Gauche(); // OK - ERR
 int	Pond(); // OK - ERR
 int	Eclosion(); // OK

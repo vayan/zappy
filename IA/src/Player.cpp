@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Wed Jul  4 14:06:48 2012 alexandre haulotte
+// Last update Thu Jul  5 13:01:38 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -60,6 +60,11 @@ void  Player::play()
 	  _lastRep = buff;
 	  if (std::string(buff).find("mort") != std::string::npos)
 	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
+	  if (std::string(buff).find("deplacement") != std::string::npos)
+	    {
+	      rDir = buff[12] - '0';
+	      GoToDir();
+	    }
 	}
       //std::cout << _id << " | Etat : " << _cState << std::endl;
       fctRet = (this->*fctTable[_cState])();
@@ -304,6 +309,11 @@ int	Player::xrecv()
 		  _lastRep = (*it);
 		  if (_lastRep.find("message") != std::string::npos)
 		    _msg.push_back(_lastRep);
+		  else if (std::string(buff).find("deplacement") != std::string::npos)
+		    {
+		      rDir = buff[12] - '0';
+		      GoToDir();
+		    }
 		  else
 		    save = _lastRep;
 		}
