@@ -8,73 +8,46 @@
 ** Last update Thu Jun 14 12:26:56 2012 randy lyvet
 */
 
+#include <string.h>
+#include <stdlib.h>
 #include	"xfunc.h"
 
-int	my_count_word(char *str, char sep)
+void  free_tab(char **tab)
 {
-  int	i;
-  int	nbw;
+  int   i;
 
   i = 0;
-  nbw = 0;
-  while (str[i] != '\0')
-    {
-      if (str[i] == sep)
-	nbw++;
-      i++;
-    }
-  return (nbw + 1);
+  while (tab[i])
+  {
+    if (tab[i] != NULL)
+      free(tab[i]);
+    i++;
+  }
+  if (tab != NULL)
+    free(tab);
 }
 
-char	**my_alloc_tab(char *str, char sep)
+char  **my_str_to_wordtab(char *s1, char sep)
 {
-  char	**tab;
-  int	i;
-  int	k;
-  int	szw;
+  char s2[2];
 
-  tab = xmalloc(sizeof(*tab) * (my_count_word(str, sep) + 2));
-  i = 0;
-  k = 0;
-  while (str[i] != '\0')
-    {
-      szw = 0;
-      while ((str[i] != sep) && (str[i] != '\0'))
-	{
-	  szw++;
-	  i++;
-	}
-      if (szw)
-	tab[k++] = xmalloc(sizeof(**tab) * (szw + 2));
-      i++;
-    }
-  tab[k] = '\0';
-  return (tab);
-}
+  char **tab;
+  char *tmp = (char*)malloc(strlen(s1) + 1);
+  strcpy(tmp, s1);
+  char *token;
+  int i = 1;
 
-char	**my_str_to_wordtab(char *str, char sep)
-{
-  int	i;
-  int	j;
-  int	k;
-  char	**tab;
-
-  tab = my_alloc_tab(str, sep);
-  i = 0;
-  j = 0;
-  while (str[i])
-    {
-      k = 0;
-      while (str[i] != sep && str[i])
-	tab[j][k++] = str[i++];
-      if (k)
-	{
-	  tab[j][k] = '\0';
-	  j++;
-	}
-      if (str[i])
-	i++;
-    }
-  tab[j] = '\0';
+  s2[0] = sep;
+  s2[1] = 0;
+  tab = (char **) xmalloc(sizeof(char *));
+  token = strtok(tmp, s2);
+  tab[0] = token;
+  while (token != NULL)
+  {
+    tab = (char **)realloc(tab, sizeof(char*) * (i + 1));
+    token = strtok(NULL, s2);
+    tab[i] = token;
+    i++;
+  } 
   return (tab);
 }

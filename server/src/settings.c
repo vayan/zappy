@@ -80,14 +80,14 @@ int   check_setting(t_setting *setting)
     printf(USAGE, "test");
   else if (setting->port < 2000)
     printf("Error : port < 2000\n");
-  else if (setting->width_map <= 0)
-    printf("Error : x <= 0 \n");
-  else if (setting->height_map <= 0)
-    printf("Error : y <= 0 \n");
+  else if (setting->width_map <= 0 || setting->width_map > 100)
+    printf("Error : 100 > x > 1 \n");
+  else if (setting->height_map <= 0 || setting->height_map > 100)
+    printf("Error : 100 > y > 1 \n");
   else if (setting->max_cl_per_team <= 0)
     printf("Error : max client <= 0 \n");
-  else if (setting->delay <= 0)
-    printf("Error : delay <= 0 \n");
+  else if (setting->delay <= 0 || setting->delay >= 10000)
+    printf("Error : 10000 > y > 1 \n");
   else
     return (0);
   return (-1);

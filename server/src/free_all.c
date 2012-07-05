@@ -34,15 +34,15 @@ void  free_close_client()
 
   all_client = get_all_client(NULL, 0);
   while (all_client)
-    {
-      tmp = all_client;
-      xclose(all_client->fd);
+  {
+    tmp = all_client;
+    xclose(all_client->fd);
       //FREE TEAM
-      free_buff_msg(all_client->buff_msg);
-      all_client = all_client->next;
-      if (tmp != NULL)
-        free(tmp);
-    }
+    free_buff_msg(all_client->buff_msg);
+    all_client = all_client->next;
+    if (tmp != NULL)
+      free(tmp);
+  }
 }
 
 int   free_map()
@@ -57,27 +57,22 @@ int   free_map()
   tmp = NULL;
   map = get_map(NULL);
   setting = get_setting(NULL);
-  if (map != NULL && setting != NULL)
+  while (y < setting->height_map)
+  {
+    x = 0;
+    while (x < setting->width_map)
     {
-      while (y < setting->height_map)
-        {
-          x = 0;
-          while (x < setting->width_map)
-            {
-              tmp = MAP;
-              if (MAP->rsrc != NULL)
-                free (MAP->rsrc);
-              free_client_map(MAP->client);
-              x++;
-              if (tmp != NULL)
-                free(tmp);
-            }
-          if (map[y] != NULL)
-            free(map[y]);
-          y++;
-        }
-      free(map);
+      //if ((map[x][y])->rsrc != NULL)
+        //free ((map[x][y])->rsrc);
+      //if ((map[x][y])->client != NULL)
+        //free_client_map((map[x][y])->client);
+      //free(map[x][y]);
+      x++;
     }
+    free (map[y]);
+    y++;
+  }
+  free (map);
   return (0);
 }
 

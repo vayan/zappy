@@ -49,7 +49,7 @@ void  init_map(t_map_case ***new_map, t_setting *setting)
           newcase = xmalloc(1 * sizeof(t_map_case));
           newcase->x = x;
           newcase->y = y;
-          newcase->rsrc = gen_rsrc(3, 2);
+          newcase->rsrc = gen_rsrc(2, 2);
           newcase->client = NULL;
           new_map[x][y] = newcase;
           x++;
@@ -66,7 +66,7 @@ void    generate_new_map()
   int i;
 
   i = 0;
-  printf("\033[1;%sm--Generating new map...\033[0;0;00m", COLOR_BLU);
+  printf("\033[1;%sm--Generating new map...\033[0;0;00m\n", COLOR_BLU);
   setting = get_setting(NULL);
   srandom(time(NULL) * geteuid());
   new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
@@ -77,5 +77,5 @@ void    generate_new_map()
     }
   init_map(new_map, setting);
   get_map(new_map);
-  printf("\033[1;%smDone\033[0;0;00m\n", COLOR_BLU);
+  printf("\033[1;%sm--Done\033[0;0;00m\n", COLOR_BLU);
 }

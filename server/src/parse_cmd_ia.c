@@ -61,16 +61,27 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
   tab = my_str_to_wordtab(cmd, ' ');
   get_type_client(tab[0], cl);
   if (cl->teams != NULL)
+  {
+    ret = parse_cmd_ia_classic(tab[0], cl);
+    if (ret != -3)
+      return (ret);
+    else if (strcmp(tab[0], "prend") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
     {
-      ret = parse_cmd_ia_classic(tab[0], cl);
-      if (ret != -3)
-        return (ret);
-      else if (strcmp(tab[0], "prend") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
-        return (Take_Object(cl, parse_rsr(tab[1])));
-      else if (strcmp(tab[0], "pose") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
-        return (Drop_Object(cl, parse_rsr(tab[1])));
-      else if (strcmp(tab[0], "broadcast") == 0)
-        return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
+      ret = Take_Object(cl, parse_rsr(tab[1]));
+      //free_tab(tab);
+      return (ret);
     }
+    else if (strcmp(tab[0], "pose") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
+    {
+      ret = Drop_Object(cl, parse_rsr(tab[1]));
+      free_tab(tab);
+      return (ret);
+    }
+    else if (strcmp(tab[0], "broadcast") == 0)
+    {
+      free_tab(tab);
+      return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
+    }
+  }
   return (0);
 }

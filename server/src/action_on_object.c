@@ -43,7 +43,7 @@ void  do_take_obj(t_client *cl, Ressource obj)
       pdr(obj, cl);
       pin(NULL, cl);
       bct(NULL, cl);
-      if (stat == 10)
+      if (stat == 100)
         {
           gen_new_rsrc();
           stat = 0;

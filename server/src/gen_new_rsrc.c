@@ -30,25 +30,35 @@ void  gen_new_rsrc()
   map = get_map(NULL);
   y = 0;
   while (y < setting->height_map)
+  {
+    x = 0;
+    while (x < setting->width_map)
     {
-      x = 0;
-      while (x < setting->width_map)
-        {
-          gen_rsrc(MAP->rsrc, 2, 2);
-          bct_int(x, y);
-          x++;
-        }
-      y++;
+      if (incr_rsrc(MAP->rsrc, 2, 2) == 1)
+        bct_int(x, y);
+      x++;
     }
+    y++;
+  }
 }
 
-void  incr_rsrc(Ressource *rsrc, int food, int other)
+int  incr_rsrc(Ressource *rsrc, int food, int other)
 {
-  rsrc[Nourriture] += random() % food;
-  rsrc[Linemate] += random() % other;
-  rsrc[Deraumere] += random() % other;
-  rsrc[Sibur] += random() % other;
-  rsrc[Mendiane] += random() % other;
-  rsrc[Phiras] += random() % other;
-  rsrc[Thystame] += random() % other;
+  int change;
+
+  change = 0;
+  if (rsrc[Nourriture] == 0)
+  {
+    change = 1;
+    rsrc[Nourriture] += random() % food;
+  }
+  if ((random() % 10) == 5)
+  {
+    if (rsrc[(random() % 7) + 1] == 0)
+    {
+      change = 1;
+      rsrc[(random() % 7) + 1] += random() % other;
+    }
+  }
+  return (change);
 }
