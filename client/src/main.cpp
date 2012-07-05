@@ -1,11 +1,14 @@
 #include	<vector>
 #include	<iterator>
+#include	<cmath>
 #include	"Graph.hh"
 #include	"Core.hh"
 #include	"Errur.hh"
 #include	"Parser.hh"
 
-int	main()
+#include	"Vector2ic.hh"
+
+int	main(int ac, char **av)
 {
   std::vector<int>	vec;
   try
@@ -17,11 +20,16 @@ int	main()
       // 	std::cout << *i << std::endl;
 
 
-      Graph *graph = new Graph(1440, 900);
-      graph->run();
+      // Graph *graph = new Graph(1440, 900, 20, 20);
+      // graph->run();
 
-      // Core      core(ac, av);
-      // core.go();
+      Core      core(ac, av);
+      core.go();
+
+      // for (int i = 1; i < 100; i++)
+      // 	{
+      // 	  std::cout << (log(i) + 4) / 5 << std::endl;
+      // 	}
     }
   catch (Errur* e)
     {

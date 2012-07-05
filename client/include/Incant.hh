@@ -1,23 +1,23 @@
 //
-// Character.hh for  in /home/cao_y//sysunix/zappy-2015-2014s-haulot_a/client
+// Incant.hh for  in /home/cao_y//sysunix/zappy-2015-2014s-haulot_a/client
 // 
 // Made by yuguo cao
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:14:42 2012 yuguo cao
-// Last update Tue Jul  3 16:31:53 2012 yuguo cao
+// Last update Wed Jul  4 11:54:32 2012 yuguo cao
 //
 
-#ifndef		__CHARACTER__
-# define	__CHARACTER__
+#ifndef		__INCANT__
+# define	__INCANT__
 
 #include	"ASprite.hh"
 
-class Character : public ASprite
+class Incant : public ASprite
 {
 public:
-  Character();
-  ~Character();
+  Incant();
+  ~Incant();
 
   virtual void		mUp();
   virtual void		mDown();

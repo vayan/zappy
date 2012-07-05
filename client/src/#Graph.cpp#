@@ -88,7 +88,7 @@ void			Graph::update()
 		  std::cout << x << " " << y << ":" << ((it->second)->getPosition()).x << " " << ((it->second)->getPosition()).y << std::endl;
 		  if (x >= ((it->second)->getPosition()).x && x <= ((it->second)->getPosition()).x + 24 && y >= ((it->second)->getPosition()).y && y <= ((it->second)->getPosition()).y + 60)
 		    {
-		      std::cout << it->first << std::endl;
+		      
 		      break;
 		    }
 		  std::cout << "clop" << std::endl;

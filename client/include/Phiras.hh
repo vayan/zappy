@@ -1,29 +1,30 @@
 //
-// Character.hh for  in /home/cao_y//sysunix/zappy-2015-2014s-haulot_a/client
+// Phiras.hh for  in /home/cao_y//sysunix/zappy-2015-2014s-haulot_a/client
 // 
 // Made by yuguo cao
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:14:42 2012 yuguo cao
-// Last update Tue Jul  3 16:31:53 2012 yuguo cao
+// Last update Wed Jun 27 16:07:42 2012 yuguo cao
 //
 
-#ifndef		__CHARACTER__
-# define	__CHARACTER__
+#ifndef		__PHIRAS__
+# define	__PHIRAS__
 
 #include	"ASprite.hh"
 
-class Character : public ASprite
+class Phiras : public ASprite
 {
 public:
-  Character();
-  ~Character();
+  Phiras();
+  ~Phiras();
 
   virtual void		mUp();
   virtual void		mDown();
   virtual void		mLeft();
   virtual void		mRight();
   virtual void		mStand();
+  virtual void		mCast();
   virtual void		mPond();
   virtual void		mTake();
   virtual void		mBroad();

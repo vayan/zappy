@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:51 2012 yuguo cao
-// Last update Wed Jun 13 12:26:28 2012 yuguo cao
+// Last update Thu Jun 28 12:05:34 2012 yuguo cao
 //
 
 #ifndef		__IMMAN__
@@ -15,6 +15,7 @@
 #include	<map>
 #include	<string>
 #include	<iostream>
+#include	"Errur.hh"
 
 class Imman
 {

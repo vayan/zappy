@@ -5,17 +5,16 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Tue Jun 26 12:08:49 2012 yuguo cao
+// Last update Thu Jul  5 11:40:21 2012 yuguo cao
 //
 
 #include	"Core.hh"
 
 Core::Core(int ac, char **av)
-  :soc(0), teamName(""), macName(""), port(0)
+  :soc(0), graph(NULL), macName(""), port(4242)
 {
+  initTab();
   beginParse(ac, av);
-
-  
 }
 
 Core::~Core()
@@ -23,27 +22,30 @@ Core::~Core()
 
 }
 
-void			Core::go()
+void				Core::go()
 {
-  int			ret;
-  char			buff[8096 + 1];
-  char			cmd[128];
-  fd_set		readfds;
-  struct timeval	tv;
-  int			i , j, save = 0;
-  Parser		p;
-  std::vector<int>	vec;
+  int				ret;
+  char				buff[8096 + 1];
+  char				cmd[128];
+  fd_set			readfds;
+  struct timeval		tv;
+  int				i , j, save = 0;
+  Parser			p;
+  std::vector<std::string>	vec;
 
   init();
   ret = 1;
   tv.tv_sec = 0;
   tv.tv_usec = 2000;
-  send(soc, "GRAPHIC\n", 8, 0);
+  if (!protocole())
+    throw(new Errur("Erreur communication serveur."));
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
   FD_SET(soc, &readfds);
   while (select(soc + 1, &readfds, NULL, NULL, &tv) != -1)
     {
+      tv.tv_sec = 0;
+      tv.tv_usec = 2000;
       i = 0;
       if (FD_ISSET(soc, &readfds))
 	{
@@ -64,9 +66,11 @@ void			Core::go()
 	      if (buff[i] == '\n')
 		{
 		  vec = p.parse(cmd);
-		  std::cout << "Commande = " << cmd << std::endl;
-		  for(std::vector<int>::iterator i = vec.begin(); i != vec.end();++i)
-		    std::cout << *i << std::endl;
+		  if (vec[0] != "-1")
+		    {
+		      //std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
+		      (this->*funcs[sti(vec[0])])(vec);
+		    }
 		}
 	      i++;
 	      save = 0;
@@ -74,6 +78,8 @@ void			Core::go()
 	  if (buff[ret - 1] != '\n')
 	    save = j;
 	}
+      if (graph)
+	graph->run();
       FD_ZERO(&readfds);
       FD_SET(0, &readfds);
       FD_SET(soc, &readfds);
@@ -105,25 +111,22 @@ void	Core::beginParse(int ac, char **av)
   std::string ip_address;
   in_addr *addss;
 
-  if (ac < 5)
-    throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
-  if (ac == 5)
+  if (ac < 3)
+    throw(new Errur("Usage : ./client -p port [-h nom machine]"));
+  if (ac == 3)
     macName = "127.0.0.1";
-  else if (ac != 7)
-    throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
+  else if (ac != 5)
+    throw(new Errur("Usage : ./client -p port [-h nom machine]"));
   for (int i = 1; i < ac; i++)
     {
       if (i % 2 == 1 && av[i][0] != '-')
-	throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
+	throw(new Errur("Usage : ./client -p port [-h nom machine]"));
       else if (i % 2 == 1 && av[i][0] == '-' && av[i][2] == '\0')
 	{
 	  switch (av[i][1])
 	    {
-	    case 'n':
-	      teamName = &av[i + 1][0];
-	      break;
 	    case 'p':
-	      port = strToInt(&av[i + 1][0]);
+	      port = sti(&av[i + 1][0]);
 	      break;
 	    case 'h':
 	      h = gethostbyname(&av[i + 1][0]);
@@ -132,25 +135,52 @@ void	Core::beginParse(int ac, char **av)
 	      macName = ip_address;
 	      break;
 	    default:
-	      throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
+	      throw(new Errur("Usage : ./client -p port [-h nom machine]"));
 	      break;
 	    }
 	  i++;
 	}
       else
-	throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
+	throw(new Errur("Usage : ./client -p port [-h nom machine]"));
     }
-  if (teamName == "" || port == 0 || macName == "")
-    throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
+  if (port == 0 || macName == "")
+    throw(new Errur("Usage : ./client -p port [-h nom machine]"));
   else
     {
-      std::cout << "Team Name is : " << teamName << std::endl;
       std::cout << "Port is : " << port << std::endl;
       std::cout << "Host Name is : " << macName << std::endl;
     }
 }
 
-int	Core::strToInt(char* str)
+int				Core::protocole() const
+{
+  char				buffer[8096 + 1];
+  int				ret;
+  std::string			str("BIENVENUE");
+
+  ret = recv(soc, buffer, 8096, 0);
+  buffer[ret - 1] = '\0';
+  if (str.compare(buffer) == 0)
+    {
+      send(soc, "GRAPHIC\n", 8, 0);
+      return (1);
+    }
+  return (0);
+}
+
+const std::vector<int>		Core::vstvi(const std::vector<std::string> vin)
+{
+  std::vector<int>		vout;
+  int unsigned			i;
+
+  for(i = 0; i < vin.size(); i++)
+    {
+      vout.push_back(sti(vin[i]));
+    }
+  return (vout);
+}
+
+int	Core::sti(std::string str)
 {
   std::istringstream 	buffer(str);
   int 			nbr;
@@ -159,7 +189,7 @@ int	Core::strToInt(char* str)
   return (nbr);
 }
 
-std::string   Core::intToStr(int i)
+std::string   Core::its(int i)
 {
   std::ostringstream oss;
 
@@ -169,159 +199,199 @@ std::string   Core::intToStr(int i)
 
 void			Core::initTab()
 {
-  funcs.push_back(&Core::updaMapSize); //msz
+  funcs.push_back(&Core::createMap); //msz
   funcs.push_back(&Core::updaCaseInfo); //bct
   funcs.push_back(&Core::rien); //tna
   funcs.push_back(&Core::addPlayer); //pnw
   funcs.push_back(&Core::movePlayer); //ppo
-  funcs.push_back(&Core::rien); //plv
-  funcs.push_back(&Core::rien); //pin
+  funcs.push_back(&Core::lvlPlayer); //plv
+  funcs.push_back(&Core::inventPlayer); //pin
   funcs.push_back(&Core::rien); //pex
   funcs.push_back(&Core::broaPlayer); //pbc
   funcs.push_back(&Core::incdPlayer); //pic
   funcs.push_back(&Core::incfPlayer); //pie
   funcs.push_back(&Core::pondPlayer); //pfk
+  funcs.push_back(&Core::dropPlayer); //pdr
+  funcs.push_back(&Core::takePlayer); //pgt
+  funcs.push_back(&Core::diePlayer); //pdi
+  funcs.push_back(&Core::rien); //enw
+  funcs.push_back(&Core::rien); //eht
   funcs.push_back(&Core::rien); //ebo
   funcs.push_back(&Core::rien); //edi
-  funcs.push_back(&Core::rien); //sgt
+  funcs.push_back(&Core::timeServer); //sgt
   funcs.push_back(&Core::rien); //seg
   funcs.push_back(&Core::rien); //smg
   funcs.push_back(&Core::rien); //suc
   funcs.push_back(&Core::rien); //sbp
 }
 
-void			Core::updaMapSize(const std::vector<int> v)
+void			Core::createMap(const std::vector<std::string> v)
+{
+  std::vector<int>	vi;
+
+  vi = vstvi(v);
+  if (!graph)
+    {
+      graph = new Graph(1440, 900, vi[1], vi[2]);
+      graph->initialize();
+      //graph->run();
+    }
+}
+
+void			Core::updaCaseInfo(const std::vector<std::string> v)
 {
   Stone_t		stone;
+  std::vector<int>	vi;
 
-  stone.linemate = v[3];
-  stone.deraumere = v[4];
-  stone.sibur = v[5];
-  stone.mendiane = v[6];
-  stone.phiras = v[7];
-  stone.thystame = v[8];
-  stone.food = v[9];
-  graph->updaCaseInfo(v[1], v[2], stone);
+  vi = vstvi(v);
+  stone.food = vi[3];
+  stone.linemate = vi[4];
+  stone.deraumere = vi[5];
+  stone.sibur = vi[6];
+  stone.mendiane = vi[7];
+  stone.phiras = vi[8];
+  stone.thystame = vi[9];
+  graph->updaCaseInfo(vi[1], vi[2], stone);
 }
 
-void			Core::updaCaseInfo(const std::vector<int> v)
-{
-  Stone_t		stone;
-
-  stone.linemate = v[3];
-  stone.deraumere = v[4];
-  stone.sibur = v[5];
-  stone.mendiane = v[6];
-  stone.phiras = v[7];
-  stone.thystame = v[8];
-  stone.food = v[9];
-  graph->updaCaseInfo(v[1], v[2], stone);
-}
-
-void			Core::requCaseInfo(const std::vector<int> v)
-{
-  (void) v;  
-}
-
-void			Core::addPlayer(const std::vector<int> v)
-{
-  ACTION		a;
-
-  switch(v[3])
-    {
-    case (1):
-      a = UP;
-      break;
-    case (2):
-      a = RIGHT;
-      break;
-    case (3):
-      a = DOWN;
-      break;
-    case (4):
-      a = LEFT;
-      break;
-    default:
-      a = UP;
-    }
-  graph->addPlayer(v[1], v[2], a, v[4], v[5]);
-}
-
-void			Core::movePlayer(const std::vector<int> v)
-{
-  ACTION		a;
-
-  switch(v[3])
-    {
-    case (1):
-      a = UP;
-      break;
-    case (2):
-      a = RIGHT;
-      break;
-    case (3):
-      a = DOWN;
-      break;
-    case (4):
-      a = LEFT;
-      break;
-    default:
-      a = UP;
-    }
-  graph->movePlayer(v[1], v[2], a, v[4]);
-}
-
-void			Core::requPlayerInfo(const std::vector<int> v)
+void			Core::requCaseInfo(const std::vector<std::string> v)
 {
   (void) v;
 }
 
-void			Core::expuPlayer(const std::vector<int> v)
+void			Core::addPlayer(const std::vector<std::string> v)
 {
-  graph->expuPlayer(v[1]);
+  ACTION		a;
+
+  switch(sti(v[4]))
+    {
+    case (1):
+      a = UP;
+      break;
+    case (2):
+      a = RIGHT;
+      break;
+    case (3):
+      a = DOWN;
+      break;
+    case (4):
+      a = LEFT;
+      break;
+    default:
+      a = UP;
+    }
+  graph->addPlayer(sti(v[1]), sti(v[2]), sti(v[3]), a, sti(v[5]), v[6]);
 }
 
-void			Core::broaPlayer(const std::vector<int> v)
+void			Core::movePlayer(const std::vector<std::string> v)
 {
-  graph->broaPlayer(v[1]);
+  ACTION		a;
+  std::vector<int>	vi;
+
+  vi = vstvi(v);
+  switch(vi[4])
+    {
+    case (1):
+      a = UP;
+      break;
+    case (2):
+      a = RIGHT;
+      break;
+    case (3):
+      a = DOWN;
+      break;
+    case (4):
+      a = LEFT;
+      break;
+    default:
+      a = UP;
+    }
+  graph->movePlayer(vi[1], vi[2], vi[3], a);
 }
 
-void			Core::incdPlayer(const std::vector<int> v)
+void			Core::lvlPlayer(const std::vector<std::string> v)
 {
-  graph->incdPlayer(v[1], v[2]);
+  graph->lvlPlayer(sti(v[1]), sti(v[2]));
 }
 
-void			Core::incfPlayer(const std::vector<int> v)
+void			Core::inventPlayer(const std::vector<std::string> v)
 {
-  graph->incfPlayer(v[1], v[2]);
+  Stone_t		stone;
+  std::vector<int>	vi;
+
+  vi = vstvi(v);
+  stone.food = vi[4];
+  stone.linemate = vi[5];
+  stone.deraumere = vi[6];
+  stone.sibur = vi[7];
+  stone.mendiane = vi[8];
+  stone.phiras = vi[9];
+  stone.thystame = vi[10];
+
+  graph->inventPlayer(vi[1], &stone);
 }
 
-void			Core::pondPlayer(const std::vector<int> v)
+void			Core::requPlayerInfo(const std::vector<std::string> v)
 {
-  graph->pondPlayer(v[1]);
+  (void) v;
 }
 
-void			Core::dropPlayer(const std::vector<int> v)
+void			Core::expuPlayer(const std::vector<std::string> v)
 {
-  graph->dropPlayer(v[1]);
+  graph->expuPlayer(sti(v[1]));
 }
 
-void			Core::takePlayer(const std::vector<int> v)
+void			Core::broaPlayer(const std::vector<std::string> v)
 {
-  graph->takePlayer(v[1]);
+  graph->broaPlayer(sti(v[1]));
 }
 
-void			Core::addEgg(const std::vector<int> v)
+void			Core::incdPlayer(const std::vector<std::string> v)
 {
-  graph->addEgg(v[1], v[2], v[3], v[4]);
+  graph->incdPlayer(sti(v[1]), sti(v[2]));
 }
 
-void			Core::eggHatched(const std::vector<int> v)
+void			Core::incfPlayer(const std::vector<std::string> v)
 {
-  graph->eggHatched(v[1]);
+  graph->incfPlayer(sti(v[1]), sti(v[2]));
 }
 
-void			Core::rien(const std::vector<int> v)
+void			Core::pondPlayer(const std::vector<std::string> v)
+{
+  graph->pondPlayer(sti(v[1]));
+}
+
+void			Core::dropPlayer(const std::vector<std::string> v)
+{
+  graph->dropPlayer(sti(v[1]));
+}
+
+void			Core::takePlayer(const std::vector<std::string> v)
+{
+  graph->takePlayer(sti(v[1]));
+}
+
+void			Core::addEgg(const std::vector<std::string> v)
+{
+  graph->addEgg(sti(v[1]), sti(v[2]), sti(v[3]), sti(v[4]));
+}
+
+void			Core::eggHatched(const std::vector<std::string> v)
+{
+  graph->eggHatched(sti(v[1]));
+}
+
+void			Core::diePlayer(const std::vector<std::string> v)
+{
+  graph->diePlayer(sti(v[1]));
+}
+
+void			Core::timeServer(const std::vector<std::string> v)
+{
+  graph->timeServer(sti(v[1]));
+}
+
+void			Core::rien(const std::vector<std::string> v)
 {
   (void) v;
 }

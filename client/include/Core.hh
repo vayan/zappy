@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 10:22:18 2012 alexandre haulotte
-// Last update Tue Jun 26 12:07:47 2012 yuguo cao
+// Last update Thu Jul  5 11:07:21 2012 yuguo cao
 //
 
 #ifndef		__CORE_HH__
@@ -30,44 +30,49 @@
 class	Core
 {
 private:
-  typedef void		(Core::*f)(const std::vector<int>);
+  typedef void		(Core::*fct)(const std::vector<std::string>);
 
   int			soc;
   Graph			*graph;
   Parser		*parser;
-  std::string		teamName;
   std::string		macName;
   int			port;
   //std::vector<int>	joueurs;
-  std::vector<f>	funcs;
+  std::vector<fct>	funcs;
 
   void			initTab();
-  void			updaMapSize(const std::vector<int>);
-  void			updaCaseInfo(const std::vector<int>);
-  void			requCaseInfo(const std::vector<int>);
-  void			addPlayer(const std::vector<int>);
-  void			movePlayer(const std::vector<int>);
-  void			requPlayerInfo(const std::vector<int>);
-  void			expuPlayer(const std::vector<int>);
-  void			broaPlayer(const std::vector<int>);
-  void			incdPlayer(const std::vector<int>);
-  void			incfPlayer(const std::vector<int>);
-  void			pondPlayer(const std::vector<int>);
-  void			dropPlayer(const std::vector<int>);
-  void			takePlayer(const std::vector<int>);
-  void			addEgg(const std::vector<int>);
-  void			eggHatched(const std::vector<int>);
-  void			rien(const std::vector<int>);
+  void			createMap(const std::vector<std::string>);
+  void			updaCaseInfo(const std::vector<std::string>);
+  void			requCaseInfo(const std::vector<std::string>);
+  void			addPlayer(const std::vector<std::string>);
+  void			movePlayer(const std::vector<std::string>);
+  void			lvlPlayer(const std::vector<std::string>);
+  void			inventPlayer(const std::vector<std::string>);
+  void			requPlayerInfo(const std::vector<std::string>);
+  void			expuPlayer(const std::vector<std::string>);
+  void			broaPlayer(const std::vector<std::string>);
+  void			incdPlayer(const std::vector<std::string>);
+  void			incfPlayer(const std::vector<std::string>);
+  void			pondPlayer(const std::vector<std::string>);
+  void			dropPlayer(const std::vector<std::string>);
+  void			takePlayer(const std::vector<std::string>);
+  void			addEgg(const std::vector<std::string>);
+  void			eggHatched(const std::vector<std::string>);
+  void			diePlayer(const std::vector<std::string>);
+  void			timeServer(const std::vector<std::string>);
+  void			rien(const std::vector<std::string>);
 
 public:
   Core(int ac, char **av);
   ~Core();
 
-  int		strToInt(char* str);
-  std::string	intToStr(int i);
-  void		beginParse(int ac, char **av);
-  void		init();
-  void		go();
+  int				sti(std::string str);
+  std::string			its(int i);
+  const std::vector<int>	vstvi(const std::vector<std::string>);
+  void				beginParse(int ac, char **av);
+  int				protocole() const;
+  void				init();
+  void				go();
 };
 
 #endif

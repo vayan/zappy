@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun 12 13:44:59 2012 alexandre haulotte
-// Last update Fri Jun 22 11:15:49 2012 yuguo cao
+// Last update Tue Jun 26 15:06:14 2012 yuguo cao
 //
 
 #ifndef	__PARSER_HH__
@@ -20,8 +20,7 @@ public:
   Parser();
   ~Parser();
 
-  std::vector<int>	parse(std::string str);
-  
+  std::vector<std::string>	parse(std::string str);
 };
 
 #endif

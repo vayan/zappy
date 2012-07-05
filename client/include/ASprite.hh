@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 20:17:42 2012 yuguo cao
-// Last update Wed Jun 20 14:57:27 2012 yuguo cao
+// Last update Wed Jul  4 10:52:34 2012 yuguo cao
 //
 
 #ifndef		__ASPRITE__
@@ -22,8 +22,10 @@ enum ACTION
     LEFT,
     RIGHT,
     STAND,
-    CAST,
+    POND,
+    TAKE,
     BROAD,
+    EXPU,
     DIE
   };
 
@@ -39,7 +41,10 @@ protected:
   LayerAnimation	_mRight;
   LayerAnimation	_mStand;
   LayerAnimation	_mCast;
+  LayerAnimation	_mPond;
+  LayerAnimation	_mTake;
   LayerAnimation	_mBroad;
+  LayerAnimation	_mExpu;
   LayerAnimation	_mDie;
 
 public:
@@ -54,13 +59,18 @@ public:
   virtual void		mLeft() = 0;
   virtual void		mRight() = 0;
   virtual void		mStand() = 0;
-  virtual void		mCast() = 0;
+  virtual void		mPond() = 0;
+  virtual void		mTake() = 0;
   virtual void		mBroad() = 0;
+  virtual void		mExpu() = 0;
   virtual void		mDie() = 0;
+
   LayerAnimation	anim(const ACTION a = NO);
   void			move(const float, const float);
   void			setLastAction(const ACTION);
+  void			setOrientation(const ACTION);
   void			setPosition(const int, const int);
+  void			setScale(const float);
   const sf::Vector2f&	getPosition();
 };
 

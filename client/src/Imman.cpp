@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:37 2012 yuguo cao
-// Last update Fri Jun 15 14:06:18 2012 yuguo cao
+// Last update Wed Jul  4 11:51:58 2012 yuguo cao
 //
 
 #include	"Imman.hh"
@@ -20,14 +20,18 @@ Imman::~Imman()
 
 void		Imman::loadImages()
 {
-  _images["mage_charset1"].LoadFromFile("assets/mage_charset1.bmp");
-  _images["mage_charset1"].CreateMaskFromColor(sf::Color(0, 0, 255));
+  _images["sprite"].LoadFromFile("assets/sprite.png");
 
-  _images["back"].LoadFromFile("assets/back.bmp");
-  _images["back"].CreateMaskFromColor(sf::Color(0, 0, 255));
+  _images["resources"].LoadFromFile("assets/resources.png");
+
+  _images["back"].LoadFromFile("assets/back.png");
+
+  _images["incant"].LoadFromFile("assets/incant.png");
 }
 
 sf::Image&	Imman::getImage(const std::string& name)
 {
+  if (_images.find(name) == _images.end())
+    throw(new Errur(name + " : this image is not loaded."));
   return (_images[name]);
 }
