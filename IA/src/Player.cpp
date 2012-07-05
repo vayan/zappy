@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Thu Jul  5 13:01:38 2012 alexandre haulotte
+// Last update Thu Jul  5 15:03:24 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -60,21 +60,29 @@ void  Player::play()
 	  _lastRep = buff;
 	  if (std::string(buff).find("mort") != std::string::npos)
 	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
-	  if (std::string(buff).find("deplacement") != std::string::npos)
+	  else if (std::string(buff).find("deplacement") != std::string::npos)
 	    {
 	      rDir = buff[12] - '0';
-	      GoToDir();
+	      //GoToDir();
 	    }
+	  else if (_lastRep.find("message") != std::string::npos)
+	    _msg.push_back(_lastRep);
 	}
       //std::cout << _id << " | Etat : " << _cState << std::endl;
       fctRet = (this->*fctTable[_cState])();
       //std::cout << _id << " | Retour Fct : " << fctRet << std::endl;
-      ret = recv(_soc, buff, 16192, MSG_DONTWAIT);
-      if (ret > 0)
+      while ((ret = recv(_soc, buff, 16192, MSG_DONTWAIT)) > 0)
 	{
 	  buff[ret] = 0;
 	  if (std::string(buff).find("mort") != std::string::npos)
 	    throw (new Errur("Pour Trantor...arg...mon coeur... MON COEUR"));
+	  else if (std::string(buff).find("deplacement") != std::string::npos)
+	    {
+	      rDir = buff[12] - '0';
+	      //GoToDir();
+	    }
+	  else if (_lastRep.find("message") != std::string::npos)
+	    _msg.push_back(_lastRep);
 	}
       _cState = trTable[_cState][fctRet];
       FD_ZERO(&readfds);
@@ -312,7 +320,7 @@ int	Player::xrecv()
 		  else if (std::string(buff).find("deplacement") != std::string::npos)
 		    {
 		      rDir = buff[12] - '0';
-		      GoToDir();
+		      //GoToDir();
 		    }
 		  else
 		    save = _lastRep;
@@ -323,7 +331,7 @@ int	Player::xrecv()
 		  break;
 		}
 	    }
-	  if (_lastRep.find("message") == std::string::npos)
+	  if (_lastRep.find("message") == std::string::npos && std::string(buff).find("deplacement") == std::string::npos)
 	    break;
 	  else
 	    _msg.push_back(_lastRep);
