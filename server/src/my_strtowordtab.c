@@ -31,6 +31,8 @@ char  **my_str_to_wordtab(char *s1, char sep)
 {
   char s2[2];
 
+  if (s1 == NULL || strlen(s1) <= 1)
+    return (NULL);
   char **tab;
   char *tmp = (char*)malloc(strlen(s1) + 1);
   strcpy(tmp, s1);

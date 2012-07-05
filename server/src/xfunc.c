@@ -55,10 +55,7 @@ int	xbind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
   int	ret;
 
   if ((ret = bind(sockfd, addr, addrlen)) == -1)
-  {
-    perror("bind");
     return (-1);
-  }
   return (ret);
 }
 

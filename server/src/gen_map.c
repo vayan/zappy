@@ -49,7 +49,7 @@ void  init_map(t_map_case ***new_map, t_setting *setting)
           newcase = xmalloc(1 * sizeof(t_map_case));
           newcase->x = x;
           newcase->y = y;
-          newcase->rsrc = gen_rsrc(2, 2);
+          newcase->rsrc = gen_rsrc(4, 4);
           newcase->client = NULL;
           new_map[x][y] = newcase;
           x++;

@@ -46,13 +46,15 @@ int do_expelliarmus(t_client *cl)
   t_map_case  ***map;
   t_pl_case   *tmp;
   char    *msg;
+  int max;
 
+  max = 0;
   map = get_map(NULL);
   tmp = (map[cl->x][cl->y])->client;
   if (tmp->next == NULL)
     return (-1);
   pex(NULL, cl);
-  while (tmp)
+  while (tmp && max >= 100)
     {
       if (tmp->client->id != cl->id)
         {
@@ -64,6 +66,7 @@ int do_expelliarmus(t_client *cl)
           broadcast_to_one_client(msg, tmp->client);
           free(msg);
           move_kicker(cl, tmp->client);
+          max++;
         }
       tmp = tmp->next;
     }

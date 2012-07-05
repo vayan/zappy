@@ -25,7 +25,8 @@ int			command_parser(t_option *tab, char *command, t_client *client)
   command_type = my_str_to_wordtab(command, ' ');
   j = -1;
   while (++j < 8)
-    if (strcmp(tab[j].option, command_type[0]) == 0)
+  {
+    if (command_type != NULL && tab[j].option && strcmp(tab[j].option, command_type[0]) == 0)
     {
      ret = tab[j].op_func(command_type, client);
      g = -1;
@@ -34,5 +35,6 @@ int			command_parser(t_option *tab, char *command, t_client *client)
      free(command_type);
      return (ret);
    }
-   return (suc(NULL, client));
  }
+ return (suc(NULL, client));
+}

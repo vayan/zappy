@@ -34,14 +34,14 @@ void  remove_client_from_team(t_client *to_remove)
     to_remove->teams->left++;
     to_remove->teams->nbr_pl--;
   }
-  printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
-   COLOR_BLU, to_remove->id);
 }
 
 int   remove_client(t_client *to_remove)
 {
   t_client  *tmp;
 
+  printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
+     COLOR_BLU, to_remove->id);
   if (to_remove->is_graphic == 1)
     get_graphic(NULL, 1);
   remove_client_from_team(to_remove);
@@ -56,8 +56,7 @@ int   remove_client(t_client *to_remove)
   }
   if (tmp->fd == to_remove->fd)
   {
-    printf("remove le first client\n");
-    tmp->fd = -1;
+    //tmp->fd = -1;
     return (0);
   }
   while (tmp)

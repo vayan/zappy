@@ -56,11 +56,11 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
       if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
       {
         cl_msg = clean_msg(msg);
-        if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n')
+        if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n' && strlen(cl_msg) > 1)
         {
           add_msg_to_buffer(tmp, cl_msg);
           printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, cl_msg);
-            free(cl_msg);
+          free(cl_msg);
           }
         }
         if (ret == 0)

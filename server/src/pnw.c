@@ -21,10 +21,11 @@ int     pnw(char **tab, t_client *client)
 
   tab = tab;
   graphic = get_graphic(NULL, 0);
-  if (graphic == NULL || client->is_graphic == 1 || client == NULL)
+  if (graphic == NULL || client->is_graphic == 1 || client == NULL 
+    || client->dir > 5 || client->teams == NULL) 
     return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "pnw %i %i %i %i %i %s\n", client->id, client->x, client->y,
+  sprintf(str, "pnw %d %d %d %d %d %s\n", client->id, client->x, client->y,
           client->dir + 1, client->level, client->teams->name);
   broadcast_to_one_client(str, graphic);
   free(str);

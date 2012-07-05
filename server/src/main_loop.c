@@ -58,8 +58,7 @@ int main_loop(int s, socklen_t client_sin_len,
       tv.tv_usec = 1;
       select_list(all_client, &readf);
       FD_SET(s, &readf);
-      if (select(get_higher_fd(all_client) + 3, &readf, NULL, NULL, &tv) == -1)
-        printf("Errror : select fail\n");
+      select(get_higher_fd(all_client) + 4, &readf, NULL, NULL, &tv);
       if (all_client != NULL && all_client->next == NULL
           && all_client->fd == -1)
         all_client = NULL;

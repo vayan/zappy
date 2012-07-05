@@ -52,7 +52,7 @@ char*  clean_msg(char *msg)
 
   i = 0;
   j = 0;
-  clean = xmalloc (strlen(msg) * sizeof(*clean));
+  clean = xmalloc (strlen(msg) + 1 * sizeof(*clean));
   while (msg[i] != '\0')
   { 
     if (msg[i] >= 31 && msg[i] <= 126)

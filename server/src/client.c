@@ -77,9 +77,7 @@ int do_input_client(t_client *all_client)
     else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
     {
       if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
-      {
         rm_top_msg_from_buffer(tmp);
-      }
     }
     tmp = tmp->next;
   }

@@ -32,9 +32,6 @@ ssize_t		xsend(int sockfd, const void *buf, size_t len, int flags)
 {
   ssize_t	ret;
 
-  if ((ret = send(sockfd, buf, len, flags)) == -1)
-    {
-      perror("send");
-    }
+  ret = send(sockfd, buf, len, flags);
   return (ret);
 }

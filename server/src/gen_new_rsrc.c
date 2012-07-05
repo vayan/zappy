@@ -52,7 +52,7 @@ int  incr_rsrc(Ressource *rsrc, int food, int other)
     change = 1;
     rsrc[Nourriture] += random() % food;
   }
-  if ((random() % 10) == 5)
+  if ((random() % 8) == 5)
   {
     if (rsrc[(random() % 7) + 1] == 0)
     {

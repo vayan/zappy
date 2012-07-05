@@ -83,5 +83,6 @@ int   get_type_client(char *cmd, t_client *cl)
     pnw(NULL, cl);
     return (0);
   }
+  remove_client(cl);
   return (1);
 }
