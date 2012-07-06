@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:14 2012 yann vaillant
-** Last update Mon Jul  2 11:58:46 2012 yann vaillant
+** Last update Fri Jul  6 15:19:03 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -56,7 +56,7 @@ void aff_setting()
 
   setting = get_setting(NULL);
   printf("\033[1;%sm*****************************\033[0;0;00m\n", WHITE_BLUE);
-  printf("\033[1;%sm Listening on port %d... \n Configuration : \n\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n", WHITE_BLUE,
+  printf("\033[1;%sm Listening on port %d... \nConfiguration : \n\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n", WHITE_BLUE,
          setting->port, setting->max_cl_per_team, setting->width_map,
          setting->height_map, setting->delay);
   aff_team(setting->all_team);

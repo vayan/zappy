@@ -20,18 +20,32 @@ int pin_one(t_client *graphic, t_client *clients)
 
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pin %i %i %i %i %i %i %i %i %i %i\n", clients->id, clients->x,
-          clients->y, clients->rsrc[Nourriture], clients->rsrc[Linemate],
-          clients->rsrc[Deraumere], clients->rsrc[Sibur],
-          clients->rsrc[Mendiane], clients->rsrc[Phiras],
-          clients->rsrc[Thystame]);
+    clients->y, clients->rsrc[Nourriture], clients->rsrc[Linemate],
+    clients->rsrc[Deraumere], clients->rsrc[Sibur],
+    clients->rsrc[Mendiane], clients->rsrc[Phiras],
+    clients->rsrc[Thystame]);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }
 
-int             pin(char **tab, t_client *client)
+void pin_broad(t_client *clients, t_client *graphic)
 {
   char          *str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "pin %i %i %i %i %i %i %i %i %i %i\n",
+    clients->id, clients->x, clients->y,
+    clients->rsrc[Nourriture], clients->rsrc[Linemate],
+    clients->rsrc[Deraumere], clients->rsrc[Sibur],
+    clients->rsrc[Mendiane], clients->rsrc[Phiras],
+    clients->rsrc[Thystame]);
+  broadcast_to_one_client(str, graphic);
+  free(str);
+}
+
+int             pin(char **tab, t_client *client)
+{
   t_client      *graphic;
   t_client      *clients;
 
@@ -42,25 +56,17 @@ int             pin(char **tab, t_client *client)
   if (tab == NULL)
     return (pin_one(graphic, client));
   if (tab[1] != NULL)
+  {
+    while (clients)
     {
-      while (clients)
-        {
-          if (clients->id == atoi(tab[1]))
-            {
-              str = xmalloc(sizeof(char) * 1024);
-              sprintf(str, "pin %i %i %i %i %i %i %i %i %i %i\n",
-                      clients->id, clients->x, clients->y,
-                      clients->rsrc[Nourriture], clients->rsrc[Linemate],
-                      clients->rsrc[Deraumere], clients->rsrc[Sibur],
-                      clients->rsrc[Mendiane], clients->rsrc[Phiras],
-                      clients->rsrc[Thystame]);
-              broadcast_to_one_client(str, graphic);
-              free(str);
-              return (0);
-            }
-          clients = clients->next;
-        }
+      if (clients->id == atoi(tab[1]))
+      {
+        pin_broad(clients, graphic);
+        return (0);
+      }
+      clients = clients->next;
     }
+  }
   sbp(NULL, client);
   return (0);
 }

@@ -124,5 +124,6 @@ void correction_move_down(t_client *cl, t_setting *setting);
 void correction_move_up(t_client *cl, t_setting *setting);
 void correction_move_right(t_client *cl, t_setting *setting);
 void correction_move_left(t_client *cl, t_setting *setting);
+char*  clean_msg(char *msg);
 
 #endif

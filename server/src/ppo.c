@@ -20,15 +20,26 @@ int   ppo_one(t_client *graphic, t_client *clients)
 
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "ppo %i %i %i %i\n", clients->id, clients->x, clients->y,
-          clients->dir + 1);
+    clients->dir + 1);
   broadcast_to_one_client(str, graphic);
   free(str);
   return (0);
 }
 
-int             ppo(char **tab, t_client *client)
+void ppo_broad(t_client *clients, t_client *graphic)
 {
   char          *str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "ppo %i %i %i %i\n", clients->id,
+    clients->x, clients->y, clients->dir + 1);
+  broadcast_to_one_client(str, graphic);
+  free(str);
+}
+
+int             ppo(char **tab, t_client *client)
+{
+
   t_client      *graphic;
   t_client      *clients;
 
@@ -39,21 +50,17 @@ int             ppo(char **tab, t_client *client)
   if (tab == NULL)
     return (ppo_one(graphic, client));
   if (tab != NULL && tab[1] != NULL)
+  {
+    while (clients)
     {
-      while (clients)
-        {
-          if (clients->id == atoi(tab[1]))
-            {
-              str = xmalloc(sizeof(char) * 1024);
-              sprintf(str, "ppo %i %i %i %i\n", clients->id,
-                      clients->x, clients->y, clients->dir + 1);
-              broadcast_to_one_client(str, graphic);
-              free(str);
-              return (0);
-            }
-          clients = clients->next;
-        }
+      if (clients->id == atoi(tab[1]))
+      {
+        ppo_broad(clients, graphic);
+        return (0);
+      }
+      clients = clients->next;
     }
+  }
   sbp(NULL, client);
   return (0);
 }

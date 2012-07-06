@@ -43,6 +43,7 @@ int pdi(char **tab, t_client *client);
 int pbc(char *msg, t_client *client);
 int pdr(Ressource rsrc, t_client *client);
 int pgt(Ressource rsrc, t_client *client);
+int bct_int(int x, int y);
 
 
 

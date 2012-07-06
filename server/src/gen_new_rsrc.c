@@ -18,6 +18,28 @@
 #include "xfunc.h"
 #include "client.h"
 #include "network.h"
+#include "command_fonc.h"
+
+int  incr_rsrc(Ressource *rsrc, int food, int other)
+{
+  int change;
+
+  change = 0;
+  if (rsrc[Nourriture] == 0)
+  {
+    change = 1;
+    rsrc[Nourriture] += random() % food;
+  }
+  if ((random() % 8) == 5)
+  {
+    if (rsrc[(random() % 7) + 1] == 0)
+    {
+      change = 1;
+      rsrc[(random() % 7) + 1] += random() % other;
+    }
+  }
+  return (change);
+}
 
 void  gen_new_rsrc()
 {
@@ -42,23 +64,4 @@ void  gen_new_rsrc()
   }
 }
 
-int  incr_rsrc(Ressource *rsrc, int food, int other)
-{
-  int change;
 
-  change = 0;
-  if (rsrc[Nourriture] == 0)
-  {
-    change = 1;
-    rsrc[Nourriture] += random() % food;
-  }
-  if ((random() % 8) == 5)
-  {
-    if (rsrc[(random() % 7) + 1] == 0)
-    {
-      change = 1;
-      rsrc[(random() % 7) + 1] += random() % other;
-    }
-  }
-  return (change);
-}

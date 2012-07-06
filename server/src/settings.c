@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:27 2012 yann vaillant
-** Last update Mon Jul  2 12:00:34 2012 yann vaillant
+** Last update Fri Jul  6 15:19:58 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -43,25 +43,19 @@ int  fill_struct_set(char **set, t_setting *setting, int i, int ac)
 int fill_setting(char **set, int ac, t_setting *setting)
 {
   int i;
-  int b;
   int save;
 
   i = 1;
   init_setting(setting);
-  if (FLAGDEBUG == 0)
+  while (i < ac)
   {
-    while (i < ac)
-    {
-      b = 0;
-      i = fill_struct_set(set, setting, i, ac);
-      if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
-        save = i;
-      i++;
-    }
+    i = fill_struct_set(set, setting, i, ac);
+    if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
+      save = i;
+    i++;
   }
-  if (strcmp("-n", set[save]) == 0 && save + 1 <= ac)
+  if (strcmp("-n", set[save]) == 0 && save++ + 1 <= ac)
   {
-    save++;
     while (save < ac && set[save][0] != '-')
     {
       if (strlen(set[save]) <= 1)
@@ -69,12 +63,10 @@ int fill_setting(char **set, int ac, t_setting *setting)
         printf("Error : team name must be 2 cara or more\n");
         return (-1);
       }
-      add_team(setting, set[save], setting->max_cl_per_team);
-      save++;
+      add_team(setting, set[save++], setting->max_cl_per_team);
     }
-    b = 1;
   }
-
+  return (0);
 }
 
 int   check_setting(t_setting *setting)
@@ -104,9 +96,7 @@ int   parser_setting(int ac, char **av)
 
   setting = xmalloc(sizeof(t_setting));
 
-  if (FLAGDEBUG == 1)
-    printf("==DEBUG ACTIVEE!!==\n");
-  if (ac < 13 && FLAGDEBUG == 0)
+  if (ac < 13)
   {
     printf(USAGE, av[0]);
     return (-1);

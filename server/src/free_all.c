@@ -48,13 +48,11 @@ void  free_close_client()
 int   free_map()
 {
   t_map_case ***map;
-  t_map_case *tmp;
   t_setting    *setting;
   int x;
   int y;
 
   y = 0;
-  tmp = NULL;
   map = get_map(NULL);
   setting = get_setting(NULL);
   while (y < setting->height_map)

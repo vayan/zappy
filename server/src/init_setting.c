@@ -53,23 +53,10 @@ void  add_team(t_setting *setting, char *name, int max)
 
 void init_setting(t_setting *setting)
 {
-  if (FLAGDEBUG == 0)
-    {
       setting->port = -1;
       setting->width_map = -1;
       setting->height_map = -1;
       setting->max_cl_per_team = -1;
       setting->delay = -1;
       setting->all_team = NULL;
-    }
-  if (FLAGDEBUG == 1)
-    {
-      setting->port =  4242;
-      setting->width_map = 10;
-      setting->height_map = 10;
-      setting->max_cl_per_team = 2;
-      setting->delay = 100;
-      add_team(setting, "foo", 2);
-      add_team(setting, "bar", 2);
-    }
 }

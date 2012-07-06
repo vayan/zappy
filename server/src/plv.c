@@ -25,9 +25,18 @@ int plv_one(t_client *client, t_client *graphic)
   return (0);
 }
 
-int     plv(char **tab, t_client *client)
+void plv_broad(t_client *client, t_client *graphic)
 {
   char  *str;
+
+  str = xmalloc(sizeof(char) * 1024);
+  sprintf(str, "plv %i %i\n", client->id, client->level);
+  broadcast_to_one_client(str, graphic);
+  free(str);
+}
+
+int     plv(char **tab, t_client *client)
+{
   t_client *graphic;
   t_client      *clients;
 
@@ -38,20 +47,17 @@ int     plv(char **tab, t_client *client)
   if (tab == NULL)
     return (plv_one(client, graphic));
   if (tab[1] != NULL)
+  {
+    while (clients)
     {
-      while (clients)
-        {
-          if (clients->id == atoi(tab[1]))
-            {
-              str = xmalloc(sizeof(char) * 1024);
-              sprintf(str, "plv %i %i\n", client->id, client->level);
-              broadcast_to_one_client(str, graphic);
-              free(str);
-              return (0);
-            }
-          clients = clients->next;
-        }
+      if (clients->id == atoi(tab[1]))
+      {
+        plv_broad(clients, graphic);
+        return (0);
+      }
+      clients = clients->next;
     }
+  }
   sbp(NULL, client);
   return (0);
 }
