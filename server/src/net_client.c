@@ -87,43 +87,46 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
           while ((tmp_msg = decoupe_back(cl_msg)) != NULL)
           {
             cl_msg = cl_msg + strlen(tmp_msg) + 1;
-            add_msg_to_buffer(tmp, tmp_msg);
-            printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, tmp_msg);
+            if (tmp_msg != NULL && tmp_msg[0] != 0 && tmp_msg[0] != '\n' && strlen(tmp_msg) > 1)
+            {
+              add_msg_to_buffer(tmp, tmp_msg);
+              printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, tmp_msg);
+            }
             if (tmp_msg != NULL)
               free(tmp_msg);
-            }
-            if (save_to_free != NULL) 
-               free(save_to_free);
           }
-        }
-        if (ret == 0)
-          remove_client(tmp);
-      }
-      tmp = tmp->next;
-    }
+          if (save_to_free != NULL) 
+           free(save_to_free);
+       }
+     }
+     if (ret == 0)
+      remove_client(tmp);
   }
+  tmp = tmp->next;
+}
+}
 
-  int   get_higher_fd(t_client *all_client)
+int   get_higher_fd(t_client *all_client)
+{
+  t_client  *tmp;
+
+  tmp = all_client;
+  if (tmp == NULL)
+    return (3);
+  while (tmp->next)
+    tmp = tmp->next;
+  return (tmp->fd);
+}
+
+void    select_list(t_client *all_client, fd_set *readf)
+{
+  t_client  *tmp;
+
+  tmp = all_client;
+  FD_ZERO(readf);
+  while (tmp)
   {
-    t_client  *tmp;
-
-    tmp = all_client;
-    if (tmp == NULL)
-      return (3);
-    while (tmp->next)
-      tmp = tmp->next;
-    return (tmp->fd);
+    FD_SET(tmp->fd, readf);
+    tmp = tmp->next;
   }
-
-  void    select_list(t_client *all_client, fd_set *readf)
-  {
-    t_client  *tmp;
-
-    tmp = all_client;
-    FD_ZERO(readf);
-    while (tmp)
-    {
-      FD_SET(tmp->fd, readf);
-      tmp = tmp->next;
-    }
-  }
+}
