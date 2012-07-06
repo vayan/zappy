@@ -53,9 +53,10 @@ char*  clean_msg(char *msg)
   i = 0;
   j = 0;
   clean = xmalloc (strlen(msg) + 1 * sizeof(*clean));
+  memset(clean, 0, strlen(msg) + 1);
   while (msg[i] != '\0')
   { 
-    if (msg[i] >= 31 && msg[i] <= 126)
+    if ((msg[i] >= 31 && msg[i] <= 126) || msg[i] == '\n')
     {
       clean[j] = msg[i];
       j++;

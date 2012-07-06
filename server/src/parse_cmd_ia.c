@@ -43,7 +43,7 @@ int parse_cmd_ia_classic(char *msg, t_client *cl)
   else if (strcmp(msg, "expulse") == 0)
     return (expelliarmus(cl));
   else if (strcmp(msg, "incantation") == 0)
-    return (incant(cl));
+    return (incant(cl, 1));
   else if (strcmp(msg, "fork") == 0)
     return (fork_cl(cl));
   else if (strcmp(msg, "connect_nbr") == 0)

@@ -40,7 +40,7 @@ int  fill_struct_set(char **set, t_setting *setting, int i, int ac)
   return (i);
 }
 
-void fill_setting(char **set, int ac, t_setting *setting)
+int fill_setting(char **set, int ac, t_setting *setting)
 {
   int i;
   int b;
@@ -64,6 +64,11 @@ void fill_setting(char **set, int ac, t_setting *setting)
     save++;
     while (save < ac && set[save][0] != '-')
     {
+      if (strlen(set[save]) <= 1)
+      {
+        printf("Error : team name must be 2 cara or more\n");
+        return (-1);
+      }
       add_team(setting, set[save], setting->max_cl_per_team);
       save++;
     }
@@ -106,7 +111,8 @@ int   parser_setting(int ac, char **av)
     printf(USAGE, av[0]);
     return (-1);
   }
-  fill_setting(av, ac, setting);
+  if (fill_setting(av, ac, setting) == -1)
+    return (-1);
   get_setting(setting);
   return (check_setting(setting));
 }

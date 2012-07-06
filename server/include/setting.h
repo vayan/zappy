@@ -52,7 +52,7 @@ t_setting    *get_setting(t_setting *_setting);
 void aff_setting();
 void init_setting(t_setting *setting);
 int count_nb_team(char **av, int i, int ac);
-void fill_setting(char **set, int ac, t_setting *setting);
+int fill_setting(char **set, int ac, t_setting *setting);
 int   check_setting(t_setting *setting);
 int   parser_setting(int ac, char **av);
 int   rm_slot_team(t_team *cl, t_eggs *to_remove);

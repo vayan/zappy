@@ -24,6 +24,29 @@
 #include "network.h"
 #include "xfunc.h"
 
+char *decoupe_back(char *msg)
+{
+  int i;
+  int j;
+  char *end;
+
+  end = xmalloc (strlen(msg) * sizeof(char));
+  i = 0;
+  j = 0;
+  while (msg[i])
+  {
+    if (msg[i] == '\n')
+    {
+      end[j] = 0;
+      return (end);
+    }
+    end[j] = msg[i];
+    i++;
+    j++;
+  }
+  return (NULL);
+}
+
 void    show_all_msg(t_client *cl)
 {
   int i;
@@ -45,6 +68,8 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
   char    msg[MAX_INPUT];
   char    *cl_msg;
   int   ret;
+  char *tmp_msg;
+  char *save_to_free;
 
   memset(msg, 0, MAX_INPUT);
   cl_msg = NULL;
@@ -56,11 +81,19 @@ void    get_data_from_client(t_client *all_client, fd_set *readfs)
       if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) != 0)
       {
         cl_msg = clean_msg(msg);
+        save_to_free =cl_msg;
         if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n' && strlen(cl_msg) > 1)
         {
-          add_msg_to_buffer(tmp, cl_msg);
-          printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, cl_msg);
-          free(cl_msg);
+          while ((tmp_msg = decoupe_back(cl_msg)) != NULL)
+          {
+            cl_msg = cl_msg + strlen(tmp_msg) + 1;
+            add_msg_to_buffer(tmp, tmp_msg);
+            printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n", DARK_RED, tmp->id, tmp_msg);
+            if (tmp_msg != NULL)
+              free(tmp_msg);
+            }
+            if (save_to_free != NULL) 
+               free(save_to_free);
           }
         }
         if (ret == 0)

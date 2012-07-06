@@ -86,13 +86,13 @@ int   start_incant_all_on_case(t_client *cl)
     {
       broadcast_to_one_client("elevation en cours\n", all_cl_case->client);
       if (all_cl_case->client != cl)
-        incant(all_cl_case->client);
+        incant(all_cl_case->client, 0);
       all_cl_case = all_cl_case->next;
     }
   return (0);
 }
 
-int incant(t_client *cl)
+int incant(t_client *cl, int first)
 {
   t_setting *setting;
 
@@ -100,7 +100,8 @@ int incant(t_client *cl)
     return (1);
   if (cl->stm->in_use == -1)
     {
-      start_incant_all_on_case(cl);
+      if (first == 1)
+        start_incant_all_on_case(cl);
       cl->stm->in_use = Incant;
       start_timer(cl->stm);
       return (1);
