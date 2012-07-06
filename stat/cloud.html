@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>StatSVN -  Cloud Commit</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="Generator" content="StatSVN 0.7.0"/>
+<link rel="stylesheet" href="objectlab-statcvs.css" type="text/css"/>
+<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&#38;login=statsvn&#38;apiKey=R_2c362b417d0517c27876cbaca1bb68cc"></script>
+<script type="text/javascript" charset="utf-8">
+   // wait until page is loaded to call API
+   var redir_url;
+   var short_url;
+   BitlyCB.myShortenCallback = function(data) {
+      // this is how to get a result of shortening a single url
+      var result;
+      short_url=null;
+      for (var r in data.results) {
+         result = data.results[r];
+         result['longUrl'] = r;
+         short_url = result['shortUrl'];
+         break;
+      }
+      if (short_url==null) // bit.ly failed
+      document.location=redir_url;
+      else
+      redirToTwitter();
+   };
+   function shortenTweet(url) {
+      if (short_url == null || redir_url!=url) {
+      redir_url = url;
+      BitlyClient.shorten(document.location, 'BitlyCB.myShortenCallback');
+      }
+      else
+      redirToTwitter();
+      return false;
+   }
+   function redirToTwitter() { 
+      // replace {0} which is visible as %7B0} in the link
+      document.location = redir_url.replace('%7B0}', short_url);
+   }
+</script>
+  </head>
+
+<body>
+
+<h1> Cloud Commit</h1>
+<div id="parentlink">&#171; <a href="index.html">Development Statistics for </a></div>
+  <table  rules="groups" summary="Tag Cloud of Words in Commit Log Messages">
+    <colgroup align="left"/>
+    <colgroup align="right"/>
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th>Frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  class="odd">
+        <th>correction</th>
+        <td>28 (4.6%)</td>
+      </tr>
+      <tr  class="even">
+        <th>pour</th>
+        <td>24 (4.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>fonction</th>
+        <td>24 (4.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>debug</th>
+        <td>24 (4.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>client</th>
+        <td>24 (4.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>ajout</th>
+        <td>24 (4.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>debut</th>
+        <td>20 (3.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>clean</th>
+        <td>20 (3.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>server</th>
+        <td>16 (2.6%)</td>
+      </tr>
+      <tr  class="even">
+        <th>plus</th>
+        <td>16 (2.6%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>parser</th>
+        <td>16 (2.6%)</td>
+      </tr>
+      <tr  class="even">
+        <th>norme</th>
+        <td>16 (2.6%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>fini</th>
+        <td>16 (2.6%)</td>
+      </tr>
+      <tr  class="even">
+        <th>warning</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>sound</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>setting</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>pointeur</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>modif</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>mieux</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>marche</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>makefile</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>graphic</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>fork</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>direction</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>broadcast</th>
+        <td>12 (2.0%)</td>
+      </tr>
+      <tr  class="even">
+        <th>yann</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>toussa</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>time</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>stabilite</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>serv</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>presque</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>paser</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>opti</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>mort</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>mode</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>merde</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>make</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>maintenant</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>main</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>list</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>gestion</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>fuck</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>free</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>expulse</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>death</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>connexion</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>command</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="even">
+        <th>chainee</th>
+        <td>8 (1.3%)</td>
+      </tr>
+      <tr  class="odd">
+        <th>base</th>
+        <td>8 (1.3%)</td>
+      </tr>
+    </tbody>
+  </table>
+
+<div id="generatedby">Generated by <a href="http://www.statsvn.org">StatSVN</a> 0.7.0</div>
+</body>
+</html>
