@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:47 2012 yann vaillant
-** Last update Mon Jul  9 13:28:17 2012 vailla_y
+** Last update Mon Jul  9 16:17:00 2012 vailla_y
 */
 
 #ifndef _CLIENT_H
@@ -70,7 +70,6 @@ typedef struct  s_client {
   Ressource             *rsrc;
   struct  s_client      *next;
 }                       t_client;
-
 
 t_client         *get_all_client(t_client *_all_client, int reset);
 int             remove_client(t_client *to_remove);
