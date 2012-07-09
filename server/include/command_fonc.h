@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 ** 
 ** Started on  Tue Jun 12 14:41:40 2012 randy lyvet
-** Last update Tue Jun 26 10:25:24 2012 robin maitre
+** Last update Mon Jul  9 16:09:43 2012 vailla_y
 */
 
 #ifndef COMMAND_FONC_
@@ -34,17 +34,15 @@ int	smg(char *mess, t_client *client);
 int	suc(char **command, t_client *client);
 int	sbp(char **command, t_client *client);
 char	*map_contents(char *str, int x, int y);
-int   ppo(char **tab, t_client *client);
-int edi(int id);
-int enw(t_eggs *egg);
+int	ppo(char **tab, t_client *client);
+int	edi(int id);
+int	enw(t_eggs *egg);
 int     pie(t_client *client, int res);
-int pic(t_client *client, t_map_case *cas);
-int pdi(char **tab, t_client *client);
-int pbc(char *msg, t_client *client);
-int pdr(Ressource rsrc, t_client *client);
-int pgt(Ressource rsrc, t_client *client);
-int bct_int(int x, int y);
-
-
+int	pic(t_client *client, t_map_case *cas);
+int	pdi(char **tab, t_client *client);
+int	pbc(char *msg, t_client *client);
+int	pdr(Ressource rsrc, t_client *client);
+int	pgt(Ressource rsrc, t_client *client);
+int	bct_int(int x, int y);
 
 #endif /* !COMMAND_FONC_ */

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun 14 15:39:26 2012 yann vaillant
-** Last update Thu Jun 14 15:39:27 2012 yann vaillant
+** Last update Mon Jul  9 16:13:05 2012 vailla_y
 */
 
 #ifndef __SERV_TIME_
@@ -15,17 +15,16 @@
 
 typedef struct timespec timespec;
 
-typedef struct s_serv_time {
-  timespec   start_time;
-  long int    in_nsec;
-  long int    in_sec;
-  int         in_use;
-} t_serv_time;
+typedef struct	s_serv_time {
+  timespec	start_time;
+  long int	in_nsec;
+  long int	in_sec;
+  int		in_use;
+}		t_serv_time;
 
-void start_timer(t_serv_time* stm);
-timespec diff(timespec start, timespec end);
-void   set_elapse_time(t_serv_time *stm);
-void set_elapse_sec(t_serv_time *stm);
-
+void		start_timer(t_serv_time* stm);
+timespec	diff(timespec start, timespec end);
+void		set_elapse_time(t_serv_time *stm);
+void		set_elapse_sec(t_serv_time *stm);
 
 #endif
