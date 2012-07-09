@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:53:32 2012 yann vaillant
-** Last update Mon Jul  2 11:53:40 2012 yann vaillant
+** Last update Mon Jul  9 12:33:53 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -27,9 +27,9 @@
 #include "setting.h"
 #include "command_fonc.h"
 
-void      add_client_on_map(t_client *new)
+void		add_client_on_map(t_client *new)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   setting = get_setting(NULL);
   if (new->x == -1 && new->y == -1)
@@ -42,7 +42,7 @@ void      add_client_on_map(t_client *new)
   add_pl(new->x, new->y, new);
 }
 
-void      init_val_new_client(t_client *new, int fd, int id)
+void	init_val_new_client(t_client *new, int fd, int id)
 {
   new->x = -1;
   new->y = -1;
@@ -62,12 +62,14 @@ void      init_val_new_client(t_client *new, int fd, int id)
   new->rsrc[Nourriture] = 10;
 }
 
-t_client  *add_client(t_client *all_client, int fd)
+t_client	*add_client(t_client *all_client, int fd)
 {
-  t_client  *tmp;
-  t_client  *new;
-  static int  id = 0;
+  t_client	*tmp;
+  t_client	*new;
+  static int	id = 0;
 
+  if (id >= 1000000000)
+    id = 0;
   new = xmalloc(sizeof(t_client));
   tmp = all_client;
   init_val_new_client(new, fd, id);

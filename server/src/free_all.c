@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:55 2012 yann vaillant
-** Last update Mon Jul  2 12:10:33 2012 yann vaillant
+** Last update Mon Jul  9 13:18:41 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,66 +21,54 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "setting.h"
 #include "map.h"
 #include "client.h"
 
-void  free_close_client()
+void		free_close_client()
 {
-  t_client  *all_client;
-  t_client  *tmp;
+  t_client	*all_client;
+  t_client	*tmp;
 
   all_client = get_all_client(NULL, 0);
   while (all_client)
-  {
-    tmp = all_client;
-    xclose(all_client->fd);
-      //FREE TEAM
-    free_buff_msg(all_client->buff_msg);
-    all_client = all_client->next;
-    if (tmp != NULL)
-      free(tmp);
-  }
+    {
+      tmp = all_client;
+      xclose(all_client->fd);
+      free_buff_msg(all_client->buff_msg);
+      all_client = all_client->next;
+      if (tmp != NULL)
+        xfree(tmp);
+    }
 }
 
-int   free_map()
+int		free_map()
 {
-  t_map_case ***map;
-  t_setting    *setting;
-  int x;
-  int y;
+  t_map_case	***map;
+  t_setting	*setting;
+  int		y;
 
   y = 0;
   map = get_map(NULL);
   setting = get_setting(NULL);
   while (y < setting->height_map)
-  {
-    x = 0;
-    while (x < setting->width_map)
     {
-      //if ((map[x][y])->rsrc != NULL)
-        //free ((map[x][y])->rsrc);
-      //if ((map[x][y])->client != NULL)
-        //free_client_map((map[x][y])->client);
-      //free(map[x][y]);
-      x++;
+      xfree (map[y]);
+      y++;
     }
-    free (map[y]);
-    y++;
-  }
-  free (map);
+  xfree (map);
   return (0);
 }
 
-int   free_setting()
+int		free_setting()
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   setting = get_setting(NULL);
-  //FREE ALL STRUCT TEAM
   if (setting != NULL)
-    free (setting);
+    xfree (setting);
   return (0);
 }

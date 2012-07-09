@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:14 2012 yann vaillant
-** Last update Fri Jul  6 15:19:03 2012 vailla_y
+** Last update Mon Jul  9 13:14:16 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,22 +21,23 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "setting.h"
 #include "xfunc.h"
 #include "network.h"
 
-t_setting    *get_setting(t_setting *_setting)
+t_setting		*get_setting(t_setting *_setting)
 {
-  static t_setting *setting = NULL;
+  static t_setting	*setting = NULL;
 
   if (_setting != NULL)
     setting = _setting;
   return (setting);
 }
 
-void  aff_team(t_team *team)
+void		aff_team(t_team *team)
 {
-  t_team *tmp;
+  t_team	*tmp;
 
   tmp = team;
   printf("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
@@ -50,23 +51,25 @@ void  aff_team(t_team *team)
     }
 }
 
-void aff_setting()
+void		aff_setting()
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   setting = get_setting(NULL);
   printf("\033[1;%sm*****************************\033[0;0;00m\n", WHITE_BLUE);
-  printf("\033[1;%sm Listening on port %d... \nConfiguration : \n\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n", WHITE_BLUE,
-         setting->port, setting->max_cl_per_team, setting->width_map,
+  printf("\033[1;%sm Listening on port %d... \nConfiguration : \n",
+         WHITE_BLUE, setting->port);
+  printf("\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n",
+         setting->max_cl_per_team, setting->width_map,
          setting->height_map, setting->delay);
   aff_team(setting->all_team);
   printf("\033[1;%sm*****************************\n\033[0;0;00m\n",
          WHITE_BLUE);
 }
 
-int count_nb_team(char **av, int i, int ac)
+int	count_nb_team(char **av, int i, int ac)
 {
-  int nb;
+  int	nb;
 
   nb = 0;
   while (i < ac && av[i][0] != '-')

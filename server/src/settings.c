@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:27 2012 yann vaillant
-** Last update Fri Jul  6 15:19:58 2012 vailla_y
+** Last update Mon Jul  9 13:09:46 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,11 +21,12 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "setting.h"
 #include "xfunc.h"
 #include "network.h"
 
-int  fill_struct_set(char **set, t_setting *setting, int i, int ac)
+int	fill_struct_set(char **set, t_setting *setting, int i, int ac)
 {
   if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
     setting->port = atoi(set[++i]);
@@ -40,40 +41,40 @@ int  fill_struct_set(char **set, t_setting *setting, int i, int ac)
   return (i);
 }
 
-int fill_setting(char **set, int ac, t_setting *setting)
+int	fill_setting(char **set, int ac, t_setting *setting)
 {
-  int i;
-  int save;
+  int	i;
+  int	save;
 
   i = 1;
   init_setting(setting);
   while (i < ac)
-  {
-    i = fill_struct_set(set, setting, i, ac);
-    if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
-      save = i;
-    i++;
-  }
-  if (strcmp("-n", set[save]) == 0 && save++ + 1 <= ac)
-  {
-    while (save < ac && set[save][0] != '-')
     {
-      if (strlen(set[save]) <= 1)
-      {
-        printf("Error : team name must be 2 cara or more\n");
-        return (-1);
-      }
-      add_team(setting, set[save++], setting->max_cl_per_team);
+      i = fill_struct_set(set, setting, i, ac);
+      if (strcmp("-n", set[i]) == 0 && i + 1 <= ac)
+        save = i;
+      i++;
     }
-  }
+  if (strcmp("-n", set[save]) == 0 && save++ + 1 <= ac)
+    {
+      while (save < ac && set[save][0] != '-')
+        {
+          if (strlen(set[save]) <= 1)
+            {
+              printf("Error : team name must be 2 cara or more\n");
+              return (-1);
+            }
+          add_team(setting, set[save++], setting->max_cl_per_team);
+        }
+    }
   return (0);
 }
 
-int   check_setting(t_setting *setting)
+int	check_setting(t_setting *setting)
 {
   if (setting->port == -1 || setting->width_map == -1 ||
-    setting->height_map == - 1 || setting->max_cl_per_team == -1 ||
-    setting->delay == -1)
+      setting->height_map == - 1 || setting->max_cl_per_team == -1 ||
+      setting->delay == -1)
     printf(USAGE, "test");
   else if (setting->port < 2000)
     printf("Error : port < 2000\n");
@@ -90,17 +91,16 @@ int   check_setting(t_setting *setting)
   return (-1);
 }
 
-int   parser_setting(int ac, char **av)
+int		parser_setting(int ac, char **av)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   setting = xmalloc(sizeof(t_setting));
-
   if (ac < 13)
-  {
-    printf(USAGE, av[0]);
-    return (-1);
-  }
+    {
+      printf(USAGE, av[0]);
+      return (-1);
+    }
   if (fill_setting(av, ac, setting) == -1)
     return (-1);
   get_setting(setting);

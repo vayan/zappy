@@ -1,11 +1,11 @@
 /*
 ** ressource.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Tue Jun 26 12:55:32 2012 yann vaillant
-** Last update Tue Jun 26 12:55:33 2012 yann vaillant
+** Last update Mon Jul  9 13:06:34 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,15 +21,16 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "option.h"
 #include "client.h"
 #include "my_strtowordtab.h"
 
-char  *Ressource_to_char(Ressource rsrc)
+char	*Ressource_to_char(Ressource rsrc)
 {
-  char *ret;
+  char	*ret;
 
   ret = xmalloc(15 * sizeof(*ret));
   memset(ret, 0, 15);
@@ -50,7 +51,7 @@ char  *Ressource_to_char(Ressource rsrc)
   return (ret);
 }
 
-int parse_rsr(char *rsrc)
+int	parse_rsr(char *rsrc)
 {
   if (strcmp(rsrc, "nourriture") == 0)
     return (Nourriture);

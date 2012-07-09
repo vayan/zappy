@@ -1,23 +1,24 @@
 /*
 ** pie.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by anatole carlier
 ** Login   <carlie_a@epitech.net>
-** 
+**
 ** Started on  Tue Jun 12 11:11:28 2012 anatole carlier
-** Last update Tue Jun 19 10:00:30 2012 anatole carlier
+** Last update Mon Jul  9 13:04:34 2012 vailla_y
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "command_fonc.h"
 #include "network.h"
 #include "xfunc.h"
 
-int     pie(t_client *client, int res)
+int		pie(t_client *client, int res)
 {
-  char  *str;
-  t_client *graphic;
+  char		*str;
+  t_client	*graphic;
 
   graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
@@ -25,6 +26,6 @@ int     pie(t_client *client, int res)
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "pie %d %d %d\n", client->x, client->y, res);
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
   return (0);
 }

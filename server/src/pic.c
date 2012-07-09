@@ -5,24 +5,25 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:11:50 2012 anatole carlier
-** Last update Mon Jul  2 12:04:42 2012 yann vaillant
+** Last update Mon Jul  9 13:04:11 2012 vailla_y
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "command_fonc.h"
 #include "merge.h"
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
 
-int     pic(t_client *client, t_map_case *cas)
+int		pic(t_client *client, t_map_case *cas)
 {
-  char  *str;
-  char  *tmp;
-  t_client *graphic;
-  t_pl_case *tmp_c;
+  char		*str;
+  char		*tmp;
+  t_client	*graphic;
+  t_pl_case	*tmp_c;
 
   tmp_c = cas->client;
   graphic = get_graphic(NULL, 0);
@@ -36,10 +37,10 @@ int     pic(t_client *client, t_map_case *cas)
       sprintf(tmp, "%d ", tmp_c->client->id);
       tmp_c = tmp_c->next;
       strcat(str, tmp);
-      free(tmp);
+      xfree(tmp);
     }
   strcat(str, "\n");
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
   return (0);
 }

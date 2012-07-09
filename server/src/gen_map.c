@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:54:27 2012 yann vaillant
-** Last update Mon Jul  2 12:10:21 2012 yann vaillant
+** Last update Mon Jul  9 12:46:48 2012 vailla_y
 */
 
 #include <stdlib.h>
@@ -13,15 +13,16 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "map.h"
 #include "setting.h"
 #include "xfunc.h"
 #include "client.h"
 #include "network.h"
 
-Ressource *gen_rsrc(int food, int other)
+Ressource	*gen_rsrc(int food, int other)
 {
-  Ressource *rsrc;
+  Ressource	*rsrc;
 
   rsrc = xmalloc(7 * sizeof(int));
   rsrc[Nourriture] = random() % food;
@@ -34,11 +35,11 @@ Ressource *gen_rsrc(int food, int other)
   return (rsrc);
 }
 
-void  init_map(t_map_case ***new_map, t_setting *setting)
+void		init_map(t_map_case ***new_map, t_setting *setting)
 {
-  int          x;
-  int          y;
-  t_map_case   *newcase;
+  int		x;
+  int		y;
+  t_map_case	*newcase;
 
   y = 0;
   while (y < setting->height_map)
@@ -59,11 +60,11 @@ void  init_map(t_map_case ***new_map, t_setting *setting)
   new_map[x] = NULL;
 }
 
-void    generate_new_map()
+void		generate_new_map()
 {
-  t_setting    *setting;
-  t_map_case   ***new_map;
-  int i;
+  t_setting	*setting;
+  t_map_case	***new_map;
+  int		i;
 
   i = 0;
   printf("\033[1;%sm--Generating new map...\033[0;0;00m\n", COLOR_BLU);

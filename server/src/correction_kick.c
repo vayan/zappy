@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:05 2012 yann vaillant
-** Last update Mon Jul  2 11:54:10 2012 yann vaillant
+** Last update Mon Jul  9 13:17:01 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,7 +29,8 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void  correction_down(t_client *victim, t_client *kicker, t_setting *setting)
+void    correction_down(t_client *victim, t_client *kicker,
+                        t_setting *setting)
 {
   if (kicker->dir == Down)
     {
@@ -38,7 +40,8 @@ void  correction_down(t_client *victim, t_client *kicker, t_setting *setting)
     }
 }
 
-void  correction_up(t_client *victim, t_client *kicker, t_setting *setting)
+void    correction_up(t_client *victim, t_client *kicker,
+                      t_setting *setting)
 {
   if (kicker->dir == Up)
     {
@@ -48,7 +51,8 @@ void  correction_up(t_client *victim, t_client *kicker, t_setting *setting)
     }
 }
 
-void  correction_right(t_client *victim, t_client *kicker, t_setting *setting)
+void    correction_right(t_client *victim, t_client *kicker,
+                         t_setting *setting)
 {
   if (kicker->dir ==  Right)
     {
@@ -58,7 +62,8 @@ void  correction_right(t_client *victim, t_client *kicker, t_setting *setting)
     }
 }
 
-void  correction_left(t_client *victim, t_client *kicker, t_setting *setting)
+void    correction_left(t_client *victim, t_client *kicker,
+                        t_setting *setting)
 {
   if (kicker->dir ==  Left)
     {

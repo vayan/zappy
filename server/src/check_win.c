@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:53:52 2012 yann vaillant
-** Last update Mon Jul  2 11:53:56 2012 yann vaillant
+** Last update Mon Jul  9 12:37:00 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -28,21 +28,21 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int   check_win()
+int		check_win()
 {
-  t_setting *setting;
-  t_team    *all_team;
+  t_setting	*setting;
+  t_team	*all_team;
 
   setting = get_setting(NULL);
   all_team = setting->all_team;
   while (all_team)
-  {
-    if (all_team->nb_lvl_max >= 6)
     {
-      seg(all_team);
-      exit (11);
+      if (all_team->nb_lvl_max >= 6)
+        {
+          seg(all_team);
+          exit (11);
+        }
+      all_team = all_team->next;
     }
-    all_team = all_team->next;
-  }
   return (0);
 }

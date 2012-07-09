@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:04 2012 yann vaillant
-** Last update Mon Jul  2 11:59:35 2012 yann vaillant
+** Last update Mon Jul  9 13:11:25 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,9 +29,9 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int   check_time_all_egg(t_eggs *egg, t_team *cl)
+int		check_time_all_egg(t_eggs *egg, t_team *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (egg->state == 1)
     return (1);
@@ -52,9 +53,9 @@ int   check_time_all_egg(t_eggs *egg, t_team *cl)
   return (1);
 }
 
-int   check_time_pourriture_all_egg(t_eggs *egg, t_team *cl)
+int		check_time_pourriture_all_egg(t_eggs *egg, t_team *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (egg->state == 0)
     return (1);
@@ -77,12 +78,11 @@ int   check_time_pourriture_all_egg(t_eggs *egg, t_team *cl)
   return (1);
 }
 
-int   check_timer(t_team *cl)
+int		check_timer(t_team *cl)
 {
-  t_eggs *tmp;
+  t_eggs	*tmp;
 
   tmp = cl->egg;
-
   while (tmp)
     {
       check_time_all_egg(tmp, cl);
@@ -92,10 +92,10 @@ int   check_timer(t_team *cl)
   return (0);
 }
 
-int   check_timer_all_team()
+int		check_timer_all_team()
 {
-  t_setting *setting;
-  t_team    *tmp;
+  t_setting	*setting;
+  t_team	*tmp;
 
   setting = get_setting(NULL);
   tmp = setting->all_team;

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:38 2012 yann vaillant
-** Last update Mon Jul  2 12:11:01 2012 yann vaillant
+** Last update Mon Jul  9 12:44:26 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,9 +29,9 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void  move_kicker(t_client *kicker, t_client *victim)
+void		move_kicker(t_client *kicker, t_client *victim)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   rm_pl(victim->x, victim->y, victim);
   setting = get_setting(NULL);
@@ -41,12 +42,24 @@ void  move_kicker(t_client *kicker, t_client *victim)
   add_pl(victim->x, victim->y, victim);
 }
 
-int do_expelliarmus(t_client *cl)
+void	do_expelliarmus_broad(t_client *cl, t_pl_case   *tmp)
 {
-  t_map_case  ***map;
-  t_pl_case   *tmp;
-  char    *msg;
-  int max;
+  char	*msg;
+
+  msg = xmalloc(50 * sizeof(*msg));
+  memset(msg, 0, 50);
+  strcat(msg, "deplacement: ");
+  strcat(msg, inttochar(get_direction(cl, tmp->client)));
+  strcat(msg, "\n");
+  broadcast_to_one_client(msg, tmp->client);
+  xfree(msg);
+}
+
+int		do_expelliarmus(t_client *cl)
+{
+  t_map_case	***map;
+  t_pl_case	*tmp;
+  int		max;
 
   max = 0;
   map = get_map(NULL);
@@ -58,13 +71,7 @@ int do_expelliarmus(t_client *cl)
     {
       if (tmp->client->id != cl->id)
         {
-          msg = xmalloc(50 * sizeof(*msg));
-          memset(msg, 0, 50);
-          strcat(msg, "deplacement: ");
-          strcat(msg, inttochar(get_direction(cl, tmp->client)));
-          strcat(msg, "\n");
-          broadcast_to_one_client(msg, tmp->client);
-          free(msg);
+          do_expelliarmus_broad(cl, tmp);
           move_kicker(cl, tmp->client);
           max++;
         }
@@ -73,9 +80,9 @@ int do_expelliarmus(t_client *cl)
   return (0);
 }
 
-int expelliarmus(t_client *cl)
+int		expelliarmus(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != Kick)
     return (1);

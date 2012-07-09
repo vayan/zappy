@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:08 2012 yann vaillant
-** Last update Mon Jul  2 11:59:25 2012 yann vaillant
+** Last update Mon Jul  9 13:12:05 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,7 +29,7 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void TurnClient(t_client *cl, int turn)
+void	TurnClient(t_client *cl, int turn)
 {
   if (turn == 1)
     {
@@ -46,9 +47,9 @@ void TurnClient(t_client *cl, int turn)
   ppo(NULL, cl);
 }
 
-int   turnLeft(t_client *cl)
+int		turnLeft(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != TurnLeft)
     return (1);
@@ -72,9 +73,9 @@ int   turnLeft(t_client *cl)
   return (1);
 }
 
-int   turnRight(t_client *cl)
+int		turnRight(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != TurnRight)
     return (1);

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:56 2012 yann vaillant
-** Last update Mon Jul  2 11:54:59 2012 yann vaillant
+** Last update Mon Jul  9 12:49:59 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,14 +21,15 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "setting.h"
 #include "xfunc.h"
 #include "network.h"
 
-void  add_team(t_setting *setting, char *name, int max)
+void		add_team(t_setting *setting, char *name, int max)
 {
-  t_team *tmp;
-  t_team *new;
+  t_team	*tmp;
+  t_team	*new;
 
   tmp = setting->all_team;
   new = xmalloc (sizeof(t_team));
@@ -51,12 +52,12 @@ void  add_team(t_setting *setting, char *name, int max)
     }
 }
 
-void init_setting(t_setting *setting)
+void		init_setting(t_setting *setting)
 {
-      setting->port = -1;
-      setting->width_map = -1;
-      setting->height_map = -1;
-      setting->max_cl_per_team = -1;
-      setting->delay = -1;
-      setting->all_team = NULL;
+  setting->port = -1;
+  setting->width_map = -1;
+  setting->height_map = -1;
+  setting->max_cl_per_team = -1;
+  setting->delay = -1;
+  setting->all_team = NULL;
 }

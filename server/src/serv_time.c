@@ -5,25 +5,26 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:40 2012 yann vaillant
-** Last update Mon Jul  2 12:01:03 2012 yann vaillant
+** Last update Mon Jul  9 13:09:09 2012 vailla_y
 */
 
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+
 #include "serv_time.h"
 
-void start_timer(t_serv_time* stm)
+void		start_timer(t_serv_time* stm)
 {
-  timespec tp;
+  timespec	tp;
 
   clock_gettime(CLOCK_REALTIME, &tp);
   stm->start_time = tp;
 }
 
-timespec diff(timespec start, timespec end)
+timespec	diff(timespec start, timespec end)
 {
-  timespec temp;
+  timespec	temp;
 
   if ((end.tv_nsec - start.tv_nsec) < 0)
     {
@@ -38,24 +39,23 @@ timespec diff(timespec start, timespec end)
   return (temp);
 }
 
-void   set_elapse_time(t_serv_time *stm)
+void		set_elapse_time(t_serv_time *stm)
 {
-  timespec tp;
-  timespec tp_diff;
-  long int    tim;
+  timespec	tp;
+  timespec	tp_diff;
+  long int	tim;
 
   clock_gettime(CLOCK_REALTIME, &tp);
-
   tp_diff = diff(stm->start_time, tp);
   tim = (tp_diff.tv_sec * 1000000000) + tp_diff.tv_nsec;
   stm->in_nsec  = tim;
 }
 
-void set_elapse_sec(t_serv_time *stm)
+void		set_elapse_sec(t_serv_time *stm)
 {
-  timespec tp;
-  timespec tp_diff;
-  long int    tim;
+  timespec	tp;
+  timespec	tp_diff;
+  long int	tim;
 
   clock_gettime(CLOCK_REALTIME, &tp);
   tp_diff = diff(stm->start_time, tp);

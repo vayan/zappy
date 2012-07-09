@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:55:49 2012 yann vaillant
-** Last update Mon Jul  2 12:01:27 2012 yann vaillant
+** Last update Mon Jul  9 13:08:13 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,17 +21,18 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
 #include "setting.h"
 #include "client.h"
 
-char *clean_see(char *msg)
+char	*clean_see(char *msg)
 {
-  int i;
-  int j;
-  char  *msg_clean;
+  int	i;
+  int	j;
+  char	*msg_clean;
 
   msg_clean = xmalloc (100000 * sizeof(*msg_clean));
   memset(msg_clean, 0, 100000);
@@ -49,10 +50,11 @@ char *clean_see(char *msg)
       i++;
       j++;
     }
+  xfree(msg);
   return (msg_clean);
 }
 
-void strcat_player(t_pl_case *tmp, char *msg)
+void	strcat_player(t_pl_case *tmp, char *msg)
 {
   while (tmp)
     {
@@ -61,11 +63,11 @@ void strcat_player(t_pl_case *tmp, char *msg)
     }
 }
 
-void  strcat_rsrc(Ressource *rsrc, char *msg)
+void	strcat_rsrc(Ressource *rsrc, char *msg)
 {
-  int i;
-  int j;
-  char *rc;
+  int	i;
+  int	j;
+  char	*rc;
 
   i = 0;
   while (i <= Thystame)
@@ -77,7 +79,7 @@ void  strcat_rsrc(Ressource *rsrc, char *msg)
           rc = Ressource_to_char(i);
           strcat(msg, rc);
           strcat(msg, " ");
-          free (rc);
+          xfree (rc);
           j++;
         }
       i++;

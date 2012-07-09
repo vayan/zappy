@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:43 2012 yann vaillant
-** Last update Mon Jul  2 12:10:05 2012 yann vaillant
+** Last update Mon Jul  9 12:49:31 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,9 +29,9 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int   do_elev(int *req, t_client *cl, t_map_case *cas)
+int	do_elev(int *req, t_client *cl, t_map_case *cas)
 {
-  int   nb_pl;
+  int	nb_pl;
 
   nb_pl = count_pl_on_case(cas->client);
   if (nb_pl < req[0] || (int)req[Linemate] < (int)cas->rsrc[Linemate] ||
@@ -52,12 +53,12 @@ int   do_elev(int *req, t_client *cl, t_map_case *cas)
   return (1);
 }
 
-int do_incant(t_client *cl)
+int		do_incant(t_client *cl)
 {
-  t_map_case  ***map;
-  t_pl_case   *all_cl_case;
-  int     *req;
-  char    *msg;
+  t_map_case	***map;
+  t_pl_case	*all_cl_case;
+  int		*req;
+  char		*msg;
 
   msg = xmalloc (200 * sizeof(char));
   req = xmalloc (10 * sizeof(int));
@@ -70,14 +71,15 @@ int do_incant(t_client *cl)
   bct(NULL, cl);
   sprintf(msg, "niveau actuel : %d\n", cl->level);
   broadcast_to_one_client(msg, all_cl_case->client);
-  free(msg);
+  xfree(msg);
+  xfree(req);
   return (0);
 }
 
-int   start_incant_all_on_case(t_client *cl)
+int		start_incant_all_on_case(t_client *cl)
 {
-  t_map_case  ***map;
-  t_pl_case   *all_cl_case;
+  t_map_case	***map;
+  t_pl_case	*all_cl_case;
 
   map = get_map(NULL);
   all_cl_case = (map[cl->x][cl->y])->client;
@@ -92,9 +94,9 @@ int   start_incant_all_on_case(t_client *cl)
   return (0);
 }
 
-int incant(t_client *cl, int first)
+int		incant(t_client *cl, int first)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != Incant)
     return (1);

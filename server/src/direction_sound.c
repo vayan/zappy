@@ -1,11 +1,11 @@
 /*
 ** direction_sound.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Tue Jun 26 12:53:30 2012 yann vaillant
-** Last update Tue Jul  3 13:33:09 2012 randy lyvet
+** Last update Mon Jul  9 12:42:28 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -28,11 +28,11 @@
 #include "client.h"
 #include "case_to_go.h"
 
-int			get_were(int from, int to, int limit)
+int	get_were(int from, int to, int limit)
 {
-  int			a;
-  int			b;
-  int			from_sav;
+  int	a;
+  int	b;
+  int	from_sav;
 
   if (from == to)
     return (0);
@@ -41,7 +41,7 @@ int			get_were(int from, int to, int limit)
   while (++from_sav != to)
     {
       if (from_sav >= limit)
-	from_sav = -1;
+        from_sav = -1;
       a++;
     }
   from_sav = from + 1;
@@ -49,7 +49,7 @@ int			get_were(int from, int to, int limit)
   while (--from_sav != to)
     {
       if (from_sav <= 0)
-	from_sav = limit + 1;
+        from_sav = limit + 1;
       b++;
     }
   if (a - b >= 0)
@@ -57,7 +57,7 @@ int			get_were(int from, int to, int limit)
   return (1);
 }
 
-int			case_to_go(int x, int y, t_client *receiver)
+int	case_to_go(int x, int y, t_client *receiver)
 {
   if (receiver->dir == 0)
     return (go_up(x, y));
@@ -70,14 +70,14 @@ int			case_to_go(int x, int y, t_client *receiver)
   return (0);
 }
 
-int			get_direction(t_client *emeter, t_client *receiver)
+int		get_direction(t_client *emeter, t_client *receiver)
 {
-  t_setting		*infos;
-  int			height;
-  int			width;
-  int			goX;
-  int			goY;
-  int debug;
+  t_setting	*infos;
+  int		height;
+  int		width;
+  int		goX;
+  int		goY;
+  int		debug;
 
   infos = get_setting(NULL);
   height = infos->height_map;

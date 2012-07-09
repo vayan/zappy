@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:30 2012 yann vaillant
-** Last update Mon Jul  2 11:54:34 2012 yann vaillant
+** Last update Mon Jul  9 12:47:35 2012 vailla_y
 */
 
 #include <stdlib.h>
@@ -20,48 +20,46 @@
 #include "network.h"
 #include "command_fonc.h"
 
-int  incr_rsrc(Ressource *rsrc, int food, int other)
+int	incr_rsrc(Ressource *rsrc, int food, int other)
 {
-  int change;
+  int	change;
 
   change = 0;
   if (rsrc[Nourriture] == 0)
-  {
-    change = 1;
-    rsrc[Nourriture] += random() % food;
-  }
-  if ((random() % 8) == 5)
-  {
-    if (rsrc[(random() % 7) + 1] == 0)
     {
       change = 1;
-      rsrc[(random() % 7) + 1] += random() % other;
+      rsrc[Nourriture] += random() % food;
     }
-  }
+  if ((random() % 8) >= 4)
+    {
+      if (rsrc[(random() % 7) + 1] == 0)
+        {
+          change = 1;
+          rsrc[(random() % 7) + 1] += random() % other;
+        }
+    }
   return (change);
 }
 
-void  gen_new_rsrc()
+void		gen_new_rsrc()
 {
-  int          x;
-  int          y;
-  t_map_case   ***map;
-  t_setting  *setting;
+  int		x;
+  int		y;
+  t_map_case	***map;
+  t_setting	*setting;
 
   setting = get_setting(NULL);
   map = get_map(NULL);
   y = 0;
   while (y < setting->height_map)
-  {
-    x = 0;
-    while (x < setting->width_map)
     {
-      if (incr_rsrc(MAP->rsrc, 2, 2) == 1)
-        bct_int(x, y);
-      x++;
+      x = 0;
+      while (x < setting->width_map)
+        {
+          if (incr_rsrc(MAP->rsrc, 2, 2) == 1)
+            bct_int(x, y);
+          x++;
+        }
+      y++;
     }
-    y++;
-  }
 }
-
-

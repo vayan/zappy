@@ -5,21 +5,22 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:18:39 2012 anatole carlier
-** Last update Mon Jul  2 12:02:04 2012 yann vaillant
+** Last update Mon Jul  9 13:06:57 2012 vailla_y
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "xfunc.h"
 #include "command_fonc.h"
 #include "network.h"
 #include "setting.h"
 
-int     sbp(char **tab, t_client *client)
+int		sbp(char **tab, t_client *client)
 {
-  tab = tab;
-  t_client *graphic;
+  t_client	*graphic;
 
+  tab = tab;
   client = client;
   graphic = get_graphic(NULL, 0);
   if (graphic == NULL)

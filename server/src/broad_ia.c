@@ -1,11 +1,11 @@
 /*
 ** broad_ia.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by anatole carlier
 ** Login   <carlie_a@epitech.net>
-** 
+**
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Mon Jul  2 12:12:14 2012 yann vaillant
+** Last update Mon Jul  9 12:35:37 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -35,21 +35,21 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
   if (cl->stm->in_use != -1 && cl->stm->in_use != Say)
     return (1);
   if (cl->stm->in_use == -1)
-  {
-    cl->stm->in_use = Say;
-    start_timer(cl->stm);
-    return (1);
-  }
+    {
+      cl->stm->in_use = Say;
+      start_timer(cl->stm);
+      return (1);
+    }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Say &&
-    ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
-  {
-    cl->stm->in_use = -1;
-    do_say(cl, all_client, msg);
-    return (0);
-  }
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      do_say(cl, all_client, msg);
+      return (0);
+    }
   return (1);
 }
 
@@ -60,24 +60,24 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
 
   tmp = all_client;
   while (tmp)
-  {
-    if (tmp != me && tmp->teams != NULL)
     {
-     str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
-     sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
-     broadcast_to_one_client(str, tmp);
-     free(str);
-   }
-   tmp = tmp->next;
- }
- pbc(msg, me);
- broadcast_to_one_client("ok\n", me);
- return (0);
+      if (tmp != me && tmp->teams != NULL)
+        {
+          str = xmalloc(sizeof(char) * (strlen(msg) + 11 + 13));
+          sprintf(str, "message %i,%s\n", get_direction(me, tmp), msg);
+          broadcast_to_one_client(str, tmp);
+          xfree(str);
+        }
+      tmp = tmp->next;
+    }
+  pbc(msg, me);
+  broadcast_to_one_client("ok\n", me);
+  return (0);
 }
 
 char	*parse_msg(char *msg)
 {
-  int i;
+  int	i;
 
   i = 0;
   while (msg[i] != '\0' && msg[i] != ' ')

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:55:26 2012 yann vaillant
-** Last update Mon Jul  2 12:05:18 2012 yann vaillant
+** Last update Mon Jul  9 13:02:26 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "option.h"
@@ -30,7 +31,7 @@
 #include "my_strtowordtab.h"
 #include "command_fonc.h"
 
-int parse_cmd_ia_classic(char *msg, t_client *cl)
+int	parse_cmd_ia_classic(char *msg, t_client *cl)
 {
   if (strcmp(msg, "avance") == 0)
     return (MoveFront(cl));
@@ -53,10 +54,10 @@ int parse_cmd_ia_classic(char *msg, t_client *cl)
   return (-3);
 }
 
-int   parse_cmd_ia(char *cmd, t_client *cl)
+int	parse_cmd_ia(char *cmd, t_client *cl)
 {
-  char **tab;
-  int   ret;
+  char	**tab;
+  int	ret;
 
   tab = my_str_to_wordtab(cmd, ' ');
   if (tab == NULL)
@@ -64,27 +65,17 @@ int   parse_cmd_ia(char *cmd, t_client *cl)
   if (cl->teams == NULL && cl->is_graphic == 0)
     get_type_client(tab[0], cl);
   else if (cl->teams != NULL)
-  {
-    ret = parse_cmd_ia_classic(tab[0], cl);
-    if (ret != -3)
-      return (ret);
-    else if (strcmp(tab[0], "prend") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
     {
-      ret = Take_Object(cl, parse_rsr(tab[1]));
-      //free_tab(tab);
-      return (ret);
+      if ((ret = parse_cmd_ia_classic(tab[0], cl)) != -3)
+        return (ret);
+      else if (strcmp(tab[0], "prend") == 0 &&
+               tab[1] != 0 && parse_rsr(tab[1]) != -1)
+        return (Take_Object(cl, parse_rsr(tab[1])));
+      else if (strcmp(tab[0], "pose") == 0 &&
+               tab[1] != 0 && parse_rsr(tab[1]) != -1)
+        return (Drop_Object(cl, parse_rsr(tab[1])));
+      else if (strcmp(tab[0], "broadcast") == 0)
+        return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
     }
-    else if (strcmp(tab[0], "pose") == 0 && tab[1] != 0 && parse_rsr(tab[1]) != -1)
-    {
-      ret = Drop_Object(cl, parse_rsr(tab[1]));
-      //free_tab(tab);
-      return (ret);
-    }
-    else if (strcmp(tab[0], "broadcast") == 0)
-    {
-      //free_tab(tab);
-      return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
-    }
-  }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:52 2012 yann vaillant
-** Last update Mon Jul  2 12:11:23 2012 yann vaillant
+** Last update Mon Jul  9 12:37:40 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -26,9 +26,9 @@
 #include "option.h"
 #include "command_parser.h"
 
-t_client    *get_graphic(t_client *_cl, int reset)
+t_client		*get_graphic(t_client *_cl, int reset)
 {
-  static t_client *cl = NULL;
+  static t_client	*cl = NULL;
 
   if (_cl != NULL)
     cl = _cl;
@@ -37,30 +37,32 @@ t_client    *get_graphic(t_client *_cl, int reset)
   return (cl);
 }
 
-int   broadcast_to_one_client(char *msg, t_client *me)
+int		broadcast_to_one_client(char *msg, t_client *me)
 {
-  t_client  *tmp;
-  char    *full_msg;
-  if (me == NULL)
+  t_client	*tmp;
+  char		*full_msg;
+
+  if (me == NULL && me->fd > 0)
     return (0);
   full_msg = xmalloc(MAX_INPUT * sizeof(char*));
   memset(full_msg, 0, MAX_INPUT);
   strcat(full_msg, msg);
   tmp = me;
-  if (tmp->fd > 0)
-    xsend (tmp->fd, full_msg, strlen(full_msg), MSG_DONTWAIT);
+  if ((xsend(tmp->fd, full_msg,
+             strlen(full_msg), MSG_DONTWAIT | MSG_NOSIGNAL)) == -1)
+    remove_client(tmp);
   if (full_msg[strlen(full_msg) - 1] == '\n')
     full_msg[strlen(full_msg) -1] = 0;
   printf("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n",
-   RED, me->id, full_msg);
-  free(full_msg);
+         RED, me->id, full_msg);
+  xfree(full_msg);
   return (0);
 }
 
-int do_input_client(t_client *all_client)
+int		do_input_client(t_client *all_client)
 {
-  t_client  *tmp;
-  t_option *tab;
+  t_client	*tmp;
+  t_option	*tab;
 
   if (all_client == NULL)
     return (0);
@@ -68,18 +70,18 @@ int do_input_client(t_client *all_client)
   init_tab(tab);
   tmp = all_client;
   while (tmp)
-  {
-    if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
     {
-      if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
-        rm_top_msg_from_buffer(tmp);
+      if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
+        {
+          if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
+            rm_top_msg_from_buffer(tmp);
+        }
+      else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
+        {
+          if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
+            rm_top_msg_from_buffer(tmp);
+        }
+      tmp = tmp->next;
     }
-    else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
-    {
-      if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
-        rm_top_msg_from_buffer(tmp);
-    }
-    tmp = tmp->next;
-  }
   return (0);
 }

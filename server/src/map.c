@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:10 2012 yann vaillant
-** Last update Mon Jul  2 12:07:37 2012 yann vaillant
+** Last update Mon Jul  9 12:53:14 2012 vailla_y
 */
 
 #include <stdlib.h>
@@ -19,27 +19,24 @@
 #include "client.h"
 #include "network.h"
 
-t_map_case    ***get_map(t_map_case ***_map)
+t_map_case              ***get_map(t_map_case ***_map)
 {
-  static t_map_case ***map = NULL;
+  static t_map_case     ***map = NULL;
 
   if (_map != NULL)
     map = _map;
   return (map);
 }
 
-void  rm_pl(int x, int y, t_client *pl)
+void            rm_pl(int x, int y, t_client *pl)
 {
-  t_map_case ***map;
+  t_map_case    ***map;
+  t_pl_case	*tmp;
 
   map = get_map(NULL);
-
   if (MAP->client != NULL)
     {
-      t_pl_case *tmp;
-
       tmp = MAP->client;
-
       if (tmp->next == NULL && tmp->client == pl)
         MAP->client = NULL;
       else if (tmp->client == pl)
@@ -56,9 +53,11 @@ void  rm_pl(int x, int y, t_client *pl)
     }
 }
 
-void  add_pl(int x, int y, t_client *pl)
+void		add_pl(int x, int y, t_client *pl)
 {
-  t_map_case ***map;
+  t_map_case	***map;
+  t_pl_case	*tmp;
+  t_pl_case	*new;
 
   map = get_map(NULL);
   if (MAP->client == NULL)
@@ -69,9 +68,6 @@ void  add_pl(int x, int y, t_client *pl)
     }
   else
     {
-      t_pl_case  *tmp;
-      t_pl_case  *new;
-
       tmp = MAP->client;
       while (tmp->next)
         tmp = tmp->next;

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:05 2012 yann vaillant
-** Last update Mon Jul  2 12:09:03 2012 yann vaillant
+** Last update Mon Jul  9 12:50:59 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,24 +21,25 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
 #include "setting.h"
 #include "client.h"
 
-char   *inttochar(int i)
+char	*inttochar(int i)
 {
-  char *buff_int;
+  char	*buff_int;
 
   buff_int = xmalloc(16 * sizeof(char*));
   sprintf(buff_int, "%d", i);
   return (buff_int);
 }
 
-void  send_invent(t_client *cl)
+void	send_invent(t_client *cl)
 {
-  char *invent;
+  char	*invent;
 
   invent = xmalloc(500 * sizeof(char*));
   memset(invent, 0, 500);
@@ -58,12 +59,12 @@ void  send_invent(t_client *cl)
   strcat(invent, inttochar(cl->rsrc[Thystame]));
   strcat(invent, "}\n");
   broadcast_to_one_client(invent, cl);
-  free(invent);
+  xfree(invent);
 }
 
-int Inventory(t_client *cl)
+int		Inventory(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != Inventaire)
     return (1);

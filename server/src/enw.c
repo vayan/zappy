@@ -1,11 +1,11 @@
 /*
 ** enw.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by anatole carlier
 ** Login   <carlie_a@epitech.net>
-** 
+**
 ** Started on  Tue Jun 12 11:13:42 2012 anatole carlier
-** Last update Tue Jun 26 10:45:38 2012 robin maitre
+** Last update Mon Jul  9 12:43:38 2012 vailla_y
 */
 
 #include <stdio.h>
@@ -15,10 +15,10 @@
 #include "network.h"
 #include "setting.h"
 
-int	enw(t_eggs *egg)
+int		enw(t_eggs *egg)
 {
-  char	*str;
-   t_client *graphic;
+  char		*str;
+  t_client	*graphic;
 
   graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
@@ -26,6 +26,6 @@ int	enw(t_eggs *egg)
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "enw %d %i %i %i\n", egg->id, egg->from , egg->x, egg->y);
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
   return (0);
 }

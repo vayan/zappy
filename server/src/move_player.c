@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:18 2012 yann vaillant
-** Last update Mon Jul  2 12:07:10 2012 yann vaillant
+** Last update Mon Jul  9 12:54:41 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,9 +29,9 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void  MoveClient(t_client *cl)
+void		MoveClient(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   rm_pl(cl->x, cl->y, cl);
   setting = get_setting(NULL);
@@ -41,9 +42,9 @@ void  MoveClient(t_client *cl)
   add_pl(cl->x, cl->y, cl);
 }
 
-int   MoveFront(t_client *cl)
+int		MoveFront(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != GoFront)
     return (1);

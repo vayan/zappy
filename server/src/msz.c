@@ -1,15 +1,16 @@
 /*
 ** msz.c for zappy in /home/carlie_a//zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by anatole carlier
 ** Login   <carlie_a@epitech.net>
-** 
+**
 ** Started on  Thu Jun  7 14:36:31 2012 anatole carlier
-** Last update Fri Jun 15 14:20:28 2012 anatole carlier
+** Last update Mon Jul  9 12:55:59 2012 vailla_y
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "xfunc.h"
 #include "command_fonc.h"
 #include "network.h"
@@ -17,9 +18,9 @@
 
 int		msz(char **tab, t_client *client)
 {
-  char		*str;
+  char		 *str;
   t_setting	*settings;
-  t_client *graphic;
+  t_client	*graphic;
 
   client = client;
   graphic = get_graphic(NULL, 0);
@@ -30,6 +31,6 @@ int		msz(char **tab, t_client *client)
   settings = get_setting(NULL);
   sprintf(str, "msz %i %i\n", settings->width_map, settings->height_map);
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
   return (0);
 }

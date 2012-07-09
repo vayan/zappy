@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:56:05 2012 yann vaillant
-** Last update Mon Jul  2 11:59:02 2012 yann vaillant
+** Last update Mon Jul  9 13:12:40 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,9 +29,9 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int   count_pl_on_case(t_pl_case *all_cl_case)
+int	count_pl_on_case(t_pl_case *all_cl_case)
 {
-  int i;
+  int	i;
 
   i = 0;
   while (all_cl_case)
@@ -41,7 +42,7 @@ int   count_pl_on_case(t_pl_case *all_cl_case)
   return (i);
 }
 
-void  init_tab_req(char *val, int *req)
+void	init_tab_req(char *val, int *req)
 {
   req[0] = val[0] - '0';
   req[1] = val[1] - '0';
@@ -54,7 +55,7 @@ void  init_tab_req(char *val, int *req)
   req[8] = val[8] - '0';
 }
 
-void fill_tab_req(int *req, int level)
+void	fill_tab_req(int *req, int level)
 {
   if (level == 1)
     init_tab_req("1100000", req);
@@ -70,5 +71,4 @@ void fill_tab_req(int *req, int level)
     init_tab_req("6123010", req);
   if (level == 7)
     init_tab_req("6222221", req);
-
 }

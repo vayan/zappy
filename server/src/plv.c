@@ -5,40 +5,41 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:08 2012 anatole carlier
-** Last update Mon Jul  2 12:03:15 2012 yann vaillant
+** Last update Mon Jul  9 13:05:37 2012 vailla_y
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "command_fonc.h"
 #include "network.h"
 #include "xfunc.h"
 
-int plv_one(t_client *client, t_client *graphic)
+int	plv_one(t_client *client, t_client *graphic)
 {
-  char  *str;
+  char	*str;
 
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "plv %i %i\n", client->id, client->level);
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
   return (0);
 }
 
-void plv_broad(t_client *client, t_client *graphic)
+void	plv_broad(t_client *client, t_client *graphic)
 {
-  char  *str;
+  char	*str;
 
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "plv %i %i\n", client->id, client->level);
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
 }
 
-int     plv(char **tab, t_client *client)
+int		plv(char **tab, t_client *client)
 {
-  t_client *graphic;
-  t_client      *clients;
+  t_client	*graphic;
+  t_client	*clients;
 
   clients = get_all_client(NULL, 0);
   graphic = get_graphic(NULL, 0);
@@ -47,17 +48,17 @@ int     plv(char **tab, t_client *client)
   if (tab == NULL)
     return (plv_one(client, graphic));
   if (tab[1] != NULL)
-  {
-    while (clients)
     {
-      if (clients->id == atoi(tab[1]))
-      {
-        plv_broad(clients, graphic);
-        return (0);
-      }
-      clients = clients->next;
+      while (clients)
+        {
+          if (clients->id == atoi(tab[1]))
+            {
+              plv_broad(clients, graphic);
+              return (0);
+            }
+          clients = clients->next;
+        }
     }
-  }
   sbp(NULL, client);
   return (0);
 }

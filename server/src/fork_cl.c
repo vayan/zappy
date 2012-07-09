@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:45 2012 yann vaillant
-** Last update Mon Jul  2 12:10:49 2012 yann vaillant
+** Last update Mon Jul  9 12:45:10 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,6 +21,7 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
@@ -28,11 +29,11 @@
 #include "client.h"
 #include "command_fonc.h"
 
-t_eggs  *add_egg(t_team *tm, t_client *cl)
+t_eggs		*add_egg(t_team *tm, t_client *cl)
 {
-  static int id = 0;
-  t_eggs  *new;
-  t_eggs  *tmp;
+  static int	id = 0;
+  t_eggs	*new;
+  t_eggs	*tmp;
 
   new = xmalloc(sizeof(t_eggs));
   new->id = id++;
@@ -56,9 +57,9 @@ t_eggs  *add_egg(t_team *tm, t_client *cl)
   return (new);
 }
 
-int   do_fork_pl(t_client *cl)
+int		do_fork_pl(t_client *cl)
 {
-  t_eggs *egg;
+  t_eggs	*egg;
 
   if (cl->teams->left < 100)
     {
@@ -71,9 +72,9 @@ int   do_fork_pl(t_client *cl)
   return (0);
 }
 
-int fork_cl(t_client *cl)
+int		fork_cl(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != Fork)
     return (1);

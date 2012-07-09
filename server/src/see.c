@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 12:01:39 2012 yann vaillant
-** Last update Mon Jul  2 12:01:56 2012 yann vaillant
+** Last update Mon Jul  9 13:07:43 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -21,19 +21,20 @@
 #include <sys/ipc.h>
 #include <time.h>
 #include <signal.h>
+
 #include "network.h"
 #include "xfunc.h"
 #include "map.h"
 #include "setting.h"
 #include "client.h"
 
-char  *get_see_one_case(int x, int y)
+char            *get_see_one_case(int x, int y)
 {
-  t_map_case ***map;
-  map = get_map(NULL);
-  char *msg;
-  t_setting *setting;
+  t_map_case    ***map;
+  char          *msg;
+  t_setting     *setting;
 
+  map = get_map(NULL);
   setting = get_setting(NULL);
   if (y >= setting->height_map)
     y = y - setting->height_map;
@@ -52,13 +53,13 @@ char  *get_see_one_case(int x, int y)
   return (msg);
 }
 
-void  scan_case(t_client *cl, char *msg)
+void	scan_case(t_client *cl, char *msg)
 {
-  int lvl;
-  int base;
-  int i;
-  int x;
-  int y;
+  int	lvl;
+  int	base;
+  int	i;
+  int	x;
+  int	y;
 
   x = 0;
   y = 0;
@@ -81,9 +82,9 @@ void  scan_case(t_client *cl, char *msg)
     }
 }
 
-int do_see(t_client *cl)
+int	do_see(t_client *cl)
 {
-  char  *msg;
+  char	*msg;
 
   msg = xmalloc (100000 * sizeof(*msg));
   memset(msg, 0, 100000);
@@ -91,13 +92,12 @@ int do_see(t_client *cl)
   scan_case(cl, msg);
   strcat(msg, "}\n");
   broadcast_to_one_client(clean_see(msg), cl);
-  free(msg);
   return (0);
 }
 
-int Want_See(t_client *cl)
+int		Want_See(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != See)
     return (1);

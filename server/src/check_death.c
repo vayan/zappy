@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:02 2012 yann vaillant
-** Last update Mon Jul  2 12:11:57 2012 yann vaillant
+** Last update Mon Jul  9 12:36:43 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -28,7 +28,7 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int   kill_player(t_client *cl)
+int	kill_player(t_client *cl)
 {
   if (cl->rsrc[Nourriture] <= 0)
     {
@@ -39,9 +39,9 @@ int   kill_player(t_client *cl)
   return (0);
 }
 
-int start_dying(t_client *cl)
+int		start_dying(t_client *cl)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   if (cl->is_graphic == 1 || cl->death->in_use == 2)
     return (1);
@@ -64,9 +64,9 @@ int start_dying(t_client *cl)
   return (1);
 }
 
-int   check_death_all_player()
+int		check_death_all_player()
 {
-  t_client *client;
+  t_client	*client;
 
   client = get_all_client(NULL, 0);
   while (client)

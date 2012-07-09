@@ -5,20 +5,21 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:17:29 2012 anatole carlier
-** Last update Mon Jul  2 12:00:01 2012 yann vaillant
+** Last update Mon Jul  9 13:10:14 2012 vailla_y
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "xfunc.h"
 #include "command_fonc.h"
 #include "network.h"
 #include "setting.h"
 
-int     smg(char *mess, t_client *client)
+int		smg(char *mess, t_client *client)
 {
-  char  *str;
-  t_client *graphic;
+  char		*str;
+  t_client	*graphic;
 
   client = client;
   graphic = get_graphic(NULL, 0);
@@ -27,6 +28,6 @@ int     smg(char *mess, t_client *client)
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "smg %s\n", mess);
   broadcast_to_one_client(str, graphic);
-  free(str);
+  xfree(str);
   return (0);
 }

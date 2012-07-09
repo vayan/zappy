@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:50:36 2012 yann vaillant
-** Last update Mon Jul  2 12:12:29 2012 yann vaillant
+** Last update Mon Jul  9 12:33:23 2012 vailla_y
 */
 
 #include <sys/types.h>
@@ -28,9 +28,9 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int   rm_slot_team(t_team *cl, t_eggs *to_remove)
+int		rm_slot_team(t_team *cl, t_eggs *to_remove)
 {
-  t_eggs  *tmp;
+  t_eggs	*tmp;
 
   tmp = cl->egg;
   if (tmp->next == NULL && tmp == to_remove)
@@ -50,7 +50,7 @@ int   rm_slot_team(t_team *cl, t_eggs *to_remove)
   return (1);
 }
 
-int   add_slot_team(t_team *cl, t_eggs *egg)
+int		add_slot_team(t_team *cl, t_eggs *egg)
 {
   cl->left += 1;
   eht(cl->egg->id);
