@@ -5,27 +5,27 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:23 2012 yann vaillant
-** Last update Mon Jul  9 12:41:12 2012 vailla_y
+** Last update Tue Jul 10 13:50:48 2012 randy lyvet
 */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <time.h>
+#include		<stdlib.h>
+#include		<unistd.h>
+#include		<sys/types.h>
+#include		<stdio.h>
+#include		<time.h>
 
-#include "map.h"
-#include "setting.h"
-#include "xfunc.h"
-#include "client.h"
-#include "network.h"
+#include		"map.h"
+#include		"setting.h"
+#include		"xfunc.h"
+#include		"client.h"
+#include		"network.h"
 
-void	aff_pl_test()
+void			aff_pl_test()
 {
-  t_map_case ***map;
-  t_setting    *setting;
-  int x;
-  int y;
+  t_map_case		***map;
+  t_setting		*setting;
+  int			x;
+  int			y;
 
   y = 0;
   map = get_map(NULL);
@@ -48,9 +48,9 @@ void	aff_pl_test()
     }
 }
 
-void	aff_rsrc(Ressource* rsrc)
+void			aff_rsrc(Ressource* rsrc)
 {
-  int	i;
+  int			i;
 
   i = 0;
   while (i < 7)
@@ -60,9 +60,9 @@ void	aff_rsrc(Ressource* rsrc)
     }
 }
 
-void		aff_player(t_pl_case* pl)
+void			aff_player(t_pl_case* pl)
 {
-  t_pl_case	*tmp;
+  t_pl_case		*tmp;
 
   tmp = pl;
   if (pl == NULL)
@@ -77,12 +77,12 @@ void		aff_player(t_pl_case* pl)
     }
 }
 
-void		aff_map()
+void			aff_map()
 {
-  t_map_case	***map;
-  t_setting	*setting;
-  int		x;
-  int		y;
+  t_map_case		***map;
+  t_setting		*setting;
+  int			x;
+  int			y;
 
   y = 0;
   map = get_map(NULL);

@@ -5,26 +5,27 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:52 2012 yann vaillant
-** Last update Mon Jul  9 12:37:40 2012 vailla_y
+** Last update Tue Jul 10 13:43:14 2012 randy lyvet
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <time.h>
-#include <signal.h>
-#include "network.h"
-#include "xfunc.h"
-#include "option.h"
-#include "command_parser.h"
+#include		<sys/types.h>
+#include		<sys/socket.h>
+#include		<netinet/in.h>
+#include		<arpa/inet.h>
+#include		<sys/time.h>
+#include		<unistd.h>
+#include		<stdio.h>
+#include		<string.h>
+#include		<stdlib.h>
+#include		<sys/types.h>
+#include		<sys/ipc.h>
+#include		<time.h>
+#include		<signal.h>
+
+#include		"network.h"
+#include		"xfunc.h"
+#include		"option.h"
+#include		"command_parser.h"
 
 t_client		*get_graphic(t_client *_cl, int reset)
 {
@@ -37,10 +38,10 @@ t_client		*get_graphic(t_client *_cl, int reset)
   return (cl);
 }
 
-int		broadcast_to_one_client(char *msg, t_client *me)
+int			broadcast_to_one_client(char *msg, t_client *me)
 {
-  t_client	*tmp;
-  char		*full_msg;
+  t_client		*tmp;
+  char			*full_msg;
 
   if (me == NULL && me->fd > 0)
     return (0);
@@ -59,10 +60,10 @@ int		broadcast_to_one_client(char *msg, t_client *me)
   return (0);
 }
 
-int		do_input_client(t_client *all_client)
+int			do_input_client(t_client *all_client)
 {
-  t_client	*tmp;
-  t_option	*tab;
+  t_client		*tmp;
+  t_option		*tab;
 
   if (all_client == NULL)
     return (0);

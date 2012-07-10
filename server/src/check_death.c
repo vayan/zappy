@@ -5,30 +5,31 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:02 2012 yann vaillant
-** Last update Mon Jul  9 12:36:43 2012 vailla_y
+** Last update Tue Jul 10 13:38:25 2012 randy lyvet
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <time.h>
-#include <signal.h>
-#include "network.h"
-#include "xfunc.h"
-#include "map.h"
-#include "setting.h"
-#include "client.h"
-#include "command_fonc.h"
+#include		<sys/types.h>
+#include		<sys/socket.h>
+#include		<netinet/in.h>
+#include		<arpa/inet.h>
+#include		<sys/time.h>
+#include		<unistd.h>
+#include		<stdio.h>
+#include		<string.h>
+#include		<stdlib.h>
+#include		<sys/types.h>
+#include		<sys/ipc.h>
+#include		<time.h>
+#include		<signal.h>
 
-int	kill_player(t_client *cl)
+#include		"network.h"
+#include		"xfunc.h"
+#include		"map.h"
+#include		"setting.h"
+#include		"client.h"
+#include		"command_fonc.h"
+
+int			kill_player(t_client *cl)
 {
   if (cl->rsrc[Nourriture] <= 0)
     {
@@ -39,9 +40,9 @@ int	kill_player(t_client *cl)
   return (0);
 }
 
-int		start_dying(t_client *cl)
+int			start_dying(t_client *cl)
 {
-  t_setting	*setting;
+  t_setting		*setting;
 
   if (cl->is_graphic == 1 || cl->death->in_use == 2)
     return (1);
@@ -64,9 +65,9 @@ int		start_dying(t_client *cl)
   return (1);
 }
 
-int		check_death_all_player()
+int			check_death_all_player()
 {
-  t_client	*client;
+  t_client		*client;
 
   client = get_all_client(NULL, 0);
   while (client)

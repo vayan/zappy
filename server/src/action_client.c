@@ -5,29 +5,30 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:45 2012 yann vaillant
-** Last update Mon Jul  9 12:32:05 2012 vailla_y
+** Last update Tue Jul 10 13:25:12 2012 randy lyvet
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <time.h>
-#include <signal.h>
-#include "network.h"
-#include "xfunc.h"
-#include "map.h"
-#include "setting.h"
-#include "command_fonc.h"
+#include		<sys/types.h>
+#include		<sys/socket.h>
+#include		<netinet/in.h>
+#include		<arpa/inet.h>
+#include		<sys/time.h>
+#include		<unistd.h>
+#include		<stdio.h>
+#include		<string.h>
+#include		<stdlib.h>
+#include		<sys/types.h>
+#include		<sys/ipc.h>
+#include		<time.h>
+#include		<signal.h>
 
-void	remove_client_from_team(t_client *to_remove)
+#include		"network.h"
+#include		"xfunc.h"
+#include		"map.h"
+#include		"setting.h"
+#include		"command_fonc.h"
+
+void			remove_client_from_team(t_client *to_remove)
 {
   if (to_remove->teams != NULL)
     {
@@ -36,9 +37,9 @@ void	remove_client_from_team(t_client *to_remove)
     }
 }
 
-int		remove_client_from_list(t_client *to_remove)
+int			remove_client_from_list(t_client *to_remove)
 {
-  t_client	*tmp;
+  t_client		*tmp;
 
   tmp = get_all_client(NULL, 0);
   while (tmp)
@@ -53,9 +54,9 @@ int		remove_client_from_list(t_client *to_remove)
   return (0);
 }
 
-int		remove_client(t_client *to_remove)
+int			remove_client(t_client *to_remove)
 {
-  t_client	*tmp;
+  t_client		*tmp;
 
   printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
          COLOR_BLU, to_remove->id);
@@ -77,7 +78,7 @@ int		remove_client(t_client *to_remove)
   return (1);
 }
 
-void	remove_client_on_map(t_client *cl)
+void			remove_client_on_map(t_client *cl)
 {
   rm_pl(cl->x, cl->y, cl);
   printf("\033[1;%sm--Deleting client %d\033[0;0;00m\n", COLOR_BLU, cl->id);

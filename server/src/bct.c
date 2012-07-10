@@ -5,22 +5,23 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Thu Jun  7 14:54:41 2012 anatole carlier
-** Last update Mon Jul  9 12:34:38 2012 vailla_y
+** Last update Tue Jul 10 13:33:40 2012 randy lyvet
 */
 
-#include <stdio.h>
-#include <xfunc.h>
-#include <setting.h>
-#include <stdlib.h>
-#include "command_fonc.h"
-#include "network.h"
-#include "map.h"
-#include "client.h"
+#include		<stdio.h>
+#include		<xfunc.h>
+#include		<setting.h>
+#include		<stdlib.h>
 
-int		bct_int(int x, int y)
+#include		"command_fonc.h"
+#include		"network.h"
+#include		"map.h"
+#include		"client.h"
+
+int			bct_int(int x, int y)
 {
-  char		*str;
-  t_client	*graphic;
+  char			*str;
+  t_client		*graphic;
 
   graphic = get_graphic(NULL, 0);
   if (graphic == NULL)
@@ -32,9 +33,9 @@ int		bct_int(int x, int y)
   return (0);
 }
 
-int		bct_one(t_client *graphic, t_client *client)
+int			bct_one(t_client *graphic, t_client *client)
 {
-  char		*str;
+  char			*str;
 
   str = xmalloc(sizeof(char) * 1024);
   str = map_contents(str, client->x, client->y);
@@ -43,12 +44,12 @@ int		bct_one(t_client *graphic, t_client *client)
   return (0);
 }
 
-int		bct(char **tab, t_client *client)
+int			bct(char **tab, t_client *client)
 {
-  char		*str;
-  int		x;
-  int		y;
-  t_client	*graphic;
+  char			*str;
+  int			x;
+  int			y;
+  t_client		*graphic;
 
   x = -1;
   y = -1;

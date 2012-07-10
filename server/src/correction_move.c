@@ -5,31 +5,31 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:19 2012 yann vaillant
-** Last update Mon Jul  9 12:40:24 2012 vailla_y
+** Last update Tue Jul 10 13:49:06 2012 randy lyvet
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <time.h>
-#include <signal.h>
+#include		<sys/types.h>
+#include		<sys/socket.h>
+#include		<netinet/in.h>
+#include		<arpa/inet.h>
+#include		<sys/time.h>
+#include		<unistd.h>
+#include		<stdio.h>
+#include		<string.h>
+#include		<stdlib.h>
+#include		<sys/types.h>
+#include		<sys/ipc.h>
+#include		<time.h>
+#include		<signal.h>
 
-#include "network.h"
-#include "xfunc.h"
-#include "map.h"
-#include "setting.h"
-#include "client.h"
-#include "command_fonc.h"
+#include		"network.h"
+#include		"xfunc.h"
+#include		"map.h"
+#include		"setting.h"
+#include		"client.h"
+#include		"command_fonc.h"
 
-void	correction_move_down(t_client *cl, t_setting *setting)
+void			correction_move_down(t_client *cl, t_setting *setting)
 {
   if (cl->dir == Down)
     {
@@ -39,7 +39,7 @@ void	correction_move_down(t_client *cl, t_setting *setting)
     }
 }
 
-void	correction_move_up(t_client *cl, t_setting *setting)
+void			correction_move_up(t_client *cl, t_setting *setting)
 {
   if (cl->dir == Up)
     {
@@ -49,7 +49,7 @@ void	correction_move_up(t_client *cl, t_setting *setting)
     }
 }
 
-void	correction_move_right(t_client *cl, t_setting *setting)
+void			correction_move_right(t_client *cl, t_setting *setting)
 {
   if (cl->dir == Right)
     {
@@ -59,7 +59,7 @@ void	correction_move_right(t_client *cl, t_setting *setting)
     }
 }
 
-void	correction_move_left(t_client *cl, t_setting *setting)
+void			correction_move_left(t_client *cl, t_setting *setting)
 {
   if (cl->dir == Left)
     {

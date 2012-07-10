@@ -5,10 +5,10 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Fri Jun 22 10:32:29 2012 randy lyvet
-** Last update Mon Jul  9 12:36:11 2012 vailla_y
+** Last update Tue Jul 10 13:36:52 2012 randy lyvet
 */
 
-int	go_up(int x, int y)
+int		go_up(int x, int y)
 {
   if (x == 1 && y == 0)
     return (7);
@@ -30,7 +30,7 @@ int	go_up(int x, int y)
     return (0);
 }
 
-int	go_right(int x, int y)
+int		go_right(int x, int y)
 {
   if (x == 1 && y == 0)
     return (1);
@@ -52,7 +52,7 @@ int	go_right(int x, int y)
     return (0);
 }
 
-int	go_bot(int x, int y)
+int		go_bot(int x, int y)
 {
   if (x == 1 && y == 0)
     return (3);
@@ -74,7 +74,7 @@ int	go_bot(int x, int y)
     return (0);
 }
 
-int	go_left(int x, int y)
+int		go_left(int x, int y)
 {
   if (x == 1 && y == 0)
     return (5);

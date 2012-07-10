@@ -5,24 +5,24 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Tue Jun 12 11:37:00 2012 randy lyvet
-** Last update Mon Jul  9 13:18:13 2012 vailla_y
+** Last update Tue Jul 10 13:44:22 2012 randy lyvet
 */
 
-#include <string.h>
-#include <stdlib.h>
+#include		<string.h>
+#include		<stdlib.h>
 
-#include "option.h"
-#include "my_strtowordtab.h"
-#include "network.h"
-#include "command_fonc.h"
-#include "xfunc.h"
+#include		"option.h"
+#include		"my_strtowordtab.h"
+#include		"network.h"
+#include		"command_fonc.h"
+#include		"xfunc.h"
 
-int	command_parser(t_option *tab, char *command, t_client *client)
+int			command_parser(t_option *tab, char *command, t_client *client)
 {
-  int	j;
-  char	**command_type;
-  int	ret;
-  int	g;
+  int			j;
+  char			**command_type;
+  int			ret;
+  int			g;
 
   command_type = my_str_to_wordtab(command, ' ');
   j = -1;

@@ -5,32 +5,33 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Mon Jul  9 12:35:37 2012 vailla_y
+** Last update Tue Jul 10 13:36:10 2012 randy lyvet
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <time.h>
-#include <signal.h>
-#include "network.h"
-#include "xfunc.h"
-#include "map.h"
-#include "setting.h"
-#include "client.h"
-#include "command_fonc.h"
+#include		<sys/types.h>
+#include		<sys/socket.h>
+#include		<netinet/in.h>
+#include		<arpa/inet.h>
+#include		<sys/time.h>
+#include		<unistd.h>
+#include		<stdio.h>
+#include		<string.h>
+#include		<stdlib.h>
+#include		<sys/types.h>
+#include		<sys/ipc.h>
+#include		<time.h>
+#include		<signal.h>
 
-int		broad_ia(t_client *cl, t_client *all_client, char *msg)
+#include		"network.h"
+#include		"xfunc.h"
+#include		"map.h"
+#include		"setting.h"
+#include		"client.h"
+#include		"command_fonc.h"
+
+int			broad_ia(t_client *cl, t_client *all_client, char *msg)
 {
-  t_setting	*setting;
+  t_setting		*setting;
 
   if (cl->stm->in_use != -1 && cl->stm->in_use != Say)
     return (1);
@@ -53,10 +54,10 @@ int		broad_ia(t_client *cl, t_client *all_client, char *msg)
   return (1);
 }
 
-int		do_say(t_client *me, t_client *all_client, char *msg)
+int			do_say(t_client *me, t_client *all_client, char *msg)
 {
-  t_client	*tmp;
-  char		*str;
+  t_client		*tmp;
+  char			*str;
 
   tmp = all_client;
   while (tmp)
@@ -75,9 +76,9 @@ int		do_say(t_client *me, t_client *all_client, char *msg)
   return (0);
 }
 
-char	*parse_msg(char *msg)
+char			*parse_msg(char *msg)
 {
-  int	i;
+  int			i;
 
   i = 0;
   while (msg[i] != '\0' && msg[i] != ' ')
