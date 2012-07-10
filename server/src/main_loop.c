@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:55:07 2012 yann vaillant
-** Last update Mon Jul  9 13:31:55 2012 vailla_y
+** Last update Tue Jul 10 11:29:06 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -32,7 +32,7 @@ void	clean_quit()
   free_close_client();
   free_setting();
   printf("\n");
-  exit (11);
+  exit(11);
 }
 
 int	do_each_loop(t_client *all_client, fd_set *readf)

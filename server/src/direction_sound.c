@@ -38,12 +38,13 @@ int	get_were(int from, int to, int limit)
     return (0);
   from_sav = from - 1;
   a = 0;
-  while (++from_sav != to)
-    {
-      if (from_sav >= limit)
-        from_sav = -1;
-      a++;
-    }
+  printf ("limit/to %d/%d", limit, to);
+  while (++from_sav != to);
+  {
+    if (from_sav == limit)
+      from_sav = 0;
+    a++;
+  }
   from_sav = from + 1;
   b = 0;
   while (--from_sav != to)

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:05 2012 yann vaillant
-** Last update Mon Jul  9 12:50:59 2012 vailla_y
+** Last update Tue Jul 10 11:24:59 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -62,7 +62,7 @@ void	send_invent(t_client *cl)
   xfree(invent);
 }
 
-int		Inventory(t_client *cl)
+int		inventory(t_client *cl)
 {
   t_setting	*setting;
 
@@ -78,7 +78,7 @@ int		Inventory(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Inventaire &&
-      ( (cl->stm->in_nsec) >= (1000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (1000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
       send_invent(cl);

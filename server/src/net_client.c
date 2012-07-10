@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:17 2012 yann vaillant
-** Last update Mon Jul  9 13:20:26 2012 vailla_y
+** Last update Tue Jul 10 11:51:46 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -25,9 +25,9 @@
 #include "network.h"
 #include "xfunc.h"
 
-int      buffer_loop(char *cl_msg, t_client *tmp)
+int		buffer_loop(char *cl_msg, t_client *tmp)
 {
-  char  *tmp_msg;
+  char		*tmp_msg;
 
   while ((tmp_msg = decoupe_back(cl_msg)) != NULL)
     {
@@ -44,10 +44,10 @@ int      buffer_loop(char *cl_msg, t_client *tmp)
   return (0);
 }
 
-int   	process_msg(char *msg, t_client *tmp)
+int		process_msg(char *msg, t_client *tmp)
 {
-  char	*cl_msg;
-  char	*save_to_free;
+  char		*cl_msg;
+  char		*save_to_free;
 
   cl_msg = clean_msg(msg);
   save_to_free = cl_msg;

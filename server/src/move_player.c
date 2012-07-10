@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:18 2012 yann vaillant
-** Last update Mon Jul  9 12:54:41 2012 vailla_y
+** Last update Tue Jul 10 11:39:14 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void		MoveClient(t_client *cl)
+void		moveclient(t_client *cl)
 {
   t_setting	*setting;
 
@@ -42,7 +42,7 @@ void		MoveClient(t_client *cl)
   add_pl(cl->x, cl->y, cl);
 }
 
-int		MoveFront(t_client *cl)
+int		movefront(t_client *cl)
 {
   t_setting	*setting;
 
@@ -58,7 +58,7 @@ int		MoveFront(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == GoFront &&
-      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
       MoveClient(cl);

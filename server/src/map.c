@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:10 2012 yann vaillant
-** Last update Mon Jul  9 12:53:14 2012 vailla_y
+** Last update Tue Jul 10 11:32:21 2012 robin maitre
 */
 
 #include <stdlib.h>
@@ -28,10 +28,10 @@ t_map_case              ***get_map(t_map_case ***_map)
   return (map);
 }
 
-void            rm_pl(int x, int y, t_client *pl)
+void			rm_pl(int x, int y, t_client *pl)
 {
-  t_map_case    ***map;
-  t_pl_case	*tmp;
+  t_map_case		***map;
+  t_pl_case		*tmp;
 
   map = get_map(NULL);
   if (MAP->client != NULL)
@@ -53,11 +53,11 @@ void            rm_pl(int x, int y, t_client *pl)
     }
 }
 
-void		add_pl(int x, int y, t_client *pl)
+void			add_pl(int x, int y, t_client *pl)
 {
-  t_map_case	***map;
-  t_pl_case	*tmp;
-  t_pl_case	*new;
+  t_map_case		***map;
+  t_pl_case		*tmp;
+  t_pl_case		*new;
 
   map = get_map(NULL);
   if (MAP->client == NULL)

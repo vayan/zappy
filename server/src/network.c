@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun  5 12:26:29 2012 yann vaillant
-** Last update Mon Jul  9 13:32:54 2012 vailla_y
+** Last update Tue Jul 10 12:02:38 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -27,7 +27,7 @@
 #include "setting.h"
 #include "map.h"
 
-void    init_socket(struct sockaddr_in *sin, int port)
+void		init_socket(struct sockaddr_in *sin, int port)
 {
   sin->sin_family = AF_INET;
   sin->sin_port = htons(port);

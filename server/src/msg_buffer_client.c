@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:55:02 2012 yann vaillant
-** Last update Mon Jul  9 12:55:24 2012 vailla_y
+** Last update Tue Jul 10 11:44:44 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -38,22 +38,22 @@ void		rm_top_msg_from_buffer(t_client *cl)
   xfree(tmp);
 }
 
-void	new_msg_to_buffer(t_client *cl, char *msg)
+void		new_msg_to_buffer(t_client *cl, char *msg)
 {
   cl->buff_msg = xmalloc(sizeof(t_buffer_msg));
   cl->buff_msg->msg = strdup(msg);
   cl->buff_msg->next = NULL;
 }
 
-char*	clean_msg(char *msg)
+char*		clean_msg(char *msg)
 {
-  char	*clean;
-  int	i;
-  int	j;
+  char		*clean;
+  int		i;
+  int		j;
 
   i = 0;
   j = 0;
-  clean = xmalloc (strlen(msg) + 1 * sizeof(*clean));
+  clean = xmalloc(strlen(msg) + 1 * sizeof(*clean));
   memset(clean, 0, strlen(msg) + 1);
   while (msg[i] != '\0')
     {

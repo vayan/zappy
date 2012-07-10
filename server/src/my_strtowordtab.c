@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Fri Nov 11 12:50:40 2011 randy lyvet
-** Last update Mon Jul  9 12:57:22 2012 vailla_y
+** Last update Tue Jul 10 11:47:49 2012 robin maitre
 */
 
 #include <string.h>
@@ -16,7 +16,7 @@
 void	free_tab(char **tab)
 {
   int	i;
-
+ 
   i = 0;
   while (tab[i])
     {
