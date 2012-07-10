@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Thu Jun 14 12:30:26 2012 randy lyvet
-** Last update Mon Jul  9 12:50:32 2012 vailla_y
+** Last update Tue Jul 10 11:41:11 2012 anatole carlier
 */
 
 #include  <string.h>
