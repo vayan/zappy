@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Tue Jun  5 13:19:33 2012 alexandre haulotte
-// Last update Thu Jul  5 11:42:04 2012 alexandre haulotte
+// Last update Tue Jul 10 12:17:55 2012 alexandre haulotte
 //
 
 #include	<signal.h>
@@ -15,13 +15,14 @@
 
 void	signal_pipe(int sig)
 {
+  sig = 1;
   std::cout << "For the life of my little sister in the castle far far away!!!" << std::endl;
   exit(0);
 }
 
 int	main(int ac, char **av)
 {
-  Player	*pl = new Player();
+  Player	*pl = new Player(1);
   try
     {
       signal(SIGPIPE, &signal_pipe);
