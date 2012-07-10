@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 12:01:39 2012 yann vaillant
-** Last update Mon Jul  9 13:07:43 2012 vailla_y
+** Last update Tue Jul 10 11:32:31 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -28,11 +28,11 @@
 #include "setting.h"
 #include "client.h"
 
-char            *get_see_one_case(int x, int y)
+char		*get_see_one_case(int x, int y)
 {
-  t_map_case    ***map;
-  char          *msg;
-  t_setting     *setting;
+  t_map_case	***map;
+  char		*msg;
+  t_setting	*setting;
 
   map = get_map(NULL);
   setting = get_setting(NULL);
@@ -95,7 +95,7 @@ int	do_see(t_client *cl)
   return (0);
 }
 
-int		Want_See(t_client *cl)
+int		want_see(t_client *cl)
 {
   t_setting	*setting;
 

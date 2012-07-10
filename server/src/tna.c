@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Thu Jun  7 15:33:47 2012 anatole carlier
-** Last update Mon Jul  9 13:11:43 2012 vailla_y
+** Last update Tue Jul 10 11:39:05 2012 alexandre haulotte
 */
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 #include "network.h"
 #include "setting.h"
 
-int	       tna(char **tab, t_client *client)
+int		tna(char **tab, t_client *client)
 {
   t_setting	*settings;
   char		*str;

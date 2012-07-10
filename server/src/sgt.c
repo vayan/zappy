@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:15:47 2012 anatole carlier
-** Last update Mon Jul  9 13:10:00 2012 vailla_y
+** Last update Tue Jul 10 11:28:21 2012 alexandre haulotte
 */
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 #include "network.h"
 #include "setting.h"
 
-int		 sgt(char **tab, t_client *client)
+int		sgt(char **tab, t_client *client)
 {
   char		*str;
   t_setting	*settings;

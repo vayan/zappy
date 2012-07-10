@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:08 2012 yann vaillant
-** Last update Mon Jul  9 13:12:05 2012 vailla_y
+** Last update Tue Jul 10 11:31:32 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void	TurnClient(t_client *cl, int turn)
+void	turn_client(t_client *cl, int turn)
 {
   if (turn == 1)
     {
@@ -47,7 +47,7 @@ void	TurnClient(t_client *cl, int turn)
   ppo(NULL, cl);
 }
 
-int		turnLeft(t_client *cl)
+int		turn_left(t_client *cl)
 {
   t_setting	*setting;
 
@@ -73,7 +73,7 @@ int		turnLeft(t_client *cl)
   return (1);
 }
 
-int		turnRight(t_client *cl)
+int		turn_right(t_client *cl)
 {
   t_setting	*setting;
 

@@ -5,11 +5,12 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:10:02 2012 anatole carlier
-** Last update Mon Jul  9 13:03:26 2012 vailla_y
+** Last update Tue Jul 10 11:37:31 2012 alexandre haulotte
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "command_fonc.h"
 #include "network.h"
 #include "xfunc.h"

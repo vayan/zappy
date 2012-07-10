@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:39:23 2012 yann vaillant
-** Last update Mon Jul  9 13:14:54 2012 vailla_y
+** Last update Tue Jul 10 11:16:58 2012 alexandre haulotte
 */
 
 #include <unistd.h>
@@ -57,7 +57,7 @@ int	xbind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
   return (ret);
 }
 
-void	 xfree(void *ptr)
+void	xfree(void *ptr)
 {
   if (ptr != NULL)
     {

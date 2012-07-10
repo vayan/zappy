@@ -1,11 +1,11 @@
 /*
-** utils_net_client.c for  in /home/vailla_y/Projet/Tek2/zappy/zappy-2015-2014s-haulot_a/server/src
-**
-** Made by vailla_y
-** Login   <vailla_y@epitech.net>
-**
-** Started on  Mon Jul  9 12:27:29 2012 vailla_y
-** Last update Mon Jul  9 13:13:17 2012 vailla_y
+** utils_net_client.c for  in /home/haulot_a//zappy-2015-2014s-haulot_a/server/src
+** 
+** Made by alexandre haulotte
+** Login   <haulot_a@epitech.net>
+** 
+** Started on  Tue Jul 10 11:20:50 2012 alexandre haulotte
+** Last update Tue Jul 10 11:21:36 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -46,7 +46,7 @@ char	*decoupe_back(char *msg)
   int	j;
   char	*end;
 
-  end = xmalloc (strlen(msg) * sizeof(char));
+  end = xmalloc(strlen(msg) * sizeof(char));
   i = 0;
   j = 0;
   while (msg[i])
