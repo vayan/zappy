@@ -76,7 +76,7 @@ void	strcat_rsrc(Ressource *rsrc, char *msg)
       while (j < (int)rsrc[i])
         {
           strcat(msg, " ");
-          rc = Ressource_to_char(i);
+          rc = ressource_to_char(i);
           strcat(msg, rc);
           strcat(msg, " ");
           xfree (rc);

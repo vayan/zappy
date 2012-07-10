@@ -74,7 +74,7 @@ void			do_drop_obj(t_client *cl, Ressource obj)
     broadcast_to_one_client("ko\n", cl);
 }
 
-int			Take_Object(t_client *cl, Ressource obj)
+int			take_object(t_client *cl, Ressource obj)
 {
   t_setting		*setting;
 
@@ -99,7 +99,7 @@ int			Take_Object(t_client *cl, Ressource obj)
   return (1);
 }
 
-int			Drop_Object(t_client *cl, Ressource obj)
+int			drop_object(t_client *cl, Ressource obj)
 {
   t_setting		*setting;
 

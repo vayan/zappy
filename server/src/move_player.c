@@ -61,7 +61,7 @@ int		movefront(t_client *cl)
       ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
-      MoveClient(cl);
+      moveclient(cl);
       broadcast_to_one_client("ok\n", cl);
       ppo(NULL, cl);
       return (0);

@@ -66,7 +66,7 @@ int		turn_left(t_client *cl)
       ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
-      TurnClient(cl, 0);
+      turn_client(cl, 0);
       broadcast_to_one_client("ok\n", cl);
       return (0);
     }
@@ -92,7 +92,7 @@ int		turn_right(t_client *cl)
       ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
-      TurnClient(cl, 1);
+      turn_client(cl, 1);
       broadcast_to_one_client("ok\n", cl);
       return (0);
     }

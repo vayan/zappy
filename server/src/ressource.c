@@ -28,7 +28,7 @@
 #include "client.h"
 #include "my_strtowordtab.h"
 
-char	*Ressource_to_char(Ressource rsrc)
+char	*ressource_to_char(Ressource rsrc)
 {
   char	*ret;
 
