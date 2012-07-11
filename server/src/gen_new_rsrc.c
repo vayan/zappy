@@ -56,7 +56,7 @@ void		gen_new_rsrc()
       x = 0;
       while (x < setting->width_map)
         {
-          if (incr_rsrc(MAP->rsrc, 4, 2) == 1)
+          if (incr_rsrc(MAP->rsrc, 8, 2) == 1)
             bct_int(x, y);
           x++;
         }
