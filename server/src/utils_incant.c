@@ -36,7 +36,7 @@ int	count_pl_on_case(int lvl_me, t_pl_case *all_cl_case)
   i = 0;
   while (all_cl_case)
     {
-      if (lvl_me <= all_cl_case->client->level)
+      if (lvl_me == all_cl_case->client->level)
         i++;
       all_cl_case = all_cl_case->next;
     }
