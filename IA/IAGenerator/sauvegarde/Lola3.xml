@@ -1,0 +1,22 @@
+<xml>
+	<Box>
+		<Name>Droite</Name>
+		<Id>1</Id>
+		<MyBoxX>1021</MyBoxX><MyBoxY>-163</MyBoxY>
+		<BoxX>25</BoxX><BoxY>300</BoxY>
+		<Sortie>
+			<Name>OK</Name>
+			<Link>2</Link>
+		</Sortie>
+	</Box>
+	<Box>
+		<Name>Pond</Name>
+		<Id>2</Id>
+		<MyBoxX>865</MyBoxX><MyBoxY>-87</MyBoxY>
+		<BoxX>25</BoxX><BoxY>390</BoxY>
+		<Sortie>
+			<Name>OK</Name>
+			<Link>0</Link>
+		</Sortie>
+	</Box>
+</xml>
