@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Wed Jul 11 11:28:38 2012 yuguo cao
+// Last update Wed Jul 11 11:38:50 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -28,12 +28,10 @@ Graph::~Graph()
 
 void			Graph::run()
 {
-  //initialize();
-  //while (_app.IsOpened())
-  //{
-      update();
-      draw();
-      //}
+  if (!_app.IsOpened())
+    exit(0);
+  update();
+  draw();
 }
 
 void			Graph::initialize()
