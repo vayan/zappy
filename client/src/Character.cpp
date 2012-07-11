@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:21:28 2012 yuguo cao
-// Last update Thu Jul  5 16:17:19 2012 yuguo cao
+// Last update Wed Jul 11 11:19:53 2012 yuguo cao
 //
 
 #include	"Character.hh"
@@ -208,7 +208,6 @@ void		Character::mBroad()
   _mBroad.push_back(frame1);
   _mBroad.push_back(frame1);
   _mBroad.push_back(frame1);
-
 }
 
 void		Character::mExpu()
@@ -237,4 +236,15 @@ void		Character::mExpu()
 
 void		Character::mDie()
 {
+  sf::Sprite	*frame1 = new sf::Sprite;
+
+  frame1->SetImage(_image);
+
+  frame1->SetSubRect(sf::IntRect(64 * 26, 0, 64 * 27, 64));
+
+  _mDie.pause();
+  _mDie.push_back(frame1);
+  _mDie.push_back(frame1);
+  _mDie.push_back(frame1);
+  _mDie.push_back(frame1);
 }

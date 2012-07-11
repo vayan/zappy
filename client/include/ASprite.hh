@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 20:17:42 2012 yuguo cao
-// Last update Tue Jul 10 17:08:18 2012 yuguo cao
+// Last update Wed Jul 11 11:24:57 2012 yuguo cao
 //
 
 #ifndef		__ASPRITE__
@@ -52,8 +52,6 @@ public:
   ASprite();
   virtual ~ASprite() {}
 
-  ACTION		getLastAction() const;
-
   void			createAnim(const sf::Image&);
   virtual void		mUp() = 0;
   virtual void		mDown() = 0;
@@ -69,11 +67,12 @@ public:
   LayerAnimation	anim(const ACTION a = NO);
   void			move(const float, const float);
   void			setLastAction(const ACTION);
+  ACTION		getLastAction() const;
   void			setOrientation(const ACTION);
-  ACTION		getOrientation();
+  ACTION		getOrientation() const;
   void			setPosition(const int, const int);
   void			setScale(const float);
-  const sf::Vector2f&	getPosition();
+  const sf::Vector2f&	getPosition() const;
 };
 
 #endif

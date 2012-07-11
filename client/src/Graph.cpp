@@ -5,13 +5,13 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Tue Jul 10 17:12:24 2012 yuguo cao
+// Last update Wed Jul 11 11:28:38 2012 yuguo cao
 //
 
 #include	"Graph.hh"
 
 Graph::Graph(const int width, const int height, const int m_width, const int m_height)
-  : _app(sf::VideoMode(width, height, 32), "SFML Window"), _input(_app.GetInput())
+  : _app(sf::VideoMode(width, height, 32), "Ultra mega zappy de la mort qui tue"), _input(_app.GetInput())
 {
   _imman = new Imman();
   _scr_height = height;
@@ -177,6 +177,12 @@ void			Graph::draw()
       if (_movements[it->first].z == 0)// && _movements[it->first].t > 0)
 	{
 	  //_movements[it->first].t = 0;
+	  if (_sprites[it->first]->getLastAction() == DIE)
+	    {
+	      delete (_sprites[it->first]);
+	      _sprites.erase(it->first);
+	      break;
+	    }
 	  _sprites[it->first]->setLastAction(STAND);
 	}
       if (_movements[it->first].z > 0 &&
@@ -450,19 +456,23 @@ void			Graph::addEgg(const int n, const int t, const int x, const int y)
 {
   Egg			*newegg = new Egg();
 
-  std::cout << "je chie un oeuf" << std::endl;
   newegg->createAnim(_imman->getImage("egg"));
   newegg->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
   newegg->setLastAction(STAND);
   newegg->setOrientation(UP);
   _eggs[n] = newegg;
-  std::cout << "fin oeuf chier" << std::endl;
 }
 
 void			Graph::diePlayer(const int n)
 {
-  delete (_sprites[n]);
-  _sprites.erase(n);
+  if (_movements[n].z > 0)
+    _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
+  _sprites[n]->setLastAction(TAKE);
+  _movements[n].x = 0;
+  _movements[n].y = 0;
+  _movements[n].z = 8;
+  _movements[n].t = 300;
+  _sprites[n]->setLastAction(DIE);
 }
 
 void			Graph::eggHatched(const int n)

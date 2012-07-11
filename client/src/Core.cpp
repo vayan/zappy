@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Tue Jul 10 13:53:45 2012 yuguo cao
+// Last update Wed Jul 11 11:15:05 2012 yuguo cao
 //
 
 #include	"Core.hh"
@@ -112,11 +112,12 @@ void	Core::beginParse(int ac, char **av)
   in_addr *addss;
 
   if (ac < 3)
-    throw(new Errur("Usage : ./client -p port [-h nom machine]"));
-  if (ac == 3)
+    //throw(new Errur("Usage : ./client -p port [-h nom machine]"));
+    port = 4242;
+  if (ac <= 3)
     macName = "127.0.0.1";
-  else if (ac != 5)
-    throw(new Errur("Usage : ./client -p port [-h nom machine]"));
+  //else if (ac != 5)
+  //throw(new Errur("Usage : ./client -p port [-h nom machine]"));
   for (int i = 1; i < ac; i++)
     {
       if (i % 2 == 1 && av[i][0] != '-')
