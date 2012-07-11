@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Wed Jul 11 11:38:50 2012 yuguo cao
+// Last update Wed Jul 11 11:42:25 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -103,14 +103,14 @@ void			Graph::update()
 	    }
 	}
     }
-  // if (_view.GetCenter().x > 0 && _input.GetMouseX() < 200)
-  //   _view.Move(-200 * elapsedTime, 0);
-  // else if (_view.GetCenter().x < _map.getWidth() * 64 + (_map.getHeight() * 64) && _input.GetMouseX() > 1240)
-  //   _view.Move(200 * elapsedTime, 0);
-  // if (_view.GetCenter().y > (_map.getWidth() - 1) * -32 && _input.GetMouseY() < 100)
-  //   _view.Move(0, -200 * elapsedTime);
-  // else if (_view.GetCenter().y < (_map.getHeight() + 1) * 32 && _input.GetMouseY() > 800)
-  //   _view.Move(0, 200 * elapsedTime);
+  if (_view.GetCenter().x > 0 && _input.GetMouseX() < 200)
+    _view.Move(-200 * elapsedTime, 0);
+  else if (_view.GetCenter().x < _map.getWidth() * 64 + (_map.getHeight() * 64) && _input.GetMouseX() > 1240)
+    _view.Move(200 * elapsedTime, 0);
+  if (_view.GetCenter().y > (_map.getWidth() - 1) * -32 && _input.GetMouseY() < 100)
+    _view.Move(0, -200 * elapsedTime);
+  else if (_view.GetCenter().y < (_map.getHeight() + 1) * 32 && _input.GetMouseY() > 800)
+    _view.Move(0, 200 * elapsedTime);
 }
 
 sf::Vector2<int>&	Graph::relaMouse(const sf::Event& event)
