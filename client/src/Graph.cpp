@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Wed Jul 11 11:53:17 2012 yuguo cao
+// Last update Wed Jul 11 13:35:44 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -41,9 +41,6 @@ void			Graph::initialize()
   _imman->loadImages();
 
   _background.SetImage(_imman->getImage("fond"));
-
-  _char.createAnim(_imman->getImage("lvl1"));
-  _char.setPosition(0, 0);
 
   _view.SetFromRect(sf::FloatRect(0, 0, _scr_width, _scr_height));
   _view.SetCenter(640, 0);
@@ -105,17 +102,15 @@ void			Graph::update()
 
       if (event.Type == sf::Event::KeyPressed && event.Key.Code == sf::Key::Space)
 	{
-	  std::cout << "espace" << std::endl;
-	  if (_view.GetCenter().x > 0 && _input.GetMouseX() < 200)
-	    _view.Move(-500 * elapsedTime, 0);
-	  else if (_view.GetCenter().x < _map.getWidth() * 64 + (_map.getHeight() * 64) && _input.GetMouseX() > 1240)
-	    _view.Move(500 * elapsedTime, 0);
-	  if (_view.GetCenter().y > (_map.getWidth() - 1) * -32 && _input.GetMouseY() < 100)
-	    _view.Move(0, -500 * elapsedTime);
-	  else if (_view.GetCenter().y < (_map.getHeight() + 1) * 32 && _input.GetMouseY() > 800)
-	    _view.Move(0, 500 * elapsedTime);
+	  if (_view.GetCenter().x > 0 && _input.GetMouseX() < _app.GetWidth() * 0.1)
+	    _view.Move(-800 * elapsedTime, 0);
+	  else if (_view.GetCenter().x < _map.getWidth() * 64 + (_map.getHeight() * 64) && _input.GetMouseX() > _app.GetWidth() * 0.9)
+	    _view.Move(800 * elapsedTime, 0);
+	  if (_view.GetCenter().y > (_map.getWidth() - 1) * -32 && _input.GetMouseY() < _app.GetHeight() * 0.1)
+	    _view.Move(0, -800 * elapsedTime);
+	  else if (_view.GetCenter().y < (_map.getHeight() + 1) * 32 && _input.GetMouseY() > _app.GetHeight() * 0.9)
+	    _view.Move(0, 800 * elapsedTime);
 	}
-
     }
 }
 
@@ -136,29 +131,6 @@ void			Graph::draw()
   _app.Clear(sf::Color(0, 0, 200));
   //_app.Draw(_background);
   _map.draw(this->_app);
-  if (_app.GetInput().IsKeyDown(sf::Key::Left))
-    {
-      _char.move(-100 * elapsedTime, 50 * elapsedTime);
-      _app.Draw(_char.anim(LEFT));
-    }
-  else if (_app.GetInput().IsKeyDown(sf::Key::Right))
-    {
-      _char.move(100 * elapsedTime, -50 * elapsedTime);
-      _app.Draw(_char.anim(RIGHT));
-    }
-  else if (_app.GetInput().IsKeyDown(sf::Key::Up))
-    {
-      _char.move(-100 * elapsedTime, -50 * elapsedTime);
-      _app.Draw(_char.anim(UP));
-    }
-  else if (_app.GetInput().IsKeyDown(sf::Key::Down))
-    {
-      _char.move(100 * elapsedTime, 50 * elapsedTime);
-      _app.Draw(_char.anim(DOWN));
-    }
-  else
-    _app.Draw(_char.anim(STAND));
-  //_view.SetCenter(_char.getPosition());
 
   for(std::map<Vector2ic, std::vector<ASprite*> >::iterator imap = _s_map.begin(); imap != _s_map.end(); ++imap)
     {
@@ -208,6 +180,15 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
 {
   Vector2ic		v(x, y);
 
+  //_s_map[v].clear();
+  for(std::vector<ASprite*>::iterator imapvec = _s_map[v].begin(); imapvec != _s_map[v].end(); ++imapvec)
+    {
+      if (*imapvec)
+	{
+	  delete (*imapvec);
+	  std::cout << "lol" << std::endl;
+	}
+    }
   _s_map[v].clear();
   if (res.linemate)
     {
@@ -290,7 +271,35 @@ void			Graph::addPlayer(const int n, const int x, const int y, const ACTION orie
   Character		*newchar = new Character();
 
   _invent[n] = new Stone_t;
-  newchar->createAnim(_imman->getImage("lvl1"));
+  switch (lvl)
+    {
+    case (1):
+      newchar->createAnim(_imman->getImage("lvl1"));
+      break;
+    case (2):
+      newchar->createAnim(_imman->getImage("lvl2"));
+      break;
+    case (3):
+      newchar->createAnim(_imman->getImage("lvl3"));
+      break;
+    case (4):
+      newchar->createAnim(_imman->getImage("lvl4"));
+      break;
+    case (5):
+      newchar->createAnim(_imman->getImage("lvl5"));
+      break;
+    case (6):
+      newchar->createAnim(_imman->getImage("lvl6"));
+      break;
+    case (7):
+      newchar->createAnim(_imman->getImage("lvl7"));
+      break;
+    case (8):
+      exit(0);
+      break;
+    default:
+      newchar->createAnim(_imman->getImage("lvl1"));
+    }
   newchar->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
   newchar->setOrientation(orientation);
   newchar->setLastAction(STAND);
