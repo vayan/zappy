@@ -58,18 +58,23 @@ int	parse_cmd_ia(char *cmd, t_client *cl)
 {
   static char	**tab = NULL;
   static char *old = NULL;
+  char  *tmp;
   int	ret;
   
   if (old != NULL && strcmp(old, cmd) != 0)
     {
       xfree(old);
-      tab = my_str_to_wordtab(cmd, ' ');
+      xfree(tab[0]);
+      xfree(tab);
       old = strdup(cmd);
+      tmp = old;
+      tab = my_str_to_wordtab(tmp, ' ');
     }
   if (old == NULL)
     {
-      tab = my_str_to_wordtab(cmd, ' ');
       old = strdup(cmd);
+      tmp = old;
+      tab = my_str_to_wordtab(tmp, ' '); 
     }
   if (tab == NULL)
     return (0);
