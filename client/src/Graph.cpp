@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Wed Jul 11 13:35:44 2012 yuguo cao
+// Last update Wed Jul 11 13:41:55 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -183,11 +183,9 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
   //_s_map[v].clear();
   for(std::vector<ASprite*>::iterator imapvec = _s_map[v].begin(); imapvec != _s_map[v].end(); ++imapvec)
     {
-      if (*imapvec)
-	{
-	  delete (*imapvec);
-	  std::cout << "lol" << std::endl;
-	}
+      std::cout << "lol" << std::endl;
+      delete (*imapvec);
+      std::cout << "lol2" << std::endl;
     }
   _s_map[v].clear();
   if (res.linemate)
