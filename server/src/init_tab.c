@@ -40,7 +40,7 @@ void	init_tab3(t_option *tab)
 
 void	init_tab(t_option *tab)
 {
-  memset(tab, 0, TAB_SIZE);
+  memset(tab, 0, 8);
   init_tab2(tab);
   init_tab3(tab);
 }

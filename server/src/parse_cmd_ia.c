@@ -62,6 +62,7 @@ int	parse_cmd_ia(char *cmd, t_client *cl)
   
   if (old != NULL && strcmp(old, cmd) != 0)
     {
+      xfree(old);
       tab = my_str_to_wordtab(cmd, ' ');
       old = strdup(cmd);
     }

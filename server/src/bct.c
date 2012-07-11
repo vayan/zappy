@@ -58,7 +58,6 @@ int			bct(char **tab, t_client *client)
     return (0);
   if (tab == NULL)
     return (bct_one(graphic, client));
-  str = xmalloc(sizeof(char) * 1024);
   if (tab[1] != NULL && tab[2] != NULL)
     {
       x = atoi(tab[1]);
@@ -66,6 +65,7 @@ int			bct(char **tab, t_client *client)
     }
   if (x < 0 || y < 0)
     return (sbp(NULL, client));
+  str = xmalloc(sizeof(char) * 1024);
   str = map_contents(str, x, y);
   broadcast_to_one_client(str, graphic);
   xfree(str);

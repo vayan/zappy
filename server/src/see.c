@@ -85,13 +85,15 @@ void	scan_case(t_client *cl, char *msg)
 int	do_see(t_client *cl)
 {
   char	*msg;
+  char  *tmp;
 
   msg = xmalloc (100000 * sizeof(*msg));
   memset(msg, 0, 100000);
   strcat(msg, "{");
   scan_case(cl, msg);
   strcat(msg, "}\n");
-  broadcast_to_one_client(clean_see(msg), cl);
+  broadcast_to_one_client(msg = clean_see(msg), cl);
+  xfree(msg);
   return (0);
 }
 

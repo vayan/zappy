@@ -43,7 +43,7 @@ int			broadcast_to_one_client(char *msg, t_client *me)
   t_client		*tmp;
   char			*full_msg;
 
-  if (me == NULL && me->fd > 0)
+  if ((me == NULL && me->fd > 0) || strlen(msg) < 1)
     return (0);
   full_msg = xmalloc(MAX_INPUT * sizeof(char*));
   memset(full_msg, 0, MAX_INPUT);
@@ -67,7 +67,7 @@ int			do_input_client(t_client *all_client)
 
   if (all_client == NULL)
     return (0);
-  tab = xmalloc (26 * sizeof(t_option));
+  tab = xmalloc (9 * sizeof(t_option));
   init_tab(tab);
   tmp = all_client;
   while (tmp)
@@ -84,6 +84,5 @@ int			do_input_client(t_client *all_client)
         }
       tmp = tmp->next;
     }
-  //xfree(tab);
   return (0);
 }

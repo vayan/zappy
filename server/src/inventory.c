@@ -40,23 +40,47 @@ char	*inttochar(int i)
 void	send_invent(t_client *cl)
 {
   char	*invent;
+  char *tmp;
 
   invent = xmalloc(500 * sizeof(char*));
   memset(invent, 0, 500);
+
   strcat(invent, "{nourriture ");
-  strcat(invent, inttochar(cl->rsrc[Nourriture]));
+  tmp = inttochar(cl->rsrc[Nourriture]);
+  strcat(invent, tmp);
+  xfree(tmp);
+
   strcat(invent, ",linemate ");
-  strcat(invent, inttochar(cl->rsrc[Linemate]));
+  tmp = inttochar(cl->rsrc[Linemate]);
+  strcat(invent, tmp);
+   xfree(tmp);
+
+
   strcat(invent, ",deraumere ");
-  strcat(invent, inttochar(cl->rsrc[Deraumere]));
+  tmp = inttochar(cl->rsrc[Deraumere]);
+  strcat(invent, tmp);
+  xfree(tmp);
+
   strcat(invent, ",sibur ");
-  strcat(invent, inttochar(cl->rsrc[Sibur]));
+  tmp = inttochar(cl->rsrc[Sibur]);
+  strcat(invent, tmp);
+  xfree(tmp);
+
   strcat(invent, ",mendiane ");
-  strcat(invent, inttochar(cl->rsrc[Mendiane]));
+  tmp = inttochar(cl->rsrc[Mendiane]);
+  strcat(invent, tmp);
+  xfree(tmp);
+
   strcat(invent, ",phiras ");
-  strcat(invent, inttochar(cl->rsrc[Phiras]));
+  tmp = inttochar(cl->rsrc[Phiras]);
+  strcat(invent, tmp);
+  xfree(tmp);
+
   strcat(invent, ",thystame ");
-  strcat(invent, inttochar(cl->rsrc[Thystame]));
+  tmp = inttochar(cl->rsrc[Thystame]);
+  strcat(invent, tmp);
+  xfree(tmp);
+
   strcat(invent, "}\n");
   broadcast_to_one_client(invent, cl);
   xfree(invent);

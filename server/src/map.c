@@ -32,25 +32,37 @@ void			rm_pl(int x, int y, t_client *pl)
 {
   t_map_case		***map;
   t_pl_case		*tmp;
+  t_pl_case   *to_free;
 
   map = get_map(NULL);
+  to_free = NULL;
   if (MAP->client != NULL)
+  {
+    tmp = MAP->client;
+    if (tmp->next == NULL && tmp->client == pl)
     {
-      tmp = MAP->client;
-      if (tmp->next == NULL && tmp->client == pl)
-        MAP->client = NULL;
-      else if (tmp->client == pl)
-        MAP->client = tmp->next;
-      else
-        {
-          while (tmp)
-            {
-              if (tmp->next != NULL && tmp->next->client == pl)
-                tmp->next = tmp->next->next;
-              tmp = tmp->next;
-            }
-        }
+      xfree(MAP->client);
+      MAP->client = NULL;
     }
+    else if (tmp->client == pl)
+    {
+      to_free = MAP->client;
+      MAP->client = tmp->next;
+    }
+    else
+    {
+      while (tmp)
+      {
+        if (tmp->next != NULL && tmp->next->client == pl)
+        {
+          to_free = tmp->next;
+          tmp->next = tmp->next->next;
+        }
+        tmp = tmp->next;
+      }
+    }
+  }
+  xfree(to_free);
 }
 
 void			add_pl(int x, int y, t_client *pl)
@@ -61,19 +73,19 @@ void			add_pl(int x, int y, t_client *pl)
 
   map = get_map(NULL);
   if (MAP->client == NULL)
-    {
-      MAP->client = xmalloc(sizeof(t_pl_case));
-      MAP->client->next = NULL;
-      MAP->client->client = pl;
-    }
+  {
+    MAP->client = xmalloc(sizeof(t_pl_case));
+    MAP->client->next = NULL;
+    MAP->client->client = pl;
+  }
   else
-    {
-      tmp = MAP->client;
-      while (tmp->next)
-        tmp = tmp->next;
-      new = xmalloc(sizeof(t_pl_case));
-      new->next = NULL;
-      new->client = pl;
-      tmp->next = new;
-    }
+  {
+    tmp = MAP->client;
+    while (tmp->next)
+      tmp = tmp->next;
+    new = xmalloc(sizeof(t_pl_case));
+    new->next = NULL;
+    new->client = pl;
+    tmp->next = new;
+  }
 }
