@@ -84,5 +84,6 @@ int			do_input_client(t_client *all_client)
         }
       tmp = tmp->next;
     }
+  //xfree(tab);
   return (0);
 }

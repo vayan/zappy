@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:53 2012 yann vaillant
-** Last update Mon Jul  9 16:17:07 2012 vailla_y
+** Last update Tue Jul 10 17:55:26 2012 yann vaillant
 */
 
 #ifndef _MAP_H
@@ -42,12 +42,12 @@ int             free_map();
 int             free_setting();
 int             free_buff_msg(t_buffer_msg *buff_msg);
 int             free_client_map(t_pl_case *client);
-char            *Ressource_to_char(Ressource rsrc);
+char            *ressource_to_char(Ressource rsrc);
 int             parse_rsr(char *rsrc);
 void            strcat_player(t_pl_case *tmp, char *msg);
 void            set_y_see(t_client *cl, int *y, int lvl, int i);
 void            set_x_see(t_client *cl, int *x, int lvl, int i);
-int             count_pl_on_case(t_pl_case *all_cl_case);
+int             count_pl_on_case(int lvl_me, t_pl_case *all_cl_case);
 void            fill_tab_req(int *req, int level);
 void            gen_new_rsrc();
 

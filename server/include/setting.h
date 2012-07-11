@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 ** 
 ** Started on  Thu Jun  7 15:39:04 2012 yann vaillant
-** Last update Mon Jul  9 16:14:50 2012 vailla_y
+** Last update Mon Jul  9 18:34:28 2012 vailla_y
 */
 
 #ifndef __SETTING_

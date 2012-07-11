@@ -46,7 +46,7 @@ void			do_take_obj(t_client *cl, Ressource obj)
       pdr(obj, cl);
       pin(NULL, cl);
       bct(NULL, cl);
-      if (stat >= (setting->height_map * setting->width_map)/2)
+      if (stat >= (setting->height_map * setting->width_map) / 2)
         {
           gen_new_rsrc();
           stat = 0;

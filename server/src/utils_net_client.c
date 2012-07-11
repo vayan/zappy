@@ -33,11 +33,11 @@ void		show_all_msg(t_client *cl)
   tmp = cl->buff_msg;
   printf("----------\n");
   while (tmp)
-    {
-      printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
-      tmp = tmp->next;
-      i++;
-    }
+  {
+    printf("%d(%d) : '%s' \n", cl->id, i, tmp->msg);
+    tmp = tmp->next;
+    i++;
+  }
 }
 
 char	*decoupe_back(char *msg)
@@ -50,16 +50,17 @@ char	*decoupe_back(char *msg)
   i = 0;
   j = 0;
   while (msg[i])
+  {
+    if (msg[i] == '\n')
     {
-      if (msg[i] == '\n')
-        {
-          end[j] = 0;
-          return (end);
-        }
-      end[j] = msg[i];
-      i++;
-      j++;
+      end[j] = 0;
+      return (end);
     }
+    end[j] = msg[i];
+    i++;
+    j++;
+  }
+  xfree(end);
   return (NULL);
 }
 

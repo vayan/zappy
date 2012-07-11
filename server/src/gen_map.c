@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:54:27 2012 yann vaillant
-** Last update Tue Jul 10 11:40:14 2012 anatole carlier
+** Last update Tue Jul 10 16:19:58 2012 yann vaillant
 */
 
 #include <stdlib.h>
@@ -50,7 +50,7 @@ void		init_map(t_map_case ***new_map, t_setting *setting)
           newcase = xmalloc(1 * sizeof(t_map_case));
           newcase->x = x;
           newcase->y = y;
-          newcase->rsrc = gen_rsrc(4, 4);
+          newcase->rsrc = gen_rsrc(8, 4);
           newcase->client = NULL;
           new_map[x][y] = newcase;
           x++;

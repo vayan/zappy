@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:56:05 2012 yann vaillant
-** Last update Tue Jul 10 11:21:45 2012 alexandre haulotte
+** Last update Tue Jul 10 17:55:42 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -29,14 +29,15 @@
 #include "client.h"
 #include "command_fonc.h"
 
-int	count_pl_on_case(t_pl_case *all_cl_case)
+int	count_pl_on_case(int lvl_me, t_pl_case *all_cl_case)
 {
   int	i;
 
   i = 0;
   while (all_cl_case)
     {
-      i++;
+      if (lvl_me <= all_cl_case->client->level)
+        i++;
       all_cl_case = all_cl_case->next;
     }
   return (i);

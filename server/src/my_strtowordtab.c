@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Fri Nov 11 12:50:40 2011 randy lyvet
-** Last update Tue Jul 10 11:47:49 2012 robin maitre
+** Last update Tue Jul 10 14:08:08 2012 yann vaillant
 */
 
 #include <string.h>
@@ -15,17 +15,7 @@
 
 void	free_tab(char **tab)
 {
-  int	i;
- 
-  i = 0;
-  while (tab[i])
-    {
-      if (tab[i] != NULL)
-        xfree(tab[i]);
-      i++;
-    }
-  if (tab != NULL)
-    xfree(tab);
+  
 }
 
 char	**my_str_to_wordtab(char *s1, char sep)
@@ -43,12 +33,12 @@ char	**my_str_to_wordtab(char *s1, char sep)
   i = 1;
   s2[0] = sep;
   s2[1] = 0;
-  tab = xmalloc(sizeof(char *));
+  tab = xmalloc(1 * sizeof(char *));
   token = strtok(tmp, s2);
   tab[0] = token;
   while (token != NULL)
     {
-      tab = realloc(tab, sizeof(char*) * (i + 1));
+      tab = realloc(tab, sizeof(char*) * (i + 2));
       token = strtok(NULL, s2);
       tab[i] = token;
       i++;

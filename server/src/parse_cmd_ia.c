@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:55:26 2012 yann vaillant
-** Last update Tue Jul 10 11:38:18 2012 alexandre haulotte
+** Last update Tue Jul 10 14:08:15 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -56,10 +56,20 @@ int	parse_cmd_ia_classic(char *msg, t_client *cl)
 
 int	parse_cmd_ia(char *cmd, t_client *cl)
 {
-  char	**tab;
+  static char	**tab = NULL;
+  static char *old = NULL;
   int	ret;
-
-  tab = my_str_to_wordtab(cmd, ' ');
+  
+  if (old != NULL && strcmp(old, cmd) != 0)
+    {
+      tab = my_str_to_wordtab(cmd, ' ');
+      old = strdup(cmd);
+    }
+  if (old == NULL)
+    {
+      tab = my_str_to_wordtab(cmd, ' ');
+      old = strdup(cmd);
+    }
   if (tab == NULL)
     return (0);
   if (cl->teams == NULL && cl->is_graphic == 0)

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:30 2012 yann vaillant
-** Last update Tue Jul 10 11:40:23 2012 anatole carlier
+** Last update Tue Jul 10 16:20:28 2012 yann vaillant
 */
 
 #include <stdlib.h>
@@ -56,7 +56,7 @@ void		gen_new_rsrc()
       x = 0;
       while (x < setting->width_map)
         {
-          if (incr_rsrc(MAP->rsrc, 2, 2) == 1)
+          if (incr_rsrc(MAP->rsrc, 4, 2) == 1)
             bct_int(x, y);
           x++;
         }
