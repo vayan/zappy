@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 13:46:24 2012 yuguo cao
-// Last update Tue Jul 10 15:37:02 2012 yuguo cao
+// Last update Wed Jul 11 16:15:14 2012 yuguo cao
 //
 
 #ifndef		__GRAPH__
@@ -71,6 +71,7 @@ private:
   std::map<int, Vector4i>			_movements;
   std::map<int, Stone_t*>			_invent;
   std::map<Vector2ic, std::vector<ASprite*> >	_s_map;
+  //std::map<Vector2ic, std::map<std::string, ASprite*> >	_s_map;
   std::map<Vector2ic, ASprite*>			_s_other;
   std::map<int, std::string>			_teams;
 

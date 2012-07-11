@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Wed Jul 11 11:15:05 2012 yuguo cao
+// Last update Wed Jul 11 14:34:03 2012 yuguo cao
 //
 
 #include	"Core.hh"
@@ -68,7 +68,7 @@ void				Core::go()
 		  vec = p.parse(cmd);
 		  if (vec[0] != "-1")
 		    {
-		      std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
+		      //std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
 		      (this->*funcs[sti(vec[0])])(vec);
 		    }
 		}

@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 20:17:42 2012 yuguo cao
-// Last update Wed Jul 11 11:24:57 2012 yuguo cao
+// Last update Wed Jul 11 15:33:54 2012 yuguo cao
 //
 
 #ifndef		__ASPRITE__
@@ -72,6 +72,7 @@ public:
   ACTION		getOrientation() const;
   void			setPosition(const int, const int);
   void			setScale(const float);
+  void			setColor(unsigned int, unsigned int, unsigned int, unsigned int);
   const sf::Vector2f&	getPosition() const;
 };
 

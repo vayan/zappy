@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:09:55 2012 yuguo cao
-// Last update Wed Jul 11 11:25:03 2012 yuguo cao
+// Last update Wed Jul 11 15:33:46 2012 yuguo cao
 //
 
 #include	"ASprite.hh"
@@ -240,17 +240,34 @@ void		ASprite::setPosition(const int x, const int y)
 
 void		ASprite::setScale(const float s)
 {
-  _mUp.Scale(s, s);
-  _mDown.Scale(s, s);
-  _mLeft.Scale(s, s);
-  _mRight.Scale(s, s);
-  _mStand.Scale(s, s);
-  _mPond.Scale(s, s);
-  _mTake.Scale(s, s);
-  _mBroad.Scale(s, s);
-  _mExpu.Scale(s, s);
-  _mDie.Scale(s, s);
+  _mUp.SetScale(s, s);
+  _mDown.SetScale(s, s);
+  _mLeft.SetScale(s, s);
+  _mRight.SetScale(s, s);
+  _mStand.SetScale(s, s);
+  _mPond.SetScale(s, s);
+  _mTake.SetScale(s, s);
+  _mBroad.SetScale(s, s);
+  _mExpu.SetScale(s, s);
+  _mDie.SetScale(s, s);
 }
+
+void		ASprite::setColor(unsigned int r, unsigned int g, unsigned int b, unsigned int a)
+{
+  std::cout << "<<<<<<<<< " << int(_mStand.GetColor().a) << std::endl;
+  _mUp.SetColor(sf::Color(r, g, b, a));
+  _mDown.SetColor(sf::Color(r, g, b, a));
+  _mLeft.SetColor(sf::Color(r, g, b, a));
+  _mRight.SetColor(sf::Color(r, g, b, a));
+  _mStand.SetColor(sf::Color(r, g, b, a));
+  _mPond.SetColor(sf::Color(r, g, b, a));
+  _mTake.SetColor(sf::Color(r, g, b, a));
+  _mBroad.SetColor(sf::Color(r, g, b, a));
+  _mExpu.SetColor(sf::Color(r, g, b, a));
+  _mDie.SetColor(sf::Color(r, g, b, a));
+  std::cout << ">>>>>>>>> " << int(_mStand.GetColor().a) << std::endl;
+}
+
 
 const sf::Vector2f&	ASprite::getPosition() const
 {

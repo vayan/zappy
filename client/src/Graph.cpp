@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Wed Jul 11 13:41:55 2012 yuguo cao
+// Last update Wed Jul 11 16:30:50 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -83,7 +83,7 @@ void			Graph::update()
 	      for(std::map<int, ASprite*>::iterator it = _sprites.begin(); it != _sprites.end(); ++it)
 		{
 		  std::cout << x << " " << y << ":" << ((it->second)->getPosition()).x << " " << ((it->second)->getPosition()).y << std::endl;
-		  if (x >= ((it->second)->getPosition()).x && x <= ((it->second)->getPosition()).x + 24 && y >= ((it->second)->getPosition()).y && y <= ((it->second)->getPosition()).y + 60)
+		  if (x >= ((it->second)->getPosition()).x && x <= ((it->second)->getPosition()).x + 64 && y >= ((it->second)->getPosition()).y && y <= ((it->second)->getPosition()).y + 64)
 		    {
 		      std::cout << _invent[it->first]->linemate << std::endl;
 		      std::cout << _invent[it->first]->deraumere << std::endl;
@@ -155,8 +155,8 @@ void			Graph::draw()
 	  //_movements[it->first].t = 0;
 	  if (_sprites[it->first]->getLastAction() == DIE)
 	    {
-	      delete (_sprites[it->first]);
-	      _sprites.erase(it->first);
+	      //_sprites.erase(it->first);
+	      //delete (_sprites[it->first]);
 	      break;
 	    }
 	  _sprites[it->first]->setLastAction(STAND);
@@ -180,13 +180,106 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
 {
   Vector2ic		v(x, y);
 
-  //_s_map[v].clear();
+  // if (!_s_map[v]["linemate"])
+  //   {
+  //     _s_map[v]["linemate"] = new Linemate;
+  //     _s_map[v]["linemate"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["linemate"]->setPosition(x * 64 + (y * 64), y * 32 - (x * 32) + 16);
+  //     _s_map[v]["linemate"]->setLastAction(NO);
+  //   }
+  // if (!_s_map[v]["deraumere"])
+  //   {
+  //     _s_map[v]["deraumere"] = new Deraumere;
+  //     _s_map[v]["deraumere"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["deraumere"]->setPosition(x * 64 + (y * 64) + 16, y * 32 - (x * 32) + 16);
+  //     _s_map[v]["deraumere"]->setLastAction(NO);
+  //   }
+  // if (!_s_map[v]["sibur"])
+  //   {
+  //     _s_map[v]["sibur"] = new Sibur;
+  //     _s_map[v]["sibur"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["sibur"]->setPosition(x * 64 + (y * 64) + 32, y * 32 - (x * 32) + 16);
+  //     _s_map[v]["sibur"]->setLastAction(NO);
+  //   }
+  // if (!_s_map[v]["mendiane"])
+  //   {
+  //     _s_map[v]["mendiane"] = new Mendiane;
+  //     _s_map[v]["mendiane"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["mendiane"]->setPosition(x * 64 + (y * 64) + 48, y * 32 - (x * 32) + 16);
+  //     _s_map[v]["mendiane"]->setLastAction(NO);
+
+  //   }
+  // if (!_s_map[v]["phiras"])
+  //   {
+  //     _s_map[v]["phiras"] = new Phiras;
+  //     _s_map[v]["phiras"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["phiras"]->setPosition(x * 64 + (y * 64) + 64, y * 32 - (x * 32) + 16);
+  //     _s_map[v]["phiras"]->setLastAction(NO);
+  //   }
+  // if (!_s_map[v]["thystame"])
+  //   {
+  //     _s_map[v]["thystame"] = new Thystame;
+  //     _s_map[v]["thystame"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["thystame"]->setPosition(x * 64 + (y * 64) + 80, y * 32 - (x * 32) + 16);
+  //     _s_map[v]["thystame"]->setLastAction(NO);
+  //   }
+  // if (!_s_map[v]["food"])
+  //   {
+  //     _s_map[v]["food"] = new Nourriture;
+  //     _s_map[v]["food"]->createAnim(_imman->getImage("resources"));
+  //     _s_map[v]["food"]->setPosition(x * 64 + (y * 64) + 112, y * 32 - (x * 32) + 16);
+  //     _s_map[v]["food"]->setLastAction(NO);
+  //     _s_map[v]["food"]->setColor(0, 0, 0, 0);
+  //   }
+
+
+  // if (res.linemate == 0)
+  //   {
+  //     _s_map[v]["linemate"]->setColor(sf::Color(255, 255, 255, 0));
+  //     _s_map[v]["linemate"]->setScale(0);
+  //   }
+  // else
+  //   {
+  //     _s_map[v]["linemate"]->setColor(sf::Color(255, 255, 255, 255));
+  //     _s_map[v]["linemate"]->setScale((log(res.linemate) + 4) / 5);
+  //   }
+
+  // if (res.deraumere == 0)
+  //   _s_map[v]["deraumere"]->setScale(0);
+  // else
+  //   _s_map[v]["deraumere"]->setScale((log(res.deraumere) + 4) / 5);
+
+  // if (res.sibur == 0)
+  //   _s_map[v]["sibur"]->setScale(0);
+  // else
+  //   _s_map[v]["sibur"]->setScale((log(res.sibur) + 4) / 5);
+
+  // if (res.mendiane == 0)
+  //   _s_map[v]["mendiane"]->setScale(0);
+  // else
+  //   _s_map[v]["mendiane"]->setScale((log(res.mendiane) + 4) / 5);
+
+  // if (res.phiras == 0)
+  //   _s_map[v]["phiras"]->setScale(0);
+  // else
+  //   _s_map[v]["phiras"]->setScale((log(res.phiras) + 4) / 5);
+
+  // if (res.thystame == 0)
+  //   _s_map[v]["thystame"]->setScale(0);
+  // else
+  //   _s_map[v]["thystame"]->setScale((log(res.thystame) + 4) / 5);
+
+  // if (res.food == 0)
+  //   {
+  //     std::cout << "lol" << std::endl;
+  //   }
+  // else
+  //   _s_map[v]["food"]->setScale(((log(res.food) + 4) / 5) * 2);
+  // _s_map[v]["food"]->setColor(sf::Color(255, 0, 0));
+  // _s_map[v].clear();
+
   for(std::vector<ASprite*>::iterator imapvec = _s_map[v].begin(); imapvec != _s_map[v].end(); ++imapvec)
-    {
-      std::cout << "lol" << std::endl;
-      delete (*imapvec);
-      std::cout << "lol2" << std::endl;
-    }
+    delete (*imapvec);
   _s_map[v].clear();
   if (res.linemate)
     {
@@ -247,10 +340,10 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
       Nourriture *n = new Nourriture;
       n->createAnim(_imman->getImage("resources"));
       n->setPosition(
-		     (x * 64 + (y * 64) + 112) - (16 * ((log(res.food) + 4) / 5) * 2)
-		     ,
-		     (y * 32 - (x * 32) + 16) - (16 * ((log(res.food) + 4) / 5) * 2)
-		     );
+  		     (x * 64 + (y * 64) + 112) - (16 * ((log(res.food) + 4) / 5) * 2)
+  		     ,
+  		     (y * 32 - (x * 32) + 16) - (16 * ((log(res.food) + 4) / 5) * 2)
+  		     );
       n->setLastAction(NO);
       n->setScale(((log(res.food) + 4) / 5) * 2);
       _s_map[v].push_back(n);
@@ -302,6 +395,13 @@ void			Graph::addPlayer(const int n, const int x, const int y, const ACTION orie
   newchar->setOrientation(orientation);
   newchar->setLastAction(STAND);
   _invent[n]->l = lvl;
+  _invent[n]->food = 0;
+  _invent[n]->linemate = 0;
+  _invent[n]->deraumere = 0;
+  _invent[n]->sibur = 0;
+  _invent[n]->mendiane = 0;
+  _invent[n]->phiras = 0;
+  _invent[n]->thystame = 0;
   _sprites[n] = newchar;
   _teams[n] = t;
 }
