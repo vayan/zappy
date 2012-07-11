@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:21:28 2012 yuguo cao
-// Last update Wed Jul  4 11:44:32 2012 yuguo cao
+// Last update Thu Jul  5 16:17:19 2012 yuguo cao
 //
 
 #include	"Character.hh"
@@ -30,10 +30,10 @@ void		Character::mUp()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24, 0, 24 * 2, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 3, 0, 24 * 4, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 5, 0, 24 * 6, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 7, 0, 24 * 8, 60));
+  frame1->SetSubRect(sf::IntRect(0, 0, 64, 64));
+  frame2->SetSubRect(sf::IntRect(64, 0, 64 * 2, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 2, 0, 64 * 3, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 3, 0, 64 * 4, 64));
 
   _mUp.setDelay(0.2);
   _mUp.push_back(frame1);
@@ -54,10 +54,10 @@ void		Character::mDown()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 17, 0, 24 * 18, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 19, 0, 24 * 20, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 21, 0, 24 * 22, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 23, 0, 24 * 24, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 8, 0, 64 * 9, 64));
+  frame2->SetSubRect(sf::IntRect(64 * 9, 0, 64 * 10, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 10, 0, 64 * 11, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 11, 0, 64 * 12, 64));
 
   _mDown.setDelay(0.2);
   _mDown.push_back(frame1);
@@ -78,10 +78,10 @@ void		Character::mLeft()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 25, 0, 24 * 26, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 27, 0, 24 * 28, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 29, 0, 24 * 30, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 31, 0, 24 * 32, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 12, 0, 64 * 13, 64));
+  frame2->SetSubRect(sf::IntRect(64 * 13, 0, 64 * 14, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 14, 0, 64 * 15, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 15, 0, 64 * 16, 64));
 
   _mLeft.setDelay(0.2);
   _mLeft.push_back(frame1);
@@ -102,10 +102,10 @@ void		Character::mRight()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 9, 0, 24 * 10, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 11, 0, 24 * 12, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 13, 0, 24 * 14, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 15, 0, 24 * 16, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 4, 0, 64 * 5, 64));
+  frame2->SetSubRect(sf::IntRect(64 * 5, 0, 64 * 6, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 6, 0, 64 * 7, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 7, 0, 64 * 8, 64));
 
   _mRight.setDelay(0.2);
   _mRight.push_back(frame1);
@@ -126,10 +126,10 @@ void		Character::mStand()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24, 0, 24 * 2, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 9, 0, 24 * 10, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 17, 0, 24 * 18, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 25, 0, 24 * 26, 60));
+  frame1->SetSubRect(sf::IntRect(0, 0, 64, 64));
+  frame2->SetSubRect(sf::IntRect(64 * 4, 0, 64 * 5, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 8, 0, 64 * 9, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 12, 0, 64 * 13, 64));
 
   _mStand.pause();
   _mStand.push_back(frame1);
@@ -150,7 +150,7 @@ void		Character::mPond()
   // frame3->SetImage(_image);
   // frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 24, 0, 64 * 25, 64));
   // frame2->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
   // frame3->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
   // frame4->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
@@ -174,10 +174,10 @@ void		Character::mTake()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 33, 0, 24 * 34, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 35, 0, 24 * 36, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 37, 0, 24 * 38, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 39, 0, 24 * 40, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 16, 0, 64 * 17, 64));
+  frame2->SetSubRect(sf::IntRect(64 * 17, 0, 64 * 18, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 18, 0, 64 * 19, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 19, 0, 64 * 20, 64));
 
   _mTake.pause();
   _mTake.push_back(frame3);
@@ -198,7 +198,7 @@ void		Character::mBroad()
   // frame3->SetImage(_image);
   // frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 51, 0, 24 * 52, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 25, 0, 64 * 26, 64));
   // frame2->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
   // frame3->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
   // frame4->SetSubRect(sf::IntRect(24 * 49, 0, 24 * 50, 60));
@@ -223,10 +223,10 @@ void		Character::mExpu()
   frame3->SetImage(_image);
   frame4->SetImage(_image);
 
-  frame1->SetSubRect(sf::IntRect(24 * 41, 0, 24 * 42, 60));
-  frame2->SetSubRect(sf::IntRect(24 * 43, 0, 24 * 44, 60));
-  frame3->SetSubRect(sf::IntRect(24 * 45, 0, 24 * 46, 60));
-  frame4->SetSubRect(sf::IntRect(24 * 47, 0, 24 * 48, 60));
+  frame1->SetSubRect(sf::IntRect(64 * 20, 0, 64 * 21, 64));
+  frame2->SetSubRect(sf::IntRect(64 * 21, 0, 64 * 22, 64));
+  frame3->SetSubRect(sf::IntRect(64 * 22, 0, 64 * 23, 64));
+  frame4->SetSubRect(sf::IntRect(64 * 23, 0, 64 * 24, 64));
 
   _mExpu.pause();
   _mExpu.push_back(frame3);

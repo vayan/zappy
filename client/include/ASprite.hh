@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 20:17:42 2012 yuguo cao
-// Last update Wed Jul  4 10:52:34 2012 yuguo cao
+// Last update Tue Jul 10 17:08:18 2012 yuguo cao
 //
 
 #ifndef		__ASPRITE__
@@ -40,12 +40,13 @@ protected:
   LayerAnimation	_mLeft;
   LayerAnimation	_mRight;
   LayerAnimation	_mStand;
-  LayerAnimation	_mCast;
   LayerAnimation	_mPond;
   LayerAnimation	_mTake;
   LayerAnimation	_mBroad;
   LayerAnimation	_mExpu;
   LayerAnimation	_mDie;
+  int			_x_margin;
+  int			_y_margin;
 
 public:
   ASprite();
@@ -69,6 +70,7 @@ public:
   void			move(const float, const float);
   void			setLastAction(const ACTION);
   void			setOrientation(const ACTION);
+  ACTION		getOrientation();
   void			setPosition(const int, const int);
   void			setScale(const float);
   const sf::Vector2f&	getPosition();

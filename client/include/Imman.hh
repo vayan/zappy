@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:51 2012 yuguo cao
-// Last update Thu Jun 28 12:05:34 2012 yuguo cao
+// Last update Tue Jul 10 15:40:05 2012 yuguo cao
 //
 
 #ifndef		__IMMAN__
@@ -27,7 +27,7 @@ public:
   ~Imman();
 
   void			loadImages();
-  sf::Image&		getImage(const std::string&);
+  const sf::Image&	getImage(const std::string&);
 };
 
 #endif

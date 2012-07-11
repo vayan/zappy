@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:09:55 2012 yuguo cao
-// Last update Wed Jul  4 12:22:51 2012 yuguo cao
+// Last update Tue Jul 10 17:08:09 2012 yuguo cao
 //
 
 #include	"ASprite.hh"
@@ -13,6 +13,8 @@
 ASprite::ASprite()
 {
   _lastAction = UP;
+  _x_margin = 0;
+  _y_margin = 0;
 }
 
 ACTION		ASprite::getLastAction() const
@@ -214,6 +216,11 @@ void		ASprite::setLastAction(const ACTION a)
 void		ASprite::setOrientation(const ACTION a)
 {
   _orientation = a;
+}
+
+ACTION		ASprite::getOrientation()
+{
+  return (_orientation);
 }
 
 void		ASprite::setPosition(const int x, const int y)

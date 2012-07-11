@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:21:28 2012 yuguo cao
-// Last update Thu Jul  5 11:05:25 2012 yuguo cao
+// Last update Thu Jul  5 12:55:17 2012 yuguo cao
 //
 
 #include	"Incant.hh"
@@ -31,7 +31,7 @@ void		Incant::mUp()
   frame4->SetImage(_image);
 
   frame1->SetSubRect(sf::IntRect(0, 0, 100, 84));
-  frame2->SetSubRect(sf::IntRect(10, 0, 100 * 2, 84));
+  frame2->SetSubRect(sf::IntRect(100, 0, 100 * 2, 84));
   frame3->SetSubRect(sf::IntRect(100 * 2, 0, 100 * 3, 84));
   frame4->SetSubRect(sf::IntRect(100 * 3, 0, 100 * 4, 84));
 

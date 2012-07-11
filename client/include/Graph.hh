@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 13:46:24 2012 yuguo cao
-// Last update Thu Jul  5 11:42:23 2012 yuguo cao
+// Last update Tue Jul 10 15:37:02 2012 yuguo cao
 //
 
 #ifndef		__GRAPH__
@@ -30,6 +30,7 @@
 #include	"Phiras.hh"
 #include	"Thystame.hh"
 #include	"Incant.hh"
+#include	"Egg.hh"
 
 struct	Stone_t
 {
@@ -54,6 +55,7 @@ class Graph
 private:
   sf::RenderWindow		_app;
   sf::Clock			_clock;
+  sf::Sprite			_background;
   const sf::Input&		_input;
   int				_scr_height;
   int				_scr_width;
@@ -65,6 +67,7 @@ private:
   Map				_map;
 
   std::map<int, ASprite*>			_sprites;
+  std::map<int, ASprite*>			_eggs;
   std::map<int, Vector4i>			_movements;
   std::map<int, Stone_t*>			_invent;
   std::map<Vector2ic, std::vector<ASprite*> >	_s_map;
@@ -86,7 +89,7 @@ public:
   void			addPlayer(const int, const int, const int, const ACTION, const int, const std::string&);
   void			movePlayer(const int, const int, const int, const ACTION);
   void			lvlPlayer(const int, const int);
-  void			inventPlayer(const int, Stone_t*);
+  void			inventPlayer(const int, const Stone_t&);
   void			requPlayerInfo(const int);
   void			expuPlayer(const int);
   void			broaPlayer(const int);

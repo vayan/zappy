@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Thu Jul  5 11:40:21 2012 yuguo cao
+// Last update Tue Jul 10 13:53:45 2012 yuguo cao
 //
 
 #include	"Core.hh"
@@ -36,7 +36,7 @@ void				Core::go()
   init();
   ret = 1;
   tv.tv_sec = 0;
-  tv.tv_usec = 2000;
+  tv.tv_usec = 20;
   if (!protocole())
     throw(new Errur("Erreur communication serveur."));
   FD_ZERO(&readfds);
@@ -68,7 +68,7 @@ void				Core::go()
 		  vec = p.parse(cmd);
 		  if (vec[0] != "-1")
 		    {
-		      //std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
+		      std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
 		      (this->*funcs[sti(vec[0])])(vec);
 		    }
 		}
@@ -214,10 +214,10 @@ void			Core::initTab()
   funcs.push_back(&Core::dropPlayer); //pdr
   funcs.push_back(&Core::takePlayer); //pgt
   funcs.push_back(&Core::diePlayer); //pdi
-  funcs.push_back(&Core::rien); //enw
-  funcs.push_back(&Core::rien); //eht
+  funcs.push_back(&Core::addEgg); //enw
+  funcs.push_back(&Core::eggHatched); //eht
   funcs.push_back(&Core::rien); //ebo
-  funcs.push_back(&Core::rien); //edi
+  funcs.push_back(&Core::eggHatched); //edi
   funcs.push_back(&Core::timeServer); //sgt
   funcs.push_back(&Core::rien); //seg
   funcs.push_back(&Core::rien); //smg
@@ -328,7 +328,7 @@ void			Core::inventPlayer(const std::vector<std::string> v)
   stone.phiras = vi[9];
   stone.thystame = vi[10];
 
-  graph->inventPlayer(vi[1], &stone);
+  graph->inventPlayer(vi[1], stone);
 }
 
 void			Core::requPlayerInfo(const std::vector<std::string> v)
