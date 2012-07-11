@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:33:05 2012 alexandre haulotte
-// Last update Thu Jul  5 11:58:11 2012 alexandre haulotte
+// Last update Wed Jul 11 14:40:31 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -177,7 +177,8 @@ int   Player::SearchRessourceForLvl()
   int   ret;
   std::vector<std::string>	food;
 
-  //  // std::cout << _id << " | SRFL" << std::endl;
+  if (_lvl == 6)
+    std::cout << _id << " ! Thystame : " << _lvlTab[_lvl][1] << std::endl;
   ret = xsend(_soc, "voir\n", 5, 0);
   if (ret == -1)
     return (ERR);

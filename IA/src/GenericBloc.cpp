@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Wed Jul 11 11:48:56 2012 alexandre haulotte
+// Last update Wed Jul 11 14:40:05 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -274,43 +274,43 @@ int	Player::VideCase()
 	  //	  // std::cout << "--------->" << food << std::endl;
 	  if (food.find("nourriture") != std::string::npos)
 	    {
-	      std::cout << "VideCase" << std::endl;
+	      //std::cout << "VideCase" << std::endl;
 	      food.replace(food.find(" nourriture"), 11, "");
 	      RamassezNourriture();
 	    }
 	  if (food.find("linemate") != std::string::npos)
 	    {
-	      std::cout << "VideCase2" << std::endl;
+	      //std::cout << "VideCase2" << std::endl;
 	      food.replace(food.find(" linemate"), 9, "");
 	      RamassezLinemate();
 	    }
 	  if (food.find("deraumere") != std::string::npos)
 	    {
-	      std::cout << "VideCase3" << std::endl;
+	      //std::cout << "VideCase3" << std::endl;
 	      food.replace(food.find(" deraumere"), 10, "");
 	      RamassezDeraumere();
 	    }
 	  if (food.find("sibur") != std::string::npos)
 	    {
-	      std::cout << "VideCase7" << std::endl;
+	      //std::cout << "VideCase7" << std::endl;
 	      food.replace(food.find(" sibur"), 6, "");
 	      RamassezSibur();
 	    }
 	  if (food.find("mendiane") != std::string::npos)
 	    {
-	      std::cout << "VideCase4" << std::endl;
+	      //std::cout << "VideCase4" << std::endl;
 	      food.replace(food.find(" mendiane"), 9, "");
 	      RamassezMendiane();
 	    }
 	  if (food.find("phiras") != std::string::npos)
 	    {
-	      std::cout << "VideCase5" << std::endl;
+	      //std::cout << "VideCase5" << std::endl;
 	      food.replace(food.find(" phiras"), 7, "");
 	      RamassezPhiras();
 	    }
 	  if (food.find("thystame") != std::string::npos)
 	    {
-	      std::cout << "VideCase6" << std::endl;
+	      //std::cout << "VideCase6" << std::endl;
 	      food.replace(food.find(" thystame"), 9, "");
 	      RamassezThystame();
 	    }

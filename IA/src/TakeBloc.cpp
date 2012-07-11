@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Wed Jul 11 13:08:06 2012 alexandre haulotte
+// Last update Wed Jul 11 14:39:12 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -43,7 +43,7 @@ int   Player::RamassezAllNourriture()
       ret = OK;
       while (food.find("nourriture") != std::string::npos)
 	{
-	  std::cout << "RamassezAllNourriture" << std::endl;
+	  //std::cout << "RamassezAllNourriture" << std::endl;
 	  food.replace(food.find("nourriture"), 10, "");
 	  ret = RamassezNourriture();
 	  if (ret == KO)

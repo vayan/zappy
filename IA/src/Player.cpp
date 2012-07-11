@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Tue Jul 10 12:17:15 2012 alexandre haulotte
+// Last update Wed Jul 11 14:34:36 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -123,12 +123,12 @@ Player::Player(int compo)
   _ressource[PHIRAS] = 0;
   _ressource[THYSTAME] = 0;
   _lvlTab = {{1, 1, 0, 0, 0, 0, 0},
-	    {2, 1, 1, 1, 0, 0, 0},
-	    {2, 2, 0, 1, 0, 2, 0},
-	    {4, 1, 1, 2, 0, 1, 0},
-	    {4, 1, 2, 1, 3, 0, 0},
-	    {6, 1, 2, 3, 0, 1, 0},
-	    {6, 2, 2, 2, 2, 2, 1}};
+	     {2, 1, 1, 1, 0, 0, 0},
+	     {2, 2, 0, 1, 0, 2, 0},
+	     {4, 1, 1, 2, 0, 1, 0},
+	     {4, 1, 2, 1, 3, 0, 0},
+	     {6, 1, 2, 3, 0, 1, 0},
+	     {6, 2, 2, 2, 2, 2, 1}};
   _nbRenf = 1;
 }
 
@@ -145,12 +145,12 @@ Player::Player(int port, std::string ip, std::string team, int compo, int id)
   _ressource[PHIRAS] = 0;
   _ressource[THYSTAME] = 0;
   _lvlTab = {{1, 1, 0, 0, 0, 0, 0},
-	    {2, 1, 1, 1, 0, 0, 0},
-	    {2, 2, 0, 1, 0, 2, 0},
-	    {4, 1, 1, 2, 0, 1, 0},
-	    {4, 1, 2, 1, 3, 0, 0},
-	    {6, 1, 2, 3, 0, 1, 0},
-	    {6, 2, 2, 2, 2, 2, 1}};
+	     {2, 1, 1, 1, 0, 0, 0},
+	     {2, 2, 0, 1, 0, 2, 0},
+	     {4, 1, 1, 2, 0, 1, 0},
+	     {4, 1, 2, 1, 3, 0, 0},
+	     {6, 1, 2, 3, 0, 1, 0},
+	     {6, 2, 2, 2, 2, 2, 1}};
   _nbRenf = 1;
 }
 
