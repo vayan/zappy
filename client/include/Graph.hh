@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 13:46:24 2012 yuguo cao
-// Last update Wed Jul 11 16:15:14 2012 yuguo cao
+// Last update Wed Jul 11 17:02:29 2012 yuguo cao
 //
 
 #ifndef		__GRAPH__
@@ -21,6 +21,7 @@
 #include	"Map.hh"
 #include	"Vector2ic.hh"
 #include	"Vector4i.hh"
+#include	"Info.hh"
 
 #include	"Nourriture.hh"
 #include	"Linemate.hh"
@@ -50,6 +51,8 @@ struct	Stone_t
 //   int		a_remain;
 // };
 
+class Info;
+
 class Graph
 {
 private:
@@ -61,10 +64,12 @@ private:
   int				_scr_width;
   int				_scr_bpp;
   int				_server_time;
+  int				_follow;
   sf::View			_view;
   Imman				*_imman;
   Character			_char;
   Map				_map;
+  Info				*_info;
 
   std::map<int, ASprite*>			_sprites;
   std::map<int, ASprite*>			_eggs;

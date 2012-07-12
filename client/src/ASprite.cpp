@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:09:55 2012 yuguo cao
-// Last update Wed Jul 11 15:33:46 2012 yuguo cao
+// Last update Wed Jul 11 16:39:32 2012 yuguo cao
 //
 
 #include	"ASprite.hh"

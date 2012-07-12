@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Wed Jul 11 16:30:50 2012 yuguo cao
+// Last update Thu Jul 12 13:18:53 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -20,6 +20,7 @@ Graph::Graph(const int width, const int height, const int m_width, const int m_h
   _server_time = 100;
   _map.setHeight(m_height);
   _map.setWidth(m_width);
+  _follow = -1;
 }
 
 Graph::~Graph()
@@ -39,6 +40,8 @@ void			Graph::initialize()
   srand(time(NULL));
   _app.SetFramerateLimit(60);
   _imman->loadImages();
+
+  _info = new Info(_imman);
 
   _background.SetImage(_imman->getImage("fond"));
 
@@ -80,15 +83,13 @@ void			Graph::update()
 	  //else
 	  if (event.MouseButton.Button == 0)
 	    {
+	      _follow = -1;
 	      for(std::map<int, ASprite*>::iterator it = _sprites.begin(); it != _sprites.end(); ++it)
 		{
 		  std::cout << x << " " << y << ":" << ((it->second)->getPosition()).x << " " << ((it->second)->getPosition()).y << std::endl;
 		  if (x >= ((it->second)->getPosition()).x && x <= ((it->second)->getPosition()).x + 64 && y >= ((it->second)->getPosition()).y && y <= ((it->second)->getPosition()).y + 64)
 		    {
-		      std::cout << _invent[it->first]->linemate << std::endl;
-		      std::cout << _invent[it->first]->deraumere << std::endl;
-		      std::cout << _invent[it->first]->sibur << std::endl;
-		      std::cout << _invent[it->first]->mendiane << std::endl;
+		      _follow = it->first;
 		      break;
 		    }
 		  std::cout << "clop" << std::endl;
@@ -126,10 +127,10 @@ sf::Vector2<int>&	Graph::relaMouse(const sf::Event& event)
 void			Graph::draw()
 {
   bool		to_reset = false;
-  float		elapsedTime = _app.GetFrameTime();
 
   _app.Clear(sf::Color(0, 0, 200));
   //_app.Draw(_background);
+
   _map.draw(this->_app);
 
   for(std::map<Vector2ic, std::vector<ASprite*> >::iterator imap = _s_map.begin(); imap != _s_map.end(); ++imap)
@@ -139,7 +140,6 @@ void			Graph::draw()
   	  _app.Draw((*imapvec)->anim(STAND));
   	}
     }
-
   for(std::map<Vector2ic, ASprite*>::iterator iot = _s_other.begin(); iot != _s_other.end(); ++iot)
     {
       _app.Draw((iot->second)->anim());
@@ -172,6 +172,10 @@ void			Graph::draw()
     }
   if (to_reset)
     _clock.Reset();
+
+  if (_follow >= 0)
+    _info->draw(_app, *_invent[_follow]);
+
   _app.SetView(_view);
   _app.Display();
 }
@@ -567,6 +571,7 @@ void			Graph::addEgg(const int n, const int t, const int x, const int y)
 {
   Egg			*newegg = new Egg();
 
+  (void) t;
   newegg->createAnim(_imman->getImage("egg"));
   newegg->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
   newegg->setLastAction(STAND);
