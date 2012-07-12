@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:50:16 2012 yuguo cao
-// Last update Thu Jul 12 13:31:18 2012 yuguo cao
+// Last update Thu Jul 12 15:33:08 2012 yuguo cao
 //
 
 #ifndef		__INFO__
@@ -73,7 +73,7 @@ public:
 
   std::string	its(const int);
   sf::Vector2f&	absolutePosition(const sf::RenderWindow&, const sf::Vector2i&);
-  void		setTextsIcons(sf::RenderWindow&, const struct Stone_t&);
+  void		setTextsIcons(sf::RenderWindow&, const struct Stone_t&, const float);
   void		drawText(sf::RenderWindow&);
 };
 

@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:49:59 2012 yuguo cao
-// Last update Thu Jul 12 13:34:51 2012 yuguo cao
+// Last update Thu Jul 12 15:39:53 2012 yuguo cao
 //
 
 #include	"Info.hh"
@@ -35,14 +35,16 @@ Info::~Info()
 
 void			Info::draw(sf::RenderWindow& app, const struct Stone_t& res)
 {
+  float			ratio = app.GetView().GetRect().GetWidth() / app.GetWidth();
+
   _lvl = res.l;
-  setTextsIcons(app, res);
+  setTextsIcons(app, res, ratio);
   _s_back.SetPosition(absolutePosition(app, sf::Vector2i(0, 700)));
   app.Draw(_s_back);
   drawText(app);
 }
 
-void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res)
+void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, const float ratio)
 {
   _strings.lvl.SetText(its(res.l));
   _strings.food.SetText(its(res.food));
@@ -71,15 +73,6 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res)
   _s_stone.phiras.SetSubRect(sf::IntRect(80, 0, 96, 16));
   _s_stone.thystame.SetSubRect(sf::IntRect(96, 0, 112, 16));
 
-  _s_stone.lvl.SetScale(2, 2);
-  _s_stone.food.SetScale(2, 2);
-  _s_stone.linemate.SetScale(2, 2);
-  _s_stone.deraumere.SetScale(2, 2);
-  _s_stone.sibur.SetScale(2, 2);
-  _s_stone.mendiane.SetScale(2, 2);
-  _s_stone.phiras.SetScale(2, 2);
-  _s_stone.thystame.SetScale(2, 2);
-
   _s_stone.lvl.SetPosition(absolutePosition(app, sf::Vector2i(18, 710)));
   _s_stone.food.SetPosition(absolutePosition(app, sf::Vector2i(18, 755)));
   _s_stone.linemate.SetPosition(absolutePosition(app, sf::Vector2i(18, 800)));
@@ -96,6 +89,30 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res)
   _s_portrait.l1.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l2.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l3.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
+
+  _s_back.SetScale(ratio, ratio);
+
+  _s_stone.lvl.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.food.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.linemate.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.deraumere.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.sibur.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.mendiane.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.phiras.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.thystame.SetScale(2 * ratio, 2 * ratio);
+
+  _strings.lvl.SetScale(ratio, ratio);
+  _strings.food.SetScale(ratio, ratio);
+  _strings.linemate.SetScale(ratio, ratio);
+  _strings.deraumere.SetScale(ratio, ratio);
+  _strings.sibur.SetScale(ratio, ratio);
+  _strings.mendiane.SetScale(ratio, ratio);
+  _strings.phiras.SetScale(ratio, ratio);
+  _strings.thystame.SetScale(ratio, ratio);
+
+  _s_portrait.l1.SetScale(ratio, ratio);
+  _s_portrait.l2.SetScale(ratio, ratio);
+  _s_portrait.l3.SetScale(ratio, ratio);
 }
 
 void			Info::drawText(sf::RenderWindow& app)
@@ -144,7 +161,7 @@ sf::Vector2f&		Info::absolutePosition(const sf::RenderWindow& app, const sf::Vec
 {
   sf::Vector2f		*vi = new sf::Vector2f;
 
-  vi->x = app.GetView().GetCenter().x + (int(app.GetWidth()) / 2 - v.x) * -1;
-  vi->y = app.GetView().GetCenter().y + (int(app.GetHeight()) / 2 - v.y) * -1;
+  vi->x = app.GetView().GetRect().Left + (app.GetView().GetRect().GetWidth() / app.GetWidth() * v.x);
+  vi->y = app.GetView().GetRect().Top + (app.GetView().GetRect().GetHeight() / app.GetHeight() * v.y);
   return (*vi);
 }

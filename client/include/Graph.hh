@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 13:46:24 2012 yuguo cao
-// Last update Wed Jul 11 17:02:29 2012 yuguo cao
+// Last update Thu Jul 12 14:37:21 2012 yuguo cao
 //
 
 #ifndef		__GRAPH__
@@ -60,6 +60,7 @@ private:
   sf::Clock			_clock;
   sf::Sprite			_background;
   const sf::Input&		_input;
+  float				_zoom;
   int				_scr_height;
   int				_scr_width;
   int				_scr_bpp;

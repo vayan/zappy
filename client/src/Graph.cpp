@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Thu Jul 12 13:18:53 2012 yuguo cao
+// Last update Thu Jul 12 15:33:32 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -21,6 +21,7 @@ Graph::Graph(const int width, const int height, const int m_width, const int m_h
   _map.setHeight(m_height);
   _map.setWidth(m_width);
   _follow = -1;
+  _zoom = 1;
 }
 
 Graph::~Graph()
@@ -68,31 +69,30 @@ void			Graph::update()
       if (event.Type == sf::Event::MouseWheelMoved)
 	{
 	  if (event.MouseWheel.Delta > 0)
-	    _view.Zoom(1.1);
+	    {
+	      _view.Zoom(1.1);
+	      _zoom *= 0.9;
+	    }
 	  else if (event.MouseWheel.Delta < 0)
-	    _view.Zoom(0.9);
+	    {
+	      _view.Zoom(0.9);
+	      _zoom *= 1.1;
+	    }
 	}
       if (event.Type == sf::Event::MouseButtonPressed)
 	{
 	  x = relaMouse(event).x;
 	  y = relaMouse(event).y;
-	  // if (event.MouseButton.Button == 0 && (x >= _char.getPosition().x && x <= _char.getPosition().x + 35 && y >= _char.getPosition().y && y <= _char.getPosition().y + 80))
-	  //   {
-	  //     std::cout << _char.getPosition().x << " " << _char.getPosition().y << std::endl;
-	  //   }
-	  //else
 	  if (event.MouseButton.Button == 0)
 	    {
 	      _follow = -1;
 	      for(std::map<int, ASprite*>::iterator it = _sprites.begin(); it != _sprites.end(); ++it)
 		{
-		  std::cout << x << " " << y << ":" << ((it->second)->getPosition()).x << " " << ((it->second)->getPosition()).y << std::endl;
 		  if (x >= ((it->second)->getPosition()).x && x <= ((it->second)->getPosition()).x + 64 && y >= ((it->second)->getPosition()).y && y <= ((it->second)->getPosition()).y + 64)
 		    {
 		      _follow = it->first;
 		      break;
 		    }
-		  std::cout << "clop" << std::endl;
 		}
 	    }
 	  if (event.MouseButton.Button == 2)
@@ -119,8 +119,8 @@ sf::Vector2<int>&	Graph::relaMouse(const sf::Event& event)
 {
   sf::Vector2<int>	*v2 = new sf::Vector2<int>();
 
-  v2->x = _view.GetCenter().x + (int(_app.GetWidth()) / 2 - event.MouseButton.X) * -1;
-  v2->y = _view.GetCenter().y + (int(_app.GetHeight()) / 2 - event.MouseButton.Y) * -1;
+  v2->x = _view.GetRect().Left + (_view.GetRect().GetWidth() / _app.GetWidth() * event.MouseButton.X);
+  v2->y = _view.GetRect().Top + (_view.GetRect().GetHeight() / _app.GetHeight() * event.MouseButton.Y);
   return (*v2);
 }
 
