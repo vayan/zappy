@@ -17,10 +17,14 @@
 int		ppo_one(t_client *graphic, t_client *clients)
 {
   char		*str;
+  int dir;
 
+  dir = clients->dir + 1;
+  if (dir > 5 || dir < 1)
+    dir = 1;
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "ppo %i %i %i %i\n", clients->id, clients->x, clients->y,
-          clients->dir + 1);
+          dir);
   broadcast_to_one_client(str, graphic);
   xfree(str);
   return (0);
@@ -29,10 +33,14 @@ int		ppo_one(t_client *graphic, t_client *clients)
 void		ppo_broad(t_client *clients, t_client *graphic)
 {
   char		*str;
+  int dir;
 
+  dir = clients->dir + 1;
+  if (dir > 5 || dir < 1)
+    dir = 1;
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "ppo %i %i %i %i\n", clients->id,
-          clients->x, clients->y, clients->dir + 1);
+          clients->x, clients->y, dir);
   broadcast_to_one_client(str, graphic);
   xfree(str);
 }
