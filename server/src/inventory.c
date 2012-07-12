@@ -37,50 +37,31 @@ char	*inttochar(int i)
   return (buff_int);
 }
 
+void  send_invent_cat(char *invent, char *name, int rs)
+{
+  char *tmp;
+
+  strcat(invent, name);
+  strcat(invent, " ");
+  tmp = inttochar(rs);
+  strcat(invent, tmp);
+  xfree(tmp);
+}
+
 void	send_invent(t_client *cl)
 {
   char	*invent;
-  char *tmp;
 
   invent = xmalloc(500 * sizeof(char*));
   memset(invent, 0, 500);
-
-  strcat(invent, "{nourriture ");
-  tmp = inttochar(cl->rsrc[Nourriture]);
-  strcat(invent, tmp);
-  xfree(tmp);
-
-  strcat(invent, ",linemate ");
-  tmp = inttochar(cl->rsrc[Linemate]);
-  strcat(invent, tmp);
-   xfree(tmp);
-
-
-  strcat(invent, ",deraumere ");
-  tmp = inttochar(cl->rsrc[Deraumere]);
-  strcat(invent, tmp);
-  xfree(tmp);
-
-  strcat(invent, ",sibur ");
-  tmp = inttochar(cl->rsrc[Sibur]);
-  strcat(invent, tmp);
-  xfree(tmp);
-
-  strcat(invent, ",mendiane ");
-  tmp = inttochar(cl->rsrc[Mendiane]);
-  strcat(invent, tmp);
-  xfree(tmp);
-
-  strcat(invent, ",phiras ");
-  tmp = inttochar(cl->rsrc[Phiras]);
-  strcat(invent, tmp);
-  xfree(tmp);
-
-  strcat(invent, ",thystame ");
-  tmp = inttochar(cl->rsrc[Thystame]);
-  strcat(invent, tmp);
-  xfree(tmp);
-
+  strcat(invent, "{");
+  send_invent_cat(invent, "nourriture", cl->rsrc[Nourriture]);
+  send_invent_cat(invent, ", linemate", cl->rsrc[Linemate]);
+  send_invent_cat(invent, ", deraumere", cl->rsrc[Deraumere]);
+  send_invent_cat(invent, ", sibur", cl->rsrc[Sibur]);
+  send_invent_cat(invent, ", mendiane", cl->rsrc[Mendiane]);
+  send_invent_cat(invent, ", phiras", cl->rsrc[Phiras]);
+  send_invent_cat(invent, ", thystame", cl->rsrc[Thystame]);
   strcat(invent, "}\n");
   broadcast_to_one_client(invent, cl);
   xfree(invent);
@@ -93,20 +74,20 @@ int		inventory(t_client *cl)
   if (cl->stm->in_use != -1 && cl->stm->in_use != Inventaire)
     return (1);
   if (cl->stm->in_use == -1)
-    {
-      cl->stm->in_use = Inventaire;
-      start_timer(cl->stm);
-      return (1);
-    }
+  {
+    cl->stm->in_use = Inventaire;
+    start_timer(cl->stm);
+    return (1);
+  }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Inventaire &&
-      ((cl->stm->in_nsec) >= (1000000000/setting->delay)))
-    {
-      cl->stm->in_use = -1;
-      send_invent(cl);
-      return (0);
-    }
+    ((cl->stm->in_nsec) >= (1000000000/setting->delay)))
+  {
+    cl->stm->in_use = -1;
+    send_invent(cl);
+    return (0);
+  }
   return (1);
 }

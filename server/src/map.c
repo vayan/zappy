@@ -28,6 +28,23 @@ t_map_case              ***get_map(t_map_case ***_map)
   return (map);
 }
 
+t_pl_case   *rm_pl_from_list(t_pl_case *tmp, t_client *pl)
+{
+  t_pl_case   *to_free;
+
+  to_free = NULL;
+  while (tmp)
+  {
+    if (tmp->next != NULL && tmp->next->client == pl)
+    {
+      to_free = tmp->next;
+      tmp->next = tmp->next->next;
+    }
+    tmp = tmp->next;
+  }
+  return (to_free);
+}
+
 void			rm_pl(int x, int y, t_client *pl)
 {
   t_map_case		***map;
@@ -50,17 +67,7 @@ void			rm_pl(int x, int y, t_client *pl)
       MAP->client = tmp->next;
     }
     else
-    {
-      while (tmp)
-      {
-        if (tmp->next != NULL && tmp->next->client == pl)
-        {
-          to_free = tmp->next;
-          tmp->next = tmp->next->next;
-        }
-        tmp = tmp->next;
-      }
-    }
+      to_free = rm_pl_from_list(tmp, pl);
   }
   xfree(to_free);
 }

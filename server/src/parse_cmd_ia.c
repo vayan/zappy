@@ -54,44 +54,50 @@ int	parse_cmd_ia_classic(char *msg, t_client *cl)
   return (-3);
 }
 
+int parse_cmd_ia_big(t_client *cl, char **tab, char *cmd)
+{
+  int ret;
+
+  if (cl->teams != NULL)
+  {
+    if ((ret = parse_cmd_ia_classic(tab[0], cl)) != -3)
+      return (ret);
+    else if (strcmp(tab[0], "prend") == 0 &&
+     tab[1] != 0 && parse_rsr(tab[1]) != -1)
+      return (take_object(cl, parse_rsr(tab[1])));
+    else if (strcmp(tab[0], "pose") == 0 &&
+     tab[1] != 0 && parse_rsr(tab[1]) != -1)
+      return (drop_object(cl, parse_rsr(tab[1])));
+    else if (strcmp(tab[0], "broadcast") == 0)
+      return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
+  }
+  return (0);
+}
+
 int	parse_cmd_ia(char *cmd, t_client *cl)
 {
   static char	**tab = NULL;
   static char *old = NULL;
   char  *tmp;
-  int	ret;
   
   if (old != NULL && strcmp(old, cmd) != 0)
-    {
-      xfree(old);
-      xfree(tab[0]);
-      xfree(tab);
-      old = strdup(cmd);
-      tmp = old;
-      tab = my_str_to_wordtab(tmp, ' ');
-    }
+  {
+    xfree(old);
+    xfree(tab[0]);
+    xfree(tab);
+    old = strdup(cmd);
+    tmp = old;
+    tab = my_str_to_wordtab(tmp, ' ');
+  }
   if (old == NULL)
-    {
-      old = strdup(cmd);
-      tmp = old;
-      tab = my_str_to_wordtab(tmp, ' '); 
-    }
+  {
+    old = strdup(cmd);
+    tmp = old;
+    tab = my_str_to_wordtab(tmp, ' '); 
+  }
   if (tab == NULL)
     return (0);
   if (cl->teams == NULL && cl->is_graphic == 0)
     get_type_client(tab[0], cl);
-  else if (cl->teams != NULL)
-    {
-      if ((ret = parse_cmd_ia_classic(tab[0], cl)) != -3)
-        return (ret);
-      else if (strcmp(tab[0], "prend") == 0 &&
-               tab[1] != 0 && parse_rsr(tab[1]) != -1)
-        return (take_object(cl, parse_rsr(tab[1])));
-      else if (strcmp(tab[0], "pose") == 0 &&
-               tab[1] != 0 && parse_rsr(tab[1]) != -1)
-        return (drop_object(cl, parse_rsr(tab[1])));
-      else if (strcmp(tab[0], "broadcast") == 0)
-        return (broad_ia(cl, get_all_client(NULL, 0), parse_msg(cmd)));
-    }
-  return (0);
+  return (parse_cmd_ia_big(cl, tab, cmd));
 }
