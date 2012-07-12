@@ -15,7 +15,7 @@
 
 void	free_tab(char **tab)
 {
-  
+  tab = tab; 
 }
 
 char	**my_str_to_wordtab(char *s1, char sep)

@@ -57,6 +57,8 @@ int can_elev(t_client *cl)
 
 int	do_elev(int *req, t_client *cl, t_map_case *cas)
 {
+  cas = cas;
+  req = req;
   cl->level++;
   if (cl->level == 8)
     cl->teams->nb_lvl_max++;

@@ -85,7 +85,6 @@ void	scan_case(t_client *cl, char *msg)
 int	do_see(t_client *cl)
 {
   char	*msg;
-  char  *tmp;
 
   msg = xmalloc (100000 * sizeof(*msg));
   memset(msg, 0, 100000);
