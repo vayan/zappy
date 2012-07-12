@@ -45,13 +45,16 @@ void		move_kicker(t_client *kicker, t_client *victim)
 void		do_expelliarmus_broad(t_client *cl, t_pl_case   *tmp)
 {
   char		*msg;
+  char    *temp;
 
   msg = xmalloc(50 * sizeof(*msg));
   memset(msg, 0, 50);
   strcat(msg, "deplacement: ");
-  strcat(msg, inttochar(get_direction(cl, tmp->client)));
+  temp = inttochar(get_direction(cl, tmp->client));
+  strcat(msg, temp);
   strcat(msg, "\n");
   broadcast_to_one_client(msg, tmp->client);
+  xfree(temp);
   xfree(msg);
 }
 
