@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 18:50:57 2012 alexandre haulotte
-// Last update Thu Jul  5 11:58:12 2012 alexandre haulotte
+// Last update Thu Jul 12 17:15:35 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -164,5 +164,47 @@ int	Player::RecvArrive()
 	}
     }
   _msg.clear();
+  return (KO);
+}
+
+int	Player::GetSpam()
+{
+  Voir();
+  std::vector<std::string>::reverse_iterator	it;
+  std::string str = "xx";
+
+  if (!_msg.empty())
+    {
+      for (it = _msg.rbegin(); it != _msg.rend(); it++)
+	{
+	  if ((*it).find(str) == std::string::npos)
+	    {
+	      _spam = (*it);
+	      _msg.clear();
+	      return (OK);
+	      break;
+	    }
+	}
+      _msg.clear();
+    }
+  return (KO);
+}
+
+int	Player::Spam()
+{
+  int   ret;
+
+  //  // std::cout << "Renfort!!!!!!!!!" << std::endl;
+  if (_spam != "")
+    {
+      std::string str = "broadcast " + _spam + "\n";
+      ret = xsend(_soc, &str[0], str.size(), 0);
+      if (ret == -1)
+	return (ERR);
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      return (OK);
+    }
   return (KO);
 }

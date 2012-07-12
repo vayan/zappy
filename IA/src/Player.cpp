@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Wed Jul 11 14:57:46 2012 alexandre haulotte
+// Last update Thu Jul 12 17:16:35 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -114,7 +114,7 @@ void	Player::recInfo()
 
 Player::Player(int compo)
   :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
-   _port(0), _addr(""), _compo(0), _lastRep(""), _cState(compo)
+   _port(0), _addr(""), _compo(0), _lastRep(""), _cState(compo), _spam("")
 {
   _teamName = "";
   _ressource[FOOD] = 10;
@@ -136,7 +136,7 @@ Player::Player(int compo)
 
 Player::Player(int port, std::string ip, std::string team, int compo, int id)
   :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(id),
-   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(compo)
+   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(compo), _spam("")
 {
   _teamName = team;
   _ressource[FOOD] = 10;

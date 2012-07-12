@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Thu Jul 12 14:43:38 2012 alexandre haulotte
+// Last update Thu Jul 12 16:55:30 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -181,6 +181,8 @@ public:
   int	CallArrive(); // OK - ERR
   int	CallRenfortOK(); // OK - ERR
   int	RecvArrive(); // OK - KO - ERR
+  int	Spam(); // OK - KO - ERR
+  int   GetSpam(); // OK - KO - ERR
 
   //----------------------------------------------//
   //----------------- AlgoBloc -------------------//
