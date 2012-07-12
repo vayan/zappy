@@ -13,7 +13,7 @@
 
 #include	"network.h"
 
-#define		TAB_SIZE	26
+#define		TAB_SIZE	9
 
 typedef struct  s_option
 {
