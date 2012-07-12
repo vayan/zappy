@@ -52,10 +52,10 @@ void	Player::initTab()
 	trTable[22][KO] = 2;
 	fctTable[23] = &Player::RamassezRessourceForLvl;
 	trTable[23][OK] = 21;
-	trTable[23][KO] = 25;
+	trTable[23][KO] = 2;
 	fctTable[24] = &Player::RamassezAllNourriture;
 	trTable[24][OK] = 15;
-	trTable[24][KO] = 27;
+	trTable[24][KO] = 2;
 	fctTable[25] = &Player::SearchRessourceForLvl;
 	trTable[25][OK] = 18;
 	trTable[25][GODIR] = 294;

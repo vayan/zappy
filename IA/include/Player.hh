@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Tue Jul 10 12:19:53 2012 alexandre haulotte
+// Last update Thu Jul 12 14:43:38 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -51,6 +51,7 @@ protected:
   int				_compo;
   std::string			_lastRep;
   int				_cState;
+  std::string			_spam;
 
 public:
   Player(int port, std::string ip, std::string team, int compo = 0, int id = 0);
@@ -110,6 +111,7 @@ public:
   int	Eclosion4(); // OK
   int	Eclosion5(); // OK
   int	Incantation(); // OK - KO - ERR
+  //  int	IncantationPassive(); // OK - KO - ERR
   int	GoToDir(); // OK - ERR
   int	VideCase(); // OK - ERR
   int	Inventaire(); // OK - ERR
@@ -187,9 +189,10 @@ public:
   int	While5(); // OK - LOOP
   int	While10(); // OK - LOOP
   int	IfIsRenf(); // OK - KO
-  int	IfFoodSup10(); // OK - KO - ERR
   int	IfFoodSup5(); // OK - KO - ERR
+  int	IfFoodSup10(); // OK - KO - ERR
   int	IfFoodSup30(); // OK - KO - ERR
+  int	IfFoodSup50(); // OK - KO - ERR
 
   //-----------------EndIAFunc--------------------//
 

@@ -2,17 +2,17 @@
 	<Compo>
 		<Name>1</Name>
 		<Link>599</Link>
-		<MyBoxX>926</MyBoxX><MyBoxY>101</MyBoxY>
+		<MyBoxX>-1996</MyBoxX><MyBoxY>490</MyBoxY>
 	</Compo>
 	<Compo>
 		<Name>2</Name>
 		<Link>14</Link>
-		<MyBoxX>3429</MyBoxX><MyBoxY>-335</MyBoxY>
+		<MyBoxX>507</MyBoxX><MyBoxY>54</MyBoxY>
 	</Compo>
 	<Box>
 		<Name>Avance</Name>
 		<Id>6</Id>
-		<MyBoxX>1844</MyBoxX><MyBoxY>445</MyBoxY>
+		<MyBoxX>-1078</MyBoxX><MyBoxY>834</MyBoxY>
 		<BoxX>25</BoxX><BoxY>120</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -22,7 +22,7 @@
 	<Box>
 		<Name>Pond</Name>
 		<Id>7</Id>
-		<MyBoxX>1569</MyBoxX><MyBoxY>-238</MyBoxY>
+		<MyBoxX>-1353</MyBoxX><MyBoxY>151</MyBoxY>
 		<BoxX>25</BoxX><BoxY>480</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -32,7 +32,7 @@
 	<Box>
 		<Name>Eclosion2</Name>
 		<Id>8</Id>
-		<MyBoxX>1143</MyBoxX><MyBoxY>-140</MyBoxY>
+		<MyBoxX>-1779</MyBoxX><MyBoxY>249</MyBoxY>
 		<BoxX>25</BoxX><BoxY>660</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -42,7 +42,7 @@
 	<Box>
 		<Name>GoToDir</Name>
 		<Id>9</Id>
-		<MyBoxX>1631</MyBoxX><MyBoxY>-49</MyBoxY>
+		<MyBoxX>-1291</MyBoxX><MyBoxY>340</MyBoxY>
 		<BoxX>25</BoxX><BoxY>750</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -52,7 +52,7 @@
 	<Box>
 		<Name>SearchNourriture</Name>
 		<Id>10</Id>
-		<MyBoxX>1535</MyBoxX><MyBoxY>-93</MyBoxY>
+		<MyBoxX>-1387</MyBoxX><MyBoxY>296</MyBoxY>
 		<BoxX>25</BoxX><BoxY>660</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -70,7 +70,7 @@
 	<Box>
 		<Name>RamassezNourriture</Name>
 		<Id>11</Id>
-		<MyBoxX>1305</MyBoxX><MyBoxY>-24</MyBoxY>
+		<MyBoxX>-1617</MyBoxX><MyBoxY>365</MyBoxY>
 		<BoxX>25</BoxX><BoxY>720</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -84,7 +84,7 @@
 	<Box>
 		<Name>PlaceSurServeur</Name>
 		<Id>12</Id>
-		<MyBoxX>1175</MyBoxX><MyBoxY>-367</MyBoxY>
+		<MyBoxX>-1747</MyBoxX><MyBoxY>22</MyBoxY>
 		<BoxX>25</BoxX><BoxY>660</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -98,7 +98,7 @@
 	<Box>
 		<Name>IfFoodSup10</Name>
 		<Id>13</Id>
-		<MyBoxX>1533</MyBoxX><MyBoxY>-404</MyBoxY>
+		<MyBoxX>-1389</MyBoxX><MyBoxY>-15</MyBoxY>
 		<BoxX>25</BoxX><BoxY>840</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -112,7 +112,7 @@
 	<Box>
 		<Name>IfFoodSup30</Name>
 		<Id>14</Id>
-		<MyBoxX>3275</MyBoxX><MyBoxY>-781</MyBoxY>
+		<MyBoxX>353</MyBoxX><MyBoxY>-392</MyBoxY>
 		<BoxX>25</BoxX><BoxY>630</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -126,7 +126,7 @@
 	<Box>
 		<Name>While5</Name>
 		<Id>15</Id>
-		<MyBoxX>3606</MyBoxX><MyBoxY>-325</MyBoxY>
+		<MyBoxX>684</MyBoxX><MyBoxY>64</MyBoxY>
 		<BoxX>25</BoxX><BoxY>180</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -140,7 +140,7 @@
 	<Box>
 		<Name>RecvRenfort</Name>
 		<Id>16</Id>
-		<MyBoxX>3220</MyBoxX><MyBoxY>-25</MyBoxY>
+		<MyBoxX>298</MyBoxX><MyBoxY>364</MyBoxY>
 		<BoxX>25</BoxX><BoxY>150</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -158,7 +158,7 @@
 	<Box>
 		<Name>CallRenfort</Name>
 		<Id>17</Id>
-		<MyBoxX>3211</MyBoxX><MyBoxY>573</MyBoxY>
+		<MyBoxX>289</MyBoxX><MyBoxY>962</MyBoxY>
 		<BoxX>25</BoxX><BoxY>60</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -168,7 +168,7 @@
 	<Box>
 		<Name>JoueurSurCase</Name>
 		<Id>18</Id>
-		<MyBoxX>3518</MyBoxX><MyBoxY>241</MyBoxY>
+		<MyBoxX>596</MyBoxX><MyBoxY>630</MyBoxY>
 		<BoxX>25</BoxX><BoxY>360</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -182,7 +182,7 @@
 	<Box>
 		<Name>CaseReady</Name>
 		<Id>19</Id>
-		<MyBoxX>2174</MyBoxX><MyBoxY>207</MyBoxY>
+		<MyBoxX>-748</MyBoxX><MyBoxY>596</MyBoxY>
 		<BoxX>25</BoxX><BoxY>270</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -196,7 +196,7 @@
 	<Box>
 		<Name>AssezPlayerForLvl</Name>
 		<Id>20</Id>
-		<MyBoxX>2638</MyBoxX><MyBoxY>512</MyBoxY>
+		<MyBoxX>-284</MyBoxX><MyBoxY>901</MyBoxY>
 		<BoxX>25</BoxX><BoxY>180</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -210,7 +210,7 @@
 	<Box>
 		<Name>AssezRessourceForLvl</Name>
 		<Id>21</Id>
-		<MyBoxX>3471</MyBoxX><MyBoxY>183</MyBoxY>
+		<MyBoxX>549</MyBoxX><MyBoxY>572</MyBoxY>
 		<BoxX>25</BoxX><BoxY>120</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -224,7 +224,7 @@
 	<Box>
 		<Name>PoserRessourceForLvl</Name>
 		<Id>22</Id>
-		<MyBoxX>2586</MyBoxX><MyBoxY>958</MyBoxY>
+		<MyBoxX>-336</MyBoxX><MyBoxY>1347</MyBoxY>
 		<BoxX>25</BoxX><BoxY>180</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -238,7 +238,7 @@
 	<Box>
 		<Name>RamassezRessourceForLvl</Name>
 		<Id>23</Id>
-		<MyBoxX>3548</MyBoxX><MyBoxY>544</MyBoxY>
+		<MyBoxX>626</MyBoxX><MyBoxY>933</MyBoxY>
 		<BoxX>25</BoxX><BoxY>210</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -246,13 +246,13 @@
 		</Sortie>
 		<Sortie>
 			<Name>KO</Name>
-			<Link>25</Link>
+			<Link>14</Link>
 		</Sortie>
 	</Box>
 	<Box>
 		<Name>RamassezAllNourriture</Name>
 		<Id>24</Id>
-		<MyBoxX>3978</MyBoxX><MyBoxY>-117</MyBoxY>
+		<MyBoxX>1056</MyBoxX><MyBoxY>272</MyBoxY>
 		<BoxX>25</BoxX><BoxY>120</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -260,13 +260,13 @@
 		</Sortie>
 		<Sortie>
 			<Name>KO</Name>
-			<Link>27</Link>
+			<Link>14</Link>
 		</Sortie>
 	</Box>
 	<Box>
 		<Name>SearchRessourceForLvl</Name>
 		<Id>25</Id>
-		<MyBoxX>3738</MyBoxX><MyBoxY>198</MyBoxY>
+		<MyBoxX>816</MyBoxX><MyBoxY>587</MyBoxY>
 		<BoxX>25</BoxX><BoxY>240</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -288,7 +288,7 @@
 	<Box>
 		<Name>SearchNourriture</Name>
 		<Id>27</Id>
-		<MyBoxX>3967</MyBoxX><MyBoxY>-614</MyBoxY>
+		<MyBoxX>1045</MyBoxX><MyBoxY>-225</MyBoxY>
 		<BoxX>25</BoxX><BoxY>480</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -306,7 +306,7 @@
 	<Box>
 		<Name>VideCase</Name>
 		<Id>28</Id>
-		<MyBoxX>2626</MyBoxX><MyBoxY>647</MyBoxY>
+		<MyBoxX>-296</MyBoxX><MyBoxY>1036</MyBoxY>
 		<BoxX>25</BoxX><BoxY>240</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -316,7 +316,7 @@
 	<Box>
 		<Name>GoToDir</Name>
 		<Id>29</Id>
-		<MyBoxX>3956</MyBoxX><MyBoxY>-419</MyBoxY>
+		<MyBoxX>1034</MyBoxX><MyBoxY>-30</MyBoxY>
 		<BoxX>25</BoxX><BoxY>150</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -326,7 +326,7 @@
 	<Box>
 		<Name>Avance</Name>
 		<Id>30</Id>
-		<MyBoxX>4272</MyBoxX><MyBoxY>-260</MyBoxY>
+		<MyBoxX>1350</MyBoxX><MyBoxY>129</MyBoxY>
 		<BoxX>25</BoxX><BoxY>120</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -336,7 +336,7 @@
 	<Box>
 		<Name>Incantation</Name>
 		<Id>32</Id>
-		<MyBoxX>2594</MyBoxX><MyBoxY>856</MyBoxY>
+		<MyBoxX>-328</MyBoxX><MyBoxY>1245</MyBoxY>
 		<BoxX>25</BoxX><BoxY>420</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -350,7 +350,7 @@
 	<Box>
 		<Name>RecvRenfort</Name>
 		<Id>34</Id>
-		<MyBoxX>2542</MyBoxX><MyBoxY>-404</MyBoxY>
+		<MyBoxX>-380</MyBoxX><MyBoxY>-15</MyBoxY>
 		<BoxX>25</BoxX><BoxY>630</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -368,7 +368,7 @@
 	<Box>
 		<Name>GoToDir</Name>
 		<Id>35</Id>
-		<MyBoxX>2893</MyBoxX><MyBoxY>-234</MyBoxY>
+		<MyBoxX>-29</MyBoxX><MyBoxY>155</MyBoxY>
 		<BoxX>25</BoxX><BoxY>450</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -378,7 +378,7 @@
 	<Box>
 		<Name>IfFoodSup5</Name>
 		<Id>37</Id>
-		<MyBoxX>2507</MyBoxX><MyBoxY>-299</MyBoxY>
+		<MyBoxX>-415</MyBoxX><MyBoxY>90</MyBoxY>
 		<BoxX>25</BoxX><BoxY>780</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -392,7 +392,7 @@
 	<Box>
 		<Name>Avance</Name>
 		<Id>38</Id>
-		<MyBoxX>3924</MyBoxX><MyBoxY>636</MyBoxY>
+		<MyBoxX>1002</MyBoxX><MyBoxY>1025</MyBoxY>
 		<BoxX>25</BoxX><BoxY>120</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -402,7 +402,7 @@
 	<Box>
 		<Name>IfFoodSup5</Name>
 		<Id>163</Id>
-		<MyBoxX>3304</MyBoxX><MyBoxY>157</MyBoxY>
+		<MyBoxX>382</MyBoxX><MyBoxY>546</MyBoxY>
 		<BoxX>25</BoxX><BoxY>810</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -416,7 +416,7 @@
 	<Box>
 		<Name>IfFoodSup5</Name>
 		<Id>226</Id>
-		<MyBoxX>2825</MyBoxX><MyBoxY>-250</MyBoxY>
+		<MyBoxX>-97</MyBoxX><MyBoxY>139</MyBoxY>
 		<BoxX>25</BoxX><BoxY>630</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -430,7 +430,7 @@
 	<Box>
 		<Name>GoToDir</Name>
 		<Id>227</Id>
-		<MyBoxX>4111</MyBoxX><MyBoxY>-214</MyBoxY>
+		<MyBoxX>1189</MyBoxX><MyBoxY>175</MyBoxY>
 		<BoxX>25</BoxX><BoxY>660</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -440,7 +440,7 @@
 	<Box>
 		<Name>IfFoodSup5</Name>
 		<Id>293</Id>
-		<MyBoxX>3943</MyBoxX><MyBoxY>20</MyBoxY>
+		<MyBoxX>1021</MyBoxX><MyBoxY>409</MyBoxY>
 		<BoxX>25</BoxX><BoxY>600</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -454,7 +454,7 @@
 	<Box>
 		<Name>IfFoodSup5</Name>
 		<Id>294</Id>
-		<MyBoxX>4137</MyBoxX><MyBoxY>-346</MyBoxY>
+		<MyBoxX>1215</MyBoxX><MyBoxY>43</MyBoxY>
 		<BoxX>25</BoxX><BoxY>600</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -468,7 +468,7 @@
 	<Box>
 		<Name>While5</Name>
 		<Id>295</Id>
-		<MyBoxX>3181</MyBoxX><MyBoxY>472</MyBoxY>
+		<MyBoxX>259</MyBoxX><MyBoxY>861</MyBoxY>
 		<BoxX>25</BoxX><BoxY>330</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -482,7 +482,7 @@
 	<Box>
 		<Name>RecvRenfort</Name>
 		<Id>296</Id>
-		<MyBoxX>2937</MyBoxX><MyBoxY>780</MyBoxY>
+		<MyBoxX>15</MyBoxX><MyBoxY>1169</MyBoxY>
 		<BoxX>25</BoxX><BoxY>180</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -500,7 +500,7 @@
 	<Box>
 		<Name>JoueurSurCase</Name>
 		<Id>477</Id>
-		<MyBoxX>2345</MyBoxX><MyBoxY>-38</MyBoxY>
+		<MyBoxX>-577</MyBoxX><MyBoxY>351</MyBoxY>
 		<BoxX>25</BoxX><BoxY>660</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -514,7 +514,7 @@
 	<Box>
 		<Name>While10</Name>
 		<Id>515</Id>
-		<MyBoxX>2058</MyBoxX><MyBoxY>299</MyBoxY>
+		<MyBoxX>-864</MyBoxX><MyBoxY>688</MyBoxY>
 		<BoxX>25</BoxX><BoxY>450</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -528,7 +528,7 @@
 	<Box>
 		<Name>RecvRenfort</Name>
 		<Id>516</Id>
-		<MyBoxX>2052</MyBoxX><MyBoxY>143</MyBoxY>
+		<MyBoxX>-870</MyBoxX><MyBoxY>532</MyBoxY>
 		<BoxX>25</BoxX><BoxY>180</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -546,7 +546,7 @@
 	<Box>
 		<Name>IfFoodSup5</Name>
 		<Id>556</Id>
-		<MyBoxX>2597</MyBoxX><MyBoxY>231</MyBoxY>
+		<MyBoxX>-325</MyBoxX><MyBoxY>620</MyBoxY>
 		<BoxX>25</BoxX><BoxY>780</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -560,7 +560,7 @@
 	<Box>
 		<Name>Eclosion2</Name>
 		<Id>598</Id>
-		<MyBoxX>786</MyBoxX><MyBoxY>471</MyBoxY>
+		<MyBoxX>-2136</MyBoxX><MyBoxY>860</MyBoxY>
 		<BoxX>25</BoxX><BoxY>210</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -570,7 +570,7 @@
 	<Box>
 		<Name>Pond</Name>
 		<Id>599</Id>
-		<MyBoxX>445</MyBoxX><MyBoxY>283</MyBoxY>
+		<MyBoxX>-2477</MyBoxX><MyBoxY>672</MyBoxY>
 		<BoxX>25</BoxX><BoxY>180</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -580,7 +580,7 @@
 	<Box>
 		<Name>While10</Name>
 		<Id>601</Id>
-		<MyBoxX>785</MyBoxX><MyBoxY>-262</MyBoxY>
+		<MyBoxX>-2137</MyBoxX><MyBoxY>127</MyBoxY>
 		<BoxX>25</BoxX><BoxY>720</BoxY>
 		<Sortie>
 			<Name>OK</Name>
@@ -594,7 +594,7 @@
 	<Box>
 		<Name>PlaceSurServeur</Name>
 		<Id>602</Id>
-		<MyBoxX>460</MyBoxX><MyBoxY>511</MyBoxY>
+		<MyBoxX>-2462</MyBoxX><MyBoxY>900</MyBoxY>
 		<BoxX>25</BoxX><BoxY>150</BoxY>
 		<Sortie>
 			<Name>OK</Name>

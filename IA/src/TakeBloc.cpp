@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Wed Jul 11 14:39:12 2012 alexandre haulotte
+// Last update Thu Jul 12 15:11:25 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -165,15 +165,16 @@ int   Player::RamassezThystame()
 int   Player::RamassezRessourceForLvl()
 {
   //// std::cout << "RamassezRessourceForLvl" << std::endl;
-  int   ret;
+  int   ret = KO;
+  int   ret2;
   int	i;
   std::string      food;
 
-  ret = xsend(_soc, "voir\n", 5, 0);
-  if (ret == -1)
+  ret2 = xsend(_soc, "voir\n", 5, 0);
+  if (ret2 == -1)
     return (ERR);
-  ret = xrecv();
-  if (ret == -1)
+  ret2 = xrecv();
+  if (ret2 == -1)
     return (ERR);
   if (_lastRep.find("{") != std::string::npos)
     {
