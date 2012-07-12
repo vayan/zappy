@@ -45,7 +45,7 @@ void		moveclient(t_client *cl)
 int		movefront(t_client *cl)
 {
   t_setting	*setting;
-
+  
   if (cl->stm->in_use != -1 && cl->stm->in_use != GoFront)
     return (1);
   if (cl->stm->in_use == -1)

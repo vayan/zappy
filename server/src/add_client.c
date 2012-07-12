@@ -33,12 +33,12 @@ void		add_client_on_map(t_client *new)
 
   setting = get_setting(NULL);
   if (new->x == -1 && new->y == -1)
-    {
-      new->x = random() % setting->width_map;
-      new->y = random() % setting->height_map;
-    }
+  {
+    new->x = random() % setting->width_map;
+    new->y = random() % setting->height_map;
+  }
   printf("\033[1;%sm--Added new player %d on (%d, %d)\033[0;0;00m\n",
-         COLOR_BLU, new->id, new->x, new->y);
+   COLOR_BLU, new->id, new->x, new->y);
   add_pl(new->x, new->y, new);
 }
 

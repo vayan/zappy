@@ -63,10 +63,10 @@ int			remove_client(t_client *to_remove)
   if (to_remove->is_graphic == 1)
     get_graphic(NULL, 1);
   remove_client_from_team(to_remove);
-  xclose(to_remove->fd);
   if (to_remove->teams != NULL)
     remove_client_on_map(to_remove);
   tmp = get_all_client(NULL, 0);
+  xclose(to_remove->fd);
   if (tmp->fd == to_remove->fd && to_remove->next != NULL)
     {
       get_all_client(to_remove->next, 0);

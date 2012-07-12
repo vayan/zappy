@@ -48,7 +48,7 @@ int             main_loop(int s, socklen_t client_sin_len,
       init_timeval(&tv);
       select_list(all_cl, &readf);
       FD_SET(s, &readf);
-      select(get_higher_fd(all_cl) + 4, &readf, NULL, NULL, &tv);
+      select(get_higher_fd() + 30, &readf, NULL, NULL, &tv);
       if (all_cl != NULL && all_cl->next == NULL && all_cl->fd == -1)
         all_cl = NULL;
       if (FD_ISSET(s, &readf))

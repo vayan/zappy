@@ -24,6 +24,7 @@
 
 #include "network.h"
 #include "xfunc.h"
+#include "client.h"
 
 void		show_all_msg(t_client *cl)
 {
@@ -64,11 +65,11 @@ char	*decoupe_back(char *msg)
   return (NULL);
 }
 
-int		get_higher_fd(t_client *all_client)
+int		get_higher_fd()
 {
   t_client	*tmp;
 
-  tmp = all_client;
+  tmp = get_all_client(NULL, 0);
   if (tmp == NULL)
     return (3);
   while (tmp->next)
