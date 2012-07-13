@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 18:50:57 2012 alexandre haulotte
-// Last update Thu Jul 12 17:35:25 2012 alexandre haulotte
+// Last update Fri Jul 13 11:17:55 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -88,6 +88,27 @@ int	Player::RecvRenfort()
   return (KO);
 }
 
+int	Player::RecvEnemie()
+{
+  Voir();
+  std::vector<std::string>::reverse_iterator	it;
+  if (!_msg.empty())
+    {
+      for (it = _msg.rbegin(); it != _msg.rend(); it++)
+	{
+	  if ((*it).find("xx") == std::string::npos)
+	    {
+	      rDir = (*it)[8] - '0';
+	      _msg.clear();
+	      if (rDir == 0)
+		return (OK);
+	      return (GODIR);
+	    }
+	}
+    }
+  _msg.clear();
+  return (KO);
+}
 int	Player::RecvJGLR()
 {
   Voir();

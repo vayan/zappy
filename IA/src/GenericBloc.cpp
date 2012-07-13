@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Fri Jul 13 10:30:12 2012 alexandre haulotte
+// Last update Fri Jul 13 11:18:45 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -193,6 +193,7 @@ int	Player::Incantation()
       if (_lastRep.find("niveau") != std::string::npos)
 	{
 	  _lvl++;
+	  _lvl = strToInt(&(_lastRep[_lastRep.length() - 2])) - 1;
 	  std::cout << _id << " | je suis lvl >>>>>>>>>>>>>>> " << _lvl << std::endl;
 	  isRenf = false;
 	  return (OK);
