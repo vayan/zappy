@@ -68,7 +68,7 @@ void				Core::go()
 		  vec = p.parse(cmd);
 		  if (vec[0] != "-1")
 		    {
-		      //std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
+		      std::cout << "Commande(" << vec[0] << ") = " << cmd << std::endl;
 		      (this->*funcs[sti(vec[0])])(vec);
 		    }
 		}
