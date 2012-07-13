@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Wed Jul 11 14:40:05 2012 alexandre haulotte
+// Last update Fri Jul 13 10:30:12 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -183,15 +183,17 @@ int	Player::Incantation()
   ret = xrecv();
   if (ret == -1)
     return (ERR);
+    std::cout << _id << " | je begin incant : " << _lvl << std::endl;
   if (_lastRep.find("elevation") != std::string::npos)
     {
+      std::cout << _id << " | je second incant !!!!! : " << _lvl << std::endl;
       while ((ret = xrecv()) == 0);
       if (ret == -1)
 	return (ERR);
       if (_lastRep.find("niveau") != std::string::npos)
 	{
 	  _lvl++;
-	  // std::cout << "je suis lvl: " << _lvl << std::endl;
+	  std::cout << _id << " | je suis lvl >>>>>>>>>>>>>>> " << _lvl << std::endl;
 	  isRenf = false;
 	  return (OK);
 	}

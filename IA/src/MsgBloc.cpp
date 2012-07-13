@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 18:50:57 2012 alexandre haulotte
-// Last update Thu Jul 12 17:15:35 2012 alexandre haulotte
+// Last update Thu Jul 12 17:35:25 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -179,7 +179,7 @@ int	Player::GetSpam()
 	{
 	  if ((*it).find(str) == std::string::npos)
 	    {
-	      _spam = (*it);
+	      _spam = (*it).substr(10, (*it).length());
 	      _msg.clear();
 	      return (OK);
 	      break;
