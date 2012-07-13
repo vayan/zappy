@@ -31,10 +31,7 @@ void	*xmalloc(unsigned int size)
   void	*p;
 
   if ((p = malloc(size)) == 0)
-    {
-      printf("Fail Malloc\n");
       exit(EXIT_FAILURE);
-    }
   return (p);
 }
 

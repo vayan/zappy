@@ -54,7 +54,7 @@ int			broadcast_to_one_client(char *msg, t_client *me)
     remove_client(tmp);
   if (full_msg[strlen(full_msg) - 1] == '\n')
     full_msg[strlen(full_msg) -1] = 0;
-  printf("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n",
+  xprintf_cic("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n",
    RED, me->id, full_msg);
   xfree(full_msg);
   return (0);

@@ -37,8 +37,8 @@ void		add_client_on_map(t_client *new)
     new->x = random() % setting->width_map;
     new->y = random() % setting->height_map;
   }
-  printf("\033[1;%sm--Added new player %d on (%d, %d)\033[0;0;00m\n",
-   COLOR_BLU, new->id, new->x, new->y);
+  xprintf_iii("\033[1;1;34m--Added new player %d on (%d, %d)\033[0;0;00m\n",
+   new->id, new->x, new->y);
   add_pl(new->x, new->y, new);
 }
 

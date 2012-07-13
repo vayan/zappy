@@ -40,12 +40,12 @@ void		aff_team(t_team *team)
   t_team	*tmp;
 
   tmp = team;
-  printf("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
+  xprintf_c("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
   if (tmp != NULL)
     {
       while (tmp)
         {
-          printf("\033[1;%sm\t%s\033[0;0;00m\n", WHITE_BLUE, tmp->name);
+          xprintf_cc("\033[1;%sm\t%s\033[0;0;00m\n", WHITE_BLUE, tmp->name);
           tmp = tmp->next;
         }
     }
@@ -56,14 +56,14 @@ void		aff_setting()
   t_setting	*setting;
 
   setting = get_setting(NULL);
-  printf("\033[1;%sm*****************************\033[0;0;00m\n", WHITE_BLUE);
-  printf("\033[1;%sm Listening on port %d... \nConfiguration : \n",
+  xprintf_c("\033[1;%sm*****************************\033[0;0;00m\n", WHITE_BLUE);
+  xprintf_ci("\033[1;%sm Listening on port %d... \nConfiguration : \n",
          WHITE_BLUE, setting->port);
-  printf("\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n\tDelay(%d)\033[0;0;00m\n",
-         setting->max_cl_per_team, setting->width_map,
-         setting->height_map, setting->delay);
+  xprintf_iii("\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n", setting->max_cl_per_team, setting->width_map,
+         setting->height_map); 
+  xprintf_i("\tDelay(%d)\033[0;0;00m\n", setting->delay);
   aff_team(setting->all_team);
-  printf("\033[1;%sm*****************************\n\033[0;0;00m\n",
+  xprintf_c("\033[1;%sm*****************************\n\033[0;0;00m\n",
          WHITE_BLUE);
 }
 

@@ -30,6 +30,8 @@ int	fill_struct_set(char **set, t_setting *setting, int i, int ac)
 {
   if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
     setting->port = atoi(set[++i]);
+  if (strcmp("-v", set[i]) == 0)
+    setting->verbose = 1;
   if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
     setting->width_map = atoi(set[++i]);
   if (strcmp("-y", set[i]) == 0 && i + 1 <= ac)
@@ -101,6 +103,7 @@ int		parser_setting(int ac, char **av)
       printf(USAGE, av[0]);
       return (-1);
     }
+  setting->verbose = 0;
   if (fill_setting(av, ac, setting) == -1)
     return (-1);
   get_setting(setting);

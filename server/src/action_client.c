@@ -58,7 +58,7 @@ int			remove_client(t_client *to_remove)
 {
   t_client		*tmp;
 
-  printf("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
+  xprintf_ci("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
          COLOR_BLU, to_remove->id);
   if (to_remove->is_graphic == 1)
     get_graphic(NULL, 1);
@@ -81,5 +81,5 @@ int			remove_client(t_client *to_remove)
 void			remove_client_on_map(t_client *cl)
 {
   rm_pl(cl->x, cl->y, cl);
-  printf("\033[1;%sm--Deleting client %d\033[0;0;00m\n", COLOR_BLU, cl->id);
+  xprintf_ci("\033[1;%sm--Deleting client %d\033[0;0;00m\n", COLOR_BLU, cl->id);
 }

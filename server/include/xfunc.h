@@ -25,5 +25,12 @@ int             xbind(int sockfd, const struct sockaddr *addr,
 int             xlisten(int sockfd, int backlog);
 ssize_t         xsend(int sockfd, const void *buf, size_t len, int flags);
 void            xfree(void *ptr);
+void xprintf_cc(const char *format, char *on, char *foo);
+void xprintf_i(const char *format, int on);
+void xprintf(const char *format);
+void xprintf_ci(const char *format, char *foo, int ts);
+void xprintf_iii(const char *format, int on, int tw, int thre);
+void xprintf_cic(const char *format, char *on, int tw, char *thre);
+void xprintf_c(const char *format, char *on);
 
 #endif

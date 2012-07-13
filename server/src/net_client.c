@@ -36,7 +36,7 @@ int		buffer_loop(char *cl_msg, t_client *tmp)
       && tmp_msg[0] != '\n' && strlen(tmp_msg) > 1)
     {
       add_msg_to_buffer(tmp, tmp_msg);
-      printf("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n",
+      xprintf_cic("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n",
        DARK_RED, tmp->id, tmp_msg);
     }
     xfree(tmp_msg);

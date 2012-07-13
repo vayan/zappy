@@ -57,7 +57,7 @@ void		send_message_start_client(t_client *cl)
 
   buff_int = xmalloc(50 * sizeof(char*));
   setting = get_setting(NULL);
-  sprintf(buff_int, "%d\n", cl->id);
+  sprintf(buff_int, "%d\n", cl->teams->left);
   broadcast_to_one_client(buff_int, cl);
   sprintf(buff_int, "%d %d\n", setting->width_map, setting->height_map);
   broadcast_to_one_client(buff_int, cl);

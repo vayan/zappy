@@ -16,6 +16,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#include "setting.h"
+
 int	xlisten(int sockfd, int backlog)
 {
   int	ret;
@@ -32,3 +34,22 @@ ssize_t		xsend(int sockfd, const void *buf, size_t len, int flags)
   ret = send(sockfd, buf, len, flags);
   return (ret);
 }
+
+void xprintf_cc(const char *format, char *on, char *foo)
+{
+  t_setting *setting;
+
+  setting = get_setting(NULL);
+  if (setting != NULL && setting->verbose == 1)
+    printf(format, on, foo);
+}
+
+void xprintf_i(const char *format, int on)
+{
+  t_setting *setting;
+
+  setting = get_setting(NULL);
+  if (setting != NULL && setting->verbose == 1)
+    printf(format, on);
+}
+

@@ -42,7 +42,7 @@ int			check_win()
         {
           seg(all_team);
           free_close_client();
-          printf("\033[1;%sm-->\tGG %s is the winner !!!\n\033[0;0;00m\n",
+          xprintf_cc("\033[1;%sm-->\tGG %s is the winner !!!\n\033[0;0;00m\n",
    DARK_RED, all_team->name);
           exit (11);
         }

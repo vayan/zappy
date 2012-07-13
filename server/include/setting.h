@@ -39,6 +39,7 @@ typedef struct	s_team {
 
 typedef struct	s_setting {
   int		port;
+  int   verbose;
   int		height_map;
   int		width_map;
   t_team	*all_team;
