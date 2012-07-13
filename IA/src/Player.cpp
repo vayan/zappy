@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Thu Jul 12 17:16:35 2012 alexandre haulotte
+// Last update Fri Jul 13 10:42:26 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -104,7 +104,7 @@ void	Player::recInfo()
   send(_soc, "\n", 1, 0);
   ret = recv(_soc, buff, 16192, 0);
   buff[ret] = 0;
-  //  _id = strToInt(buff);
+  _id = strToInt(buff);
   std::cout << "Mon Id est : " << _id << std::endl;
   ret = recv(_soc, buff, 16192, 0);
   buff[ret] = 0;
