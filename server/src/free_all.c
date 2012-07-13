@@ -37,11 +37,8 @@ void		free_close_client()
   while (all_client)
     {
       tmp = all_client;
-      xclose(all_client->fd);
-      free_buff_msg(all_client->buff_msg);
+      remove_client(tmp);
       all_client = all_client->next;
-      if (tmp != NULL)
-        xfree(tmp);
     }
 }
 

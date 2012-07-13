@@ -42,6 +42,7 @@ int	do_each_loop(t_client *all_client, fd_set *readf)
   check_timer_all_team();
   if (NEVER_DIE == 0)
     check_death_all_player();
+  check_win();
   return (0);
 }
 

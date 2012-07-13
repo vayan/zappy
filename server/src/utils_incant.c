@@ -43,20 +43,6 @@ int	count_pl_on_case(int lvl_me, t_pl_case *all_cl_case)
   return (i);
 }
 
-int count_pl_on_case_mod(int lvl_me, t_pl_case *all_cl_case)
-{
-  int i;
-
-  i = 0;
-  while (all_cl_case)
-    {
-      if (lvl_me <= all_cl_case->client->level || all_cl_case->client->stm->in_use == Incant)
-        i++;
-      all_cl_case = all_cl_case->next;
-    }
-  return (i);
-}
-
 void	init_tab_req(char *val, int *req)
 {
   req[0] = val[0] - '0';

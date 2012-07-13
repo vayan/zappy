@@ -42,12 +42,12 @@ int can_elev(t_client *cl)
   map = get_map(NULL);
   cas = map[cl->x][cl->y];
   nb_pl = count_pl_on_case(cl->level, cas->client);
-  if (nb_pl < req[0] || (int)req[Linemate] > (int)cas->rsrc[Linemate] ||
-    (int)req[Deraumere] > (int)cas->rsrc[Deraumere] ||
-    (int)req[Sibur] > (int)cas->rsrc[Sibur] ||
-    (int)req[Mendiane] > (int)cas->rsrc[Mendiane] ||
-    (int)req[Phiras] > (int)cas->rsrc[Phiras] ||
-    (int)req[Thystame] > (int)cas->rsrc[Thystame])
+  if (nb_pl != req[0] || (int)req[Linemate] != (int)cas->rsrc[Linemate] ||
+    (int)req[Deraumere]!= (int)cas->rsrc[Deraumere] ||
+    (int)req[Sibur] !=(int)cas->rsrc[Sibur] ||
+    (int)req[Mendiane] != (int)cas->rsrc[Mendiane] ||
+    (int)req[Phiras] != (int)cas->rsrc[Phiras] ||
+    (int)req[Thystame] != (int)cas->rsrc[Thystame])
   {
     broadcast_to_one_client("ko\n", cl);
     return (0);
@@ -57,12 +57,12 @@ int can_elev(t_client *cl)
 
 int	do_elev(int *req, t_client *cl, t_map_case *cas, int prec)
 {
-  if (prec == 1 || (int)req[Linemate] > (int)cas->rsrc[Linemate] ||
-    (int)req[Deraumere] > (int)cas->rsrc[Deraumere] ||
-    (int)req[Sibur] > (int)cas->rsrc[Sibur] ||
-    (int)req[Mendiane] > (int)cas->rsrc[Mendiane] ||
-    (int)req[Phiras] > (int)cas->rsrc[Phiras] ||
-    (int)req[Thystame] > (int)cas->rsrc[Thystame])
+  if (prec == 0 || (int)req[Linemate] != (int)cas->rsrc[Linemate] ||
+    (int)req[Deraumere] != (int)cas->rsrc[Deraumere] ||
+    (int)req[Sibur] != (int)cas->rsrc[Sibur] ||
+    (int)req[Mendiane] != (int)cas->rsrc[Mendiane] ||
+    (int)req[Phiras] != (int)cas->rsrc[Phiras] ||
+    (int)req[Thystame] != (int)cas->rsrc[Thystame])
     return (0);
   cl->level++;
   if (cl->level == 8)
@@ -87,7 +87,7 @@ int		do_incant(t_client *cl)
   fill_tab_req(req, cl->level);
   all_cl_case = (map[cl->x][cl->y])->client;
   nb_pl = count_pl_on_case(cl->level, all_cl_case);
-  if (nb_pl < req[0])
+  if (nb_pl == req[0])
     dead = 1;
   while (all_cl_case)
   {     
@@ -97,11 +97,10 @@ int		do_incant(t_client *cl)
     plv(NULL, all_cl_case->client);
     bct(NULL, all_cl_case->client);
     sprintf(msg, "niveau actuel : %d\n", all_cl_case->client->level);
-    usleep(1);
     broadcast_to_one_client(msg, all_cl_case->client);
-    all_cl_case->client->stm->in_use = -1;
     all_cl_case = all_cl_case->next;
   }
+  cl->stm->in_use = -1;
   xfree(msg);
   xfree(req);
   return (0);
@@ -110,10 +109,8 @@ int		do_incant(t_client *cl)
 int		start_incant_all_on_case(t_client *cl)
 {
   t_map_case	***map;
-  t_pl_case	*all_cl_case;
 
   map = get_map(NULL);
-  all_cl_case = (map[cl->x][cl->y])->client;
   pic(cl, (map[cl->x][cl->y]));
   broadcast_to_one_client("elevation en cours\n", cl);
   return (0);
@@ -123,6 +120,7 @@ int		incant(t_client *cl, int first)
 {
   t_setting	*setting;
 
+  first = first;
   if (cl->stm->in_use != -1 && cl->stm->in_use != Incant)
     return (1);
   if (cl->stm->in_use == -1)
