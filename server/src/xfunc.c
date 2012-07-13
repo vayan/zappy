@@ -16,6 +16,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#include "map.h"
 #include "network.h"
 #include "xfunc.h"
 
@@ -31,7 +32,7 @@ void	*xmalloc(unsigned int size)
   void	*p;
 
   if ((p = malloc(size)) == 0)
-      exit(EXIT_FAILURE);
+      free_close_client();
   return (p);
 }
 

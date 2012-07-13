@@ -32,10 +32,10 @@ int	incr_rsrc(Ressource *rsrc, int food, int other)
     }
   if ((random() % 8) >= 4)
     {
-      if (rsrc[(random() % 7) + 1] == 0)
+      if (rsrc[(random() % 6) + 1] == 0)
         {
           change = 1;
-          rsrc[(random() % 7) + 1] += random() % other;
+          rsrc[(random() % 6) + 1] += random() % other;
         }
     }
   return (change);
