@@ -5,13 +5,14 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:09:55 2012 yuguo cao
-// Last update Wed Jul 11 16:39:32 2012 yuguo cao
+// Last update Thu Jul 12 16:42:43 2012 yuguo cao
 //
 
 #include	"ASprite.hh"
 
 ASprite::ASprite()
 {
+  _orientation = UP;
   _lastAction = UP;
   _x_margin = 0;
   _y_margin = 0;

@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:37 2012 yuguo cao
-// Last update Thu Jul 12 13:12:12 2012 yuguo cao
+// Last update Thu Jul 12 16:55:44 2012 yuguo cao
 //
 
 #include	"Imman.hh"
@@ -33,6 +33,10 @@ void		Imman::loadImages()
   _images["pvl1"].LoadFromFile("assets/portrait-lvl1.png");
   _images["pvl2"].LoadFromFile("assets/portrait-lvl2.png");
   _images["pvl3"].LoadFromFile("assets/portrait-lvl3.png");
+  _images["pvl4"].LoadFromFile("assets/portrait-lvl4.png");
+  _images["pvl5"].LoadFromFile("assets/portrait-lvl5.png");
+  _images["pvl6"].LoadFromFile("assets/portrait-lvl6.png");
+  _images["pvl7"].LoadFromFile("assets/portrait-lvl7.png");
 
   _images["resources"].LoadFromFile("assets/resources.png");
 

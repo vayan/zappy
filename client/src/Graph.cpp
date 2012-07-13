@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Thu Jul 12 15:33:32 2012 yuguo cao
+// Last update Fri Jul 13 11:50:05 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -21,7 +21,6 @@ Graph::Graph(const int width, const int height, const int m_width, const int m_h
   _map.setHeight(m_height);
   _map.setWidth(m_width);
   _follow = -1;
-  _zoom = 1;
 }
 
 Graph::~Graph()
@@ -69,15 +68,9 @@ void			Graph::update()
       if (event.Type == sf::Event::MouseWheelMoved)
 	{
 	  if (event.MouseWheel.Delta > 0)
-	    {
-	      _view.Zoom(1.1);
-	      _zoom *= 0.9;
-	    }
+	    _view.Zoom(1.1);
 	  else if (event.MouseWheel.Delta < 0)
-	    {
-	      _view.Zoom(0.9);
-	      _zoom *= 1.1;
-	    }
+	    _view.Zoom(0.9);
 	}
       if (event.Type == sf::Event::MouseButtonPressed)
 	{
@@ -174,7 +167,10 @@ void			Graph::draw()
     _clock.Reset();
 
   if (_follow >= 0)
-    _info->draw(_app, *_invent[_follow]);
+    {
+      _info->draw(_app, *_invent[_follow]);
+      _view.SetCenter(_sprites[_follow]->getPosition());
+    }
 
   _app.SetView(_view);
   _app.Display();
@@ -281,9 +277,9 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
   //   _s_map[v]["food"]->setScale(((log(res.food) + 4) / 5) * 2);
   // _s_map[v]["food"]->setColor(sf::Color(255, 0, 0));
   // _s_map[v].clear();
-
   for(std::vector<ASprite*>::iterator imapvec = _s_map[v].begin(); imapvec != _s_map[v].end(); ++imapvec)
-    delete (*imapvec);
+    if (*imapvec)
+      delete (*imapvec);
   _s_map[v].clear();
   if (res.linemate)
     {
@@ -395,6 +391,7 @@ void			Graph::addPlayer(const int n, const int x, const int y, const ACTION orie
     default:
       newchar->createAnim(_imman->getImage("lvl1"));
     }
+  std::cout << x << " " << y << std::endl;
   newchar->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
   newchar->setOrientation(orientation);
   newchar->setLastAction(STAND);
@@ -417,20 +414,28 @@ void			Graph::movePlayer(const int n, const int x, const int y, const ACTION ori
   int			x_dest;
   int			y_dest;
 
+  //if (!_sprites[n])
+  //return ;
   if (_movements[n].z > 0)
     {
       //std::cout << "Retard" << std::endl;
       _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
     }
-
   _sprites[n]->setOrientation(orientation);
   _sprites[n]->setLastAction(orientation);
   x_src = _sprites[n]->getPosition().x;
   y_src = _sprites[n]->getPosition().y;
   x_dest = x * 64 + y * 64;
   y_dest = y * 32 - x * 32;
-  _movements[n].x = (x_dest - x_src) / 10;
-  _movements[n].y = (y_dest - y_src) / 10;
+  // std::cout << "---------------" << std::endl;
+  // std::cout << x << std::endl;
+  // std::cout << y << std::endl;
+  // std::cout << "--------" << std::endl;
+  // std::cout << float(x_src - 2 * y_src) / 32  << std::endl;
+  // std::cout << float(2 * y_src + x_src) / 32  << std::endl;
+  // std::cout << "---------------" << std::endl;
+  _movements[n].x = (x_dest - x_src) / 8;
+  _movements[n].y = (y_dest - y_src) / 8;
   _movements[n].z = 8;
   _movements[n].t = 7;
 }
@@ -439,6 +444,8 @@ void			Graph::lvlPlayer(const int n, const int lvl)
 {
   Character		*newchar = new Character();
 
+  //if (!_sprites[n])
+  //return ;
   _invent[n]->l = lvl;
   switch (lvl)
     {
@@ -475,6 +482,8 @@ void			Graph::lvlPlayer(const int n, const int lvl)
 
 void			Graph::inventPlayer(const int n, const Stone_t& res)
 {
+  //if (!_sprites[n])
+  //return ;
   _invent[n]->linemate = res.linemate;
   _invent[n]->deraumere = res.deraumere;
   _invent[n]->sibur = res.sibur;
@@ -491,6 +500,8 @@ void			Graph::requPlayerInfo(const int n)
 
 void			Graph::expuPlayer(const int n)
 {
+  if (!_sprites[n])
+    return ;
   if (_movements[n].z > 0)
     {
       //std::cout << "Retard" << std::endl;
@@ -505,6 +516,8 @@ void			Graph::expuPlayer(const int n)
 
 void			Graph::broaPlayer(const int n)
 {
+  //if (!_sprites[n])
+  //return ;
   if (_movements[n].z > 0)
     {
       //std::cout << "Retard" << std::endl;
@@ -530,12 +543,16 @@ void			Graph::incdPlayer(const int x, const int y)
 
 void			Graph::incfPlayer(const int x, const int y)
 {
+  //if (!_s_other[Vector2ic(x, y)])
+  //return ;
   delete (_s_other[Vector2ic(x, y)]);
   _s_other.erase(Vector2ic(x, y));
 }
 
 void			Graph::pondPlayer(const int n)
 {
+  //if (!_sprites[n])
+  //return ;
   if (_movements[n].z > 0)
     {
       //std::cout << "Retard" << std::endl;
@@ -555,6 +572,8 @@ void			Graph::dropPlayer(const int n)
 
 void			Graph::takePlayer(const int n)
 {
+  //if (!_sprites[n])
+  //return ;
   if (_movements[n].z > 0)
     {
       //std::cout << "Retard" << std::endl;
@@ -581,6 +600,8 @@ void			Graph::addEgg(const int n, const int t, const int x, const int y)
 
 void			Graph::diePlayer(const int n)
 {
+  //if (!_sprites[n])
+  //return ;
   if (_movements[n].z > 0)
     _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
   _sprites[n]->setLastAction(TAKE);

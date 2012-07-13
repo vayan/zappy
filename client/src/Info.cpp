@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:49:59 2012 yuguo cao
-// Last update Thu Jul 12 15:39:53 2012 yuguo cao
+// Last update Thu Jul 12 17:05:35 2012 yuguo cao
 //
 
 #include	"Info.hh"
@@ -27,6 +27,10 @@ Info::Info(Imman *i)
   _s_portrait.l1.SetImage(i->getImage("pvl1"));
   _s_portrait.l2.SetImage(i->getImage("pvl2"));
   _s_portrait.l3.SetImage(i->getImage("pvl3"));
+  _s_portrait.l4.SetImage(i->getImage("pvl4"));
+  _s_portrait.l5.SetImage(i->getImage("pvl5"));
+  _s_portrait.l6.SetImage(i->getImage("pvl6"));
+  _s_portrait.l7.SetImage(i->getImage("pvl7"));
 }
 
 Info::~Info()
@@ -85,10 +89,18 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
   _s_portrait.l1.SetSubRect(sf::IntRect(0, 0, 250, 250));
   _s_portrait.l2.SetSubRect(sf::IntRect(0, 0, 250, 250));
   _s_portrait.l3.SetSubRect(sf::IntRect(0, 0, 250, 250));
+  _s_portrait.l4.SetSubRect(sf::IntRect(0, 0, 250, 250));
+  _s_portrait.l5.SetSubRect(sf::IntRect(0, 0, 250, 250));
+  _s_portrait.l6.SetSubRect(sf::IntRect(0, 0, 250, 250));
+  _s_portrait.l7.SetSubRect(sf::IntRect(0, 0, 250, 250));
 
   _s_portrait.l1.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l2.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l3.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
+  _s_portrait.l4.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
+  _s_portrait.l5.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
+  _s_portrait.l6.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
+  _s_portrait.l7.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
 
   _s_back.SetScale(ratio, ratio);
 
@@ -113,6 +125,10 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
   _s_portrait.l1.SetScale(ratio, ratio);
   _s_portrait.l2.SetScale(ratio, ratio);
   _s_portrait.l3.SetScale(ratio, ratio);
+  _s_portrait.l4.SetScale(ratio, ratio);
+  _s_portrait.l5.SetScale(ratio, ratio);
+  _s_portrait.l6.SetScale(ratio, ratio);
+  _s_portrait.l7.SetScale(ratio, ratio);
 }
 
 void			Info::drawText(sf::RenderWindow& app)
@@ -145,6 +161,18 @@ void			Info::drawText(sf::RenderWindow& app)
 	break;
     case (3):
       app.Draw(_s_portrait.l3);
+      break;
+    case (4):
+      app.Draw(_s_portrait.l4);
+      break;
+    case (5):
+      app.Draw(_s_portrait.l5);
+      break;
+    case (6):
+      app.Draw(_s_portrait.l6);
+      break;
+    case (7):
+      app.Draw(_s_portrait.l7);
       break;
     }
 }
