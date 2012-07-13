@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=MainLinux
+Comment=<>
+GenericName=MainLinux
+Exec='/home/haulot_a/zappy-2015-2014s-haulot_a/IA'/'MainLinux'/bin/'MainLinux'
+Type=Application
+Terminal=false
+Icon=
+StartupNotify=true
+X-KDE-StartupNotify=true
+Categories=Utility;
+X-AppInstall-Package=mainlinux
+X-AppInstall-Section=main
+
