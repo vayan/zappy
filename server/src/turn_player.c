@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:08 2012 yann vaillant
-** Last update Sat Jul 14 16:03:37 2012 robin maitre
+** Last update Tue Jul 10 11:31:32 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@
 #include "client.h"
 #include "command_fonc.h"
 
-void		turn_client(t_client *cl, int turn)
+void	turn_client(t_client *cl, int turn)
 {
   if (turn == 1)
     {
@@ -63,7 +63,7 @@ int		turn_left(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == TurnLeft &&
-      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
       turn_client(cl, 0);
@@ -89,7 +89,7 @@ int		turn_right(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == TurnRight &&
-      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
+      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
       turn_client(cl, 1);

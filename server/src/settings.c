@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:27 2012 yann vaillant
-** Last update Sat Jul 14 15:57:27 2012 robin maitre
+** Last update Tue Jul 10 11:28:50 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -26,11 +26,11 @@
 #include "xfunc.h"
 #include "network.h"
 
-int		fill_struct_set(char **set, t_setting *setting, int i, int ac)
+int	fill_struct_set(char **set, t_setting *setting, int i, int ac)
 {
   if (strcmp("-p", set[i]) == 0 && i + 1 <= ac)
     setting->port = atoi(set[++i]);
-  if (strcmp("-v ", set[i]) == 0)
+  if (strcmp("-v", set[i]) == 0)
     setting->verbose = 1;
   if (strcmp("-x", set[i]) == 0 && i + 1 <= ac)
     setting->width_map = atoi(set[++i]);
@@ -43,10 +43,10 @@ int		fill_struct_set(char **set, t_setting *setting, int i, int ac)
   return (i);
 }
 
-int		fill_setting(char **set, int ac, t_setting *setting)
+int	fill_setting(char **set, int ac, t_setting *setting)
 {
-  int		i;
-  int		save;
+  int	i;
+  int	save;
 
   i = 1;
   init_setting(setting);
@@ -72,7 +72,7 @@ int		fill_setting(char **set, int ac, t_setting *setting)
   return (0);
 }
 
-int		check_setting(t_setting *setting)
+int	check_setting(t_setting *setting)
 {
   if (setting->port == -1 || setting->width_map == -1 ||
       setting->height_map == - 1 || setting->max_cl_per_team == -1 ||

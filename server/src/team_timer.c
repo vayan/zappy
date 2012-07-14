@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:04 2012 yann vaillant
-** Last update Sat Jul 14 16:01:11 2012 robin maitre
+** Last update Tue Jul 10 11:24:49 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -44,7 +44,7 @@ int		check_time_all_egg(t_eggs *egg, t_team *cl)
   setting = get_setting(NULL);
   set_elapse_time(egg->stm);
   set_elapse_sec(egg->stm);
-  if (((egg->stm->in_nsec) >= (600000000000 / setting->delay)))
+  if (((egg->stm->in_nsec) >= (600000000000/setting->delay)))
     {
       egg->stm->in_use = -1;
       add_slot_team(cl, egg);
@@ -68,7 +68,7 @@ int		check_time_pourriture_all_egg(t_eggs *egg, t_team *cl)
   setting = get_setting(NULL);
   set_elapse_time(egg->stm);
   set_elapse_sec(egg->stm);
-  if (( (egg->stm->in_nsec) >= ((10 * 126000000000) / setting->delay)))
+  if (( (egg->stm->in_nsec) >= ((10 * 126000000000)/setting->delay)))
     {
       egg->stm->in_use = -1;
       rm_slot_team(cl, egg);

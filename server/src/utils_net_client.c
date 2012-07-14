@@ -5,7 +5,7 @@
 ** Login   <haulot_a@epitech.net>
 ** 
 ** Started on  Tue Jul 10 11:20:50 2012 alexandre haulotte
-** Last update Sat Jul 14 16:51:58 2012 robin maitre
+** Last update Tue Jul 10 11:21:36 2012 alexandre haulotte
 */
 
 #include <sys/types.h>
@@ -41,11 +41,11 @@ void		show_all_msg(t_client *cl)
   }
 }
 
-char		*decoupe_back(char *msg)
+char	*decoupe_back(char *msg)
 {
-  int		i;
-  int		j;
-  char		*end;
+  int	i;
+  int	j;
+  char	*end;
 
   end = xmalloc(strlen(msg) * sizeof(char));
   i = 0;

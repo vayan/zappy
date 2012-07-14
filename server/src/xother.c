@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:39:31 2012 yann vaillant
-** Last update Sat Jul 14 16:56:57 2012 robin maitre
+** Last update Sat Jul 14 11:40:43 2012 yann vaillant
 */
 
 #include <unistd.h>
@@ -18,9 +18,9 @@
 
 #include "setting.h"
 
-int		xlisten(int sockfd, int backlog)
+int	xlisten(int sockfd, int backlog)
 {
-  int		ret;
+  int	ret;
 
   if ((ret = listen(sockfd, backlog)) == -1)
     perror("listen");
