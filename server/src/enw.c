@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:13:42 2012 anatole carlier
-** Last update Tue Jul 10 11:37:47 2012 anatole carlier
+** Last update Sat Jul 14 12:29:10 2012 robin maitre
 */
 
 #include <stdio.h>
@@ -24,7 +24,7 @@ int		enw(t_eggs *egg)
   if (graphic == NULL)
     return (0);
   str = xmalloc(sizeof(char) * 1024);
-  sprintf(str, "enw %d %i %i %i\n", egg->id, egg->from , egg->x, egg->y);
+  sprintf(str, "enw %d %i %i %i\n", egg->id, egg->from, egg->x, egg->y);
   broadcast_to_one_client(str, graphic);
   xfree(str);
   return (0);

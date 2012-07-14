@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:38 2012 yann vaillant
-** Last update Sat Jul 14 11:20:47 2012 yann vaillant
+** Last update Sat Jul 14 12:30:14 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -99,7 +99,7 @@ int		expelliarmus(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Kick &&
-      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
       if (do_expelliarmus(cl) == -1)

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:55 2012 yann vaillant
-** Last update Tue Jul 10 11:39:44 2012 anatole carlier
+** Last update Sat Jul 14 12:32:20 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -66,6 +66,6 @@ int		free_setting()
 
   setting = get_setting(NULL);
   if (setting != NULL)
-    xfree (setting);
+    xfree(setting);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:54:27 2012 yann vaillant
-** Last update Tue Jul 10 16:19:58 2012 yann vaillant
+** Last update Sat Jul 14 12:39:22 2012 robin maitre
 */
 
 #include <stdlib.h>
@@ -70,7 +70,7 @@ void		generate_new_map()
   xprintf_c("\033[1;%sm--Generating new map...\033[0;0;00m\n", COLOR_BLU);
   setting = get_setting(NULL);
   srandom(time(NULL) * geteuid());
-  new_map = xmalloc ((setting->width_map + 1) * sizeof(t_map_case*));
+  new_map = xmalloc((setting->width_map + 1) * sizeof(t_map_case*));
   while (i < setting->width_map)
     {
       new_map[i] = xmalloc(setting->height_map * sizeof(t_map_case*));

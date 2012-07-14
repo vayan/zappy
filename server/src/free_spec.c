@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:54:11 2012 yann vaillant
-** Last update Tue Jul 10 11:39:59 2012 anatole carlier
+** Last update Sat Jul 14 12:33:04 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -55,7 +55,7 @@ int		free_client_map(t_pl_case *client)
       tmp = client;
       xfree(client->client);
       client = client->next;
-      xfree (tmp);
+      xfree(tmp);
     }
   xfree(client);
   return (1);
