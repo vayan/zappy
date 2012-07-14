@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 10:22:18 2012 alexandre haulotte
-// Last update Thu Jul  5 11:07:21 2012 yuguo cao
+// Last update Fri Jul 13 16:17:59 2012 yuguo cao
 //
 
 #ifndef		__CORE_HH__
@@ -27,6 +27,8 @@
 #include	"Errur.hh"
 #include	"Parser.hh"
 
+class Graph;
+
 class	Core
 {
 private:
@@ -39,6 +41,7 @@ private:
   int			port;
   //std::vector<int>	joueurs;
   std::vector<fct>	funcs;
+  Parser		p;
 
   void			initTab();
   void			createMap(const std::vector<std::string>);
@@ -73,6 +76,9 @@ public:
   int				protocole() const;
   void				init();
   void				go();
+
+  void				askLevel(const int);
+  void				askInvent(const int);
 };
 
 #endif

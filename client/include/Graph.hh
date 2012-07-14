@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 13:46:24 2012 yuguo cao
-// Last update Thu Jul 12 17:42:27 2012 yuguo cao
+// Last update Fri Jul 13 16:26:40 2012 yuguo cao
 //
 
 #ifndef		__GRAPH__
@@ -15,6 +15,8 @@
 #include	<SFML/Graphics.hpp>
 #include	<cstdlib>
 #include	<ctime>
+
+#include	"Core.hh"
 #include	"Imman.hh"
 #include	"Errur.hh"
 #include	"Character.hh"
@@ -51,20 +53,24 @@ struct	Stone_t
 //   int		a_remain;
 // };
 
+class Core;
 class Info;
 
 class Graph
 {
 private:
+  Core				*_core;
   sf::RenderWindow		_app;
   sf::Clock			_clock;
   sf::Sprite			_background;
   const sf::Input&		_input;
+  int				_soc;
   int				_scr_height;
   int				_scr_width;
   int				_scr_bpp;
   int				_server_time;
   int				_follow;
+  int				_clickPressed;
   sf::View			_view;
   Imman				*_imman;
   Character			_char;
@@ -81,13 +87,14 @@ private:
   std::map<int, std::string>			_teams;
 
 public:
-  Graph(const int, const int, const int, const int);
+  Graph(Core *, const int, const int, const int, const int, const int);
   ~Graph();
 
   void			run();
   void			initialize();
   void			update();
   sf::Vector2<int>&	relaMouse(const sf::Event& event);
+  sf::Vector2f&		absolutePosition(const sf::Vector2i&);
   void			draw();
 
   void			updaCaseInfo(const int, const int, const Stone_t&);
@@ -108,6 +115,9 @@ public:
   void			diePlayer(const int);
   void			eggHatched(const int);
   void			timeServer(const int);
+  void			askLevel(const int);
+  void			askInvent(const int);
+  int			testPlayer(const int, const int x = 0, const int y = 0, const ACTION = UP);
 };
 
 #endif

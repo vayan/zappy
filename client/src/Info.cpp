@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:49:59 2012 yuguo cao
-// Last update Thu Jul 12 17:05:35 2012 yuguo cao
+// Last update Fri Jul 13 12:24:53 2012 yuguo cao
 //
 
 #include	"Info.hh"

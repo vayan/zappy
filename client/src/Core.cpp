@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Fri Jul 13 11:03:41 2012 yuguo cao
+// Last update Sat Jul 14 14:52:31 2012 yuguo cao
 //
 
 #include	"Core.hh"
@@ -68,7 +68,7 @@ void				Core::go()
 		  vec = p.parse(cmd);
 		  if (vec[0] != "-1")
 		    {
-		      //std::cout << "Commande(" << vec[0] << ") = " << cmd << "<<" << std::endl;
+		      std::cout << "Commande(" << vec[0] << ") = " << cmd << "<<" << std::endl;
 		      (this->*funcs[sti(vec[0])])(vec);
 		    }
 		}
@@ -121,7 +121,7 @@ void	Core::beginParse(int ac, char **av)
   for (int i = 1; i < ac; i++)
     {
       if (i % 2 == 1 && av[i][0] != '-')
-	throw(new Errur("Usage : ./client -p port [-h nom machine]"));
+	throw(new Errur("Usage : ./client [-p port] [-h nom machine]"));
       else if (i % 2 == 1 && av[i][0] == '-' && av[i][2] == '\0')
 	{
 	  switch (av[i][1])
@@ -136,7 +136,7 @@ void	Core::beginParse(int ac, char **av)
 	      macName = ip_address;
 	      break;
 	    default:
-	      throw(new Errur("Usage : ./client -p port [-h nom machine]"));
+	      throw(new Errur("Usage : ./client [-p port] [-h nom machine]"));
 	      break;
 	    }
 	  i++;
@@ -145,7 +145,7 @@ void	Core::beginParse(int ac, char **av)
 	throw(new Errur("Usage : ./client -p port [-h nom machine]"));
     }
   if (port == 0 || macName == "")
-    throw(new Errur("Usage : ./client -p port [-h nom machine]"));
+    throw(new Errur("Usage : ./client [-p port] [-h nom machine]"));
   else
     {
       std::cout << "Port is : " << port << std::endl;
@@ -233,9 +233,8 @@ void			Core::createMap(const std::vector<std::string> v)
   vi = vstvi(v);
   if (!graph)
     {
-      graph = new Graph(1440, 900, vi[1], vi[2]);
+      graph = new Graph(this, soc, 1440, 900, vi[1], vi[2]);
       graph->initialize();
-      //graph->run();
     }
 }
 
@@ -395,4 +394,44 @@ void			Core::timeServer(const std::vector<std::string> v)
 void			Core::rien(const std::vector<std::string> v)
 {
   (void) v;
+}
+
+void			Core::askLevel(const int n)
+{
+  int			ret;
+  char			buff[8096 + 1];
+  std::vector<std::string>	vec;
+  std::string		s("plv " + its(n) + "\n");
+
+  send(soc, &s[0], s.size(), 0);
+  ret = recv(soc, buff, 8096, 0);
+  if (ret == -1)
+    throw (new Errur("Receive Fail"));
+  buff[ret] = '\0';
+  vec = p.parse(buff);
+  if (vec[0] != "-1")
+    {
+      std::cout << "Commande(" << vec[0] << ") = " << buff << "<<" << std::endl;
+      (this->*funcs[sti(vec[0])])(vec);
+    }
+}
+
+void			Core::askInvent(const int n)
+{
+  int			ret;
+  char			buff[8096 + 1];
+  std::vector<std::string>	vec;
+  std::string		s("pin " + its(n) + "\n");
+
+  send(soc, &s[0], s.size(), 0);
+  ret = recv(soc, buff, 8096, 0);
+  if (ret == -1)
+    throw (new Errur("Receive Fail"));
+  buff[ret] = '\0';
+  vec = p.parse(buff);
+  if (vec[0] != "-1")
+    {
+      std::cout << "Commande(" << vec[0] << ") = " << buff << "<<" << std::endl;
+      (this->*funcs[sti(vec[0])])(vec);
+    }
 }
