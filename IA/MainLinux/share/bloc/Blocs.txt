@@ -295,6 +295,12 @@
 		<sortie>OK</sortie>
 		<sortie>KO</sortie>
 	</bloc>
+	<bloc>
+                <name>RecvEnemie</name>
+                <sortie>OK</sortie>
+                <sortie>GODIR</sortie>
+        	<sortie>KO</sortie>
+        </bloc>
 											<!------------------>
 											<!--- Algo Bloc ---->
 											<!------------------>
@@ -330,6 +336,11 @@
 	</bloc>
 	<bloc>
 		<name>IfFoodSup50</name>
+		<sortie>OK</sortie>
+		<sortie>KO</sortie>
+	</bloc>
+	<bloc>
+		<name>IfFoodSup100</name>
 		<sortie>OK</sortie>
 		<sortie>KO</sortie>
 	</bloc>

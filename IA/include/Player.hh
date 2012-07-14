@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Sat Jul 14 10:48:20 2012 alexandre haulotte
+// Last update Sat Jul 14 12:53:24 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -199,6 +199,7 @@ public:
   int	IfFoodSup10(); // OK - KO - ERR
   int	IfFoodSup30(); // OK - KO - ERR
   int	IfFoodSup50(); // OK - KO - ERR
+  int	IfFoodSup100(); // OK - KO - ERR
 
   //-----------------EndIAFunc--------------------//
 

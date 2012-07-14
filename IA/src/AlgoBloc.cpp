@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 21 09:47:33 2012 alexandre haulotte
-// Last update Thu Jul 12 15:07:57 2012 alexandre haulotte
+// Last update Sat Jul 14 12:52:57 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -127,7 +127,31 @@ int     Player::IfFoodSup50()
       food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
       // std::cout << "IfFoodSup30" << std::endl;
       food.replace(food.find("nourriture"), 10, "");
-      if (strToInt(&food[0]) > 30)
+      if (strToInt(&food[0]) > 50)
+	return (OK);
+    }
+  return (KO);
+}
+
+int     Player::IfFoodSup100()
+{
+  int   ret;
+  std::string   food;
+  //  char          buff[8096 + 1];
+
+  //  // std::cout << "_AssezNourriture" << std::endl;
+  ret = xsend(_soc, "inventaire\n", 12, 0);
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  if (_lastRep.find("nourriture") != std::string::npos)
+    {
+      food = _lastRep.substr(_lastRep.find("nourriture"), _lastRep.find(",") - _lastRep.find("nourriture"));
+      // std::cout << "IfFoodSup30" << std::endl;
+      food.replace(food.find("nourriture"), 10, "");
+      if (strToInt(&food[0]) > 100)
 	return (OK);
     }
   return (KO);

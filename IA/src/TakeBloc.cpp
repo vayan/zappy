@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 09:47:15 2012 alexandre haulotte
-// Last update Thu Jul 12 15:11:25 2012 alexandre haulotte
+// Last update Sat Jul 14 12:54:09 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -179,7 +179,7 @@ int   Player::RamassezRessourceForLvl()
   if (_lastRep.find("{") != std::string::npos)
     {
       food = _lastRep.substr(_lastRep.find("{") + 1, _lastRep.find(",") - _lastRep.find("{") + 1);
-      for (i = 1; i < 6; i++)
+      for (i = 1; i <= 6; i++)
         {
           if (_lvlTab[_lvl][i] > _ressource[i])
 	    {

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 18:50:57 2012 alexandre haulotte
-// Last update Sat Jul 14 11:11:36 2012 alexandre haulotte
+// Last update Sat Jul 14 11:56:11 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -266,7 +266,7 @@ int	Player::Naissance()
   ret = xrecv();
   if (ret == -1)
     return (ERR);
-  while (i < 5 && _compo == 0)
+  while (i < 12 && _compo == 0)
     {
       RecvCompo();
       i++;

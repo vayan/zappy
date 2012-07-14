@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Sat Jul 14 11:37:03 2012 alexandre haulotte
+// Last update Sat Jul 14 11:55:35 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -145,7 +145,7 @@ int   	Player::Eclosion()
   std::string	id = "";
 
   pc.create(_addr, _port, _teamName);
-  while (i < 5 && id == "")
+  while (i < 10 && id == "")
     {
       id = RecvNaissance();
       i++;
@@ -172,7 +172,7 @@ int   Player::Eclosion2()
   std::string	id = "";
 
   pc.create(_addr, _port, _teamName);
-  while (i < 5 && id == "")
+  while (i < 10 && id == "")
     {
       id = RecvNaissance();
       i++;
@@ -199,7 +199,7 @@ int   Player::Eclosion3()
   std::string	id = "";
 
   pc.create(_addr, _port, _teamName);
-  while (i < 5 && id == "")
+  while (i < 10 && id == "")
     {
       id = RecvNaissance();
       i++;
@@ -226,7 +226,7 @@ int   Player::Eclosion4()
   std::string	id = "";
 
   pc.create(_addr, _port, _teamName);
-  while (i < 5 && id == "")
+  while (i < 10 && id == "")
     {
       id = RecvNaissance();
       i++;
@@ -253,7 +253,7 @@ int   Player::Eclosion5()
   std::string	id = "";
 
   pc.create(_addr, _port, _teamName);
-  while (i < 5 && id == "")
+  while (i < 10 && id == "")
     {
       id = RecvNaissance();
       i++;

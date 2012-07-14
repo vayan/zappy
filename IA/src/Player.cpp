@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Sat Jul 14 10:54:40 2012 alexandre haulotte
+// Last update Sat Jul 14 12:36:07 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -87,8 +87,8 @@ void  Player::play()
 	    _msg.push_back(_lastRep);
 	}
       _cState = trTable[_cState][fctRet];
-      if (_lvl == 6)
-	std::cout << _id << " ! Etat : " << _cState << std::endl;
+      // if (_lvl == 6)
+      // 	std::cout << _id << " ! Etat : " << _cState << std::endl;
       FD_ZERO(&readfds);
       FD_SET(0, &readfds);
       FD_SET(_soc, &readfds);
