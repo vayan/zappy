@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Thu Jun  7 15:36:19 2012 anatole carlier
-** Last update Mon Jul  9 13:06:17 2012 vailla_y
+** Last update Sat Jul 14 11:35:49 2012 yann vaillant
 */
 
 #include <stdio.h>
@@ -17,7 +17,7 @@
 int		ppo_one(t_client *graphic, t_client *clients)
 {
   char		*str;
-  int dir;
+  int		dir;
 
   dir = clients->dir + 1;
   if (dir > 5 || dir < 1)
@@ -33,7 +33,7 @@ int		ppo_one(t_client *graphic, t_client *clients)
 void		ppo_broad(t_client *clients, t_client *graphic)
 {
   char		*str;
-  int dir;
+  int		dir;
 
   dir = clients->dir + 1;
   if (dir > 5 || dir < 1)
