@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:10 2012 yann vaillant
-** Last update Tue Jul 10 11:32:21 2012 robin maitre
+** Last update Sat Jul 14 11:25:44 2012 yann vaillant
 */
 
 #include <stdlib.h>
@@ -19,29 +19,29 @@
 #include "client.h"
 #include "network.h"
 
-t_map_case              ***get_map(t_map_case ***_map)
+t_map_case		***get_map(t_map_case ***_map)
 {
-  static t_map_case     ***map = NULL;
+  static t_map_case	***map = NULL;
 
   if (_map != NULL)
     map = _map;
   return (map);
 }
 
-t_pl_case   *rm_pl_from_list(t_pl_case *tmp, t_client *pl)
+t_pl_case	*rm_pl_from_list(t_pl_case *tmp, t_client *pl)
 {
-  t_pl_case   *to_free;
+  t_pl_case	*to_free;
 
   to_free = NULL;
   while (tmp)
-  {
-    if (tmp->next != NULL && tmp->next->client == pl)
     {
-      to_free = tmp->next;
-      tmp->next = tmp->next->next;
+      if (tmp->next != NULL && tmp->next->client == pl)
+	{
+	  to_free = tmp->next;
+	  tmp->next = tmp->next->next;
+	}
+      tmp = tmp->next;
     }
-    tmp = tmp->next;
-  }
   return (to_free);
 }
 
@@ -49,26 +49,26 @@ void			rm_pl(int x, int y, t_client *pl)
 {
   t_map_case		***map;
   t_pl_case		*tmp;
-  t_pl_case   *to_free;
+  t_pl_case		*to_free;
 
   map = get_map(NULL);
   to_free = NULL;
   if (MAP->client != NULL)
-  {
-    tmp = MAP->client;
-    if (tmp->next == NULL && tmp->client == pl)
     {
-      xfree(MAP->client);
-      MAP->client = NULL;
+      tmp = MAP->client;
+      if (tmp->next == NULL && tmp->client == pl)
+	{
+	  xfree(MAP->client);
+	  MAP->client = NULL;
+	}
+      else if (tmp->client == pl)
+	{
+	  to_free = MAP->client;
+	  MAP->client = tmp->next;
+	}
+      else
+	to_free = rm_pl_from_list(tmp, pl);
     }
-    else if (tmp->client == pl)
-    {
-      to_free = MAP->client;
-      MAP->client = tmp->next;
-    }
-    else
-      to_free = rm_pl_from_list(tmp, pl);
-  }
   xfree(to_free);
 }
 
@@ -80,19 +80,19 @@ void			add_pl(int x, int y, t_client *pl)
 
   map = get_map(NULL);
   if (MAP->client == NULL)
-  {
-    MAP->client = xmalloc(sizeof(t_pl_case));
-    MAP->client->next = NULL;
-    MAP->client->client = pl;
-  }
+    {
+      MAP->client = xmalloc(sizeof(t_pl_case));
+      MAP->client->next = NULL;
+      MAP->client->client = pl;
+    }
   else
-  {
-    tmp = MAP->client;
-    while (tmp->next)
-      tmp = tmp->next;
-    new = xmalloc(sizeof(t_pl_case));
-    new->next = NULL;
-    new->client = pl;
-    tmp->next = new;
-  }
+    {
+      tmp = MAP->client;
+      while (tmp->next)
+	tmp = tmp->next;
+      new = xmalloc(sizeof(t_pl_case));
+      new->next = NULL;
+      new->client = pl;
+      tmp->next = new;
+    }
 }

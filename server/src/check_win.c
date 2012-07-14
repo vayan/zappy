@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:53:52 2012 yann vaillant
-** Last update Tue Jul 10 13:39:39 2012 randy lyvet
+** Last update Sat Jul 14 11:17:10 2012 yann vaillant
 */
 
 #include		<sys/types.h>
@@ -43,7 +43,7 @@ int			check_win()
           seg(all_team);
           free_close_client();
           xprintf_cc("\033[1;%sm-->\tGG %s is the winner !!!\n\033[0;0;00m\n",
-   DARK_RED, all_team->name);
+		     DARK_RED, all_team->name);
           exit (11);
         }
       all_team = all_team->next;

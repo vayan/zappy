@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:45 2012 yann vaillant
-** Last update Tue Jul 10 13:25:12 2012 randy lyvet
+** Last update Sat Jul 14 11:13:57 2012 yann vaillant
 */
 
 #include		<sys/types.h>
@@ -59,7 +59,7 @@ int			remove_client(t_client *to_remove)
   t_client		*tmp;
 
   xprintf_ci("\033[1;%sm--Attemp to remove client %d\033[0;0;00m\n",
-         COLOR_BLU, to_remove->id);
+             COLOR_BLU, to_remove->id);
   if (to_remove->is_graphic == 1)
     get_graphic(NULL, 1);
   remove_client_from_team(to_remove);
@@ -81,5 +81,6 @@ int			remove_client(t_client *to_remove)
 void			remove_client_on_map(t_client *cl)
 {
   rm_pl(cl->x, cl->y, cl);
-  xprintf_ci("\033[1;%sm--Deleting client %d\033[0;0;00m\n", COLOR_BLU, cl->id);
+  xprintf_ci("\033[1;%sm--Deleting client %d\033[0;0;00m\n",
+	     COLOR_BLU, cl->id);
 }

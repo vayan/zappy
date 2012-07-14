@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:38 2012 yann vaillant
-** Last update Tue Jul 10 11:22:59 2012 anatole carlier
+** Last update Sat Jul 14 11:20:47 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -45,7 +45,7 @@ void		move_kicker(t_client *kicker, t_client *victim)
 void		do_expelliarmus_broad(t_client *cl, t_pl_case   *tmp)
 {
   char		*msg;
-  char    *temp;
+  char		*temp;
 
   msg = xmalloc(50 * sizeof(*msg));
   memset(msg, 0, 50);

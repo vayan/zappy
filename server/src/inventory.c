@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:05 2012 yann vaillant
-** Last update Tue Jul 10 11:24:59 2012 robin maitre
+** Last update Sat Jul 14 11:24:18 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -37,9 +37,9 @@ char	*inttochar(int i)
   return (buff_int);
 }
 
-void  send_invent_cat(char *invent, char *name, int rs)
+void		send_invent_cat(char *invent, char *name, int rs)
 {
-  char *tmp;
+  char		*tmp;
 
   strcat(invent, name);
   strcat(invent, " ");
@@ -74,20 +74,20 @@ int		inventory(t_client *cl)
   if (cl->stm->in_use != -1 && cl->stm->in_use != Inventaire)
     return (1);
   if (cl->stm->in_use == -1)
-  {
-    cl->stm->in_use = Inventaire;
-    start_timer(cl->stm);
-    return (1);
-  }
+    {
+      cl->stm->in_use = Inventaire;
+      start_timer(cl->stm);
+      return (1);
+    }
   setting = get_setting(NULL);
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Inventaire &&
-    ((cl->stm->in_nsec) >= (1000000000/setting->delay)))
-  {
-    cl->stm->in_use = -1;
-    send_invent(cl);
-    return (0);
-  }
+      ((cl->stm->in_nsec) >= (1000000000/setting->delay)))
+    {
+      cl->stm->in_use = -1;
+      send_invent(cl);
+      return (0);
+    }
   return (1);
 }

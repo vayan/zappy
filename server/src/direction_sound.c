@@ -1,11 +1,11 @@
 /*
 ** direction_sound.c for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/src
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Tue Jun 26 12:53:30 2012 yann vaillant
-** Last update Tue Jul 10 12:26:11 2012 yann vaillant
+** Last update Sat Jul 14 11:20:01 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -78,7 +78,7 @@ int			get_direction(t_client *emeter, t_client *receiver)
   int			width;
   int			goX;
   int			goY;
-  int debug;
+  int			debug;
 
   infos = get_setting(NULL);
   height = infos->height_map;

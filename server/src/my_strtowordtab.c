@@ -5,7 +5,7 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Fri Nov 11 12:50:40 2011 randy lyvet
-** Last update Tue Jul 10 14:08:08 2012 yann vaillant
+** Last update Sat Jul 14 11:27:05 2012 yann vaillant
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@
 
 void	free_tab(char **tab)
 {
-  tab = tab; 
+  tab = tab;
 }
 
 char	**my_str_to_wordtab(char *s1, char sep)

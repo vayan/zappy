@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:52 2012 yann vaillant
-** Last update Tue Jul 10 13:43:14 2012 randy lyvet
+** Last update Sat Jul 14 11:17:40 2012 yann vaillant
 */
 
 #include		<sys/types.h>
@@ -50,12 +50,12 @@ int			broadcast_to_one_client(char *msg, t_client *me)
   strcat(full_msg, msg);
   tmp = me;
   if ((xsend(tmp->fd, full_msg,
-   strlen(full_msg), MSG_DONTWAIT | MSG_NOSIGNAL)) == -1)
+	     strlen(full_msg), MSG_DONTWAIT | MSG_NOSIGNAL)) == -1)
     remove_client(tmp);
   if (full_msg[strlen(full_msg) - 1] == '\n')
     full_msg[strlen(full_msg) -1] = 0;
   xprintf_cic("\033[1;%sm-->\tSend message to %d : '%s'\033[0;0;00m\n",
-   RED, me->id, full_msg);
+	      RED, me->id, full_msg);
   xfree(full_msg);
   return (0);
 }
@@ -64,25 +64,25 @@ int			do_input_client(t_client *all_client)
 {
   t_client		*tmp;
   t_option		*tab;
+
   if (all_client == NULL)
     return (0);
-  
   tab = xmalloc (9 * sizeof(t_option));
   init_tab(tab);
   tmp = all_client;
   while (tmp)
-  {
-    if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
     {
-      if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
-        rm_top_msg_from_buffer(tmp);
+      if (tmp->buff_msg != NULL && tmp->is_graphic == 1)
+	{
+	  if (command_parser(tab, tmp->buff_msg->msg, tmp) == 0)
+	    rm_top_msg_from_buffer(tmp);
+	}
+      else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
+	{
+	  if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
+	    rm_top_msg_from_buffer(tmp);
+	}
+      tmp = tmp->next;
     }
-    else if (tmp->buff_msg != NULL && tmp->is_graphic == 0)
-    {
-      if (parse_cmd_ia(tmp->buff_msg->msg, tmp) == 0)
-        rm_top_msg_from_buffer(tmp);
-    }
-    tmp = tmp->next;
-  }
   return (0);
 }

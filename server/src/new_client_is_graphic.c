@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:55:20 2012 yann vaillant
-** Last update Tue Jul 10 12:05:23 2012 robin maitre
+** Last update Sat Jul 14 11:28:29 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -47,7 +47,7 @@ void		data_egg_graphic()
           enw(egg);
           egg = egg->next;
         }
-       tmp = tmp->next;
+      tmp = tmp->next;
     }
 }
 

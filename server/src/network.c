@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun  5 12:26:29 2012 yann vaillant
-** Last update Tue Jul 10 12:02:38 2012 robin maitre
+** Last update Sat Jul 14 11:28:13 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -34,15 +34,15 @@ void		init_socket(struct sockaddr_in *sin, int port)
   sin->sin_addr.s_addr = INADDR_ANY;
 }
 
-int             main_loop(int s, socklen_t client_sin_len,
-                          struct sockaddr_in client_sin, t_client *all_cl)
+int		main_loop(int s, socklen_t client_sin_len,
+			  struct sockaddr_in client_sin, t_client *all_cl)
 {
-  int           cs;
+  int		cs;
 
   while (11)
     {
-      fd_set    readf;
-      struct    timeval tv;
+      fd_set	readf;
+      struct	timeval tv;
 
       all_cl = get_all_client(NULL, 0);
       init_timeval(&tv);
@@ -77,7 +77,7 @@ int			network()
   xsignal(SIGINT, clean_quit);
   all_client = NULL;
   if ((s = socket(PF_INET, SOCK_STREAM, 0)) == -1)
-      return (-1);
+    return (-1);
   init_socket(&sin, setting->port);
   setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &client_sin, sizeof(client_sin));
   xbind(s, (struct sockaddr*)&sin, sizeof(sin));

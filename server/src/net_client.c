@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:17 2012 yann vaillant
-** Last update Tue Jul 10 14:13:28 2012 yann vaillant
+** Last update Sat Jul 14 11:29:35 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -30,17 +30,17 @@ int		buffer_loop(char *cl_msg, t_client *tmp)
   char		*tmp_msg;
 
   while ((tmp_msg = decoupe_back(cl_msg)) != NULL)
-  {
-    cl_msg = cl_msg + strlen(tmp_msg) + 1;
-    if (tmp_msg != NULL && tmp_msg[0] != 0
-      && tmp_msg[0] != '\n' && strlen(tmp_msg) > 1)
     {
-      add_msg_to_buffer(tmp, tmp_msg);
-      xprintf_cic("\033[1;%sm<--\tReceive message from %d : '%s'\033[0;0;00m\n",
-       DARK_RED, tmp->id, tmp_msg);
+      cl_msg = cl_msg + strlen(tmp_msg) + 1;
+      if (tmp_msg != NULL && tmp_msg[0] != 0
+	  && tmp_msg[0] != '\n' && strlen(tmp_msg) > 1)
+	{
+	  add_msg_to_buffer(tmp, tmp_msg);
+	  xprintf_cic("\033[1;%sm<--\tMessage from %d : '%s'\033[0;0;00m\n",
+		      DARK_RED, tmp->id, tmp_msg);
+	}
+      xfree(tmp_msg);
     }
-    xfree(tmp_msg);
-  }
   return (0);
 }
 
@@ -52,7 +52,7 @@ int		process_msg(char *msg, t_client *tmp)
   cl_msg = clean_msg(msg);
   save_to_free = cl_msg;
   if (cl_msg != NULL && cl_msg[0] != 0 && cl_msg[0] != '\n'
-    && strlen(cl_msg) > 1)
+      && strlen(cl_msg) > 1)
     buffer_loop(cl_msg, tmp);
   xfree(save_to_free);
   return (0);
@@ -66,19 +66,19 @@ void		get_data_from_client(t_client *all_client, fd_set *readfs)
 
   tmp = all_client;
   while (tmp)
-  {
-    if (FD_ISSET(tmp->fd, readfs))
     {
-      msg = xmalloc(MAX_INPUT * sizeof(char));
-      memset(msg, 0, MAX_INPUT);
-      if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) > 0)
-        process_msg(msg, tmp);
-      if (ret == 0)
-        remove_client(tmp);
-      xfree(msg);
+      if (FD_ISSET(tmp->fd, readfs))
+	{
+	  msg = xmalloc(MAX_INPUT * sizeof(char));
+	  memset(msg, 0, MAX_INPUT);
+	  if ((ret = recv(tmp->fd, msg, MAX_INPUT, MSG_DONTWAIT)) > 0)
+	    process_msg(msg, tmp);
+	  if (ret == 0)
+	    remove_client(tmp);
+	  xfree(msg);
+	}
+      tmp = tmp->next;
     }
-    tmp = tmp->next;
-  }
 }
 
 void		select_list(t_client *all_client, fd_set *readf)
@@ -88,8 +88,8 @@ void		select_list(t_client *all_client, fd_set *readf)
   tmp = all_client;
   FD_ZERO(readf);
   while (tmp)
-  {
-    FD_SET(tmp->fd, readf);
-    tmp = tmp->next;
-  }
+    {
+      FD_SET(tmp->fd, readf);
+      tmp = tmp->next;
+    }
 }

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:53:32 2012 yann vaillant
-** Last update Mon Jul  9 12:33:53 2012 vailla_y
+** Last update Sat Jul 14 11:15:49 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -33,12 +33,12 @@ void		add_client_on_map(t_client *new)
 
   setting = get_setting(NULL);
   if (new->x == -1 && new->y == -1)
-  {
-    new->x = random() % setting->width_map;
-    new->y = random() % setting->height_map;
-  }
+    {
+      new->x = random() % setting->width_map;
+      new->y = random() % setting->height_map;
+    }
   xprintf_iii("\033[1;1;34m--Added new player %d on (%d, %d)\033[0;0;00m\n",
-   new->id, new->x, new->y);
+	      new->id, new->x, new->y);
   add_pl(new->x, new->y, new);
 }
 

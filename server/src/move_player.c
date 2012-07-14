@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:18 2012 yann vaillant
-** Last update Tue Jul 10 11:39:14 2012 robin maitre
+** Last update Sat Jul 14 11:26:34 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -45,7 +45,7 @@ void		moveclient(t_client *cl)
 int		movefront(t_client *cl)
 {
   t_setting	*setting;
-  
+
   if (cl->stm->in_use != -1 && cl->stm->in_use != GoFront)
     return (1);
   if (cl->stm->in_use == -1)
