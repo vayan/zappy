@@ -35,11 +35,11 @@ int	count_pl_on_case(int lvl_me, t_pl_case *all_cl_case)
 
   i = 0;
   while (all_cl_case)
-    {
-      if (lvl_me == all_cl_case->client->level)
-        i++;
-      all_cl_case = all_cl_case->next;
-    }
+  {
+    if (lvl_me == all_cl_case->client->level)
+      i++;
+    all_cl_case = all_cl_case->next;
+  }
   return (i);
 }
 
@@ -72,4 +72,19 @@ void	fill_tab_req(int *req, int level)
     init_tab_req("6123010", req);
   if (level == 7)
     init_tab_req("6222221", req);
+}
+
+void  incant_broad(t_client *cl, t_map_case ***map, int *req, int dead)
+{
+  char    *msg;
+
+  msg = xmalloc (200 * sizeof(char));
+  pie(cl, 
+    do_elev(req, cl, 
+      (map[cl->x][cl->y]), dead));
+  plv(NULL, cl);
+  bct(NULL, cl);
+  sprintf(msg, "niveau actuel : %d\n", cl->level);
+  broadcast_to_one_client(msg, cl);
+  xfree(msg);
 }

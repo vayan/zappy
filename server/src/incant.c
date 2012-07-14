@@ -75,12 +75,12 @@ int		do_incant(t_client *cl)
   t_map_case	***map;
   t_pl_case	*all_cl_case;
   int		*req;
-  char		*msg;
+
   int nb_pl;
   int dead;
 
   dead = 0;
-  msg = xmalloc (200 * sizeof(char));
+
   req = xmalloc (10 * sizeof(int));
   map = get_map(NULL);
   memset(req, 0, 10);
@@ -91,17 +91,10 @@ int		do_incant(t_client *cl)
     dead = 1;
   while (all_cl_case)
   {     
-    pie(all_cl_case->client, 
-      do_elev(req, all_cl_case->client, 
-        (map[all_cl_case->client->x][all_cl_case->client->y]), dead));
-    plv(NULL, all_cl_case->client);
-    bct(NULL, all_cl_case->client);
-    sprintf(msg, "niveau actuel : %d\n", all_cl_case->client->level);
-    broadcast_to_one_client(msg, all_cl_case->client);
+    incant_broad(all_cl_case->client, map, req, dead);
     all_cl_case = all_cl_case->next;
   }
   cl->stm->in_use = -1;
-  xfree(msg);
   xfree(req);
   return (0);
 }

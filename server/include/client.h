@@ -130,5 +130,7 @@ void            correction_move_left(t_client *cl, t_setting *setting);
 char*           clean_msg(char *msg);
 char            *decoupe_back(char *msg);
 int     check_win();
+void  incant_broad(t_client *cl, t_map_case ***map, int *req, int dead);
+
 
 #endif
