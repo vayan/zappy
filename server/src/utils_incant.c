@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:56:05 2012 yann vaillant
-** Last update Sat Jul 14 11:39:45 2012 yann vaillant
+** Last update Sat Jul 14 18:28:00 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -78,9 +78,8 @@ void	incant_broad(t_client *cl, t_map_case ***map, int *req, int dead)
 {
   char	*msg;
 
-  msg = xmalloc (200 * sizeof(char));
-  pie(cl,
-      do_elev(req, cl,
+  msg = xmalloc(200 * sizeof(char));
+  pie(cl, do_elev(req, cl,
 	      (map[cl->x][cl->y]), dead));
   plv(NULL, cl);
   bct(NULL, cl);

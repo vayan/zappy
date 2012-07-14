@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 12:01:39 2012 yann vaillant
-** Last update Tue Jul 10 11:32:31 2012 alexandre haulotte
+** Last update Sat Jul 14 18:27:03 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -53,13 +53,13 @@ char		*get_see_one_case(int x, int y)
   return (msg);
 }
 
-void	scan_case(t_client *cl, char *msg)
+void		scan_case(t_client *cl, char *msg)
 {
-  int	lvl;
-  int	base;
-  int	i;
-  int	x;
-  int	y;
+  int		lvl;
+  int		base;
+  int		i;
+  int		x;
+  int		y;
 
   x = 0;
   y = 0;
@@ -82,11 +82,11 @@ void	scan_case(t_client *cl, char *msg)
     }
 }
 
-int	do_see(t_client *cl)
+int		do_see(t_client *cl)
 {
-  char	*msg;
+  char		*msg;
 
-  msg = xmalloc (100000 * sizeof(*msg));
+  msg = xmalloc(100000 * sizeof(*msg));
   memset(msg, 0, 100000);
   strcat(msg, "{");
   scan_case(cl, msg);
@@ -112,7 +112,7 @@ int		want_see(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == See &&
-      ( (cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       do_see(cl);

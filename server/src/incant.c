@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:43 2012 yann vaillant
-** Last update Sat Jul 14 13:34:12 2012 yann vaillant
+** Last update Sat Jul 14 18:32:32 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -55,7 +55,7 @@ int		can_elev(t_client *cl)
   return (1);
 }
 
-int	do_elev(int *req, t_client *cl, t_map_case *cas, int prec)
+int		do_elev(int *req, t_client *cl, t_map_case *cas, int prec)
 {
   if (prec == 0 || (int)req[Linemate] != (int)cas->rsrc[Linemate] ||
       (int)req[Deraumere] != (int)cas->rsrc[Deraumere] ||
@@ -127,7 +127,7 @@ int		incant(t_client *cl, int first)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Incant &&
-      ((cl->stm->in_nsec) >= (300000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (300000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       do_incant(cl);

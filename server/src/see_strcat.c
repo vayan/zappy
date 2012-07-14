@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:55:49 2012 yann vaillant
-** Last update Tue Jul 10 11:29:58 2012 alexandre haulotte
+** Last update Sat Jul 14 18:30:07 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -34,7 +34,7 @@ char	*clean_see(char *msg)
   int	j;
   char	*msg_clean;
 
-  msg_clean = xmalloc (100000 * sizeof(*msg_clean));
+  msg_clean = xmalloc(100000 * sizeof(*msg_clean));
   memset(msg_clean, 0, 100000);
   i = 0;
   j = 0;
@@ -79,7 +79,7 @@ void	strcat_rsrc(Ressource *rsrc, char *msg)
           rc = ressource_to_char(i);
           strcat(msg, rc);
           strcat(msg, " ");
-          xfree (rc);
+          xfree(rc);
           j++;
         }
       i++;
