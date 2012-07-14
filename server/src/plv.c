@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:08 2012 anatole carlier
-** Last update Tue Jul 10 11:34:18 2012 alexandre haulotte
+** Last update Sat Jul 14 13:17:44 2012 robin maitre
 */
 
 #include <stdio.h>
@@ -15,9 +15,9 @@
 #include "network.h"
 #include "xfunc.h"
 
-int	plv_one(t_client *client, t_client *graphic)
+int		plv_one(t_client *client, t_client *graphic)
 {
-  char	*str;
+  char		*str;
 
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "plv %i %i\n", client->id, client->level);
@@ -26,9 +26,9 @@ int	plv_one(t_client *client, t_client *graphic)
   return (0);
 }
 
-void	plv_broad(t_client *client, t_client *graphic)
+void		plv_broad(t_client *client, t_client *graphic)
 {
-  char	*str;
+  char		*str;
 
   str = xmalloc(sizeof(char) * 1024);
   sprintf(str, "plv %i %i\n", client->id, client->level);

@@ -5,14 +5,14 @@
 ** Login   <lyvet_r@epitech.net>
 **
 ** Started on  Thu Jun 14 12:30:26 2012 randy lyvet
-** Last update Tue Jul 10 11:41:11 2012 anatole carlier
+** Last update Sat Jul 14 12:58:11 2012 robin maitre
 */
 
-#include  <string.h>
-#include  "option.h"
-#include  "command_fonc.h"
+#include	<string.h>
+#include	"option.h"
+#include	"command_fonc.h"
 
-void	init_tab2(t_option *tab)
+void		init_tab2(t_option *tab)
 {
   tab[0].option = "msz";
   tab[0].op_func = msz;
@@ -30,7 +30,7 @@ void	init_tab2(t_option *tab)
   tab[6].op_func = pin;
 }
 
-void	init_tab3(t_option *tab)
+void		init_tab3(t_option *tab)
 {
   tab[7].option = "sgt";
   tab[7].op_func = sgt;
@@ -38,7 +38,7 @@ void	init_tab3(t_option *tab)
   tab[8].op_func = sst;
 }
 
-void	init_tab(t_option *tab)
+void		init_tab(t_option *tab)
 {
   memset(tab, 0, 8);
   init_tab2(tab);

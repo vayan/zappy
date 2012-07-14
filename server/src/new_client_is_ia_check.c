@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:55:52 2012 yann vaillant
-** Last update Sat Jul 14 13:02:10 2012 yann vaillant
+** Last update Sat Jul 14 13:23:12 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -47,7 +47,7 @@ t_team		*check_team(char *team)
   return (NULL);
 }
 
-int	check_place_left_in_team(t_client *cl, char *cmd, t_team *tm)
+int		check_place_left_in_team(t_client *cl, char *cmd, t_team *tm)
 {
   cmd = cmd;
   if (tm->left == 0 || tm->nbr_pl >= 100)

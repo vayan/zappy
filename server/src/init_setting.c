@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:56 2012 yann vaillant
-** Last update Tue Jul 10 11:41:01 2012 anatole carlier
+** Last update Sat Jul 14 12:57:16 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -32,7 +32,7 @@ void		add_team(t_setting *setting, char *name, int max)
   t_team	*new;
 
   tmp = setting->all_team;
-  new = xmalloc (sizeof(t_team));
+  new = xmalloc(sizeof(t_team));
   new->name = strdup(name);
   new->max = max;
   new->left = max;

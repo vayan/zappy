@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:43 2012 yann vaillant
-** Last update Sat Jul 14 11:23:23 2012 yann vaillant
+** Last update Sat Jul 14 12:54:08 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -36,11 +36,11 @@ int		can_elev(t_client *cl)
   int		*req;
   t_map_case	*cas;
 
-  req = xmalloc (10 * sizeof(int));
+  req = xmalloc(10 * sizeof(int));
   memset(req, 0, 10);
   fill_tab_req(req, cl->level);
   map = get_map(NULL);
-  cas = map[cl->x][cl->y];
+  cas = map[cl->x]cl->y];
   nb_pl = count_pl_on_case(cl->level, cas->client);
   if (nb_pl != req[0] || (int)req[Linemate] != (int)cas->rsrc[Linemate] ||
       (int)req[Deraumere]!= (int)cas->rsrc[Deraumere] ||
@@ -79,7 +79,7 @@ int		do_incant(t_client *cl)
   int		dead;
 
   dead = 0;
-  req = xmalloc (10 * sizeof(int));
+  req = xmalloc(10 * sizeof(int));
   map = get_map(NULL);
   memset(req, 0, 10);
   fill_tab_req(req, cl->level);
@@ -127,7 +127,7 @@ int		incant(t_client *cl, int first)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Incant &&
-      ( (cl->stm->in_nsec) >= (300000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (300000000000/setting->delay)))
     {
       cl->stm->in_use = -1;
       do_incant(cl);

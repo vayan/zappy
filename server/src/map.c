@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:10 2012 yann vaillant
-** Last update Sat Jul 14 11:25:44 2012 yann vaillant
+** Last update Sat Jul 14 13:02:30 2012 robin maitre
 */
 
 #include <stdlib.h>
@@ -28,9 +28,9 @@ t_map_case		***get_map(t_map_case ***_map)
   return (map);
 }
 
-t_pl_case	*rm_pl_from_list(t_pl_case *tmp, t_client *pl)
+t_pl_case		*rm_pl_from_list(t_pl_case *tmp, t_client *pl)
 {
-  t_pl_case	*to_free;
+  t_pl_case		*to_free;
 
   to_free = NULL;
   while (tmp)

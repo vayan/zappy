@@ -5,32 +5,32 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:05 2012 yann vaillant
-** Last update Sat Jul 14 11:24:18 2012 yann vaillant
+** Last update Sat Jul 14 13:01:05 2012 robin maitre
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <time.h>
-#include <signal.h>
+#include	<sys/types.h>
+#include	<sys/socket.h>
+#include	<netinet/in.h>
+#include	<arpa/inet.h>
+#include	<sys/time.h>
+#include	<unistd.h>
+#include	<stdio.h>
+#include	<string.h>
+#include	<stdlib.h>
+#include	<sys/types.h>
+#include	<sys/ipc.h>
+#include	<time.h>
+#include	<signal.h>
 
-#include "network.h"
-#include "xfunc.h"
-#include "map.h"
-#include "setting.h"
-#include "client.h"
+#include	"network.h"
+#include	"xfunc.h"
+#include	"map.h"
+#include	"setting.h"
+#include	"client.h"
 
-char	*inttochar(int i)
+char		*inttochar(int i)
 {
-  char	*buff_int;
+  char		*buff_int;
 
   buff_int = xmalloc(16 * sizeof(char*));
   sprintf(buff_int, "%d", i);
@@ -48,9 +48,9 @@ void		send_invent_cat(char *invent, char *name, int rs)
   xfree(tmp);
 }
 
-void	send_invent(t_client *cl)
+void		send_invent(t_client *cl)
 {
-  char	*invent;
+  char		*invent;
 
   invent = xmalloc(500 * sizeof(char*));
   memset(invent, 0, 500);

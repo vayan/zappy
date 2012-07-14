@@ -5,18 +5,18 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Thu Jun  7 15:27:10 2012 anatole carlier
-** Last update Mon Jul  9 12:54:17 2012 vailla_y
+** Last update Sat Jul 14 13:03:22 2012 robin maitre
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include	<stdio.h>
+#include	<stdlib.h>
+#include	<string.h>
 
-#include "xfunc.h"
-#include "network.h"
-#include "setting.h"
-#include "command_fonc.h"
-#include "map.h"
+#include	"xfunc.h"
+#include	"network.h"
+#include	"setting.h"
+#include	"command_fonc.h"
+#include	"map.h"
 
 int		mct(char **tab, t_client *client)
 {

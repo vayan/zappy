@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:55:35 2012 yann vaillant
-** Last update Sat Jul 14 12:48:13 2012 yann vaillant
+** Last update Sat Jul 14 13:22:39 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -31,7 +31,7 @@
 #include "my_strtowordtab.h"
 #include "command_fonc.h"
 
-int	client_team_init(t_client *cl, char *cmd, t_team *tm)
+int		client_team_init(t_client *cl, char *cmd, t_team *tm)
 {
   cl->teams = check_team(cmd);
   cl->death->in_use = -1;
