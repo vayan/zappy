@@ -5,13 +5,14 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:21:28 2012 yuguo cao
-// Last update Thu Jul  5 12:55:17 2012 yuguo cao
+// Last update Sat Jul 14 22:35:01 2012 yuguo cao
 //
 
 #include	"Incant.hh"
 
 Incant::Incant()
 {
+  _x_margin = 16;
 }
 
 Incant::~Incant()

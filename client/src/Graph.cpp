@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 14:16:26 2012 yuguo cao
-// Last update Sat Jul 14 14:46:25 2012 yuguo cao
+// Last update Sun Jul 15 00:17:40 2012 yuguo cao
 //
 
 #include	"Graph.hh"
@@ -23,7 +23,10 @@ Graph::Graph(Core *core, const int soc, const int width, const int height, const
   _map.setHeight(m_height);
   _map.setWidth(m_width);
   _follow = -1;
-  _clickPressed = -1;
+  _click = -1;
+  _xratio = 1.0;
+  _yratio = 1.0;
+  _win = "";
 }
 
 Graph::~Graph()
@@ -36,6 +39,8 @@ void			Graph::run()
     exit(0);
   update();
   draw();
+  _xratio = _view.GetRect().GetWidth() / _app.GetWidth();
+  _yratio = _view.GetRect().GetHeight() / _app.GetHeight();
 }
 
 void			Graph::initialize()
@@ -53,6 +58,8 @@ void			Graph::initialize()
   _view.SetCenter(640, 0);
 
   _map.setImage(_imman->getImage("back"));
+
+  _winscreen = new Win(_imman->getImage("win"));
 }
 
 void			Graph::update()
@@ -60,7 +67,6 @@ void			Graph::update()
   int			x;
   int			y;
   sf::Event		event;
-  float			elapsedTime = _app.GetFrameTime();
   sf::Vector2<int>	ccase;
 
   while (_app.GetEvent(event))
@@ -76,12 +82,19 @@ void			Graph::update()
 	  else if (event.MouseWheel.Delta < 0)
 	    _view.Zoom(0.9);
 	}
-      if (event.Type == sf::Event::MouseButtonPressed || _clickPressed > -1)
+      if (event.Type == sf::Event::MouseButtonPressed)
+	{
+	  _click = event.MouseButton.Button;
+	  _lastCoor.x = _input.GetMouseX();
+	  _lastCoor.y = _input.GetMouseY();
+	}
+      if (_click > -1)
 	{
 	  x = relaMouse(event).x;
 	  y = relaMouse(event).y;
 	  if (event.MouseButton.Button == 0)
 	    {
+	      _click = -1;
 	      _follow = -1;
 	      for(std::map<int, ASprite*>::iterator it = _sprites.begin(); it != _sprites.end(); ++it)
 		{
@@ -92,22 +105,17 @@ void			Graph::update()
 		    }
 		}
 	    }
-	  // if (event.MouseButton.Button == 1 || _clickPressed == 1)
-	  //   {
-	  //     _clickPressed = 1;
-	  //     std::cout << "youpi" << std::endl;
-	  //     if (_view.GetCenter().x > 0 && _input.GetMouseX() < _app.GetWidth() * 0.1)
-	  // 	_view.Move(-200 * elapsedTime, 0);
-	  //     else if (_view.GetCenter().x < _map.getWidth() * 64 + (_map.getHeight() * 64) && _input.GetMouseX() > _app.GetWidth() * 0.9)
-	  // 	_view.Move(200 * elapsedTime, 0);
-	  //     if (_view.GetCenter().y > (_map.getWidth() - 1) * -32 && _input.GetMouseY() < _app.GetHeight() * 0.1)
-	  // 	_view.Move(0, -200 * elapsedTime);
-	  //     else if (_view.GetCenter().y < (_map.getHeight() + 1) * 32 && _input.GetMouseY() > _app.GetHeight() * 0.9)
-	  // 	_view.Move(0, 200 * elapsedTime);
-	  //   }
+	  if (_click == 1)
+	    {
+	      _follow = -1;
+	      _newCoor.x = _input.GetMouseX();
+	      _newCoor.y = _input.GetMouseY();
+	      _view.Move((_lastCoor.x - _newCoor.x) * _xratio, (_lastCoor.y - _newCoor.y) * _yratio);
+	      _lastCoor = _newCoor;
+	    }
+	  if (event.Type == sf::Event::MouseButtonReleased)
+	    _click = -1;
 	}
-      if (event.Type == sf::Event::MouseButtonReleased)
-	_clickPressed = -1;
     }
 }
 
@@ -115,8 +123,8 @@ sf::Vector2<int>&	Graph::relaMouse(const sf::Event& event)
 {
   sf::Vector2<int>	*v2 = new sf::Vector2<int>();
 
-  v2->x = _view.GetRect().Left + (_view.GetRect().GetWidth() / _app.GetWidth() * event.MouseButton.X);
-  v2->y = _view.GetRect().Top + (_view.GetRect().GetHeight() / _app.GetHeight() * event.MouseButton.Y);
+  v2->x = _view.GetRect().Left + (_xratio * event.MouseButton.X);
+  v2->y = _view.GetRect().Top + (_yratio * event.MouseButton.Y);
   return (*v2);
 }
 
@@ -124,8 +132,8 @@ sf::Vector2f&		Graph::absolutePosition(const sf::Vector2i& v)
 {
   sf::Vector2f		*vi = new sf::Vector2f;
 
-  vi->x = _app.GetView().GetRect().Left + (_app.GetView().GetRect().GetWidth() / _app.GetWidth() * v.x);
-  vi->y = _app.GetView().GetRect().Top + (_app.GetView().GetRect().GetHeight() / _app.GetHeight() * v.y);
+  vi->x = _app.GetView().GetRect().Left + (_xratio * v.x);
+  vi->y = _app.GetView().GetRect().Top + (_yratio * v.y);
   return (*vi);
 }
 
@@ -136,7 +144,7 @@ void			Graph::draw()
 
   _app.Clear(sf::Color(0, 0, 200));
   _background.SetPosition(absolutePosition(sf::Vector2i(0, 0)));
-  _background.SetScale(_app.GetView().GetRect().GetWidth() / _app.GetWidth(), _app.GetView().GetRect().GetWidth() / _app.GetWidth());
+  _background.SetScale(_view.GetRect().GetWidth() / _app.GetWidth(), _view.GetRect().GetWidth() / _app.GetWidth());
   _app.Draw(_background);
 
   _map.draw(this->_app);
@@ -158,15 +166,10 @@ void			Graph::draw()
     }
   for(std::map<int, ASprite*>::iterator it = _sprites.begin(); it != _sprites.end(); ++it)
     {
-      if (_movements[it->first].z == 0)// && _movements[it->first].t > 0)
+      if (_movements[it->first].z == 0)
 	{
-	  //_movements[it->first].t = 0;
 	  if (_sprites[it->first]->getLastAction() == DIE)
-	    {
-	      //_sprites.erase(it->first);
-	      //delete (_sprites[it->first]);
-	      break;
-	    }
+	    break;
 	  _sprites[it->first]->setLastAction(STAND);
 	}
       if (_movements[it->first].z > 0 &&
@@ -187,6 +190,13 @@ void			Graph::draw()
       _view.SetCenter(_sprites[_follow]->getPosition());
     }
 
+  if (_win.size())
+    {
+      _winscreen->setPosition(absolutePosition(sf::Vector2i(520, 290)));
+      _winscreen->setScale(_view.GetRect().GetWidth() / _app.GetWidth(), _view.GetRect().GetWidth() / _app.GetWidth());
+      _winscreen->draw(_app);
+    }
+
   _app.SetView(_view);
   _app.Display();
 }
@@ -195,103 +205,6 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
 {
   Vector2ic		v(x, y);
 
-  // if (!_s_map[v]["linemate"])
-  //   {
-  //     _s_map[v]["linemate"] = new Linemate;
-  //     _s_map[v]["linemate"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["linemate"]->setPosition(x * 64 + (y * 64), y * 32 - (x * 32) + 16);
-  //     _s_map[v]["linemate"]->setLastAction(NO);
-  //   }
-  // if (!_s_map[v]["deraumere"])
-  //   {
-  //     _s_map[v]["deraumere"] = new Deraumere;
-  //     _s_map[v]["deraumere"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["deraumere"]->setPosition(x * 64 + (y * 64) + 16, y * 32 - (x * 32) + 16);
-  //     _s_map[v]["deraumere"]->setLastAction(NO);
-  //   }
-  // if (!_s_map[v]["sibur"])
-  //   {
-  //     _s_map[v]["sibur"] = new Sibur;
-  //     _s_map[v]["sibur"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["sibur"]->setPosition(x * 64 + (y * 64) + 32, y * 32 - (x * 32) + 16);
-  //     _s_map[v]["sibur"]->setLastAction(NO);
-  //   }
-  // if (!_s_map[v]["mendiane"])
-  //   {
-  //     _s_map[v]["mendiane"] = new Mendiane;
-  //     _s_map[v]["mendiane"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["mendiane"]->setPosition(x * 64 + (y * 64) + 48, y * 32 - (x * 32) + 16);
-  //     _s_map[v]["mendiane"]->setLastAction(NO);
-
-  //   }
-  // if (!_s_map[v]["phiras"])
-  //   {
-  //     _s_map[v]["phiras"] = new Phiras;
-  //     _s_map[v]["phiras"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["phiras"]->setPosition(x * 64 + (y * 64) + 64, y * 32 - (x * 32) + 16);
-  //     _s_map[v]["phiras"]->setLastAction(NO);
-  //   }
-  // if (!_s_map[v]["thystame"])
-  //   {
-  //     _s_map[v]["thystame"] = new Thystame;
-  //     _s_map[v]["thystame"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["thystame"]->setPosition(x * 64 + (y * 64) + 80, y * 32 - (x * 32) + 16);
-  //     _s_map[v]["thystame"]->setLastAction(NO);
-  //   }
-  // if (!_s_map[v]["food"])
-  //   {
-  //     _s_map[v]["food"] = new Nourriture;
-  //     _s_map[v]["food"]->createAnim(_imman->getImage("resources"));
-  //     _s_map[v]["food"]->setPosition(x * 64 + (y * 64) + 112, y * 32 - (x * 32) + 16);
-  //     _s_map[v]["food"]->setLastAction(NO);
-  //     _s_map[v]["food"]->setColor(0, 0, 0, 0);
-  //   }
-
-
-  // if (res.linemate == 0)
-  //   {
-  //     _s_map[v]["linemate"]->setColor(sf::Color(255, 255, 255, 0));
-  //     _s_map[v]["linemate"]->setScale(0);
-  //   }
-  // else
-  //   {
-  //     _s_map[v]["linemate"]->setColor(sf::Color(255, 255, 255, 255));
-  //     _s_map[v]["linemate"]->setScale((log(res.linemate) + 4) / 5);
-  //   }
-
-  // if (res.deraumere == 0)
-  //   _s_map[v]["deraumere"]->setScale(0);
-  // else
-  //   _s_map[v]["deraumere"]->setScale((log(res.deraumere) + 4) / 5);
-
-  // if (res.sibur == 0)
-  //   _s_map[v]["sibur"]->setScale(0);
-  // else
-  //   _s_map[v]["sibur"]->setScale((log(res.sibur) + 4) / 5);
-
-  // if (res.mendiane == 0)
-  //   _s_map[v]["mendiane"]->setScale(0);
-  // else
-  //   _s_map[v]["mendiane"]->setScale((log(res.mendiane) + 4) / 5);
-
-  // if (res.phiras == 0)
-  //   _s_map[v]["phiras"]->setScale(0);
-  // else
-  //   _s_map[v]["phiras"]->setScale((log(res.phiras) + 4) / 5);
-
-  // if (res.thystame == 0)
-  //   _s_map[v]["thystame"]->setScale(0);
-  // else
-  //   _s_map[v]["thystame"]->setScale((log(res.thystame) + 4) / 5);
-
-  // if (res.food == 0)
-  //   {
-  //     std::cout << "lol" << std::endl;
-  //   }
-  // else
-  //   _s_map[v]["food"]->setScale(((log(res.food) + 4) / 5) * 2);
-  // _s_map[v]["food"]->setColor(sf::Color(255, 0, 0));
-  // _s_map[v].clear();
   for(std::vector<ASprite*>::iterator imapvec = _s_map[v].begin(); imapvec != _s_map[v].end(); ++imapvec)
     if (*imapvec)
       delete (*imapvec);
@@ -355,9 +268,9 @@ void			Graph::updaCaseInfo(const int x, const int y, const Stone_t& res)
       Nourriture *n = new Nourriture;
       n->createAnim(_imman->getImage("resources"));
       n->setPosition(
-  		     (x * 64 + (y * 64) + 112) - (16 * ((log(res.food) + 4) / 5) * 2)
+  		     (x * 64 + (y * 64) + 112) - (16 * ((log(res.food) + 4) / 5))
   		     ,
-  		     (y * 32 - (x * 32) + 16) - (16 * ((log(res.food) + 4) / 5) * 2)
+  		     (y * 32 - (x * 32) + 16) - (16 * ((log(res.food) + 4) / 5))
   		     );
       n->setLastAction(NO);
       n->setScale(((log(res.food) + 4) / 5) * 2);
@@ -403,13 +316,12 @@ void			Graph::addPlayer(const int n, const int x, const int y, const ACTION orie
       newchar->createAnim(_imman->getImage("lvl7"));
       break;
     case (8):
-      exit(0);
+      newchar->createAnim(_imman->getImage("lvl8"));
       break;
     default:
       newchar->createAnim(_imman->getImage("lvl1"));
     }
-  std::cout << x << " " << y << std::endl;
-  newchar->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
+  newchar->setPosition(x * 64 + (y * 64) + newchar->_x_margin, y * 32 - (x * 32) + newchar->_y_margin);
   newchar->setOrientation(orientation);
   newchar->setLastAction(STAND);
   _invent[n]->l = lvl;
@@ -434,16 +346,13 @@ void			Graph::movePlayer(const int n, const int x, const int y, const ACTION ori
   if (testPlayer(n, x, y, orientation))
     return ;
   if (_movements[n].z > 0)
-    {
-      //std::cout << "Retard" << std::endl;
-      _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
-    }
+    _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
   _sprites[n]->setOrientation(orientation);
   _sprites[n]->setLastAction(orientation);
   x_src = _sprites[n]->getPosition().x;
   y_src = _sprites[n]->getPosition().y;
-  x_dest = x * 64 + y * 64;
-  y_dest = y * 32 - x * 32;
+  x_dest = x * 64 + y * 64 + _sprites[n]->_x_margin;
+  y_dest = y * 32 - x * 32 + _sprites[n]->_y_margin;
   // std::cout << "---------------" << std::endl;
   // std::cout << x << std::endl;
   // std::cout << y << std::endl;
@@ -483,7 +392,7 @@ void			Graph::lvlPlayer(const int n, const int lvl)
       newchar->createAnim(_imman->getImage("lvl7"));
       break;
     case (8):
-      exit(0);
+      newchar->createAnim(_imman->getImage("lvl8"));
       break;
     default:
       newchar->createAnim(_imman->getImage("lvl1"));
@@ -519,10 +428,7 @@ void			Graph::expuPlayer(const int n)
   if (testPlayer(n))
     return ;
   if (_movements[n].z > 0)
-    {
-      //std::cout << "Retard" << std::endl;
-      _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
-    }
+    _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
   _sprites[n]->setLastAction(EXPU);
   _movements[n].x = 0;
   _movements[n].y = 0;
@@ -535,10 +441,7 @@ void			Graph::broaPlayer(const int n)
   if (testPlayer(n))
     return ;
   if (_movements[n].z > 0)
-    {
-      //std::cout << "Retard" << std::endl;
-      _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
-    }
+    _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
   _sprites[n]->setLastAction(BROAD);
   _movements[n].x = 0;
   _movements[n].y = 0;
@@ -551,7 +454,7 @@ void			Graph::incdPlayer(const int x, const int y)
   Incant		*newinc = new Incant();
 
   newinc->createAnim(_imman->getImage("incant"));
-  newinc->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
+  newinc->setPosition(x * 64 + (y * 64) + newinc->_x_margin, y * 32 - (x * 32) + newinc->_y_margin);
   newinc->setLastAction(UP);
   newinc->setOrientation(UP);
   _s_other[Vector2ic(x, y)] = newinc;
@@ -559,8 +462,6 @@ void			Graph::incdPlayer(const int x, const int y)
 
 void			Graph::incfPlayer(const int x, const int y)
 {
-  // if (!_s_other[Vector2ic(x, y)])
-  //   return ;
   delete (_s_other[Vector2ic(x, y)]);
   _s_other.erase(Vector2ic(x, y));
 }
@@ -570,10 +471,7 @@ void			Graph::pondPlayer(const int n)
   if (testPlayer(n))
     return ;
   if (_movements[n].z > 0)
-    {
-      //std::cout << "Retard" << std::endl;
-      _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
-    }
+    _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
   _sprites[n]->setLastAction(POND);
   _movements[n].x = 0;
   _movements[n].y = 0;
@@ -588,15 +486,10 @@ void			Graph::dropPlayer(const int n)
 
 void			Graph::takePlayer(const int n)
 {
-  //if (!_sprites[n])
-  //return ;
   if (testPlayer(n))
     return ;
   if (_movements[n].z > 0)
-    {
-      //std::cout << "Retard" << std::endl;
-      _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
-    }
+    _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
   _sprites[n]->setLastAction(TAKE);
   _movements[n].x = 0;
   _movements[n].y = 0;
@@ -610,7 +503,7 @@ void			Graph::addEgg(const int n, const int t, const int x, const int y)
 
   (void) t;
   newegg->createAnim(_imman->getImage("egg"));
-  newegg->setPosition(x * 64 + (y * 64), y * 32 - (x * 32));
+  newegg->setPosition(x * 64 + (y * 64) + newegg->_x_margin, y * 32 - (x * 32) + newegg->_y_margin);
   newegg->setLastAction(STAND);
   newegg->setOrientation(UP);
   _eggs[n] = newegg;
@@ -618,11 +511,9 @@ void			Graph::addEgg(const int n, const int t, const int x, const int y)
 
 void			Graph::diePlayer(const int n)
 {
-  if (!_sprites[n])
-    return ;
+  testPlayer(n);
   if (_movements[n].z > 0)
     _sprites[n]->move(_movements[n].x * _movements[n].z, _movements[n].y * _movements[n].z);
-  _sprites[n]->setLastAction(TAKE);
   _movements[n].x = 0;
   _movements[n].y = 0;
   _movements[n].z = 8;
@@ -642,6 +533,12 @@ void			Graph::timeServer(const int t)
   _server_time = t;
 }
 
+void			Graph::victory(const std::string& t)
+{
+  _winscreen->setText(t);
+  _win = t;
+}
+
 void			Graph::askLevel(const int n)
 {
   _core->askLevel(n);
@@ -656,7 +553,6 @@ int			Graph::testPlayer(const int n, const int x, const int y, const ACTION orie
 {
   if (_sprites[n])
     return 0;
-  std::cout << "pwet" << std::endl;
   addPlayer(n, x, y, orientation, 1, "tmp");
   askLevel(n);
   askInvent(n);

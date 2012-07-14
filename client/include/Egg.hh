@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:14:42 2012 yuguo cao
-// Last update Tue Jul 10 12:14:19 2012 yuguo cao
+// Last update Sat Jul 14 23:10:04 2012 yuguo cao
 //
 
 #ifndef		__EGG__
@@ -19,6 +19,7 @@ public:
   Egg();
   ~Egg();
 
+  void			genMargins();
   virtual void		mUp();
   virtual void		mDown();
   virtual void		mLeft();

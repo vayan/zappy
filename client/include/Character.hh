@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:14:42 2012 yuguo cao
-// Last update Tue Jul  3 16:31:53 2012 yuguo cao
+// Last update Sat Jul 14 23:06:43 2012 yuguo cao
 //
 
 #ifndef		__CHARACTER__
@@ -19,6 +19,7 @@ public:
   Character();
   ~Character();
 
+  void			genMargins();
   virtual void		mUp();
   virtual void		mDown();
   virtual void		mLeft();

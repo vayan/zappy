@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun  6 13:46:24 2012 yuguo cao
-// Last update Fri Jul 13 16:26:40 2012 yuguo cao
+// Last update Sat Jul 14 23:47:40 2012 yuguo cao
 //
 
 #ifndef		__GRAPH__
@@ -24,6 +24,7 @@
 #include	"Vector2ic.hh"
 #include	"Vector4i.hh"
 #include	"Info.hh"
+#include	"Win.hh"
 
 #include	"Nourriture.hh"
 #include	"Linemate.hh"
@@ -64,18 +65,24 @@ private:
   sf::Clock			_clock;
   sf::Sprite			_background;
   const sf::Input&		_input;
+  sf::Vector2i			_lastCoor;
+  sf::Vector2i			_newCoor;
+  float				_xratio;
+  float				_yratio;
+  int				_click;
   int				_soc;
   int				_scr_height;
   int				_scr_width;
   int				_scr_bpp;
   int				_server_time;
   int				_follow;
-  int				_clickPressed;
   sf::View			_view;
   Imman				*_imman;
   Character			_char;
   Map				_map;
   Info				*_info;
+  Win				*_winscreen;
+  std::string			_win;
 
   std::map<int, ASprite*>			_sprites;
   std::map<int, ASprite*>			_eggs;
@@ -115,6 +122,7 @@ public:
   void			diePlayer(const int);
   void			eggHatched(const int);
   void			timeServer(const int);
+  void			victory(const std::string&);
   void			askLevel(const int);
   void			askInvent(const int);
   int			testPlayer(const int, const int x = 0, const int y = 0, const ACTION = UP);

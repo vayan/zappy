@@ -5,17 +5,30 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Thu Jun 14 11:21:28 2012 yuguo cao
-// Last update Wed Jul 11 11:19:53 2012 yuguo cao
+// Last update Sat Jul 14 23:24:25 2012 yuguo cao
 //
 
 #include	"Character.hh"
 
 Character::Character()
 {
+  genMargins();
 }
 
 Character::~Character()
 {
+}
+
+void		Character::genMargins()
+{
+  _x_margin = rand() % 17;
+  _y_margin = rand() % 17;
+  if (rand() % 2)
+    _x_margin *= -1;
+  if (rand() % 2)
+    _y_margin *= -1;
+  _x_margin += 32;
+  _y_margin -= 16;
 }
 
 void		Character::mUp()

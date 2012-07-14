@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 13:59:33 2012 alexandre haulotte
-// Last update Sat Jul 14 14:52:31 2012 yuguo cao
+// Last update Sat Jul 14 22:17:46 2012 yuguo cao
 //
 
 #include	"Core.hh"
@@ -68,7 +68,7 @@ void				Core::go()
 		  vec = p.parse(cmd);
 		  if (vec[0] != "-1")
 		    {
-		      std::cout << "Commande(" << vec[0] << ") = " << cmd << "<<" << std::endl;
+		      //std::cout << "Commande(" << vec[0] << ") = " << cmd << "<<" << std::endl;
 		      (this->*funcs[sti(vec[0])])(vec);
 		    }
 		}
@@ -220,13 +220,13 @@ void			Core::initTab()
   funcs.push_back(&Core::rien); //ebo
   funcs.push_back(&Core::eggHatched); //edi
   funcs.push_back(&Core::timeServer); //sgt
-  funcs.push_back(&Core::rien); //seg
+  funcs.push_back(&Core::victory); //seg
   funcs.push_back(&Core::rien); //smg
   funcs.push_back(&Core::rien); //suc
   funcs.push_back(&Core::rien); //sbp
 }
 
-void			Core::createMap(const std::vector<std::string> v)
+void			Core::createMap(const std::vector<std::string>& v)
 {
   std::vector<int>	vi;
 
@@ -238,7 +238,7 @@ void			Core::createMap(const std::vector<std::string> v)
     }
 }
 
-void			Core::updaCaseInfo(const std::vector<std::string> v)
+void			Core::updaCaseInfo(const std::vector<std::string>& v)
 {
   Stone_t		stone;
   std::vector<int>	vi;
@@ -254,12 +254,12 @@ void			Core::updaCaseInfo(const std::vector<std::string> v)
   graph->updaCaseInfo(vi[1], vi[2], stone);
 }
 
-void			Core::requCaseInfo(const std::vector<std::string> v)
+void			Core::requCaseInfo(const std::vector<std::string>& v)
 {
   (void) v;
 }
 
-void			Core::addPlayer(const std::vector<std::string> v)
+void			Core::addPlayer(const std::vector<std::string>& v)
 {
   ACTION		a;
 
@@ -283,7 +283,7 @@ void			Core::addPlayer(const std::vector<std::string> v)
   graph->addPlayer(sti(v[1]), sti(v[2]), sti(v[3]), a, sti(v[5]), v[6]);
 }
 
-void			Core::movePlayer(const std::vector<std::string> v)
+void			Core::movePlayer(const std::vector<std::string>& v)
 {
   ACTION		a;
   std::vector<int>	vi;
@@ -309,12 +309,12 @@ void			Core::movePlayer(const std::vector<std::string> v)
   graph->movePlayer(vi[1], vi[2], vi[3], a);
 }
 
-void			Core::lvlPlayer(const std::vector<std::string> v)
+void			Core::lvlPlayer(const std::vector<std::string>& v)
 {
   graph->lvlPlayer(sti(v[1]), sti(v[2]));
 }
 
-void			Core::inventPlayer(const std::vector<std::string> v)
+void			Core::inventPlayer(const std::vector<std::string>& v)
 {
   Stone_t		stone;
   std::vector<int>	vi;
@@ -331,67 +331,72 @@ void			Core::inventPlayer(const std::vector<std::string> v)
   graph->inventPlayer(vi[1], stone);
 }
 
-void			Core::requPlayerInfo(const std::vector<std::string> v)
+void			Core::requPlayerInfo(const std::vector<std::string>& v)
 {
   (void) v;
 }
 
-void			Core::expuPlayer(const std::vector<std::string> v)
+void			Core::expuPlayer(const std::vector<std::string>& v)
 {
   graph->expuPlayer(sti(v[1]));
 }
 
-void			Core::broaPlayer(const std::vector<std::string> v)
+void			Core::broaPlayer(const std::vector<std::string>& v)
 {
   graph->broaPlayer(sti(v[1]));
 }
 
-void			Core::incdPlayer(const std::vector<std::string> v)
+void			Core::incdPlayer(const std::vector<std::string>& v)
 {
   graph->incdPlayer(sti(v[1]), sti(v[2]));
 }
 
-void			Core::incfPlayer(const std::vector<std::string> v)
+void			Core::incfPlayer(const std::vector<std::string>& v)
 {
   graph->incfPlayer(sti(v[1]), sti(v[2]));
 }
 
-void			Core::pondPlayer(const std::vector<std::string> v)
+void			Core::pondPlayer(const std::vector<std::string>& v)
 {
   graph->pondPlayer(sti(v[1]));
 }
 
-void			Core::dropPlayer(const std::vector<std::string> v)
+void			Core::dropPlayer(const std::vector<std::string>& v)
 {
   graph->dropPlayer(sti(v[1]));
 }
 
-void			Core::takePlayer(const std::vector<std::string> v)
+void			Core::takePlayer(const std::vector<std::string>& v)
 {
   graph->takePlayer(sti(v[1]));
 }
 
-void			Core::addEgg(const std::vector<std::string> v)
+void			Core::addEgg(const std::vector<std::string>& v)
 {
   graph->addEgg(sti(v[1]), sti(v[2]), sti(v[3]), sti(v[4]));
 }
 
-void			Core::eggHatched(const std::vector<std::string> v)
+void			Core::eggHatched(const std::vector<std::string>& v)
 {
   graph->eggHatched(sti(v[1]));
 }
 
-void			Core::diePlayer(const std::vector<std::string> v)
+void			Core::diePlayer(const std::vector<std::string>& v)
 {
   graph->diePlayer(sti(v[1]));
 }
 
-void			Core::timeServer(const std::vector<std::string> v)
+void			Core::timeServer(const std::vector<std::string>& v)
 {
   graph->timeServer(sti(v[1]));
 }
 
-void			Core::rien(const std::vector<std::string> v)
+void			Core::victory(const std::vector<std::string>& v)
+{
+  graph->victory(v[1]);
+}
+
+void			Core::rien(const std::vector<std::string>& v)
 {
   (void) v;
 }

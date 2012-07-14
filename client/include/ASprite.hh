@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 20:17:42 2012 yuguo cao
-// Last update Wed Jul 11 15:33:54 2012 yuguo cao
+// Last update Sat Jul 14 22:27:53 2012 yuguo cao
 //
 
 #ifndef		__ASPRITE__
@@ -45,12 +45,13 @@ protected:
   LayerAnimation	_mBroad;
   LayerAnimation	_mExpu;
   LayerAnimation	_mDie;
-  int			_x_margin;
-  int			_y_margin;
 
 public:
   ASprite();
   virtual ~ASprite() {}
+
+  int			_x_margin;
+  int			_y_margin;
 
   void			createAnim(const sf::Image&);
   virtual void		mUp() = 0;

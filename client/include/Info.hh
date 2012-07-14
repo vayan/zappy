@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:50:16 2012 yuguo cao
-// Last update Thu Jul 12 15:33:08 2012 yuguo cao
+// Last update Sat Jul 14 15:44:04 2012 yuguo cao
 //
 
 #ifndef		__INFO__
@@ -51,6 +51,7 @@ struct		InfoPort_t
   sf::Sprite	l5;
   sf::Sprite	l6;
   sf::Sprite	l7;
+  sf::Sprite	l8;
 };
 
   class Graph;

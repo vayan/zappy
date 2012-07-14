@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:37 2012 yuguo cao
-// Last update Thu Jul 12 16:55:44 2012 yuguo cao
+// Last update Sat Jul 14 23:51:24 2012 yuguo cao
 //
 
 #include	"Imman.hh"
@@ -29,6 +29,7 @@ void		Imman::loadImages()
   _images["lvl5"].LoadFromFile("assets/lvl5.png");
   _images["lvl6"].LoadFromFile("assets/lvl6.png");
   _images["lvl7"].LoadFromFile("assets/lvl7.png");
+  _images["lvl8"].LoadFromFile("assets/lvl8.png");
 
   _images["pvl1"].LoadFromFile("assets/portrait-lvl1.png");
   _images["pvl2"].LoadFromFile("assets/portrait-lvl2.png");
@@ -37,6 +38,7 @@ void		Imman::loadImages()
   _images["pvl5"].LoadFromFile("assets/portrait-lvl5.png");
   _images["pvl6"].LoadFromFile("assets/portrait-lvl6.png");
   _images["pvl7"].LoadFromFile("assets/portrait-lvl7.png");
+  _images["pvl8"].LoadFromFile("assets/portrait-lvl8.png");
 
   _images["resources"].LoadFromFile("assets/resources.png");
 
@@ -47,6 +49,8 @@ void		Imman::loadImages()
   _images["egg"].LoadFromFile("assets/egg.png");
 
   _images["info"].LoadFromFile("assets/cadre.png");
+
+  _images["win"].LoadFromFile("assets/win.png");
 }
 
 const sf::Image&	Imman::getImage(const std::string& name)

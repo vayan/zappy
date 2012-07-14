@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun  6 10:22:18 2012 alexandre haulotte
-// Last update Fri Jul 13 16:17:59 2012 yuguo cao
+// Last update Sat Jul 14 22:16:58 2012 yuguo cao
 //
 
 #ifndef		__CORE_HH__
@@ -32,7 +32,7 @@ class Graph;
 class	Core
 {
 private:
-  typedef void		(Core::*fct)(const std::vector<std::string>);
+  typedef void		(Core::*fct)(const std::vector<std::string>&);
 
   int			soc;
   Graph			*graph;
@@ -44,26 +44,27 @@ private:
   Parser		p;
 
   void			initTab();
-  void			createMap(const std::vector<std::string>);
-  void			updaCaseInfo(const std::vector<std::string>);
-  void			requCaseInfo(const std::vector<std::string>);
-  void			addPlayer(const std::vector<std::string>);
-  void			movePlayer(const std::vector<std::string>);
-  void			lvlPlayer(const std::vector<std::string>);
-  void			inventPlayer(const std::vector<std::string>);
-  void			requPlayerInfo(const std::vector<std::string>);
-  void			expuPlayer(const std::vector<std::string>);
-  void			broaPlayer(const std::vector<std::string>);
-  void			incdPlayer(const std::vector<std::string>);
-  void			incfPlayer(const std::vector<std::string>);
-  void			pondPlayer(const std::vector<std::string>);
-  void			dropPlayer(const std::vector<std::string>);
-  void			takePlayer(const std::vector<std::string>);
-  void			addEgg(const std::vector<std::string>);
-  void			eggHatched(const std::vector<std::string>);
-  void			diePlayer(const std::vector<std::string>);
-  void			timeServer(const std::vector<std::string>);
-  void			rien(const std::vector<std::string>);
+  void			createMap(const std::vector<std::string>&);
+  void			updaCaseInfo(const std::vector<std::string>&);
+  void			requCaseInfo(const std::vector<std::string>&);
+  void			addPlayer(const std::vector<std::string>&);
+  void			movePlayer(const std::vector<std::string>&);
+  void			lvlPlayer(const std::vector<std::string>&);
+  void			inventPlayer(const std::vector<std::string>&);
+  void			requPlayerInfo(const std::vector<std::string>&);
+  void			expuPlayer(const std::vector<std::string>&);
+  void			broaPlayer(const std::vector<std::string>&);
+  void			incdPlayer(const std::vector<std::string>&);
+  void			incfPlayer(const std::vector<std::string>&);
+  void			pondPlayer(const std::vector<std::string>&);
+  void			dropPlayer(const std::vector<std::string>&);
+  void			takePlayer(const std::vector<std::string>&);
+  void			addEgg(const std::vector<std::string>&);
+  void			eggHatched(const std::vector<std::string>&);
+  void			diePlayer(const std::vector<std::string>&);
+  void			timeServer(const std::vector<std::string>&);
+  void			victory(const std::vector<std::string>&);
+  void			rien(const std::vector<std::string>&);
 
 public:
   Core(int ac, char **av);

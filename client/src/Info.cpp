@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:49:59 2012 yuguo cao
-// Last update Fri Jul 13 12:24:53 2012 yuguo cao
+// Last update Sat Jul 14 15:53:49 2012 yuguo cao
 //
 
 #include	"Info.hh"
@@ -31,6 +31,7 @@ Info::Info(Imman *i)
   _s_portrait.l5.SetImage(i->getImage("pvl5"));
   _s_portrait.l6.SetImage(i->getImage("pvl6"));
   _s_portrait.l7.SetImage(i->getImage("pvl7"));
+  _s_portrait.l8.SetImage(i->getImage("pvl8"));
 }
 
 Info::~Info()
@@ -93,6 +94,7 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
   _s_portrait.l5.SetSubRect(sf::IntRect(0, 0, 250, 250));
   _s_portrait.l6.SetSubRect(sf::IntRect(0, 0, 250, 250));
   _s_portrait.l7.SetSubRect(sf::IntRect(0, 0, 250, 250));
+  _s_portrait.l8.SetSubRect(sf::IntRect(0, 0, 250, 250));
 
   _s_portrait.l1.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l2.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
@@ -101,6 +103,7 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
   _s_portrait.l5.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l6.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
   _s_portrait.l7.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
+  _s_portrait.l8.SetPosition(absolutePosition(app, sf::Vector2i(150, 650)));
 
   _s_back.SetScale(ratio, ratio);
 
@@ -129,6 +132,7 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
   _s_portrait.l5.SetScale(ratio, ratio);
   _s_portrait.l6.SetScale(ratio, ratio);
   _s_portrait.l7.SetScale(ratio, ratio);
+  _s_portrait.l8.SetScale(ratio, ratio);
 }
 
 void			Info::drawText(sf::RenderWindow& app)
@@ -155,10 +159,10 @@ void			Info::drawText(sf::RenderWindow& app)
     {
     case (1):
       app.Draw(_s_portrait.l1);
-	break;
+      break;
     case (2):
       app.Draw(_s_portrait.l2);
-	break;
+      break;
     case (3):
       app.Draw(_s_portrait.l3);
       break;
@@ -173,6 +177,9 @@ void			Info::drawText(sf::RenderWindow& app)
       break;
     case (7):
       app.Draw(_s_portrait.l7);
+      break;
+    case (8):
+      app.Draw(_s_portrait.l8);
       break;
     }
 }
