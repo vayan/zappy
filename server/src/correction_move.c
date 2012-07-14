@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:19 2012 yann vaillant
-** Last update Tue Jul 10 13:49:06 2012 randy lyvet
+** Last update Sat Jul 14 12:13:05 2012 yann vaillant
 */
 
 #include		<sys/types.h>
@@ -31,7 +31,7 @@
 
 void			correction_move_down(t_client *cl, t_setting *setting)
 {
-  if (cl->dir == Down)
+  if (cl != NULL && cl->dir == Down)
     {
       cl->y += 1;
       if (cl->y >= setting->height_map)
@@ -41,7 +41,7 @@ void			correction_move_down(t_client *cl, t_setting *setting)
 
 void			correction_move_up(t_client *cl, t_setting *setting)
 {
-  if (cl->dir == Up)
+  if (cl != NULL && cl->dir == Up)
     {
       cl->y -= 1;
       if (cl->y < 0)
@@ -51,7 +51,7 @@ void			correction_move_up(t_client *cl, t_setting *setting)
 
 void			correction_move_right(t_client *cl, t_setting *setting)
 {
-  if (cl->dir == Right)
+  if (cl != NULL && cl->dir == Right)
     {
       cl->x += 1;
       if (cl->x >= setting->width_map)
@@ -61,7 +61,7 @@ void			correction_move_right(t_client *cl, t_setting *setting)
 
 void			correction_move_left(t_client *cl, t_setting *setting)
 {
-  if (cl->dir == Left)
+  if (cl != NULL && cl->dir == Left)
     {
       cl->x -= 1;
       if (cl->x < 0)

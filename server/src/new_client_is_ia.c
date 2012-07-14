@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:55:35 2012 yann vaillant
-** Last update Tue Jul 10 11:38:45 2012 alexandre haulotte
+** Last update Sat Jul 14 12:48:13 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -37,6 +37,8 @@ int	client_team_init(t_client *cl, char *cmd, t_team *tm)
   cl->death->in_use = -1;
   cl->teams->nbr_pl++;
   tm->left--;
+  if (tm->left < 0)
+    tm->left = 0;
   if (cl->teams->nbr_pl >= tm->max)
     {
       if (cl->teams->egg != NULL)
@@ -77,7 +79,8 @@ int		get_type_client(char *cmd, t_client *cl)
     }
   else if (cl->teams == NULL && (tm = check_team(cmd)) != NULL)
     {
-      check_place_left_in_team(cl, cmd, tm);
+      if (check_place_left_in_team(cl, cmd, tm) == -1)
+	return (1);
       client_team_init(cl, cmd, tm);
       add_client_on_map(cl);
       send_message_start_client(cl);

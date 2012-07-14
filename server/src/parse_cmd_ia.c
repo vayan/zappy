@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:55:26 2012 yann vaillant
-** Last update Sat Jul 14 11:30:31 2012 yann vaillant
+** Last update Sat Jul 14 12:49:36 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -98,6 +98,6 @@ int		parse_cmd_ia(char *cmd, t_client *cl)
   if (tab == NULL)
     return (0);
   if (cl->teams == NULL && cl->is_graphic == 0)
-    get_type_client(tab[0], cl);
+    return (get_type_client(tab[0], cl));
   return (parse_cmd_ia_big(cl, tab, cmd));
 }

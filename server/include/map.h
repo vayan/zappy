@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:53 2012 yann vaillant
-** Last update Sat Jul 14 11:54:57 2012 yann vaillant
+** Last update Sat Jul 14 13:05:41 2012 yann vaillant
 */
 
 #ifndef _MAP_H
@@ -51,5 +51,6 @@ int		count_pl_on_case(int lvl_me, t_pl_case *all_cl_case);
 void		fill_tab_req(int *req, int level);
 void		gen_new_rsrc();
 void  incant_broad(t_client *cl, t_map_case ***map, int *req, int dead);
+int     do_elev(int *req, t_client *cl, t_map_case *cas, int prec);
 
 #endif

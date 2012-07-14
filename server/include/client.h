@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:47 2012 yann vaillant
-** Last update Sat Jul 14 11:55:02 2012 yann vaillant
+** Last update Sat Jul 14 13:05:49 2012 yann vaillant
 */
 
 #ifndef _CLIENT_H

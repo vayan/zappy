@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:53:32 2012 yann vaillant
-** Last update Sat Jul 14 11:15:49 2012 yann vaillant
+** Last update Sat Jul 14 12:16:02 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -51,6 +51,7 @@ void	init_val_new_client(t_client *new, int fd, int id)
   new->id = id;
   new->next = NULL;
   new->teams = NULL;
+  new->dir = Up;
   new->stm = xmalloc(sizeof(t_serv_time));
   new->stm->in_use = -1;
   new->death = xmalloc(sizeof(t_serv_time));
