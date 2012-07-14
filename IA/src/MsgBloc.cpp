@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Fri Jun 15 18:50:57 2012 alexandre haulotte
-// Last update Fri Jul 13 11:17:55 2012 alexandre haulotte
+// Last update Sat Jul 14 11:11:36 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -228,4 +228,52 @@ int	Player::Spam()
       return (OK);
     }
   return (KO);
+}
+
+int	Player::RecvCompo()
+{
+  Voir();
+  std::vector<std::string>::reverse_iterator	it;
+  std::string str = "xx" + intToStr(_id) + "xx";
+
+  if (!_msg.empty())
+    {
+      for (it = _msg.rbegin(); it != _msg.rend(); it++)
+	{
+	  if ((*it).find(str) != std::string::npos)
+	    {
+	      _compo = (*it)[(*it).find(str) + str.length()] - '0';
+	      _msg.clear();
+	      return (OK);
+	    }
+	}
+    }
+  _msg.clear();
+  return (KO);
+}
+
+int	Player::Naissance()
+{
+  int   ret;
+  int	i = 0;
+  _id = rand() % 100000;
+  std::string str = "broadcast xxalivexx" + intToStr(_id) + "\n";
+
+  ret = xsend(_soc, &str[0], str.size(), 0);
+  isRenf = true;
+  if (ret == -1)
+    return (ERR);
+  ret = xrecv();
+  if (ret == -1)
+    return (ERR);
+  while (i < 5 && _compo == 0)
+    {
+      RecvCompo();
+      i++;
+    }
+  if (_compo == 0)
+    _compo = 1;
+  else if (_compo < 1 || _compo > 5)
+    _compo = 1;
+  return (OK);
 }

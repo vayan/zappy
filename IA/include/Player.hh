@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 10:36:21 2012 alexandre haulotte
-// Last update Fri Jul 13 11:10:24 2012 alexandre haulotte
+// Last update Sat Jul 14 10:48:20 2012 alexandre haulotte
 //
 
 #ifndef	__PLAYER_HH__
@@ -54,7 +54,7 @@ protected:
   std::string			_spam;
 
 public:
-  Player(int port, std::string ip, std::string team, int compo = 0, int id = 0);
+  Player(int port, std::string ip, std::string team);
   Player(int compo = 0);
   ~Player();
   void				connexion();
@@ -71,6 +71,9 @@ public:
 					 std::vector<std::string>& tokens,
 					 const std::string& delimiters);
   int     			searchDir(std::vector<std::string>, std::string);
+  int				Naissance();
+  int				RecvCompo();
+  std::string			RecvNaissance();
 
 public:
   //-------------------------------------//

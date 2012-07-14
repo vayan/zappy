@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Thu Jun 14 11:11:47 2012 alexandre haulotte
-// Last update Fri Jul 13 11:18:45 2012 alexandre haulotte
+// Last update Sat Jul 14 11:37:03 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -19,21 +19,6 @@ int   Player::Avance()
 
   //  // std::cout << _id << " : j'avance" << std::endl;
   ret = xsend(_soc, "avance\n", 7, 0);
-// switch (_dir)
-  //   {
-  //   case NORD:
-  //     _y++;
-  //     break;
-  //   case EST:
-  //     _x++;
-  //     break;
-  //   case SUD:
-  //     _y--;
-  //     break;
-  //   case OUEST:
-  //     _x--;
-  //     break;
-  //   }
   if (ret == -1)
     return (ERR);
   ret = xrecv();
@@ -128,48 +113,162 @@ int   Player::Pond()
   return (OK);
 }
 
-int   Player::Eclosion()
+std::string	Player::RecvNaissance()
 {
+  Voir();
+  std::vector<std::string>::reverse_iterator    it;
+  std::string str = "xxalivexx";
+  std::string id = "";
+
+  if (!_msg.empty())
+    {
+      for (it = _msg.rbegin(); it != _msg.rend(); it++)
+	{
+	  if ((*it).find(str) != std::string::npos)
+	    {
+	      id = &(*it)[(*it).find(str) + str.length()];
+	      _msg.clear();
+	      id = id.substr(0, id.length() - 1);
+	      return (id);
+	    }
+	}
+    }
+  _msg.clear();
+  return ("");
+}
+
+int   	Player::Eclosion()
+{
+  int   	ret;
   PlayerCreator	pc;
-  static int	i = 0;
-  pc.create(_addr, _port, _teamName, _id + i, 1);
-  i++;
+  int   	i = 0;
+  std::string	id = "";
+
+  pc.create(_addr, _port, _teamName);
+  while (i < 5 && id == "")
+    {
+      id = RecvNaissance();
+      i++;
+    }
+  if (id != "")
+    {
+      std::string str = "broadcast xx" + id + "xx1\n";
+      ret = xsend(_soc, &str[0], str.size(), 0);
+      if (ret == -1)
+	return (ERR);
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      return (OK);
+    }
   return (OK);
 }
 
 int   Player::Eclosion2()
 {
+  int   	ret;
   PlayerCreator	pc;
-  static int	i = 0;
-  pc.create(_addr, _port, _teamName, _id + i, 2);
-  i++;
+  int   	i = 0;
+  std::string	id = "";
+
+  pc.create(_addr, _port, _teamName);
+  while (i < 5 && id == "")
+    {
+      id = RecvNaissance();
+      i++;
+    }
+  if (id != "")
+    {
+      std::string str = "broadcast xx" + id + "xx2\n";
+      ret = xsend(_soc, &str[0], str.size(), 0);
+      if (ret == -1)
+	return (ERR);
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      return (OK);
+    }
   return (OK);
 }
 
 int   Player::Eclosion3()
 {
+  int   	ret;
   PlayerCreator	pc;
-  static int	i = 0;
-  pc.create(_addr, _port, _teamName, _id + i, 3);
-  i++;
+  int   	i = 0;
+  std::string	id = "";
+
+  pc.create(_addr, _port, _teamName);
+  while (i < 5 && id == "")
+    {
+      id = RecvNaissance();
+      i++;
+    }
+  if (id != "")
+    {
+      std::string str = "broadcast xx" + id + "xx3\n";
+      ret = xsend(_soc, &str[0], str.size(), 0);
+      if (ret == -1)
+	return (ERR);
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      return (OK);
+    }
   return (OK);
 }
 
 int   Player::Eclosion4()
 {
+  int   	ret;
   PlayerCreator	pc;
-  static int	i = 0;
-  pc.create(_addr, _port, _teamName, _id + i, 4);
+  int   	i = 0;
+  std::string	id = "";
+
+  pc.create(_addr, _port, _teamName);
+  while (i < 5 && id == "")
+    {
+      id = RecvNaissance();
       i++;
+    }
+  if (id != "")
+    {
+      std::string str = "broadcast xx" + id + "xx4\n";
+      ret = xsend(_soc, &str[0], str.size(), 0);
+      if (ret == -1)
+	return (ERR);
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      return (OK);
+    }
   return (OK);
 }
 
 int   Player::Eclosion5()
 {
+  int   	ret;
   PlayerCreator	pc;
-  static int	i = 0;
-  pc.create(_addr, _port, _teamName, _id + i, 5);
-  i++;
+  int   	i = 0;
+  std::string	id = "";
+
+  pc.create(_addr, _port, _teamName);
+  while (i < 5 && id == "")
+    {
+      id = RecvNaissance();
+      i++;
+    }
+  if (id != "")
+    {
+      std::string str = "broadcast xx" + id + "xx5\n";
+      ret = xsend(_soc, &str[0], str.size(), 0);
+      if (ret == -1)
+	return (ERR);
+      ret = xrecv();
+      if (ret == -1)
+	return (ERR);
+      return (OK);
+    }
   return (OK);
 }
 

@@ -5,7 +5,7 @@
 // Login   <haulot_a@epitech.net>
 // 
 // Started on  Wed Jun 13 11:21:10 2012 alexandre haulotte
-// Last update Fri Jul 13 10:42:26 2012 alexandre haulotte
+// Last update Sat Jul 14 10:54:40 2012 alexandre haulotte
 //
 
 #include	"Player.hh"
@@ -46,6 +46,8 @@ void  Player::play()
   FD_ZERO(&readfds);
   FD_SET(0, &readfds);
   FD_SET(_soc, &readfds);
+  Naissance();
+  _cState = _compo;
   while (select(_soc + 1, &readfds, NULL, NULL, &tv) != -1)
     {
       tv.tv_sec = 0;
@@ -104,7 +106,7 @@ void	Player::recInfo()
   send(_soc, "\n", 1, 0);
   ret = recv(_soc, buff, 16192, 0);
   buff[ret] = 0;
-  _id = strToInt(buff);
+  //  _id = strToInt(buff);
   std::cout << "Mon Id est : " << _id << std::endl;
   ret = recv(_soc, buff, 16192, 0);
   buff[ret] = 0;
@@ -134,9 +136,9 @@ Player::Player(int compo)
   _nbRenf = 1;
 }
 
-Player::Player(int port, std::string ip, std::string team, int compo, int id)
-  :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(id),
-   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(compo), _spam("")
+Player::Player(int port, std::string ip, std::string team)
+  :_x(0), _y(0), _width(0), _height(0), _dir(1), _lvl(0), _id(0),
+   _port(port), _addr(ip),  _compo(0), _lastRep(""), _cState(1), _spam("")
 {
   _teamName = team;
   _ressource[FOOD] = 10;
@@ -158,9 +160,9 @@ Player::Player(int port, std::string ip, std::string team, int compo, int id)
 
 void    Player::parse(int ac, char **av)
 {
-  struct hostent *h;
-  std::string ip_address;
-  in_addr *addss;
+  struct hostent 	*h;
+  std::string 		ip_address;
+  in_addr 		*addss;
 
   if (ac < 5)
     throw(new Errur("Usage : ./client -n nom_equipe -p port [-h nom machine]"));
