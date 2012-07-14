@@ -1,11 +1,11 @@
 /*
 ** setting.h for  in /home/vailla_y/Projet/zappy/zappy-2015-2014s-haulot_a/server/include
-** 
+**
 ** Made by yann vaillant
 ** Login   <vailla_y@epitech.net>
-** 
+**
 ** Started on  Thu Jun  7 15:39:04 2012 yann vaillant
-** Last update Mon Jul  9 18:34:28 2012 vailla_y
+** Last update Sat Jul 14 11:52:04 2012 yann vaillant
 */
 
 #ifndef __SETTING_
@@ -39,7 +39,7 @@ typedef struct	s_team {
 
 typedef struct	s_setting {
   int		port;
-  int   verbose;
+  int		verbose;
   int		height_map;
   int		width_map;
   t_team	*all_team;

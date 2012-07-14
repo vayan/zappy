@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:47 2012 yann vaillant
-** Last update Mon Jul  9 16:17:00 2012 vailla_y
+** Last update Sat Jul 14 11:55:02 2012 yann vaillant
 */
 
 #ifndef _CLIENT_H
@@ -130,7 +130,5 @@ void            correction_move_left(t_client *cl, t_setting *setting);
 char*           clean_msg(char *msg);
 char            *decoupe_back(char *msg);
 int     check_win();
-void  incant_broad(t_client *cl, t_map_case ***map, int *req, int dead);
-
 
 #endif

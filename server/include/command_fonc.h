@@ -1,11 +1,11 @@
 /*
 ** command_fonc.h for  in /home/lyvet_r//tek2/syst-unix/zappy/zappy-2015-2014s-haulot_a/server
-** 
+**
 ** Made by randy lyvet
 ** Login   <lyvet_r@epitech.net>
-** 
+**
 ** Started on  Tue Jun 12 14:41:40 2012 randy lyvet
-** Last update Mon Jul  9 16:09:43 2012 vailla_y
+** Last update Sat Jul 14 11:48:43 2012 yann vaillant
 */
 
 #ifndef COMMAND_FONC_
@@ -37,7 +37,7 @@ char	*map_contents(char *str, int x, int y);
 int	ppo(char **tab, t_client *client);
 int	edi(int id);
 int	enw(t_eggs *egg);
-int     pie(t_client *client, int res);
+int	pie(t_client *client, int res);
 int	pic(t_client *client, t_map_case *cas);
 int	pdi(char **tab, t_client *client);
 int	pbc(char *msg, t_client *client);
