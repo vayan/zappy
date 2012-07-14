@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:39:31 2012 yann vaillant
-** Last update Tue Jul 10 11:15:42 2012 alexandre haulotte
+** Last update Sat Jul 14 11:40:43 2012 yann vaillant
 */
 
 #include <unistd.h>
@@ -35,18 +35,18 @@ ssize_t		xsend(int sockfd, const void *buf, size_t len, int flags)
   return (ret);
 }
 
-void xprintf_cc(const char *format, char *on, char *foo)
+void		xprintf_cc(const char *format, char *on, char *foo)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   setting = get_setting(NULL);
   if (setting != NULL && setting->verbose == 1)
     printf(format, on, foo);
 }
 
-void xprintf_i(const char *format, int on)
+void		xprintf_i(const char *format, int on)
 {
-  t_setting *setting;
+  t_setting	*setting;
 
   setting = get_setting(NULL);
   if (setting != NULL && setting->verbose == 1)

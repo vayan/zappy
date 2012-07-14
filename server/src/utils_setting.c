@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:14 2012 yann vaillant
-** Last update Tue Jul 10 11:17:34 2012 alexandre haulotte
+** Last update Sat Jul 14 11:41:46 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -56,17 +56,17 @@ void		aff_setting()
   t_setting	*setting;
 
   setting = get_setting(NULL);
-  xprintf_c("\033[1;%sm*****************************\033[0;0;00m\n", 
-    WHITE_BLUE);
+  xprintf_c("\033[1;%sm*****************************\033[0;0;00m\n",
+	    WHITE_BLUE);
   xprintf_ci("\033[1;%sm Listening on port %d... \nConfiguration : \n",
-         WHITE_BLUE, setting->port);
-  xprintf_iii("\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n", 
-      setting->max_cl_per_team, setting->width_map,
-         setting->height_map); 
+	     WHITE_BLUE, setting->port);
+  xprintf_iii("\tMax(%d) \n\tWorldX(%d) \n\tWorldY(%d) \n",
+	      setting->max_cl_per_team, setting->width_map,
+	      setting->height_map);
   xprintf_i("\tDelay(%d)\033[0;0;00m\n", setting->delay);
   aff_team(setting->all_team);
   xprintf_c("\033[1;%sm*****************************\n\033[0;0;00m\n",
-         WHITE_BLUE);
+	    WHITE_BLUE);
 }
 
 int	count_nb_team(char **av, int i, int ac)

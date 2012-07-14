@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Tue Jun 12 11:16:11 2012 anatole carlier
-** Last update Tue Jul 10 11:25:17 2012 alexandre haulotte
+** Last update Sat Jul 14 11:38:45 2012 yann vaillant
 */
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 #include "network.h"
 #include "setting.h"
 
-int		 sst(char **tab, t_client *client)
+int		sst(char **tab, t_client *client)
 {
   char		*str;
   t_setting	*settings;

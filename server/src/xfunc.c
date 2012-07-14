@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:39:23 2012 yann vaillant
-** Last update Tue Jul 10 11:16:58 2012 alexandre haulotte
+** Last update Sat Jul 14 11:40:00 2012 yann vaillant
 */
 
 #include <unistd.h>
@@ -32,7 +32,7 @@ void	*xmalloc(unsigned int size)
   void	*p;
 
   if ((p = malloc(size)) == 0)
-      free_close_client();
+    free_close_client();
   return (p);
 }
 

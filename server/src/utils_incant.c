@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:56:05 2012 yann vaillant
-** Last update Tue Jul 10 17:55:42 2012 yann vaillant
+** Last update Sat Jul 14 11:39:45 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -35,11 +35,11 @@ int	count_pl_on_case(int lvl_me, t_pl_case *all_cl_case)
 
   i = 0;
   while (all_cl_case)
-  {
-    if (lvl_me == all_cl_case->client->level)
-      i++;
-    all_cl_case = all_cl_case->next;
-  }
+    {
+      if (lvl_me == all_cl_case->client->level)
+	i++;
+      all_cl_case = all_cl_case->next;
+    }
   return (i);
 }
 
@@ -74,14 +74,14 @@ void	fill_tab_req(int *req, int level)
     init_tab_req("6222221", req);
 }
 
-void  incant_broad(t_client *cl, t_map_case ***map, int *req, int dead)
+void	incant_broad(t_client *cl, t_map_case ***map, int *req, int dead)
 {
-  char    *msg;
+  char	*msg;
 
   msg = xmalloc (200 * sizeof(char));
-  pie(cl, 
-    do_elev(req, cl, 
-      (map[cl->x][cl->y]), dead));
+  pie(cl,
+      do_elev(req, cl,
+	      (map[cl->x][cl->y]), dead));
   plv(NULL, cl);
   bct(NULL, cl);
   sprintf(msg, "niveau actuel : %d\n", cl->level);
