@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:14 2012 yann vaillant
-** Last update Sat Jul 14 11:41:46 2012 yann vaillant
+** Last update Sat Jul 14 16:55:22 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -35,9 +35,9 @@ t_setting		*get_setting(t_setting *_setting)
   return (setting);
 }
 
-void		aff_team(t_team *team)
+void			aff_team(t_team *team)
 {
-  t_team	*tmp;
+  t_team		*tmp;
 
   tmp = team;
   xprintf_c("\033[1;%sm Teams : \033[0;0;00m\n", WHITE_BLUE);
@@ -51,9 +51,9 @@ void		aff_team(t_team *team)
     }
 }
 
-void		aff_setting()
+void			aff_setting()
 {
-  t_setting	*setting;
+  t_setting		*setting;
 
   setting = get_setting(NULL);
   xprintf_c("\033[1;%sm*****************************\033[0;0;00m\n",
@@ -69,9 +69,9 @@ void		aff_setting()
 	    WHITE_BLUE);
 }
 
-int	count_nb_team(char **av, int i, int ac)
+int			count_nb_team(char **av, int i, int ac)
 {
-  int	nb;
+  int			nb;
 
   nb = 0;
   while (i < ac && av[i][0] != '-')

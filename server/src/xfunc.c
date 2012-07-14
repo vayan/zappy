@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:39:23 2012 yann vaillant
-** Last update Sat Jul 14 12:30:59 2012 yann vaillant
+** Last update Sat Jul 14 16:56:20 2012 robin maitre
 */
 
 #include <unistd.h>
@@ -20,16 +20,16 @@
 #include "network.h"
 #include "xfunc.h"
 
-int	xclose(int d)
+int		xclose(int d)
 {
   if (close(d) == -1)
     return (-1);
   return (0);
 }
 
-void	*xmalloc(unsigned int size)
+void		*xmalloc(unsigned int size)
 {
-  void	*p;
+  void		*p;
 
   if ((p = malloc(size)) == 0)
     free_close_client();
@@ -46,16 +46,16 @@ sighandler_t	xsignal(int signum, sighandler_t handler)
   return (ret);
 }
 
-int	xbind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+int		xbind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
 {
-  int	ret;
+  int		ret;
 
   if ((ret = bind(sockfd, addr, addrlen)) == -1)
     return (-1);
   return (ret);
 }
 
-void	xfree(void *ptr)
+void		xfree(void *ptr)
 {
   if (ptr != NULL)
     {

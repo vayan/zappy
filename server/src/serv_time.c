@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:40 2012 yann vaillant
-** Last update Tue Jul 10 11:29:27 2012 alexandre haulotte
+** Last update Sat Jul 14 15:54:07 2012 robin maitre
 */
 
 #include <stdlib.h>
@@ -48,7 +48,7 @@ void		set_elapse_time(t_serv_time *stm)
   clock_gettime(CLOCK_REALTIME, &tp);
   tp_diff = diff(stm->start_time, tp);
   tim = (tp_diff.tv_sec * 1000000000) + tp_diff.tv_nsec;
-  stm->in_nsec  = tim;
+  stm->in_nsec = tim;
 }
 
 void		set_elapse_sec(t_serv_time *stm)
@@ -59,7 +59,6 @@ void		set_elapse_sec(t_serv_time *stm)
 
   clock_gettime(CLOCK_REALTIME, &tp);
   tp_diff = diff(stm->start_time, tp);
-  tim  = tp_diff.tv_sec;
+  tim = tp_diff.tv_sec;
   stm->in_sec = tim;
 }
-
