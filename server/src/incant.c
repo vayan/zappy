@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:54:43 2012 yann vaillant
-** Last update Sat Jul 14 12:54:08 2012 robin maitre
+** Last update Sat Jul 14 13:34:12 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -40,7 +40,7 @@ int		can_elev(t_client *cl)
   memset(req, 0, 10);
   fill_tab_req(req, cl->level);
   map = get_map(NULL);
-  cas = map[cl->x]cl->y];
+  cas = map[cl->x][cl->y];
   nb_pl = count_pl_on_case(cl->level, cas->client);
   if (nb_pl != req[0] || (int)req[Linemate] != (int)cas->rsrc[Linemate] ||
       (int)req[Deraumere]!= (int)cas->rsrc[Deraumere] ||
