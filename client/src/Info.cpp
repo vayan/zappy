@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jul 11 16:49:59 2012 yuguo cao
-// Last update Sat Jul 14 15:53:49 2012 yuguo cao
+// Last update Sun Jul 15 00:40:58 2012 yuguo cao
 //
 
 #include	"Info.hh"
@@ -16,7 +16,7 @@ Info::Info(Imman *i)
   _font.LoadFromFile("assets/monofonto.ttf", 24);
   _s_back.SetImage(i->getImage("info"));
   _s_back.SetSubRect(sf::IntRect(0, 0, 400, 200));
-  _s_stone.lvl.SetImage(i->getImage("resources"));
+  _s_stone.lvl.SetImage(i->getImage("level"));
   _s_stone.food.SetImage(i->getImage("resources"));
   _s_stone.linemate.SetImage(i->getImage("resources"));
   _s_stone.deraumere.SetImage(i->getImage("resources"));
@@ -24,6 +24,16 @@ Info::Info(Imman *i)
   _s_stone.mendiane.SetImage(i->getImage("resources"));
   _s_stone.phiras.SetImage(i->getImage("resources"));
   _s_stone.thystame.SetImage(i->getImage("resources"));
+
+  _s_stone.lvl.SetSubRect(sf::IntRect(0, 0, 32, 32));
+  _s_stone.food.SetSubRect(sf::IntRect(0, 0, 16, 16));
+  _s_stone.linemate.SetSubRect(sf::IntRect(16, 0, 32, 16));
+  _s_stone.deraumere.SetSubRect(sf::IntRect(32, 0, 48, 16));
+  _s_stone.sibur.SetSubRect(sf::IntRect(48, 0, 64, 16));
+  _s_stone.mendiane.SetSubRect(sf::IntRect(64, 0, 80, 16));
+  _s_stone.phiras.SetSubRect(sf::IntRect(80, 0, 96, 16));
+  _s_stone.thystame.SetSubRect(sf::IntRect(96, 0, 112, 16));
+
   _s_portrait.l1.SetImage(i->getImage("pvl1"));
   _s_portrait.l2.SetImage(i->getImage("pvl2"));
   _s_portrait.l3.SetImage(i->getImage("pvl3"));
@@ -69,15 +79,6 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
   _strings.phiras.SetPosition(absolutePosition(app, sf::Vector2i(130, 800)));
   _strings.thystame.SetPosition(absolutePosition(app, sf::Vector2i(130, 845)));
 
-  _s_stone.lvl.SetSubRect(sf::IntRect(0, 0, 16, 16));
-  _s_stone.food.SetSubRect(sf::IntRect(0, 0, 16, 16));
-  _s_stone.linemate.SetSubRect(sf::IntRect(16, 0, 32, 16));
-  _s_stone.deraumere.SetSubRect(sf::IntRect(32, 0, 48, 16));
-  _s_stone.sibur.SetSubRect(sf::IntRect(48, 0, 64, 16));
-  _s_stone.mendiane.SetSubRect(sf::IntRect(64, 0, 80, 16));
-  _s_stone.phiras.SetSubRect(sf::IntRect(80, 0, 96, 16));
-  _s_stone.thystame.SetSubRect(sf::IntRect(96, 0, 112, 16));
-
   _s_stone.lvl.SetPosition(absolutePosition(app, sf::Vector2i(18, 710)));
   _s_stone.food.SetPosition(absolutePosition(app, sf::Vector2i(18, 755)));
   _s_stone.linemate.SetPosition(absolutePosition(app, sf::Vector2i(18, 800)));
@@ -107,7 +108,7 @@ void			Info::setTextsIcons(sf::RenderWindow& app, const struct Stone_t& res, con
 
   _s_back.SetScale(ratio, ratio);
 
-  _s_stone.lvl.SetScale(2 * ratio, 2 * ratio);
+  _s_stone.lvl.SetScale(ratio, ratio);
   _s_stone.food.SetScale(2 * ratio, 2 * ratio);
   _s_stone.linemate.SetScale(2 * ratio, 2 * ratio);
   _s_stone.deraumere.SetScale(2 * ratio, 2 * ratio);

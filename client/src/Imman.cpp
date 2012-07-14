@@ -5,7 +5,7 @@
 // Login   <cao_y@epitech.net>
 // 
 // Started on  Wed Jun 13 11:42:37 2012 yuguo cao
-// Last update Sat Jul 14 23:51:24 2012 yuguo cao
+// Last update Sun Jul 15 00:38:37 2012 yuguo cao
 //
 
 #include	"Imman.hh"
@@ -41,6 +41,8 @@ void		Imman::loadImages()
   _images["pvl8"].LoadFromFile("assets/portrait-lvl8.png");
 
   _images["resources"].LoadFromFile("assets/resources.png");
+
+  _images["level"].LoadFromFile("assets/level.png");
 
   _images["back"].LoadFromFile("assets/back.png");
 
