@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:45 2012 yann vaillant
-** Last update Sat Jul 14 12:31:24 2012 robin maitre
+** Last update Sun Jul 15 10:19:45 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -28,6 +28,23 @@
 #include "setting.h"
 #include "client.h"
 #include "command_fonc.h"
+
+int		count_egg(t_team *tm)
+{
+  t_eggs	*tmp;
+  int		nb;
+
+  tmp = tm->egg;
+  nb = 0;
+  if (tmp == NULL)
+    return (0);
+  while (tmp->next)
+    {
+      nb++;
+      tmp = tmp->next;
+    }
+  return (nb);
+}
 
 t_eggs		*add_egg(t_team *tm, t_client *cl)
 {
@@ -80,6 +97,8 @@ int		fork_cl(t_client *cl)
     return (1);
   if (cl->stm->in_use == -1)
     {
+      if (count_egg(cl->teams) > 20)
+	return (broadcast_to_one_client("ko\n", cl));
       cl->stm->in_use = Fork;
       start_timer(cl->stm);
       pfk(NULL, cl);
