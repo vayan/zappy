@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:38:27 2012 yann vaillant
-** Last update Sat Jul 14 18:19:00 2012 robin maitre
+** Last update Sun Jul 15 11:05:55 2012 yann vaillant
 */
 
 #include <sys/types.h>
@@ -38,7 +38,7 @@ int		fill_struct_set(char **set, t_setting *setting, int i, int ac)
     setting->height_map = atoi(set[++i]);
   if (strcmp("-c", set[i]) == 0 && i + 1 <= ac)
     setting->max_cl_per_team = atoi(set[++i]);
-  if (strcmp("-t", set[i]) == 0 && i + 1 <= ac)
+  if (strcmp("-t", set[i]) == 0 && i + 1 < ac)
     setting->delay = atoi(set[++i]);
   return (i);
 }
