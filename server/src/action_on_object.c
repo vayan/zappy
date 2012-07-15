@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:52:40 2012 yann vaillant
-** Last update Sat Jul 14 11:45:24 2012 robin maitre
+** Last update Sun Jul 15 21:05:20 2012 robin maitre
 */
 
 #include		<sys/types.h>
@@ -90,7 +90,7 @@ int			take_object(t_client *cl, Ressource obj)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Take &&
-      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       do_take_obj(cl, obj);
@@ -115,7 +115,7 @@ int			drop_object(t_client *cl, Ressource obj)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Drop &&
-      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       do_drop_obj(cl, obj);

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:55 2012 yann vaillant
-** Last update Sat Jul 14 12:32:20 2012 robin maitre
+** Last update Sun Jul 15 21:21:13 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -53,10 +53,10 @@ int		free_map()
   setting = get_setting(NULL);
   while (y < setting->height_map)
     {
-      xfree (map[y]);
+      xfree(map[y]);
       y++;
     }
-  xfree (map);
+  xfree(map);
   return (0);
 }
 

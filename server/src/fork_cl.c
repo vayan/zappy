@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:45 2012 yann vaillant
-** Last update Sun Jul 15 10:19:45 2012 yann vaillant
+** Last update Sun Jul 15 21:19:54 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -108,7 +108,7 @@ int		fork_cl(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Fork &&
-      ((cl->stm->in_nsec) >= (42000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (42000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       do_fork_pl(cl);

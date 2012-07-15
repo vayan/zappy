@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:55:35 2012 yann vaillant
-** Last update Sat Jul 14 13:22:39 2012 robin maitre
+** Last update Sun Jul 15 21:37:56 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -70,7 +70,7 @@ int		get_type_client(char *cmd, t_client *cl)
 {
   t_team	*tm;
 
-  if (strcmp (cmd, "GRAPHIC") == 0)
+  if (strcmp(cmd, "GRAPHIC") == 0)
     {
       cl->is_graphic = 1;
       get_graphic(cl, 0);

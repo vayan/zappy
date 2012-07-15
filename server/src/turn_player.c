@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:56:08 2012 yann vaillant
-** Last update Sat Jul 14 18:25:07 2012 robin maitre
+** Last update Sun Jul 15 21:53:31 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -63,7 +63,7 @@ int		turn_left(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == TurnLeft &&
-      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       turn_client(cl, 0);

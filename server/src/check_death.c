@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun 26 12:53:02 2012 yann vaillant
-** Last update Tue Jul 10 13:38:25 2012 randy lyvet
+** Last update Sun Jul 15 21:11:08 2012 robin maitre
 */
 
 #include		<sys/types.h>
@@ -55,7 +55,7 @@ int			start_dying(t_client *cl)
   setting = get_setting(NULL);
   set_elapse_time(cl->death);
   set_elapse_sec(cl->death);
-  if (((cl->death->in_nsec) >= ((126000000000)/setting->delay)))
+  if (((cl->death->in_nsec) >= ((126000000000) / setting->delay)))
     {
       cl->rsrc[Nourriture] -= 1;
       cl->death->in_use = -1;

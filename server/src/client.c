@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun  7 15:37:52 2012 yann vaillant
-** Last update Sat Jul 14 12:09:16 2012 yann vaillant
+** Last update Sun Jul 15 21:13:37 2012 robin maitre
 */
 
 #include		<sys/types.h>
@@ -67,7 +67,7 @@ int			do_input_client(t_client *all_client)
 
   if (all_client == NULL)
     return (0);
-  tab = xmalloc (9 * sizeof(t_option));
+  tab = xmalloc(9 * sizeof(t_option));
   init_tab(tab);
   tmp = all_client;
   while (tmp)

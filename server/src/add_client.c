@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Mon Jul  2 11:53:32 2012 yann vaillant
-** Last update Sat Jul 14 12:16:02 2012 yann vaillant
+** Last update Sun Jul 15 21:07:13 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -42,7 +42,7 @@ void		add_client_on_map(t_client *new)
   add_pl(new->x, new->y, new);
 }
 
-void	init_val_new_client(t_client *new, int fd, int id)
+void		init_val_new_client(t_client *new, int fd, int id)
 {
   new->x = -1;
   new->y = -1;

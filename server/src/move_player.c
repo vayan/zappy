@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Thu Jun 14 15:40:18 2012 yann vaillant
-** Last update Sat Jul 14 11:26:34 2012 yann vaillant
+** Last update Sun Jul 15 21:30:02 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -58,7 +58,7 @@ int		movefront(t_client *cl)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == GoFront &&
-      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       moveclient(cl);

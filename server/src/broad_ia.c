@@ -5,7 +5,7 @@
 ** Login   <carlie_a@epitech.net>
 **
 ** Started on  Wed Jun 20 11:13:20 2012 anatole carlier
-** Last update Sat Jul 14 12:14:42 2012 robin maitre
+** Last update Sun Jul 15 21:09:32 2012 robin maitre
 */
 
 #include		<sys/types.h>
@@ -45,7 +45,7 @@ int			broad_ia(t_client *cl, t_client *all_client, char *msg)
   set_elapse_time(cl->stm);
   set_elapse_sec(cl->stm);
   if (cl->stm->in_use == Say &&
-      ((cl->stm->in_nsec) >= (7000000000/setting->delay)))
+      ((cl->stm->in_nsec) >= (7000000000 / setting->delay)))
     {
       cl->stm->in_use = -1;
       do_say(cl, all_client, msg);

@@ -5,7 +5,7 @@
 ** Login   <vailla_y@epitech.net>
 **
 ** Started on  Tue Jun  5 12:26:29 2012 yann vaillant
-** Last update Sat Jul 14 11:28:13 2012 yann vaillant
+** Last update Sun Jul 15 21:34:46 2012 robin maitre
 */
 
 #include <sys/types.h>
@@ -27,22 +27,22 @@
 #include "setting.h"
 #include "map.h"
 
-void		init_socket(struct sockaddr_in *sin, int port)
+void			init_socket(struct sockaddr_in *sin, int port)
 {
   sin->sin_family = AF_INET;
   sin->sin_port = htons(port);
   sin->sin_addr.s_addr = INADDR_ANY;
 }
 
-int		main_loop(int s, socklen_t client_sin_len,
+int			main_loop(int s, socklen_t client_sin_len,
 			  struct sockaddr_in client_sin, t_client *all_cl)
 {
-  int		cs;
+  int			cs;
 
   while (11)
     {
-      fd_set	readf;
-      struct	timeval tv;
+      fd_set		readf;
+      struct		timeval tv;
 
       all_cl = get_all_client(NULL, 0);
       init_timeval(&tv);
